@@ -13,6 +13,7 @@
     "@types/node": "20.4.7",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
+    "classnames": "^2.3.2",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
     "react": "18.2.0",
@@ -33,6 +34,10 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.1",
+    "stylelint": "^15.10.2",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-property-sort-order-smacss": "^9.1.0",
+    "stylelint-config-standard-scss": "^10.0.0",
     "typescript": "^5.1.6"
   },
   "lint-staged": {
