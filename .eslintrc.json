@@ -1,3 +1,135 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "createDefaultProgram": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "ignorePatterns": ["node_modules/"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "react/jsx-props-no-spreading": "off", // spreading
+    "react/react-in-jsx-scope": "off", // React를 import하지 않아도 JSX 사용 가능 (React 17부터)
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".jsx", ".tsx", ".ts"] }
+    ], // JSX 파일에는 .jsx, .tsx, .ts 확장자 사용해야 함
+    "no-useless-catch": "off", // 불필요한 catch 블록 사용 제한 해제
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }], //화살표 함수를 사용하는 것을 선호
+    "no-warning-comments": "warn", // 'TODO', 'FIXME' 등의 주석에 대해 경고 표시
+    "quotes": ["error", "single"], // 따옴표 규칙
+    "import/order": [
+      // 특정한 import 순서를 요구
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"], // 내장 모듈과 외부 라이브러리 import
+          "internal", // 내부 모듈 import
+          ["parent", "sibling", "index"], // 상위, 동일, index 파일 import
+          "object" // 객체 import
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"], // React import은 내장 모듈 그룹 앞에 배치하지 않음
+        // "newlines-between": "always", // 서로 다른 import 그룹 사이에는 개행 필요
+        "alphabetize": {
+          "order": "asc", // import 정렬을 알파벳순으로 설정
+          "caseInsensitive": true // 대소문자 구분하지 않고 정렬
+        }
+      }
+    ],
+    "no-console": "off", // console 문 사용 허용
+    "import/prefer-default-export": "off", // default export 대신 named export 사용 허용
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }], // 불필요한 증감 연산자 사용 제한, 단 loop의 마지막 표현식에서는 허용
+
+    "react/require-default-props": "off", // React 컴포넌트에서 default props 필요하지 않음
+    "react/prop-types": "off", // PropTypes를 사용한 prop 타입 체크 비활성화
+    "consistent-return": "off", // 일관된 리턴 값 요구 비활성화
+    "curly": "error", // 중괄호 사용 필요
+    "eqeqeq": ["error", "smart"], // 일치 연산자(===, !==) 사용 필요, 예외 케이스 포함
+    "@typescript-eslint/naming-convention": [
+      // TypeScript 네이밍 규칙
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "parameter",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "function",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "interface",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "enum",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "property",
+        "format": null
+      }
+    ],
+    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
+    "no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "arrow-body-style": ["error", "as-needed"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-boolean-value": ["error", "always"], // boolean prop 값을 항상 명시적으로 지정하도록
+    "react/jsx-curly-brace-presence": ["error", "never"], // JSX 중괄호에 대한 사용 규칙
+    "react/jsx-handler-names": [
+      // JSX 이벤트 핸들러에 대한 네이밍 규칙
+      "error",
+      {
+        "eventHandlerPrefix": "handle",
+        "eventHandlerPropPrefix": "on"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": ["error"] // 변수 및 함수를 정의하기 전에 사용할 수 없도록
+  }
 }
