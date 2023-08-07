@@ -1,3 +1,4 @@
+import Gnb from '@/components/Gnb/Gnb'
 import '@/styles/global.scss'
 
 export default function RootLayout({
@@ -7,6 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <Gnb />
       <body>{children}</body>
     </html>
   )
