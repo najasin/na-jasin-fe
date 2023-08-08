@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { CircleButtonProps } from '@/components/fab/circleButton.types'
 
-import styles from './circleButton.styles.module.scss'
+import styles from './circleButton.module.scss'
 
 const cx = classNames.bind(styles)
 
