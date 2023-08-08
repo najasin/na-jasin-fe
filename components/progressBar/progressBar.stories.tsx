@@ -20,3 +20,7 @@ export const Empty: Story = {
 export const Filled: Story = {
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
+
+export const Test111: Story = {
+  args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
+}
