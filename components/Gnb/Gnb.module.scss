@@ -1,0 +1,61 @@
+.wrapper {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  transition:
+    top 0.3s,
+    box-shadow 0.4s ease-out;
+  background-color: $white;
+}
+
+.container {
+  @include flexbox(row, false, center);
+
+  max-width: 96.4rem;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  gap: 4rem;
+
+  @include tablet {
+    width: calc(100% - 6.4rem);
+    padding: 1.5rem 3.2rem;
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 2rem;
+    gap: 1.6rem;
+  }
+}
+
+.logo {
+  position: relative;
+  width: 11rem;
+  height: 3.7rem;
+
+  @include mobile {
+    width: 8.4rem;
+    height: 3rem;
+  }
+}
+
+.right {
+  display: flex;
+  gap: 4rem;
+  margin-left: auto;
+  color: $black;
+
+  h2 {
+    font-size: 1.6rem;
+    white-space: nowrap;
+    @include mobile {
+      font-size: 1.4rem;
+    }
+  }
+
+  a,
+  .logo {
+    @include hover-float(y, -0.2rem);
+  }
+}
