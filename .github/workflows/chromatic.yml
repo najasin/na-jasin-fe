@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+        - '**/*.storybook.js'
 jobs:
   storybook:
     runs-on: ubuntu-latest
@@ -37,3 +39,4 @@ jobs:
 
         with:
           message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
