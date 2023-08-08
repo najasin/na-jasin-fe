@@ -1,32 +1,40 @@
-name: "Chromatic Deployment"
-
-# Event for the workflow
-on: push
-
-# List of jobs
+name: Storybook Deployment
+run-name: ${{ github.actor }}의 스토리북 배포
+on:
+  pull_request:
+    branches:
+      - develop
 jobs:
-  test:
-    # Operating System
+  storybook:
     runs-on: ubuntu-latest
-    # Job steps
+    outputs:
+      status: ${{ job.status }}
     steps:
-      - uses: actions/checkout@v2 # Update to the latest version of checkout action
+      - name: checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v2 # Example of using a different action
+
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v3
         with:
-          node-version: 16
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-      - name: Run Chromatic
-        uses: chromaui/action@v1 # Update to the latest version of Chromatic action
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
+
+      - name: depedency install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: publish to chromatic
+        id: chromatic
+        uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}""
