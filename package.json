@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.6",
@@ -24,6 +26,14 @@
     "react-hook-form": "^7.45.3"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/nextjs": "^7.2.1",
+    "@storybook/react": "^7.2.1",
+    "@storybook/testing-library": "^0.2.0",
     "@tanstack/eslint-plugin-query": "^4.32.5",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
@@ -37,9 +47,11 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
+    "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "sass": "^1.64.2",
+    "storybook": "^7.2.1",
     "stylelint": "^15.10.2",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-property-sort-order-smacss": "^9.1.0",
