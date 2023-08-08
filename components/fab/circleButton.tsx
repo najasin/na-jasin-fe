@@ -15,12 +15,16 @@ export default function CircleButton({
   size = 'md',
   image,
   text,
+  transparent,
   onClick,
 }: CircleButtonProps) {
   const imageUrl = `images/${image}.svg`
 
   return (
-    <button className={cx('circleBtn', size, image, name)} onClick={onClick}>
+    <button
+      className={cx('circleBtn', size, image, name, transparent && 'blank')}
+      onClick={onClick}
+    >
       {text && <p>{text}</p>}
       {image && <Image src={imageUrl} alt={name} width={30} height={30} />}
     </button>
