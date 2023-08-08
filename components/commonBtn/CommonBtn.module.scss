@@ -1,0 +1,25 @@
+.button {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 22px;
+
+  &.active {
+    border: 1px solid $black;
+    background-color: $black;
+    color: $white;
+  }
+
+  &.deactive {
+    border: 1px solid $grey;
+    background-color: $primary1;
+    color: $black;
+    cursor: default;
+  }
+
+  @include mobile {
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+}
