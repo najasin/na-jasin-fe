@@ -13,7 +13,7 @@ export default function Home() {
         type="submit"
         style={ButtonStyle.ACTIVE}
         onClick={() => {
-          console.log('버튼 클릭')
+          console.log('버튼 ㅋㅋㅋ')
         }}
       >
         다음
