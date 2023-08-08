@@ -1,6 +1,6 @@
 'use client'
 
-import CommonBtn from '@/components/commonBtn/CommonBtn'
+import CommonBtn from '@/components/commonBtn/commonBtn'
 import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
 
 export default function Home() {
