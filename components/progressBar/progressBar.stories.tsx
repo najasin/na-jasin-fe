@@ -13,7 +13,7 @@ export const Default: Story = {
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
 
-export const Empty: Story = {
+export const Emptyyy: Story = {
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
 
