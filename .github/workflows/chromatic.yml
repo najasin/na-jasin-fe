@@ -1,59 +1,38 @@
-name: "Chromatic Deployment"
-
+name: Storybook Deployment
+run-name: ${{ github.actor }}의 스토리북 배포
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - packages/web-ui/src/**
-
+    branches:
+      - main
 jobs:
-  chromatic-deploy:
+  storybook:
     runs-on: ubuntu-latest
+    outputs:
+      status: ${{ job.status }}
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.16.0"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache
+      - name: cache dependencies
+        id: cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
-      - name: Install Dependency
-        run: pnpm install -no-frozen-lockfile
-        working-directory: packages/web-ui
+      - name: depedency install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
 
-      - name: Publish Chromatic
+      - name: publish to chromatic
         id: chromatic
         uses: chromaui/action@v1
         with:
-          workingDir: packages/web-ui/src
           projectToken: ${{ secrets.CHROMATIC_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create comment PR
+      - name: comment PR
         uses: thollander/actions-comment-pull-request@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

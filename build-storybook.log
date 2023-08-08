@@ -1,11 +1,11 @@
 @storybook/cli v7.2.1
 
-info => Cleaning outputDir: /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--7440-w7o5Bhi8lZs5
+info => Cleaning outputDir: /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--11250-Hrqz7JvAMXRr
 info => Loading presets
 info => Building manager..
-info => Manager built (163 ms)
+info => Manager built (132 ms)
 info => Compiling preview..
-info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/node_modules/@storybook/manager/static at /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--7440-w7o5Bhi8lZs5/sb-common-assets
+info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/node_modules/@storybook/manager/static at /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--11250-Hrqz7JvAMXRr/sb-common-assets
 WARN You (or an addon) are using the 'config' preset field. This has been replaced by 'previewAnnotations' and will be removed in 8.0
 info Addon-docs: using MDX2
 info => Using implicit CSS loaders
@@ -114,7 +114,7 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 10% building 0/1 entries 0/0 dependencies 0/0 modules
 <s> [webpack.Progress] 21% building import loader ./node_modules/babel-loader/lib/index.js
 <s> [webpack.Progress] 21% building 0/1 entries 10/20 dependencies 2/10 modules
-info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/public at /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--7440-w7o5Bhi8lZs5/
+info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/public at /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--11250-Hrqz7JvAMXRr/
 <s> [webpack.Progress] 21% building import loader ./node_modules/unplugin/dist/webpack/loaders/load.js
 <s> [webpack.Progress] 21% building 0/1 entries 32/52 dependencies 5/24 modules
 <s> [webpack.Progress] 38% building import loader ./node_modules/style-loader/dist/cjs.js
@@ -122,8 +122,8 @@ info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/public at /va
 <s> [webpack.Progress] 38% building import loader ./node_modules/postcss-loader/dist/cjs.js
 <s> [webpack.Progress] 38% building import loader ./node_modules/resolve-url-loader/index.js
 <s> [webpack.Progress] 38% building import loader ./node_modules/sass-loader/dist/cjs.js
-<s> [webpack.Progress] 38% building 0/1 entries 167/188 dependencies 48/93 modules
-<s> [webpack.Progress] 46% building 0/1 entries 900/936 dependencies 255/384 modules
+<s> [webpack.Progress] 38% building 0/1 entries 171/194 dependencies 49/93 modules
+<s> [webpack.Progress] 46% building 0/1 entries 847/900 dependencies 247/376 modules
 <s> [webpack.Progress] 65% building 1/1 entries 1260/1260 dependencies 504/504 modules
 <s> [webpack.Progress] 65% building
 <s> [webpack.Progress] 69% building finish
@@ -354,7 +354,7 @@ info => Copying static files: /Users/shyjnnn/workspace/na-jasin-fe/public at /va
 <s> [webpack.Progress] 99% cache begin idle
 <s> [webpack.Progress] 100% 
 
-info => Preview built (5.67 s)
+info => Preview built (5.48 s)
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
@@ -372,4 +372,4 @@ WARN
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Output directory: /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--7440-w7o5Bhi8lZs5
+info => Output directory: /var/folders/83/3n_x78v51bjdzxbz79l68sh40000gn/T/chromatic--11250-Hrqz7JvAMXRr
