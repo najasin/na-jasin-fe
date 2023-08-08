@@ -1,10 +1,8 @@
 import type { StorybookConfig } from '@storybook/nextjs'
 
+const path = require('path')
 const config: StorybookConfig = {
-  stories: [
-    '../stories/**/*.mdx',
-    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  stories: ['../components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -18,5 +16,10 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  webpackFinal: async (config) => {
+    config.resolve!!.alias!!['@'] = path.resolve(__dirname, '../')
+    return config
+  },
+  staticDirs: ['../public'],
 }
 export default config
