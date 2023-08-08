@@ -3,7 +3,7 @@ run-name: ${{ github.actor }}의 스토리북 배포
 on:
   pull_request:
     branches:
-      - develop
+      - main
 jobs:
   storybook:
     runs-on: ubuntu-latest
