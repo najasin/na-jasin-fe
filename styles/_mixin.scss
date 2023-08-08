@@ -1,1 +1,55 @@
 // mixins
+@mixin tablet {
+  @media only screen and (width <= 1199px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (width <= 767px) {
+    @content;
+  }
+}
+
+@mixin flexbox($direction, $justify: false, $align: false) {
+  display: flex;
+  flex-direction: $direction;
+
+  @if $justify {
+    justify-content: $justify;
+  }
+
+  @if $align {
+    align-items: $align;
+  }
+}
+
+@mixin hover-float($direction, $length) {
+  transition: transform 0.2s ease;
+  @if $direction == x {
+    &:hover {
+      transform: translateX($length);
+    }
+  }
+
+  @if $direction == y {
+    &:hover {
+      transform: translateY($length);
+    }
+  }
+}
+
+@mixin ellipsis($line: 1) {
+  @if $line == 1 {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
