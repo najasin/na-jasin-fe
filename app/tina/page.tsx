@@ -1,7 +1,7 @@
 'use client'
 
 import CommonBtn from '@/components/commonBtn/CommonBtn'
-import { ButtonStyle } from '@/types/enums/commonBtn.enum'
+import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
 
 export default function Home() {
   return (

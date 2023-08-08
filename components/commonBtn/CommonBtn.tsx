@@ -1,20 +1,11 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import { ButtonStyle } from '@/types/enums/commonBtn.enum'
 
 import styles from './CommonBtn.module.scss'
+import { ButtonStyle, ICommonBtnProps } from './commonBtn.types'
 
 const cx = classNames.bind(styles)
-
-type ClickHandler = (e: React.MouseEvent) => void
-
-interface ICommonBtnProps {
-  type?: 'button' | 'submit'
-  style?: ButtonStyle
-  children: React.ReactNode
-  onClick?: ClickHandler | undefined
-}
 
 export default function CommonBtn({
   type = 'button',
