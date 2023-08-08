@@ -1,23 +1,33 @@
 'use client'
 
-import CommonBtn from '@/components/commonBtn/commonBtn'
-import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
+import React, { useState } from 'react'
+
+import Image from 'next/image'
+
+import FormBox from '@/components/formBox/formBox'
 
 export default function Home() {
+  const [isActive, setIsActive] = useState(false)
+
+  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setIsActive(event.target.value.trim().length > 0)
+  }
+
   return (
     <>
-      <CommonBtn type="submit" style={ButtonStyle.DEACTIVE}>
-        다음
-      </CommonBtn>
-      <CommonBtn
-        type="submit"
-        style={ButtonStyle.ACTIVE}
-        onClick={() => {
-          console.log('버튼 클릭')
-        }}
+      <FormBox
+        title="닉네임을 입력해주세요"
+        isActive={isActive}
+        buttonContents="다음"
       >
-        다음
-      </CommonBtn>
+        <Image
+          src="/images/defaultCharacter.png"
+          width={200}
+          height={240}
+          alt="character"
+        />
+        <input onChange={handleInputChange} />
+      </FormBox>
     </>
   )
 }
