@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "bash ./scripts/chromatic_publish.sh"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.6",
@@ -38,6 +39,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
+    "chromatic": "^6.21.0",
     "eslint": "^8.46.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -63,5 +65,7 @@
       "prettier --write",
       "eslint --fix"
     ]
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "na-jasin-fe@0.1.0"
 }
