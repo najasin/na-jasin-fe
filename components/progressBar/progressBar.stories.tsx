@@ -22,7 +22,7 @@ export const Filled: Story = {
 }
 
 
-export const Test: Story = {
+export const Testzz: Story = {
 
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
