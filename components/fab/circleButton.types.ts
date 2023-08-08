@@ -4,5 +4,5 @@ export interface CircleButtonProps {
   image?: string
   text?: string
   transparent?: boolean
-  onClick: () => void
+  onClick?: () => void
 }
