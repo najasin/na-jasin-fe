@@ -21,6 +21,8 @@ export const Filled: Story = {
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
 
+
 export const Test: Story = {
+
   args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
