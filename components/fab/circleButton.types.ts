@@ -3,5 +3,6 @@ export interface CircleButtonProps {
   size: 'sm' | 'md' | 'lg'
   image?: string
   text?: string
-  onClick: () => void
+  transparent?: boolean
+  onClick?: () => void
 }
