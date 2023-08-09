@@ -42,7 +42,7 @@ const drawRadarChart = (
   radarHeight: number,
   radarPadding: number,
 ) => {
-  // 기본 설정 값
+  // 기본 설정 값을 관리한다.
   const cfg = {
     radius: 5,
     w: radarWidth,
@@ -64,6 +64,7 @@ const drawRadarChart = (
 
   d3.select(elementId).select('svg').remove()
 
+  // radar를 담을 svg를 등록한다.
   const svg = d3
     .select(elementId)
     .append('svg')
@@ -72,12 +73,14 @@ const drawRadarChart = (
     .append('g')
     .attr('transform', `translate(${radarPadding / 2}, ${radarPadding / 2})`)
 
+  // tooltip으로 현재 값을 보여준다.
   const tooltip = svg
     .append('text')
     .style('opacity', 0)
     .style('font-family', 'sans-serif')
     .style('font-size', 13)
 
+  // isDefault일 때는 polygon만 그리며, drag 핸들러를 동작시키지 않는다.
   !isDefault && drawFrame()
   const maxAxisValues: Array<{ x: number; y: number }> = []
   !isDefault && drawAxis()
@@ -89,7 +92,7 @@ const drawRadarChart = (
 
   !isDefault && drawNode()
 
-  // frame 그리는 함수
+  // 초기에 frame을 그린다.
   function drawFrame() {
     for (let j = 0; j < cfg.levels; j++) {
       const levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels)
@@ -132,7 +135,7 @@ const drawRadarChart = (
     }
   }
 
-  // axis 그리는 함수
+  // 초기에 axis 그린다.
   function drawAxis() {
     const axis = svg
       .selectAll('.axis')
@@ -204,7 +207,7 @@ const drawRadarChart = (
       )
   }
 
-  // 드래그할 때마다 point 위치를 계산해주는 함수
+  // 드래그할 때마다 point 위치를 계산해준다.
   function reCalculatePoints() {
     svg.selectAll('.nodes').data(data, (j, i) => {
       dataValues[i] = [
@@ -224,7 +227,7 @@ const drawRadarChart = (
     dataValues[data.length] = dataValues[0]
   }
 
-  // polygon 그리는 함수
+  // 초기에 polygon을 그린다.
   function initPolygon() {
     return svg
       .selectAll('area')
@@ -251,7 +254,7 @@ const drawRadarChart = (
       .style('fill', radarColor)
   }
 
-  // polygon layout 그리는 함수
+  // polygon layout을 그린다.
   function drawPoly() {
     areagg.attr('points', (de) => {
       let str = ''
@@ -262,7 +265,7 @@ const drawRadarChart = (
     })
   }
 
-  // point 그리는 함수
+  // point node를 그린다.
   function drawNode() {
     svg
       .selectAll('.nodes')
@@ -315,12 +318,12 @@ const drawRadarChart = (
           .transition('200')
           .style('fill-opacity', cfg.opacityArea)
       })
-      .call(d3.behavior.drag<DataPoint>().on('drag', move))
+      .call(d3.behavior.drag<DataPoint>().on('drag', move)) // 드래그 시 move 함수 실행
       .append('title')
       .text((j) => Math.max(j.value, 0))
   }
 
-  // drag 시 위치 계산해주는 함수
+  // drag 시 위치를 계산해준다.
   function move(this: any, dobj: DataPoint, i: number) {
     const event = d3.event as d3.DragEvent
 
@@ -355,6 +358,7 @@ const drawRadarChart = (
       newValue = ratio * oldData.value
     }
 
+    // 0보다 작아졌을 때 멈춘다.
     if (newValue <= 0) {
       return
     }
@@ -363,6 +367,7 @@ const drawRadarChart = (
       .attr('cx', () => newX + cfg.w / 2)
       .attr('cy', () => cfg.h / 2 - newY)
     data[oldData.order].value = newValue
+
     reCalculatePoints()
     drawPoly()
   }
