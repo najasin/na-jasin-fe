@@ -18,16 +18,16 @@ const cx = classNames.bind(styles)
 
 interface InputProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactElement
-  size: string
+  variant: string
 }
 
-export function Input({ children, size }: InputProps) {
+export function Input({ children, variant }: InputProps) {
   const child = Children.only(children)
 
   return (
     <div className={cx('inputWrapper', gmarketSans.className)}>
       {cloneElement(child, {
-        className: cx('inputTextField', [size]),
+        className: cx('inputTextField', [variant]),
         ...child.props,
       })}
     </div>
@@ -35,8 +35,15 @@ export function Input({ children, size }: InputProps) {
 }
 
 Input.TextField = forwardRef(function TextField(
-  { size, ...props }: TextFeildProps,
+  { onChange, ...props }: TextFeildProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  return <input className={cx('inputTextField', [size])} ref={ref} {...props} />
+  return (
+    <input
+      className={cx('inputTextField', [props.variant])}
+      ref={ref}
+      onChange={onChange}
+      {...props}
+    />
+  )
 })
