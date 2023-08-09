@@ -20,7 +20,3 @@ export const Half: Story = {
 export const AllFilled: Story = {
   args: { currentStep: '5', totalSteps: ['1', '2', '3', '4', '5'] },
 }
-
-export const ERROR: Story = {
-  args: { currentStep: '없는 값', totalSteps: ['1', '2', '3', '4', '5'] },
-}
