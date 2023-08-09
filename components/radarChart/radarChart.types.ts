@@ -14,6 +14,7 @@ interface IRadarCompoundProps {
   radarWidth: number
   radarHeight: number
   framePadding: number
+  onDragOutUserInput: (data: DataPoint[]) => void
 }
 
 interface IRadarChartDraggableProps extends IRadarCompoundProps {
