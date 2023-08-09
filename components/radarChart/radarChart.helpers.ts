@@ -15,6 +15,20 @@ import * as d3 from 'd3'
 
 import { DataPoint } from './radarChart.types'
 
+/**
+ *
+ * @param {string} elementId svg를 담는 wrapper element의 id
+ * @param {string} lineClassName line element의 class
+ * @param {string} axisClassName axis element의 class
+ * @param {string} legendClassName legend element의 class
+ * @param {string} radarClassName radar element의 class
+ * @param {boolean} isDefault 유저가 입력한 기본 도형인지 아닌지
+ * @param {DataPoint[]} data radar data
+ * @param {string} radarColor radar color
+ * @param {number} radarWidth radar width
+ * @param {number} radarHeight radar height
+ * @param {number} radarPadding radar padding
+ */
 const drawRadarChart = (
   elementId: string,
   lineClassName: string,
