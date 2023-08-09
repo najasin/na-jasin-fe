@@ -14,18 +14,24 @@ import {
 
 const cx = classNames.bind(styles)
 
-export const RadarChart = ({ children, width, height }: IRadarChartProps) => (
-  <div style={{ width, height }} className={cx('radarChartWrapper')}>
-    {children}
-  </div>
-)
+export default function RadarChart({
+  children,
+  width,
+  height,
+}: IRadarChartProps) {
+  return (
+    <div style={{ width, height }} className={cx('radarChartWrapper')}>
+      {children}
+    </div>
+  )
+}
 
-const DraggablePolygon = ({
+function DraggablePolygon({
   draggableData,
   radarWidth,
   radarHeight,
   framePadding,
-}: IRadarChartDraggableProps) => {
+}: IRadarChartDraggableProps) {
   useEffect(() => {
     drawRadarChart(
       '#radar-chart',
@@ -50,12 +56,12 @@ const DraggablePolygon = ({
   )
 }
 
-const DefaultPolygon = ({
+function DefaultPolygon({
   defaultData,
   radarWidth,
   radarHeight,
   framePadding,
-}: IRadarChartDefaultProps) => {
+}: IRadarChartDefaultProps) {
   useEffect(() => {
     drawRadarChart(
       '#default-radar-chart',
