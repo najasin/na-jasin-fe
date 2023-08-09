@@ -5,10 +5,29 @@ interface DataPoint {
 }
 
 interface IRadarChartProps {
+  children: React.ReactNode
   width: number
   height: number
+}
+
+interface IRadarCompoundProps {
+  radarWidth: number
+  radarHeight: number
+  framePadding: number
+}
+
+interface IRadarChartDraggableProps extends IRadarCompoundProps {
   draggableData: DataPoint[]
+}
+
+interface IRadarChartDefaultProps extends IRadarCompoundProps {
   defaultData: DataPoint[]
 }
 
-export type { IRadarChartProps, DataPoint }
+export type {
+  DataPoint,
+  IRadarChartProps,
+  IRadarCompoundProps,
+  IRadarChartDraggableProps,
+  IRadarChartDefaultProps,
+}
