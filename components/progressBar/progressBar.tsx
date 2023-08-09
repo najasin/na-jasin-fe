@@ -5,21 +5,30 @@ import styles from './progressBar.module.scss'
 const cx = classNames.bind(styles)
 
 interface ProgressBarProps {
-  currentSteps: string
+  currentStep: string
   totalSteps: string[]
 }
 
-const ProgressBar = ({ currentSteps, totalSteps }: ProgressBarProps) => (
-  <div className={cx('progressBar')}>
-    {totalSteps.map((step, index) => (
-      <div
-        key={index}
-        className={`${cx('progressStep')} ${
-          step === currentSteps ? cx('fill') : ''
-        }`}
-      ></div>
-    ))}
-  </div>
-)
+export default function ProgressBar({
+  currentStep,
+  totalSteps,
+}: ProgressBarProps) {
+  if (!totalSteps.includes(currentStep)) {
+    throw new Error(`currentStep '${currentStep}' is not a valid step.`)
+  }
 
-export default ProgressBar
+  return (
+    <div className={cx('progressBar')}>
+      {totalSteps.map((step, index) => (
+        <div
+          key={index}
+          className={`${cx('progressStep')} ${
+            totalSteps.indexOf(step) <= totalSteps.indexOf(currentStep)
+              ? cx('fill')
+              : ''
+          }`}
+        ></div>
+      ))}
+    </div>
+  )
+}
