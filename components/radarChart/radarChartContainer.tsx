@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import RadarChart from './radarChart'
+import { RadarChart } from './radarChart'
 import { DataPoint } from './radarChart.types'
 
 const DATA = [

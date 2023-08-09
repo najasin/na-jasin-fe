@@ -14,11 +14,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-export default function RadarChart({
-  children,
-  width,
-  height,
-}: IRadarChartProps) {
+export function RadarChart({ children, width, height }: IRadarChartProps) {
   return (
     <div style={{ width, height }} className={cx('radarChartWrapper')}>
       {children}
