@@ -2,8 +2,9 @@ name: Storybook Deployment
 run-name: ${{ github.actor }}의 storybook 배포
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
+    paths: ['components/**']
+  
 jobs:
   storybook:
     runs-on: ubuntu-latest
