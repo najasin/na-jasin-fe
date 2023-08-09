@@ -1,0 +1,33 @@
+@use '@/styles/utils';
+
+.inputWrapper {
+  width: 100%;
+}
+
+.inputTextField {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid $dark-grey;
+  outline: none;
+  @include utils.font-style('button1');
+}
+
+.large {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 24px; /* 141.176% */
+}
+
+.medium {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  line-height: 27px; /* 192.857% */
+}
+
+.small {
+  font-size: 11px;
+}
