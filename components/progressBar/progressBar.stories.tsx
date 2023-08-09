@@ -9,14 +9,18 @@ const progressBar: Meta<typeof ProgressBar> = {
 export default progressBar
 type Story = StoryObj<typeof ProgressBar>
 
-export const Default: Story = {
-  args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
+export const First: Story = {
+  args: { currentStep: '1', totalSteps: ['1', '2', '3', '4', '5'] },
 }
 
-export const Empty: Story = {
-  args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
+export const Half: Story = {
+  args: { currentStep: '3', totalSteps: ['1', '2', '3', '4', '5'] },
 }
 
-export const Filled: Story = {
-  args: { currentSteps: '3', totalSteps: ['1', '2', '3', '4', '5'] },
+export const AllFilled: Story = {
+  args: { currentStep: '5', totalSteps: ['1', '2', '3', '4', '5'] },
+}
+
+export const ERROR: Story = {
+  args: { currentStep: '없는 값', totalSteps: ['1', '2', '3', '4', '5'] },
 }
