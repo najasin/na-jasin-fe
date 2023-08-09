@@ -2,7 +2,6 @@ import React, {
   Children,
   ForwardedRef,
   HTMLAttributes,
-  InputHTMLAttributes,
   ReactElement,
   cloneElement,
   forwardRef,
@@ -13,6 +12,7 @@ import classNames from 'classnames/bind'
 import { gmarketSans } from '@/styles/local.fonts'
 
 import styles from './input.module.scss'
+import { TextFeildProps } from './input.types'
 
 const cx = classNames.bind(styles)
 
@@ -34,19 +34,9 @@ export function Input({ children, size }: InputProps) {
   )
 }
 
-type TextFieldProps = InputHTMLAttributes<HTMLInputElement>
-
 Input.TextField = forwardRef(function TextField(
-  { onChange, size, ...props }: TextFieldProps,
+  { size, ...props }: TextFeildProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  return (
-    <input
-      className={cx('inputTextField')}
-      ref={ref}
-      onChange={onChange}
-      size={size}
-      {...props}
-    />
-  )
+  return <input className={cx('inputTextField', [size])} ref={ref} {...props} />
 })
