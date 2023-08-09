@@ -29,6 +29,7 @@ export function Input({ children, variant }: InputProps) {
       {cloneElement(child, {
         className: cx('inputTextField', [variant]),
         ...child.props,
+        variant,
       })}
     </div>
   )
@@ -40,7 +41,7 @@ Input.TextField = forwardRef(function TextField(
 ) {
   return (
     <input
-      className={cx('inputTextField', [props.variant])}
+      className={cx('inputTextField')}
       ref={ref}
       onChange={onChange}
       {...props}

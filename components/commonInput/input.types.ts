@@ -15,6 +15,5 @@ export type ChangeHandler = (e: React.ChangeEvent) => void
 
 export interface TextFeildProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  variant: string
   onChange?: ChangeHandler
 }
