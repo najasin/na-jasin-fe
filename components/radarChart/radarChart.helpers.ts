@@ -41,6 +41,7 @@ const drawRadarChart = (
   radarWidth: number,
   radarHeight: number,
   radarPadding: number,
+  onDragOutUserInput: (data: DataPoint[]) => void,
 ) => {
   // 기본 설정 값을 관리한다.
   const cfg = {
@@ -318,9 +319,21 @@ const drawRadarChart = (
           .transition('200')
           .style('fill-opacity', cfg.opacityArea)
       })
-      .call(d3.behavior.drag<DataPoint>().on('drag', move)) // 드래그 시 move 함수 실행
+      .call(
+        d3.behavior.drag<DataPoint>().on('drag', move).on('dragend', moveEnd),
+      ) // 드래그 시 move 함수 실행, 드래그 끝났을 때 moveEnd 함수 실행
       .append('title')
       .text((j) => Math.max(j.value, 0))
+  }
+
+  function moveEnd() {
+    // 유저가 변경한 데이터 불변성 유지
+    const changedData = data.map(({ axis, value, order }) => ({
+      axis,
+      value: value >> 0,
+      order,
+    }))
+    onDragOutUserInput(changedData)
   }
 
   // drag 시 위치를 계산해준다.
