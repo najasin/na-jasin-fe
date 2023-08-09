@@ -9,8 +9,6 @@ import React, {
 
 import classNames from 'classnames/bind'
 
-import { gmarketSans } from '@/styles/local.fonts'
-
 import styles from './input.module.scss'
 import { TextFeildProps } from './input.types'
 
@@ -25,7 +23,7 @@ export function Input({ children, variant }: InputProps) {
   const child = Children.only(children)
 
   return (
-    <div className={cx('inputWrapper', gmarketSans.className)}>
+    <div className={cx('inputWrapper')}>
       {cloneElement(child, {
         className: cx('inputTextField', [variant]),
         ...child.props,
