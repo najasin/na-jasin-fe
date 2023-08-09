@@ -8,7 +8,7 @@ export const gmarketSans = localFont({
       style: 'normal',
     },
     {
-      path: '../public/fdonts/GmarketSansMedium.woff',
+      path: '../public/fonts/GmarketSansMedium.woff',
       weight: '400',
       style: 'normal',
     },
