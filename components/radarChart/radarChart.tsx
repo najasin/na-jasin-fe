@@ -31,6 +31,7 @@ function DraggablePolygon({
   radarWidth,
   radarHeight,
   framePadding,
+  onDragOutUserInput,
 }: IRadarChartDraggableProps) {
   useEffect(() => {
     drawRadarChart(
@@ -45,6 +46,7 @@ function DraggablePolygon({
       radarWidth,
       radarHeight,
       framePadding,
+      onDragOutUserInput,
     )
   }, [draggableData])
 
@@ -61,6 +63,7 @@ function DefaultPolygon({
   radarWidth,
   radarHeight,
   framePadding,
+  onDragOutUserInput,
 }: IRadarChartDefaultProps) {
   useEffect(() => {
     drawRadarChart(
@@ -75,6 +78,7 @@ function DefaultPolygon({
       radarWidth,
       radarHeight,
       framePadding,
+      onDragOutUserInput,
     )
   }, [defaultData])
 
