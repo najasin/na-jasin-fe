@@ -3,4 +3,10 @@ interface IRadarChart {
   height: number
 }
 
-export type { IRadarChart }
+interface DataPoint {
+  axis: string
+  value: number
+  order: number
+}
+
+export type { IRadarChart, DataPoint }
