@@ -42,6 +42,7 @@ const drawRadarChart = (
   radarHeight: number,
   radarPadding: number,
 ) => {
+  // 기본 설정 값
   const cfg = {
     radius: 5,
     w: radarWidth,
@@ -88,6 +89,7 @@ const drawRadarChart = (
 
   !isDefault && drawNode()
 
+  // frame 그리는 함수
   function drawFrame() {
     for (let j = 0; j < cfg.levels; j++) {
       const levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels)
@@ -130,6 +132,7 @@ const drawRadarChart = (
     }
   }
 
+  // axis 그리는 함수
   function drawAxis() {
     const axis = svg
       .selectAll('.axis')
@@ -201,6 +204,7 @@ const drawRadarChart = (
       )
   }
 
+  // 드래그할 때마다 point 위치를 계산해주는 함수
   function reCalculatePoints() {
     svg.selectAll('.nodes').data(data, (j, i) => {
       dataValues[i] = [
@@ -220,6 +224,7 @@ const drawRadarChart = (
     dataValues[data.length] = dataValues[0]
   }
 
+  // polygon 그리는 함수
   function initPolygon() {
     return svg
       .selectAll('area')
@@ -246,6 +251,7 @@ const drawRadarChart = (
       .style('fill', radarColor)
   }
 
+  // polygon layout 그리는 함수
   function drawPoly() {
     areagg.attr('points', (de) => {
       let str = ''
@@ -256,6 +262,7 @@ const drawRadarChart = (
     })
   }
 
+  // point 그리는 함수
   function drawNode() {
     svg
       .selectAll('.nodes')
@@ -313,6 +320,7 @@ const drawRadarChart = (
       .text((j) => Math.max(j.value, 0))
   }
 
+  // drag 시 위치 계산해주는 함수
   function move(this: any, dobj: DataPoint, i: number) {
     const event = d3.event as d3.DragEvent
 
