@@ -7,6 +7,7 @@ const meta: Meta<typeof Input.TextField> = {
   component: Input.TextField,
 }
 export default meta
+
 type Story = StoryObj<typeof Input>
 
 export const Empty: Story = {
@@ -16,7 +17,7 @@ export const Empty: Story = {
 export const Small: Story = {
   args: {
     placeholder: 'small이어요',
-    size: 'small',
+    variant: 'small',
     onChange: () => console.log('small'),
   },
 }
@@ -24,7 +25,7 @@ export const Small: Story = {
 export const Medium: Story = {
   args: {
     placeholder: 'medium입니다.',
-    size: 'medium',
+    variant: 'medium',
     onChange: () => console.log('medium'),
   },
 }
@@ -32,7 +33,7 @@ export const Medium: Story = {
 export const Large: Story = {
   args: {
     placeholder: 'large입니다.',
-    size: 'large',
+    variant: 'large',
     onChange: () => console.log('large'),
   },
 }
