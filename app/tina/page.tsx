@@ -1,33 +1,29 @@
 'use client'
 
-import React, { useState } from 'react'
-
-import Image from 'next/image'
-
+import CommonBtn from '@/components/commonBtn/commonBtn'
 import FormBox from '@/components/formBox/formBox'
+import LayoutBtn from '@/components/simpleLayout/layoutBtn'
+import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
 export default function Home() {
-  const [isActive, setIsActive] = useState(false)
-
-  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setIsActive(event.target.value.trim().length > 0)
-  }
-
   return (
     <>
-      <FormBox
-        title="닉네임을 입력해주세요"
-        isActive={isActive}
-        buttonContents="다음"
+      <SimpleLayout
+        title="나 사용 설명서"
+        margin={25}
+        btnComponent={<LayoutBtn>For Dev도 사용해볼까?</LayoutBtn>}
       >
-        <Image
-          src="/images/defaultCharacter.png"
-          width={200}
-          height={240}
-          alt="character"
-        />
-        <input onChange={handleInputChange} />
-      </FormBox>
+        <FormBox
+          title="닉네임을 입력해주세요"
+          showBack={true}
+          onBackClick={() => {
+            console.log('clicked')
+          }}
+        >
+          <div>컨텐츠</div>
+          <CommonBtn>버튼</CommonBtn>
+        </FormBox>
+      </SimpleLayout>
     </>
   )
 }
