@@ -1,0 +1,13 @@
+.resetBtn {
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.resetBtn > img {
+  @include mobile {
+    width: 22px;
+    height: 22px;
+  }
+}
