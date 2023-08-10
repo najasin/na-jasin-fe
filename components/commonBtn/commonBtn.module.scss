@@ -1,8 +1,8 @@
 .button {
   width: 100%;
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
-  font-size: 18px;
+  @include font-style('button2');
 
   &.active {
     border: 1px solid $black;
@@ -15,11 +15,5 @@
     background-color: $primary1;
     color: $black;
     cursor: default;
-  }
-
-  @include mobile {
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 14px;
   }
 }

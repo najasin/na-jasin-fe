@@ -1,0 +1,27 @@
+.simpleLayout {
+  margin: 0 auto;
+}
+
+.contentsWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  @include tablet {
+    padding: 0 25px;
+  }
+}
+
+.titleWrapper {
+  @include flexbox(row, space-between, center);
+
+  margin-top: 30px;
+  @include tablet {
+    margin-top: 20px;
+  }
+}
+
+.title {
+  @include font-style('h2');
+  @include mobile {
+    @include font-style('button2');
+  }
+}
