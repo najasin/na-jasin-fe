@@ -12,8 +12,8 @@ export default function LayoutBtn({ children, onClick }: LayoutBtnProps) {
       <Image
         src="/images/arrow.svg"
         className={styles.arrow}
-        width={15}
-        height={15}
+        width={18}
+        height={18}
         alt="arrow"
       />
     </button>

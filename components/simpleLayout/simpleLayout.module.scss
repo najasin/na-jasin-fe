@@ -17,11 +17,17 @@
   @include tablet {
     margin-top: 20px;
   }
+  @include mobile {
+    align-items: flex-start;
+    margin-top: 15px;
+  }
 }
 
 .title {
   @include font-style('h2');
   @include mobile {
     @include font-style('button2');
+
+    margin-top: 46px;
   }
 }
