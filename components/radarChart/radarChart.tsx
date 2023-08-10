@@ -34,7 +34,7 @@ function DraggablePolygon({
 
   const total = 5
 
-  function handleZoomIn() {
+  function handleRotateZoomIn() {
     const scale = 1.5
 
     if (!svgRef.current) {
@@ -103,7 +103,7 @@ function DraggablePolygon({
       />
       <button
         style={{ position: 'absolute', right: '0' }}
-        onClick={handleZoomIn}
+        onClick={handleRotateZoomIn}
       >
         Zoom In
       </button>
