@@ -1,9 +1,10 @@
 .layoutBtn {
-  @include flexbox(row, center, center);
-
-  padding: 7px 20px;
+  display: flex;
+  padding: 10px 18px;
+  border: none;
   border-radius: 50px;
   background-color: $light-grey;
+  cursor: pointer;
   @include hover-float(y, -2px);
   @include mobile {
     padding: 4px 14.5px;
@@ -11,7 +12,6 @@
 }
 
 .title {
-  margin-top: 2px;
-  padding-right: 8px;
+  padding-right: 10px;
   @include font-style('button6');
 }
