@@ -4,7 +4,7 @@ import CommonBtn from './commonBtn'
 import { ButtonStyle } from './commonBtn.types'
 
 const meta: Meta<typeof CommonBtn> = {
-  title: 'CommonBtn',
+  title: 'CommonBtn/CommonBtn',
   component: CommonBtn,
 }
 
