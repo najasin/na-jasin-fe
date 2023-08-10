@@ -1,7 +1,9 @@
 .itemBox {
+  position: relative;
   flex-shrink: 0;
   width: 120px;
   height: 150px;
+  overflow: hidden;
   border: 1px solid $grey;
   border-radius: 10px;
   background-color: $white;
@@ -10,4 +12,10 @@
     width: 85px;
     height: 100px;
   }
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
