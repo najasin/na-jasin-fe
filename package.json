@@ -19,6 +19,7 @@
     "@types/react-dom": "18.2.7",
     "classnames": "^2.3.2",
     "eslint-config-next": "13.4.12",
+    "framer-motion": "^10.15.1",
     "next": "13.4.12",
     "prettier": "^3.0.1",
     "react": "18.2.0",
