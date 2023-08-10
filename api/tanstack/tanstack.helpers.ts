@@ -1,3 +1,8 @@
+import { cache } from 'react'
+
+import { QueryClient } from '@tanstack/react-query'
+
+// tanstack query options
 const queryClientOptions = {
   defaultOptions: {
     queries: {
@@ -5,5 +10,7 @@ const queryClientOptions = {
     },
   },
 }
+// caching query client
+const getQueryClient = cache(() => new QueryClient(queryClientOptions))
 
-export { queryClientOptions }
+export { queryClientOptions, getQueryClient }
