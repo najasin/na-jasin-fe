@@ -1,6 +1,5 @@
 export interface FormBoxProps {
-  title: string
+  title?: string
   children?: React.ReactNode
-  isActive: boolean
-  buttonContents: string
+  backComponent?: React.ReactNode
 }

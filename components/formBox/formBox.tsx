@@ -1,28 +1,26 @@
+import Link from 'next/link'
+
 import styles from './formBox.module.scss'
 import { FormBoxProps } from './formBox.types'
-import CommonBtn from '../commonBtn/commonBtn'
-import { ButtonStyle } from '../commonBtn/commonBtn.types'
 
 export default function FormBox({
   title,
   children,
-  isActive = false,
-  buttonContents,
+  backComponent,
 }: FormBoxProps) {
   return (
-    <>
+    <div className={styles.formBoxWrapper}>
       <div className={styles.titleWrapper}>
+        <Link href="/">
+          <div className={styles.back}>{backComponent}</div>
+        </Link>
         <h2 className={styles.title}>{title}</h2>
       </div>
-      <div className={styles.itemWrapper}>
+      {children}
+      {/* <form className={styles.itemWrapper}>
         {children}
-        <CommonBtn
-          type="submit"
-          style={isActive ? ButtonStyle.ACTIVE : ButtonStyle.DEACTIVE}
-        >
-          {buttonContents}
-        </CommonBtn>
-      </div>
-    </>
+        <div className={styles.button}>{buttonComponent}</div>
+      </form> */}
+    </div>
   )
 }
