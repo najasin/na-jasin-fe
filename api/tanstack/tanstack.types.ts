@@ -1,5 +1,5 @@
-interface ITanstackProvidersProps {
+interface ITanstackProviderProps {
   children: React.ReactNode
 }
 
-export type { ITanstackProvidersProps }
+export type { ITanstackProviderProps }
