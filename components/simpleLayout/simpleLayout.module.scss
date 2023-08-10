@@ -1,0 +1,19 @@
+.simpleLayout {
+  margin: 0 auto;
+}
+
+.titleWrapper {
+  @include flexbox(row, space-between, center);
+
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.title {
+  @include font-style('h2');
+  @include mobile {
+    @include font-style('button2');
+  }
+}
