@@ -14,5 +14,6 @@ export const layout: Story = {
   args: {
     title: '제목입니다',
     children: '컨텐츠입니다',
+    margin: 20,
   },
 }
