@@ -12,5 +12,7 @@ const itemBox: Meta<typeof ItemBox> = {
 export default itemBox
 
 export const Default: Story = {
-  args: {},
+  args: {
+    imgUrl: 'https://picsum.photos/id/237/200/300',
+  },
 }
