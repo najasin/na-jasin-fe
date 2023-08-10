@@ -75,11 +75,7 @@ const drawRadarChart = (
     .attr('transform', `translate(${radarPadding / 2}, ${radarPadding / 2})`)
 
   // tooltip으로 현재 값을 보여준다.
-  const tooltip = svg
-    .append('text')
-    .style('opacity', 0)
-    .style('font-family', 'sans-serif')
-    .style('font-size', 13)
+  const tooltip = svg.append('text').style('opacity', 0).style('font-size', 13)
 
   // isDefault일 때는 polygon만 그리며, drag 핸들러를 동작시키지 않는다.
   !isDefault && drawFrame()
@@ -171,8 +167,7 @@ const drawRadarChart = (
       .append('text')
       .attr('class', legendClassName)
       .text((d) => d)
-      .style('font-family', 'sans-serif')
-      .style('font-weight', '500')
+      .style('font-weight', '400')
       .style('font-size', '16px')
       .style('fill', 'black')
       .attr('transform', (d, i) => {
