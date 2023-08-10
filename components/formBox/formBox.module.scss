@@ -1,10 +1,7 @@
 .titleWrapper,
 .itemWrapper {
-  max-width: 500px;
-  height: fit-content;
-  padding: 24px;
+  width: 470px;
   border: 1px solid $black;
-  @include flexbox(column, center, center);
   @include mobile {
     width: 100%;
   }
@@ -14,22 +11,38 @@
   @include flexbox(row, center, center);
 
   position: relative;
+  height: 69px;
+  padding: 0 30px;
   border-radius: 20px 20px 0 0;
   @include mobile {
-    padding: 22px;
+    height: 57px;
+    padding: 0 22px;
   }
 }
 
 .itemWrapper {
+  height: 401px;
+  margin-top: -1px;
+  padding: 0 30px 25px;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
   @include mobile {
-    padding: 15px;
+    height: fit-content;
+    min-height: 556px;
+    padding: 10px 22px 24px;
   }
 }
 
-.back {
+.backBtn {
+  @include flexbox(row, center, center);
+
   position: absolute;
-  top: 30px;
-  left: 24px;
+  top: 15px;
+  left: 18px;
+  @include mobile {
+    top: 13px;
+    left: 12px;
+  }
 }
 
 .title {
@@ -38,9 +51,4 @@
   @include mobile {
     font-size: 18px;
   }
-}
-
-.button {
-  width: 90%;
-  margin-top: 24px;
 }

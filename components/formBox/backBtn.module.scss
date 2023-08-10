@@ -1,0 +1,21 @@
+.backBtn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  @include flexbox(row, center, center);
+  @include mobile {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.backBtn > img {
+  width: 20px;
+  height: 20px;
+  @include mobile {
+    width: 15px;
+    height: 15px;
+  }
+}
