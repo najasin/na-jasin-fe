@@ -1,0 +1,13 @@
+.itemBox {
+  flex-shrink: 0;
+  width: 120px;
+  height: 150px;
+  border: 1px solid $grey;
+  border-radius: 10px;
+  background-color: $white;
+
+  @include mobile {
+    width: 85px;
+    height: 100px;
+  }
+}
