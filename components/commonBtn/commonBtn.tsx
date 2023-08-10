@@ -2,13 +2,13 @@
 
 import classNames from 'classnames/bind'
 
-import styles from './CommonBtn.module.scss'
+import styles from './commonBtn.module.scss'
 import { ButtonStyle, ICommonBtnProps } from './commonBtn.types'
 
 const cx = classNames.bind(styles)
 
 export default function CommonBtn({
-  type = 'button',
+  type = 'submit',
   style = ButtonStyle.ACTIVE,
   onClick = undefined,
   children,
