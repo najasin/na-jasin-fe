@@ -167,6 +167,7 @@ const drawRadarChart = (
       .append('text')
       .attr('class', legendClassName)
       .text((d) => d)
+      .attr('text-anchor', 'middle')
       .style('font-weight', '400')
       .style('font-size', '16px')
       .style('fill', 'black')
