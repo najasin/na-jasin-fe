@@ -3,6 +3,10 @@ import { gmarketSans } from '@/styles/local.fonts'
 
 import TanstackProvider from '@/api/tanstack/tanstackProvider.context'
 
+import { META_ROOT } from './_meta'
+
+export const metadata = META_ROOT
+
 export default function RootLayout({
   children,
 }: {
