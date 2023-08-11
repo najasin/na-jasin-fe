@@ -7,22 +7,11 @@
   cursor: pointer;
   @include hover-float(y, -2px);
   @include mobile {
-    padding: 5px 10px;
+    padding: 4px 14.5px;
   }
 }
 
 .title {
   padding-right: 10px;
   @include font-style('button6');
-  @include mobile {
-    padding-right: 5px;
-    font-size: 10px;
-  }
-}
-
-.arrow {
-  @include mobile {
-    width: 13px;
-    height: 13px;
-  }
 }

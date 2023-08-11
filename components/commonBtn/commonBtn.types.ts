@@ -10,9 +10,9 @@ export enum ButtonStyle {
 
 export type ClickHandler = (e: React.MouseEvent) => void
 
-export interface ICommonBtnProps {
+export interface CommonBtnProps {
   type?: 'button' | 'submit'
   style?: ButtonStyle
   children: React.ReactNode
-  onClick?: ClickHandler
+  onClick?: ClickHandler | undefined
 }
