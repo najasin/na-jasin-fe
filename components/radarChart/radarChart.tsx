@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
@@ -30,6 +30,8 @@ function DraggablePolygon({
   framePadding,
   onDragOutUserInput,
 }: IRadarChartDraggableProps) {
+  const [counter, setCounter] = useState(1)
+
   const svgRef = useRef(null)
 
   const total = 5
@@ -99,7 +101,7 @@ function DraggablePolygon({
     const tt = textElements.transition().duration(750)
     tt.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
-      return `rotate(${(360 / total) * 3}, ${initialPosition.cX}, ${
+      return `rotate(${(360 / total) * counter}, ${initialPosition.cX}, ${
         initialPosition.cY
       })`
     })
@@ -107,10 +109,12 @@ function DraggablePolygon({
     // // transition 생성
     const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
 
-    t.attr(
-      'transform',
-      `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * 3})`,
-    )
+    const translated =
+      counter === 1
+        ? `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * counter})`
+        : `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * counter})`
+
+    t.attr('transform', translated)
   }
 
   useEffect(() => {
@@ -131,6 +135,10 @@ function DraggablePolygon({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draggableData])
 
+  useEffect(() => {
+    console.log(counter)
+  }, [counter])
+
   return (
     <div style={{ position: 'relative' }}>
       <div
@@ -143,6 +151,15 @@ function DraggablePolygon({
         onClick={handleRotateZoomIn}
       >
         Zoom In
+      </button>
+      <button
+        style={{ position: 'absolute', right: '-20px' }}
+        onClick={() => {
+          setCounter((prev) => prev + 1)
+          handleRotateZoomIn()
+        }}
+      >
+        ++
       </button>
     </div>
   )
