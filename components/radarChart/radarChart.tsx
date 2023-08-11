@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
@@ -30,13 +30,13 @@ function DraggablePolygon({
   framePadding,
   onDragOutUserInput,
 }: IRadarChartDraggableProps) {
-  const [counter, setCounter] = useState(1)
+  const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
 
   const svgRef = useRef(null)
 
   const total = 5
 
-  function handleRotateZoomIn() {
+  const handleRotateZoomIn = () => {
     const scale = 1.5
 
     if (!svgRef.current) {
@@ -101,20 +101,30 @@ function DraggablePolygon({
     const tt = textElements.transition().duration(750)
     tt.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
-      return `rotate(${(360 / total) * counter}, ${initialPosition.cX}, ${
-        initialPosition.cY
-      })`
+      return `rotate(${(360 / total) * counterRef.current}, ${
+        initialPosition.cX
+      }, ${initialPosition.cY})`
     })
 
     // // transition 생성
     const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
 
     const translated =
-      counter === 1
-        ? `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * counter})`
-        : `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * counter})`
+      counterRef.current === 1
+        ? `translate(0, 200) scale(${scale}) rotate(${
+            -(360 / 5) * counterRef.current
+          })`
+        : `translate(0, 200) scale(${scale}) rotate(${
+            -(360 / 5) * counterRef.current
+          })`
 
     t.attr('transform', translated)
+
+    console.log(
+      counterRef.current,
+      (360 / total) * counterRef.current,
+      -(360 / total) * counterRef.current,
+    )
   }
 
   useEffect(() => {
@@ -136,8 +146,8 @@ function DraggablePolygon({
   }, [draggableData])
 
   useEffect(() => {
-    console.log(counter)
-  }, [counter])
+    console.log(counterRef.current)
+  }, [counterRef.current])
 
   return (
     <div style={{ position: 'relative' }}>
@@ -153,13 +163,22 @@ function DraggablePolygon({
         Zoom In
       </button>
       <button
-        style={{ position: 'absolute', right: '-20px' }}
+        style={{ position: 'absolute', right: '-50px' }}
         onClick={() => {
-          setCounter((prev) => prev + 1)
+          counterRef.current = (counterRef.current + 1) % total
           handleRotateZoomIn()
         }}
       >
-        ++
+        plus
+      </button>
+      <button
+        style={{ position: 'absolute', right: '-100px' }}
+        onClick={() => {
+          counterRef.current = Math.abs((counterRef.current - 1) % total)
+          handleRotateZoomIn()
+        }}
+      >
+        minus
       </button>
     </div>
   )
