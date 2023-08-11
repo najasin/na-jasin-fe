@@ -1,0 +1,70 @@
+{
+  "baseImage": "",
+  "characterItems": {
+    "face": [
+      {
+        "id": "face_id_1",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "face_id_2",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "face_id_3",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      }
+    ],
+    "body": [
+      {
+        "id": "body_id_1",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "body_id_2",
+        "showCase": "body_image_url_2",
+        "layoutCase": "body_layout_url_2"
+      },
+      {
+        "id": "body_id_3",
+        "showCase": "body_image_url_2",
+        "layoutCase": "body_layout_url_2"
+      }
+    ],
+    "expression": [
+      {
+        "id": "expression_id_1",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "expression_id_2",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "expression_id_3",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      }
+    ],
+    "set": [
+      {
+        "id": "set_id_1",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "set_id_2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "set_id_3",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      }
+    ]
+  }
+}
