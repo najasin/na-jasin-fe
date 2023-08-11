@@ -2,6 +2,7 @@
   width: fit-content;
   height: fit-content;
   padding: 6px 10px;
+  border: none;
   border-radius: 50px;
   @include font-style('button5');
 
@@ -18,6 +19,10 @@
   &.deepBlue {
     background-color: $blue-point;
     color: $white;
+  }
+
+  &.onClick {
+    cursor: pointer;
   }
 
   @include mobile {

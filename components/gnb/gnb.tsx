@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { UserType } from '@/types/user.enum'
 
-import styles from './Gnb.module.scss'
+import styles from './gnb.module.scss'
 import GnbChip from './gnbChip'
 import { GnbChipStyle } from './gnbChip.types'
 

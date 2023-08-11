@@ -25,7 +25,8 @@
   position: relative;
   width: 83px;
   height: 29px;
-
+  margin: 0;
+  padding: 0;
   @include mobile {
     width: 69px;
     height: 23px;
@@ -58,5 +59,10 @@
       color: $dark-grey;
       font-size: 12px;
     }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
   }
 }

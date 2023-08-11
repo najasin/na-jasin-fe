@@ -14,7 +14,12 @@ export default function GnbChip({
   children,
 }: GnbChipProps) {
   return (
-    <button type={type} className={cx('button', `${style}`)} onClick={onClick}>
+    <button
+      type={type}
+      className={cx('button', `${style}`, `${onClick && onClick}`)}
+      onClick={onClick}
+      disabled={!onClick}
+    >
       {children}
     </button>
   )
