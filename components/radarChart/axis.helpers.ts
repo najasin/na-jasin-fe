@@ -1,9 +1,9 @@
-const defaultOffsetMap = [
-  { offsetX: 0, offsetY: -30 },
-  { offsetX: -40, offsetY: 0 },
-  { offsetX: -10, offsetY: 45 },
-  { offsetX: 10, offsetY: 45 },
-  { offsetX: 40, offsetY: 0 },
+const defaultOffsetRatioMap = [
+  { offsetXRatio: 0, offsetYRatio: -0.1 },
+  { offsetXRatio: -0.15, offsetYRatio: 0 },
+  { offsetXRatio: 0, offsetYRatio: 0.15 },
+  { offsetXRatio: 0, offsetYRatio: 0.15 },
+  { offsetXRatio: 0.15, offsetYRatio: 0 },
 ]
 
 const rotateOffsetMap = [
@@ -15,7 +15,7 @@ const rotateOffsetMap = [
     { offsetX: 20, offsetY: -20 },
   ],
   [
-    { offsetX: 50, offsetY: -100 },
+    { offsetX: 40, offsetY: -37 },
     { offsetX: -10, offsetY: -15 },
     { offsetX: -40, offsetY: 20 },
     { offsetX: -30, offsetY: 40 },
@@ -44,4 +44,4 @@ const rotateOffsetMap = [
   ],
 ]
 
-export { defaultOffsetMap, rotateOffsetMap }
+export { defaultOffsetRatioMap, rotateOffsetMap }
