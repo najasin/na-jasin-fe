@@ -3,6 +3,9 @@
   padding: 12px;
   border-radius: 10px;
   @include font-style('button2');
+  @include mobile {
+    @include font-style('button5');
+  }
 
   &.active {
     border: 1px solid $black;
