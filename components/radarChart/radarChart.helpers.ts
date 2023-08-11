@@ -13,6 +13,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as d3 from 'd3'
 
+import { defaultOffsetMap } from './axis.helpers'
 import { DataPoint } from './radarChart.types'
 
 /**
@@ -183,34 +184,12 @@ const drawRadarChart = (
         const cX = bbox.x + bbox.width / 2
         const cY = bbox.y + bbox.height / 2
 
-        let offsetX = 0
-        let offsetY = 0
-        switch (i) {
-          case 0:
-            offsetX = 0
-            offsetY = -30
-            break
-          case 1:
-            offsetX = -60
-            offsetY = 0
-            break
-          case 2:
-            offsetX = 0
-            offsetY = 45
-            break
-          case 3:
-            offsetX = 0
-            offsetY = 43
-            break
-          case 4:
-            offsetX = 30
-            offsetY = 0
-            break
-          default:
-            break
-        }
-
-        initialTextPositions.push({ cX, cY, offsetX, offsetY })
+        initialTextPositions.push({
+          cX,
+          cY,
+          offsetX: defaultOffsetMap[i].offsetX,
+          offsetY: defaultOffsetMap[i].offsetY,
+        })
       })
       .attr('transform', (d, i) => {
         const initialPosition = initialTextPositions[i]
