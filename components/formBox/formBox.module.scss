@@ -1,6 +1,10 @@
+.formBoxWrapper {
+  width: 520px;
+}
+
 .titleWrapper,
 .itemWrapper {
-  width: 470px;
+  width: 100%;
   border: 1px solid $black;
   @include mobile {
     width: 100%;
@@ -23,7 +27,8 @@
 .itemWrapper {
   height: 401px;
   margin-top: -1px;
-  padding: 0 30px 25px;
+
+  // padding: 0 30px 25px;
   border-top: none;
   border-radius: 0 0 20px 20px;
   @include mobile {
