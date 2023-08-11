@@ -163,6 +163,13 @@ const drawRadarChart = (
       .style('stroke', 'grey')
       .style('stroke-width', '1px')
 
+    const initialTextPositions: Array<{
+      cX: number
+      cY: number
+      offsetX: number
+      offsetY: number
+    }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
+
     axis
       .append('text')
       .attr('class', legendClassName)
@@ -171,23 +178,45 @@ const drawRadarChart = (
       .style('font-weight', '400')
       .style('font-size', '16px')
       .style('fill', 'black')
-      .attr('transform', (d, i) => {
-        const dW = d.length
+      .each(function (this: any, d, i) {
+        const bbox = this.getBBox()
+        const cX = bbox.x + bbox.width / 2
+        const cY = bbox.y + bbox.height / 2
 
+        let offsetX = 0
+        let offsetY = 0
         switch (i) {
           case 0:
-            return `translate(-${dW * 3}, -${dW * 4})`
+            offsetX = 0
+            offsetY = -30
+            break
           case 1:
-            return `translate(-${dW * 7}, -${dW * 1})`
+            offsetX = -60
+            offsetY = 0
+            break
           case 2:
-            return `translate(-${dW * 4}, ${dW * 5})`
+            offsetX = 0
+            offsetY = 45
+            break
           case 3:
-            return `translate(-${dW * 2}, ${dW * 4})`
+            offsetX = 0
+            offsetY = 43
+            break
           case 4:
-            return `translate(${dW * 3}, -${dW * 2})`
+            offsetX = 30
+            offsetY = 0
+            break
           default:
+            break
         }
-        return 'translate(0, 0)'
+
+        initialTextPositions.push({ cX, cY, offsetX, offsetY })
+      })
+      .attr('transform', (d, i) => {
+        const initialPosition = initialTextPositions[i]
+        return `translate(${initialPosition.cX + initialPosition.offsetX},${
+          initialPosition.cY + initialPosition.offsetY
+        })`
       })
       .attr(
         'x',

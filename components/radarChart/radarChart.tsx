@@ -49,20 +49,57 @@ function DraggablePolygon({
 
     const textElements = svg.selectAll<SVGTextElement>('.radar-chart-legend')
 
-    const initialTextPositions: Array<{ cX: number; cY: number }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
+    const initialTextPositions: Array<{
+      cX: number
+      cY: number
+    }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
 
     /* eslint-disable func-names */
-    textElements.each(function (this: SVGTextElement) {
+    textElements.each(function (this: SVGTextElement, d, i) {
       const bbox = (this as SVGTextElement).getBBox()
-      const cX = bbox.x + bbox.width / 2
-      const cY = bbox.y + bbox.height / 2
+
+      let cX = bbox.x + bbox.width / 2
+      let cY = bbox.y + bbox.height / 2
+
+      // 조정할 offset 값들을 추가
+      let offsetX = 0
+      let offsetY = 0
+      switch (i) {
+        case 0:
+          offsetX = 0
+          offsetY = -20
+          break
+        case 1:
+          offsetX = -30
+          offsetY = 0
+          break
+        case 2:
+          offsetX = 0
+          offsetY = 20
+          break
+        case 3:
+          offsetX = 0
+          offsetY = 20
+          break
+        case 4:
+          offsetX = 20
+          offsetY = 0
+          break
+        default:
+          break
+      }
+
+      // offset 값들을 적용하여 좌표 조정
+      cX += offsetX
+      cY += offsetY
+
       initialTextPositions.push({ cX, cY })
     })
 
     const tt = textElements.transition().duration(750)
     tt.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
-      return `rotate(${(360 / total) * 2}, ${initialPosition.cX}, ${
+      return `rotate(${(360 / total) * 3}, ${initialPosition.cX}, ${
         initialPosition.cY
       })`
     })
@@ -72,7 +109,7 @@ function DraggablePolygon({
 
     t.attr(
       'transform',
-      `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * 2})`,
+      `translate(0, 200) scale(${scale}) rotate(${-(360 / 5) * 3})`,
     )
   }
 
