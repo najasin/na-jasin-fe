@@ -13,7 +13,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as d3 from 'd3'
 
-import { defaultOffsetMap } from './axis.helpers'
+import { defaultOffsetRatioMap } from './axis.helpers'
 import { DataPoint } from './radarChart.types'
 
 /**
@@ -187,8 +187,8 @@ const drawRadarChart = (
         initialTextPositions.push({
           cX,
           cY,
-          offsetX: defaultOffsetMap[i].offsetX,
-          offsetY: defaultOffsetMap[i].offsetY,
+          offsetX: defaultOffsetRatioMap[i].offsetXRatio * cfg.w,
+          offsetY: defaultOffsetRatioMap[i].offsetYRatio * cfg.h,
         })
       })
       .attr('transform', (d, i) => {
