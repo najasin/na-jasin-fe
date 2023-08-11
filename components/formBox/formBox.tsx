@@ -1,9 +1,10 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import { useMediaQuery } from 'react-responsive'
 
 import { hsYuji } from '@/styles/local.fonts'
+
+import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
 import BackBtn from './backBtn'
 import styles from './formBox.module.scss'
@@ -18,9 +19,8 @@ export default function FormBox({
   onBackClick,
   paddingTop = 23,
 }: FormBoxProps) {
-  const isMobile: boolean = useMediaQuery({
-    query: '(max-width:767px)',
-  })
+  const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
+  const paddingTopValue = isMobile ? '10px' : `${paddingTop}px`
   return (
     <div className={styles.formBoxWrapper}>
       <div className={styles.titleWrapper}>
@@ -31,7 +31,7 @@ export default function FormBox({
       </div>
       <div
         className={styles.itemWrapper}
-        style={{ paddingTop: isMobile ? '10px' : `${paddingTop}px` }}
+        style={{ paddingTop: paddingTopValue }}
       >
         {children}
       </div>

@@ -1,6 +1,8 @@
 import '@/styles/global.scss'
 import { gmarketSans } from '@/styles/local.fonts'
 
+import Gnb from '@/components/gnb/gnb'
+
 import TanstackProvider from '@/api/tanstack/tanstackProvider.context'
 
 import { META_ROOT } from './_meta'
@@ -15,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className={gmarketSans.className}>
       <body>
-        <TanstackProvider>{children}</TanstackProvider>
+        <TanstackProvider>
+          <Gnb />
+          <main>{children}</main>
+        </TanstackProvider>
       </body>
     </html>
   )

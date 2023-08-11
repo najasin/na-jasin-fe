@@ -1,5 +1,6 @@
 .layoutBtn {
-  display: flex;
+  @include flexbox(row, center, center);
+
   padding: 10px 18px;
   border: none;
   border-radius: 50px;
