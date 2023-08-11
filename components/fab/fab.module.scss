@@ -1,0 +1,26 @@
+.fab {
+  display: flex;
+  position: fixed;
+  right: 130px;
+  bottom: 160px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.basic {
+  width: 70px;
+  height: 70px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mdButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
