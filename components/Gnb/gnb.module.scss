@@ -1,0 +1,68 @@
+.wrapper {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  transition:
+    top 0.3s,
+    box-shadow 0.4s ease-out;
+  border-bottom: 1px solid #cbcbcb;
+  background-color: $white;
+}
+
+.container {
+  @include flexbox(row, center, center);
+
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 15px 0;
+
+  @include tablet {
+    padding: 15px 28px;
+  }
+}
+
+.logo {
+  position: relative;
+  width: 83px;
+  height: 29px;
+  margin: 0;
+  padding: 0;
+  @include mobile {
+    width: 69px;
+    height: 23px;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  width: 176px;
+  margin-left: auto;
+  color: $black;
+  gap: 4px;
+
+  @include mobile {
+    width: 127px;
+  }
+
+  .login,
+  .logout {
+    margin-left: auto;
+  }
+
+  h2 {
+    @include font-style('button5');
+    @include hover-float(y, -02px);
+
+    white-space: nowrap;
+    @include mobile {
+      color: $dark-grey;
+      font-size: 12px;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+}
