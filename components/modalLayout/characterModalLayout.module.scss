@@ -11,6 +11,7 @@
   @include flexbox(row, space-between, center);
 
   width: 975px;
+  margin: 0 auto;
   margin-bottom: 12px;
 }
 
@@ -23,5 +24,6 @@
 
   @include flexbox(row, center, center);
 
+  margin: 0 auto;
   gap: 70px;
 }
