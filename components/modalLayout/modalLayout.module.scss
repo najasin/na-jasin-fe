@@ -1,0 +1,53 @@
+.modal {
+  width: 1080px;
+  height: 588px;
+  margin: 106px auto 0;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.character {
+  padding: 44px 50px 0;
+}
+
+.noCharacter {
+  padding: 44px 50px 0;
+}
+
+.header {
+  @include flexbox(row, space-between, center);
+
+  width: 975px;
+}
+
+.narrow {
+  margin-bottom: 12px;
+}
+
+.wide {
+  margin-bottom: 52px;
+}
+
+.title {
+  @include font-style('text4');
+}
+
+.yes {
+  width: 970px;
+
+  @include flexbox(row, center, center);
+
+  gap: 70px;
+}
+
+.no {
+  width: 791px;
+  margin: 0 auto;
+  @include flexbox(column, center);
+}
+
+.complete {
+  width: 791px;
+  margin: 0 auto;
+  margin-top: 81px;
+}
