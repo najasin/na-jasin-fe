@@ -18,6 +18,7 @@
   @include flexbox(row, space-between, center);
 
   width: 975px;
+  margin: 0 auto;
 }
 
 .narrow {
@@ -30,6 +31,10 @@
 
 .title {
   @include font-style('text4');
+}
+
+.contents {
+  margin: 0 auto;
 }
 
 .yes {
