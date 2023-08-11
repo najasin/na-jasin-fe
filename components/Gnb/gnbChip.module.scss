@@ -1,0 +1,27 @@
+.button {
+  width: fit-content;
+  height: fit-content;
+  padding: 6px 10px;
+  border-radius: 50px;
+  @include font-style('button5');
+
+  &.grey {
+    background-color: $light-grey;
+    color: $black;
+  }
+
+  &.lightBlue {
+    background-color: $skyblue-point;
+    color: $white;
+  }
+
+  &.deepBlue {
+    background-color: $blue-point;
+    color: $white;
+  }
+
+  @include mobile {
+    padding: 4px 12px;
+    font-size: 10px;
+  }
+}

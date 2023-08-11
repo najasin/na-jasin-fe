@@ -1,7 +1,7 @@
 import '@/styles/global.scss'
 import { gmarketSans } from '@/styles/local.fonts'
 
-import Gnb from '@/components/Gnb/Gnb'
+import Gnb from '@/components/gnb/gnb'
 
 import TanstackProvider from '@/api/tanstack/tanstackProvider.context'
 

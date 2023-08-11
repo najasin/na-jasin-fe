@@ -5,57 +5,62 @@
   transition:
     top 0.3s,
     box-shadow 0.4s ease-out;
+  border-bottom: 1px solid #cbcbcb;
   background-color: $white;
 }
 
 .container {
   @include flexbox(row, false, center);
 
-  max-width: 96.4rem;
+  max-width: 964px;
   margin: 0 auto;
-  padding: 1.5rem 0;
-  gap: 4rem;
+  padding: 15px 0;
+  gap: 4px;
 
   @include tablet {
-    width: calc(100% - 6.4rem);
-    padding: 1.5rem 3.2rem;
+    width: calc(100% - 64px);
+    padding: 15px 32px;
   }
 
   @include mobile {
     flex-wrap: wrap;
     width: 100%;
-    padding: 1rem 2rem;
-    gap: 1.6rem;
+    padding: 1px 2px;
+    gap: 16px;
   }
 }
 
 .logo {
   position: relative;
-  width: 11rem;
-  height: 3.7rem;
+  width: 83px;
+  height: 29px;
 
   @include mobile {
-    width: 8.4rem;
-    height: 3rem;
+    width: 84px;
+    height: 3px;
   }
 }
 
 .right {
   display: flex;
-  gap: 4rem;
+  align-items: center;
+  width: 176px;
   margin-left: auto;
   color: $black;
+  gap: 4px;
 
-  h2 {
-    font-size: 1.6rem;
-    white-space: nowrap;
-    @include mobile {
-      font-size: 1.4rem;
-    }
+  .login,
+  .logout {
+    margin-left: auto;
   }
 
-  a,
-  .logo {
-    @include hover-float(y, -0.2rem);
+  h2 {
+    @include font-style('button5');
+    @include hover-float(y, -02px);
+
+    white-space: nowrap;
+    @include mobile {
+      font-size: 12px;
+    }
   }
 }
