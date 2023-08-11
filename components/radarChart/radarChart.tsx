@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
 
-import { rotateOffsetMap } from './axis.helpers'
+import { rotateOffsetRaioMap } from './axis.helpers'
 import { drawRadarChart } from './radarChart.helpers'
 import styles from './radarChart.module.scss'
 import {
@@ -60,6 +60,13 @@ function DraggablePolygon({
   const handleRotateZoomIn = () => {
     const scale = 1.5
 
+    const cfg = {
+      w: radarWidth,
+      h: radarHeight,
+      factorLegend: 0.85,
+      radians: 2 * Math.PI,
+    }
+
     if (!svgRef.current) {
       return // svgRef.current가 null일 경우 처리
     }
@@ -72,50 +79,48 @@ function DraggablePolygon({
 
     const textElements = svg.selectAll<SVGTextElement>('.radar-chart-legend')
 
+    // textElements.text(() => '')
+
     const initialTextPositions: Array<{
       cX: number
       cY: number
+      offsetX: number
+      offsetY: number
     }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
 
     /* eslint-disable func-names */
     textElements.each(function (this: SVGTextElement, d, i) {
       const bbox = (this as SVGTextElement).getBBox()
 
-      let cX = bbox.x + bbox.width / 2
-      let cY = bbox.y + bbox.height / 2
+      const cX = bbox.x + bbox.width / 2
+      const cY = bbox.y + bbox.height / 2
 
-      cX += rotateOffsetMap[counterRef.current][i].offsetX
-      cY += rotateOffsetMap[counterRef.current][i].offsetY
-
-      initialTextPositions.push({ cX, cY })
+      initialTextPositions.push({
+        cX,
+        cY,
+        offsetX:
+          rotateOffsetRaioMap[counterRef.current][i].offsetXRatio * cfg.w,
+        offsetY:
+          rotateOffsetRaioMap[counterRef.current][i].offsetYRatio * cfg.h,
+      })
     })
 
     const tt = textElements.transition().duration(750)
     tt.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
       return `rotate(${(360 / total) * counterRef.current}, ${
-        initialPosition.cX
-      }, ${initialPosition.cY})`
+        initialPosition.cX + initialPosition.offsetX
+      }, ${initialPosition.cY + initialPosition.offsetY})`
     })
 
     // // transition 생성
     const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
 
-    const translated =
-      counterRef.current === 1
-        ? `translate(0, 200) scale(${scale}) rotate(${
-            -(360 / 5) * counterRef.current
-          })`
-        : `translate(0, 200) scale(${scale}) rotate(${
-            -(360 / 5) * counterRef.current
-          })`
-
-    t.attr('transform', translated)
-
-    console.log(
-      counterRef.current,
-      (360 / total) * counterRef.current,
-      -(360 / total) * counterRef.current,
+    t.attr(
+      'transform',
+      `translate(0, 200) scale(${scale}) rotate(${
+        -(360 / 5) * counterRef.current
+      })`,
     )
   }
 
