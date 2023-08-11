@@ -6,42 +6,42 @@ const defaultOffsetRatioMap = [
   { offsetXRatio: 0.15, offsetYRatio: 0 },
 ]
 
-const rotateOffsetMap = [
+const rotateOffsetRaioMap = [
   [
-    { offsetX: 0, offsetY: -20 },
-    { offsetX: -30, offsetY: 0 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 20, offsetY: -20 },
+    { offsetXRatio: 0.2, offsetYRatio: 1 },
+    { offsetXRatio: -0.15, offsetYRatio: 0 },
+    { offsetXRatio: 0, offsetYRatio: 0.15 },
+    { offsetXRatio: 0, offsetYRatio: 0.15 },
+    { offsetXRatio: 0.15, offsetYRatio: 0 },
   ],
   [
-    { offsetX: 40, offsetY: -37 },
-    { offsetX: -10, offsetY: -15 },
-    { offsetX: -40, offsetY: 20 },
-    { offsetX: -30, offsetY: 40 },
-    { offsetX: 15, offsetY: 15 },
+    { offsetXRatio: 0.13, offsetYRatio: -0.12 },
+    { offsetXRatio: -0.05, offsetYRatio: -0.055 },
+    { offsetXRatio: -0.15, offsetYRatio: 0.07 },
+    { offsetXRatio: -0.1, offsetYRatio: 0.15 },
+    { offsetXRatio: 0.06, offsetYRatio: 0.06 },
   ],
   [
-    { offsetX: 0, offsetY: -20 },
-    { offsetX: -30, offsetY: 0 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 20, offsetY: -20 },
+    { offsetXRatio: 0.03, offsetYRatio: -0.08 },
+    { offsetXRatio: -0.05, offsetYRatio: -0.03 },
+    { offsetXRatio: -0.07, offsetYRatio: 0.07 },
+    { offsetXRatio: -0.01, offsetYRatio: 0.07 },
+    { offsetXRatio: 0.08, offsetYRatio: 0.003 },
   ],
   [
-    { offsetX: 0, offsetY: -20 },
-    { offsetX: -30, offsetY: 0 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 20, offsetY: -20 },
+    { offsetXRatio: -0.03, offsetYRatio: -0.08 },
+    { offsetXRatio: -0.075, offsetYRatio: -0.01 },
+    { offsetXRatio: -0.01, offsetYRatio: 0.06 },
+    { offsetXRatio: 0.08, offsetYRatio: 0.07 },
+    { offsetXRatio: 0.06, offsetYRatio: -0.035 },
   ],
   [
-    { offsetX: 0, offsetY: -20 },
-    { offsetX: -30, offsetY: 0 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 0, offsetY: 20 },
-    { offsetX: 20, offsetY: -20 },
+    { offsetXRatio: -0.13, offsetYRatio: -0.08 },
+    { offsetXRatio: -0.05, offsetYRatio: 0.025 },
+    { offsetXRatio: 0.05, offsetYRatio: 0.14 },
+    { offsetXRatio: 0.12, offsetYRatio: 0.02 },
+    { offsetXRatio: -0.01, offsetYRatio: -0.12 },
   ],
 ]
 
-export { defaultOffsetRatioMap, rotateOffsetMap }
+export { defaultOffsetRatioMap, rotateOffsetRaioMap }
