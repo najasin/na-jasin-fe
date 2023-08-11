@@ -126,10 +126,14 @@ const drawRadarChart = (
         .attr('class', lineClassName)
         .style('stroke', 'grey')
         .style('stroke-width', '0.5px')
+        .style('opacity', 0.1) // 초기 투명도 설정
         .attr(
           'transform',
           `translate(${cfg.w / 2 - levelFactor}, ${cfg.h / 2 - levelFactor})`,
         )
+        .transition() // 애니메이션 효과 적용
+        .duration(1000) // 애니메이션 지속 시간 설정
+        .style('opacity', 1) // 투명도를 0에서 1로 변경하여 나타나게 함
     }
   }
 
@@ -144,6 +148,7 @@ const drawRadarChart = (
 
     axis
       .append('line')
+      .style('opacity', 0.1) // 초기 투명도 설정
       .attr('x1', cfg.w / 2)
       .attr('y1', cfg.h / 2)
       .attr('x2', (j, i) => {
@@ -163,6 +168,9 @@ const drawRadarChart = (
       .attr('class', lineClassName)
       .style('stroke', 'grey')
       .style('stroke-width', '1px')
+      .transition() // 애니메이션 효과 적용
+      .duration(1000) // 애니메이션 지속 시간 설정
+      .style('opacity', 1) // 투명도를 0에서 1로 변경하여 나타나게 함
 
     const initialTextPositions: Array<{
       cX: number
