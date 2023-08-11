@@ -1,5 +1,8 @@
 .formBoxWrapper {
   width: 520px;
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .titleWrapper,
@@ -32,7 +35,6 @@
   border-top: none;
   border-radius: 0 0 20px 20px;
   @include mobile {
-    height: fit-content;
     min-height: 556px;
     padding: 10px 22px 24px;
   }
