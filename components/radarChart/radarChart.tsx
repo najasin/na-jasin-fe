@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
 
+import { rotateOffsetMap } from './axis.helpers'
 import { drawRadarChart } from './radarChart.helpers'
 import styles from './radarChart.module.scss'
 import {
@@ -36,6 +37,26 @@ function DraggablePolygon({
 
   const total = 5
 
+  const handleRotateZoomOut = () => {
+    if (!svgRef.current) {
+      return // svgRef.current가 null일 경우 처리
+    }
+
+    const svg = d3.select(svgRef.current)?.select('svg')
+
+    if (!svg) {
+      return
+    }
+
+    // // transition 생성
+    const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
+
+    t.attr(
+      'transform',
+      `translate(0, 0) scale(1) rotate(${-(360 / 5) * counterRef.current})`,
+    )
+  }
+
   const handleRotateZoomIn = () => {
     const scale = 1.5
 
@@ -63,37 +84,8 @@ function DraggablePolygon({
       let cX = bbox.x + bbox.width / 2
       let cY = bbox.y + bbox.height / 2
 
-      // 조정할 offset 값들을 추가
-      let offsetX = 0
-      let offsetY = 0
-      switch (i) {
-        case 0:
-          offsetX = 0
-          offsetY = -20
-          break
-        case 1:
-          offsetX = -30
-          offsetY = 0
-          break
-        case 2:
-          offsetX = 0
-          offsetY = 20
-          break
-        case 3:
-          offsetX = 0
-          offsetY = 20
-          break
-        case 4:
-          offsetX = 20
-          offsetY = 0
-          break
-        default:
-          break
-      }
-
-      // offset 값들을 적용하여 좌표 조정
-      cX += offsetX
-      cY += offsetY
+      cX += rotateOffsetMap[counterRef.current][i].offsetX
+      cY += rotateOffsetMap[counterRef.current][i].offsetY
 
       initialTextPositions.push({ cX, cY })
     })
@@ -145,10 +137,6 @@ function DraggablePolygon({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draggableData])
 
-  useEffect(() => {
-    console.log(counterRef.current)
-  }, [counterRef.current])
-
   return (
     <div style={{ position: 'relative' }}>
       <div
@@ -179,6 +167,14 @@ function DraggablePolygon({
         }}
       >
         minus
+      </button>
+      <button
+        style={{ position: 'absolute', right: '-180px' }}
+        onClick={() => {
+          handleRotateZoomOut()
+        }}
+      >
+        zoom out
       </button>
     </div>
   )
