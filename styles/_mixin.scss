@@ -1,1 +1,98 @@
 // mixins
+@mixin tablet {
+  @media only screen and (width <= 1199px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (width <= 767px) {
+    @content;
+  }
+}
+
+@mixin flexbox($direction, $justify: false, $align: false) {
+  display: flex;
+  flex-direction: $direction;
+
+  @if $justify {
+    justify-content: $justify;
+  }
+
+  @if $align {
+    align-items: $align;
+  }
+}
+
+@mixin hover-float($direction, $length) {
+  transition: transform 0.2s ease;
+  @if $direction == x {
+    &:hover {
+      transform: translateX($length);
+    }
+  }
+
+  @if $direction == y {
+    &:hover {
+      transform: translateY($length);
+    }
+  }
+}
+
+@mixin ellipsis($line: 1) {
+  @if $line == 1 {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+@mixin font-style($styleName: 'text2') {
+  @if $styleName == 'h1' {
+    font-size: 24px;
+    font-weight: 400;
+  } @else if $styleName == 'h2' {
+    font-size: 20px;
+    font-weight: 400;
+  } @else if $styleName == 'text1' {
+    font-size: 22px;
+    font-weight: 300;
+  } @else if $styleName == 'text2' {
+    font-size: 20px;
+    font-weight: 300;
+  } @else if $styleName == 'text3' {
+    font-size: 18px;
+    font-weight: 400;
+  } @else if $styleName == 'text4' {
+    font-size: 14px;
+    font-weight: 400;
+  } @else if $styleName == 'text5' {
+    font-size: 14px;
+    font-weight: 300;
+  } @else if $styleName == 'button1' {
+    font-size: 17px;
+    font-weight: 400;
+  } @else if $styleName == 'button2' {
+    font-size: 16px;
+    font-weight: 400;
+  } @else if $styleName == 'button3' {
+    font-size: 16px;
+    font-weight: 300;
+  } @else if $styleName == 'button4' {
+    font-size: 14px;
+    font-weight: 500;
+  } @else if $styleName == 'button5' {
+    font-size: 14px;
+    font-weight: 400;
+  } @else if $styleName == 'button6' {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}

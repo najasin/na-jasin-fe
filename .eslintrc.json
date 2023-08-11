@@ -30,31 +30,7 @@
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }], //화살표 함수를 사용하는 것을 선호
     "no-warning-comments": "warn", // 'TODO', 'FIXME' 등의 주석에 대해 경고 표시
     "quotes": ["error", "single"], // 따옴표 규칙
-    "import/order": [
-      // 특정한 import 순서를 요구
-      "error",
-      {
-        "groups": [
-          ["builtin", "external"], // 내장 모듈과 외부 라이브러리 import
-          "internal", // 내부 모듈 import
-          ["parent", "sibling", "index"], // 상위, 동일, index 파일 import
-          "object" // 객체 import
-        ],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "builtin",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react"], // React import은 내장 모듈 그룹 앞에 배치하지 않음
-        // "newlines-between": "always", // 서로 다른 import 그룹 사이에는 개행 필요
-        "alphabetize": {
-          "order": "asc", // import 정렬을 알파벳순으로 설정
-          "caseInsensitive": true // 대소문자 구분하지 않고 정렬
-        }
-      }
-    ],
+    "import/order": "off",
     "no-console": "off", // console 문 사용 허용
     "import/prefer-default-export": "off", // default export 대신 named export 사용 허용
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }], // 불필요한 증감 연산자 사용 제한, 단 loop의 마지막 표현식에서는 허용
@@ -128,6 +104,12 @@
       {
         "eventHandlerPrefix": "handle",
         "eventHandlerPropPrefix": "on"
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration" // 화살표 함수로 컴포넌트 정의
       }
     ],
     "@typescript-eslint/no-use-before-define": ["error"] // 변수 및 함수를 정의하기 전에 사용할 수 없도록

@@ -1,0 +1,39 @@
+.circleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $black;
+}
+
+.sm {
+  width: 60px;
+  height: 60px;
+}
+
+.md {
+  width: 70px;
+  height: 70px;
+}
+
+.lg {
+  width: 90px;
+  height: 90px;
+}
+
+.blank {
+  border: 1.5px solid $black;
+  background-color: transparent;
+}
+
+.facebook {
+  background-color: #1877f2;
+}
+
+.kakao {
+  background-color: #ffe812;
+}
+
+.instagram {
+  background-color: #f00073;
+}

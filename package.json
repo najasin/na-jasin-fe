@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "bash ./scripts/chromatic_publish.sh"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.6",
@@ -15,19 +18,34 @@
     "@types/node": "20.4.7",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
+    "@types/react-responsive": "^8.0.5",
+    "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "cookies-next": "^2.1.2",
+    "d3": "^3.5.17",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
     "prettier": "^3.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.45.3"
+    "react-hook-form": "^7.45.3",
+    "react-responsive": "^9.0.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.1",
+    "@storybook/nextjs": "^7.2.1",
+    "@storybook/react": "^7.2.1",
+    "@storybook/testing-library": "^0.2.0",
     "@tanstack/eslint-plugin-query": "^4.32.5",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/d3": "^3.5.47",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
+    "chromatic": "^6.21.0",
     "eslint": "^8.46.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -37,9 +55,11 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
+    "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "sass": "^1.64.2",
+    "storybook": "^7.2.1",
     "stylelint": "^15.10.2",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-property-sort-order-smacss": "^9.1.0",
@@ -51,5 +71,7 @@
       "prettier --write",
       "eslint --fix"
     ]
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "na-jasin-fe@0.1.0"
 }

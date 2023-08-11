@@ -1,0 +1,54 @@
+.titleWrapper,
+.itemWrapper {
+  width: 470px;
+  border: 1px solid $black;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.titleWrapper {
+  @include flexbox(row, center, center);
+
+  position: relative;
+  height: 69px;
+  padding: 0 30px;
+  border-radius: 20px 20px 0 0;
+  @include mobile {
+    height: 57px;
+    padding: 0 22px;
+  }
+}
+
+.itemWrapper {
+  height: 401px;
+  margin-top: -1px;
+  padding: 0 30px 25px;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  @include mobile {
+    height: fit-content;
+    min-height: 556px;
+    padding: 10px 22px 24px;
+  }
+}
+
+.backBtn {
+  @include flexbox(row, center, center);
+
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  @include mobile {
+    top: 13px;
+    left: 12px;
+  }
+}
+
+.title {
+  margin: auto;
+  font-size: 24px;
+  @include mobile {
+    font-size: 18px;
+  }
+}
