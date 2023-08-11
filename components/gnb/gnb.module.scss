@@ -10,23 +10,14 @@
 }
 
 .container {
-  @include flexbox(row, false, center);
+  @include flexbox(row, center, center);
 
-  max-width: 964px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 15px 0;
-  gap: 4px;
 
   @include tablet {
-    width: calc(100% - 64px);
-    padding: 15px 32px;
-  }
-
-  @include mobile {
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 1px 2px;
-    gap: 16px;
+    padding: 15px 28px;
   }
 }
 
@@ -36,8 +27,8 @@
   height: 29px;
 
   @include mobile {
-    width: 84px;
-    height: 3px;
+    width: 69px;
+    height: 23px;
   }
 }
 
@@ -48,6 +39,10 @@
   margin-left: auto;
   color: $black;
   gap: 4px;
+
+  @include mobile {
+    width: 127px;
+  }
 
   .login,
   .logout {
@@ -60,6 +55,7 @@
 
     white-space: nowrap;
     @include mobile {
+      color: $dark-grey;
       font-size: 12px;
     }
   }
