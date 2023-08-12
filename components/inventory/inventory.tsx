@@ -33,17 +33,17 @@ export default function Inventory() {
   return (
     <div>
       <FormBox title="나를 꾸며주세요" paddingTop={31}>
-        {isMobile && (
-          <CharacterBox
-            baseImage={data?.itemsData?.baseImage}
-            characterItems={{
-              face: '',
-              body: '',
-              expression: '',
-            }}
-          />
-        )}
         <div className={cx('wrap')}>
+          {isMobile && (
+            <CharacterBox
+              baseImage={data?.itemsData?.baseImage}
+              characterItems={{
+                face: '',
+                body: '',
+                expression: '',
+              }}
+            />
+          )}
           <div className={cx('manuBar')}>
             <InventoryCategoryBtnList
               selectedCategory={selectedCategory}
