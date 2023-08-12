@@ -58,7 +58,8 @@ const drawRadarChart = (
     color: d3.scale.category10(),
   }
 
-  cfg.maxValue = Math.max(cfg.maxValue, d3.max(data.map((o) => o.value)))
+  // cfg.maxValue = Math.max(cfg.maxValue, d3.max(data.map((o) => o.value)))
+  cfg.maxValue = 10
 
   const allAxis = data.map((i) => i.axis)
   const total = allAxis.length
