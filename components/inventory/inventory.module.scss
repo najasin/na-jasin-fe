@@ -1,0 +1,36 @@
+.wrap {
+  position: relative;
+  height: 100%;
+  margin: 0 65px;
+  @include mobile {
+    margin: 0;
+  }
+}
+
+.manuBar {
+  position: relative;
+  width: 100%;
+}
+
+.resetBtn {
+  position: absolute;
+  top: 50%;
+  right: -41px;
+  @include mobile {
+    right: 22px;
+  }
+
+  transform: translateY(-50%);
+}
+
+.btn {
+  position: absolute;
+  right: 0;
+  bottom: 25px;
+  left: 0;
+  width: 388px;
+
+  @include mobile {
+    width: 100%;
+  }
+}
