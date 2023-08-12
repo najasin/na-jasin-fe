@@ -16,6 +16,7 @@ interface OtherKeywordPercents {
 }
 
 interface IRadarChartContainerProps {
+  isRegistered: boolean
   originKeywordPercents: OtherKeywordPercents
   otherKeywordPercents: OtherKeywordPercents
   frameSize: number
@@ -24,6 +25,7 @@ interface IRadarChartContainerProps {
 }
 
 export default function RadarChartContainer({
+  isRegistered,
   originKeywordPercents,
   otherKeywordPercents,
   frameSize,
@@ -60,8 +62,9 @@ export default function RadarChartContainer({
   return (
     <RadarChart width={frameSize} height={frameSize}>
       {hasOtherRadarChart && (
-        <>
+        <div style={{ position: 'relative' }}>
           <RadarChart.DraggablePolygon
+            isRegistered={isRegistered}
             draggableData={draggableAxis}
             radarWidth={radarSize}
             radarHeight={radarSize}
@@ -76,10 +79,11 @@ export default function RadarChartContainer({
             framePadding={framePadding}
             onDragOutUserInput={handleDragOutUserInput}
           />
-        </>
+        </div>
       )}
       {!hasOtherRadarChart && (
         <RadarChart.DraggablePolygon
+          isRegistered={isRegistered}
           draggableData={draggableAxis}
           radarWidth={radarSize}
           radarHeight={radarSize}
