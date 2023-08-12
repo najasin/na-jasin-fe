@@ -142,7 +142,7 @@ export default function RadarChartContainer({
   }, [userGenerated])
 
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <RadarChart width={frameSize} height={frameSize}>
         {hasOtherRadarChart && (
           <div style={{ position: 'relative' }}>
@@ -180,7 +180,6 @@ export default function RadarChartContainer({
             position: 'relative',
             zIndex: 99,
             background: 'white',
-            height: '300px',
           }}
         >
           <button
