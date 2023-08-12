@@ -8,11 +8,11 @@ const defaultOffsetRatioMap = [
 
 const rotateOffsetRaioMap = [
   [
-    { offsetXRatio: 0.2, offsetYRatio: 1 },
-    { offsetXRatio: -0.15, offsetYRatio: 0 },
-    { offsetXRatio: 0, offsetYRatio: 0.15 },
-    { offsetXRatio: 0, offsetYRatio: 0.15 },
-    { offsetXRatio: 0.15, offsetYRatio: 0 },
+    { offsetXRatio: 0.01, offsetYRatio: -0.13 },
+    { offsetXRatio: -0.15, offsetYRatio: -0.05 },
+    { offsetXRatio: -0.1, offsetYRatio: 0.15 },
+    { offsetXRatio: 0.1, offsetYRatio: 0.15 },
+    { offsetXRatio: 0.15, offsetYRatio: -0.05 },
   ],
   [
     { offsetXRatio: 0.13, offsetYRatio: -0.12 },
