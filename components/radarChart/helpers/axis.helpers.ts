@@ -6,7 +6,7 @@ const defaultOffsetRatioMap = [
   { offsetXRatio: 0.15, offsetYRatio: 0 },
 ]
 
-const rotateOffsetRaioMap = [
+const rotateOffsetRatioMap = [
   [
     { offsetXRatio: 0.01, offsetYRatio: -0.13 },
     { offsetXRatio: -0.15, offsetYRatio: -0.05 },
@@ -44,4 +44,4 @@ const rotateOffsetRaioMap = [
   ],
 ]
 
-export { defaultOffsetRatioMap, rotateOffsetRaioMap }
+export { defaultOffsetRatioMap, rotateOffsetRatioMap }

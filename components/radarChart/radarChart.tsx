@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
 
-import { rotateOffsetRaioMap } from './helpers/axis.helpers'
+import { rotateOffsetRatioMap } from './helpers/axis.helpers'
 import { drawRadarChart } from './helpers/radarChart.helpers'
 import styles from './radarChart.module.scss'
 import {
@@ -99,9 +99,9 @@ function DraggablePolygon({
         cX,
         cY,
         offsetX:
-          rotateOffsetRaioMap[counterRef.current][i].offsetXRatio * cfg.w,
+          rotateOffsetRatioMap[counterRef.current][i].offsetXRatio * cfg.w,
         offsetY:
-          rotateOffsetRaioMap[counterRef.current][i].offsetYRatio * cfg.h,
+          rotateOffsetRatioMap[counterRef.current][i].offsetYRatio * cfg.h,
       })
     })
 
