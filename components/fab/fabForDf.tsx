@@ -41,13 +41,13 @@ export default function FabWithDef() {
           </div>
           <div className={cx('mdButtons')}>
             <CircleButton
-              name="text"
+              name="share"
               text="꿀팁받기"
               transparent={true}
               size="md"
             />
             <CircleButton
-              name="text"
+              name="weakness"
               text="단점보기"
               transparent={true}
               size="md"

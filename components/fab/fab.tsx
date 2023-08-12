@@ -40,7 +40,7 @@ export default function Fab() {
             </div>
           </div>
           <CircleButton
-            name="text"
+            name="share"
             text="꿀팁받기"
             transparent={true}
             size="md"
