@@ -108,6 +108,12 @@ function DraggablePolygon({
     const tt = textElements.transition().duration(750)
     tt.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
+
+      if (counterRef.current === 0) {
+        // counterRef.current가 0일 때는 초기 위치로 이동
+        return `translate(${initialPosition.offsetX}, ${initialPosition.offsetY})`
+      }
+      // 그 외에는 회전 변형 적용
       return `rotate(${(360 / total) * counterRef.current}, ${
         initialPosition.cX + initialPosition.offsetX
       }, ${initialPosition.cY + initialPosition.offsetY})`
