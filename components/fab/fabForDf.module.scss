@@ -1,0 +1,72 @@
+.fab {
+  display: flex;
+  position: fixed;
+  right: 130px;
+  bottom: 160px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  @include mobile {
+    right: 26px;
+    bottom: 44px;
+    gap: 15px;
+  }
+}
+
+.basic {
+  width: 70px;
+  height: 70px;
+  @include mobile {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mdButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+@mixin position($right, $bottom) {
+  right: $right;
+  bottom: $bottom;
+}
+
+.facebook {
+  @include position(94px, 109px);
+  @include mobile {
+    @include position(75px, 113px);
+  }
+}
+
+.kakao {
+  @include position(94px, 174px);
+  @include mobile {
+    @include position(75px, 158px);
+  }
+}
+
+.instagram {
+  @include position(71px, 236px);
+  @include mobile {
+    @include position(53px, 200px);
+  }
+}
+
+.link {
+  @include position(10px, 261px);
+  @include mobile {
+    @include position(11px, 215px);
+  }
+}
