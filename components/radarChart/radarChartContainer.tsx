@@ -67,6 +67,7 @@ export default function RadarChartContainer({
             radarHeight={radarSize}
             framePadding={framePadding}
             onDragOutUserInput={handleDragOutUserInput}
+            total={5}
           />
           <RadarChart.DefaultPolygon
             defaultData={defaultAxis}
@@ -84,6 +85,7 @@ export default function RadarChartContainer({
           radarHeight={radarSize}
           framePadding={framePadding}
           onDragOutUserInput={handleDragOutUserInput}
+          total={5}
         />
       )}
     </RadarChart>
