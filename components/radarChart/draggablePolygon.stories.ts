@@ -18,12 +18,26 @@ const DATA = [
   { axis: 'luck', value: 10, order: 4 },
 ]
 
-export const DraggablePolygon: Story = {
+export const DraggablePolygonInRegistered: Story = {
   args: {
+    isRegistered: true,
     draggableData: DATA,
     radarWidth: 300,
     radarHeight: 300,
     framePadding: 200,
     onDragOutUserInput: () => {},
+    total: 5,
+  },
+}
+
+export const DraggablePolygonNotRegistered: Story = {
+  args: {
+    isRegistered: false,
+    draggableData: DATA,
+    radarWidth: 300,
+    radarHeight: 300,
+    framePadding: 200,
+    onDragOutUserInput: () => {},
+    total: 5,
   },
 }
