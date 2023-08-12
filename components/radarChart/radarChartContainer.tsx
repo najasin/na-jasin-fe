@@ -5,12 +5,6 @@ import { useEffect, useState } from 'react'
 import { RadarChart } from './radarChart'
 import { DataPoint } from './radarChart.types'
 
-const POLYGON_LAYOUT = {
-  radarWidth: 300,
-  radarHeight: 300,
-  framePadding: 200,
-}
-
 interface IAxisMaps {
   axis: string
   value: number
@@ -24,11 +18,17 @@ interface OtherKeywordPercents {
 interface IRadarChartContainerProps {
   originKeywordPercents: OtherKeywordPercents
   otherKeywordPercents: OtherKeywordPercents
+  frameSize: number
+  radarSize: number
+  framePadding: number
 }
 
 export default function RadarChartContainer({
   originKeywordPercents,
   otherKeywordPercents,
+  frameSize,
+  radarSize,
+  framePadding,
 }: IRadarChartContainerProps) {
   const [hasOtherRadarChart] = useState<boolean>(
     Object.keys(otherKeywordPercents).length !== 0,
@@ -49,7 +49,6 @@ export default function RadarChartContainer({
   )
   const [userGenerated, setUserGenerated] = useState<DataPoint[]>(draggableAxis)
 
-  console.log(draggableAxis, defaultAxis, hasOtherRadarChart)
   const handleDragOutUserInput = (data: DataPoint[]) => {
     setUserGenerated(data)
   }
@@ -59,17 +58,21 @@ export default function RadarChartContainer({
   }, [userGenerated])
 
   return (
-    <RadarChart width={500} height={500}>
+    <RadarChart width={frameSize} height={frameSize}>
       {hasOtherRadarChart && (
         <>
           <RadarChart.DraggablePolygon
             draggableData={draggableAxis}
-            {...POLYGON_LAYOUT}
+            radarWidth={radarSize}
+            radarHeight={radarSize}
+            framePadding={framePadding}
             onDragOutUserInput={handleDragOutUserInput}
           />
           <RadarChart.DefaultPolygon
             defaultData={defaultAxis}
-            {...POLYGON_LAYOUT}
+            radarWidth={radarSize}
+            radarHeight={radarSize}
+            framePadding={framePadding}
             onDragOutUserInput={handleDragOutUserInput}
           />
         </>
@@ -77,7 +80,9 @@ export default function RadarChartContainer({
       {!hasOtherRadarChart && (
         <RadarChart.DraggablePolygon
           draggableData={draggableAxis}
-          {...POLYGON_LAYOUT}
+          radarWidth={radarSize}
+          radarHeight={radarSize}
+          framePadding={framePadding}
           onDragOutUserInput={handleDragOutUserInput}
         />
       )}
