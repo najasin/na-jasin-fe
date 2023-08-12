@@ -13,8 +13,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as d3 from 'd3'
 
+import { DataPoint } from '../radarChart.types'
 import { defaultOffsetRatioMap } from './axis.helpers'
-import { DataPoint } from './radarChart.types'
 
 /**
  *

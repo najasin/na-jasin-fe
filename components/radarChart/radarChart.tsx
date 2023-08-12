@@ -5,8 +5,8 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
 
-import { rotateOffsetRaioMap } from './axis.helpers'
-import { drawRadarChart } from './radarChart.helpers'
+import { rotateOffsetRaioMap } from './helpers/axis.helpers'
+import { drawRadarChart } from './helpers/radarChart.helpers'
 import styles from './radarChart.module.scss'
 import {
   IRadarChartDefaultProps,
