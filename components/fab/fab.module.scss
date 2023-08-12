@@ -6,11 +6,20 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  @include mobile {
+    right: 26px;
+    bottom: 44px;
+    gap: 21px;
+  }
 }
 
 .basic {
   width: 70px;
   height: 70px;
+  @include mobile {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 .buttons {
@@ -23,4 +32,41 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+@mixin position($right, $bottom) {
+  right: $right;
+  bottom: $bottom;
+}
+
+.facebook {
+  @include position(94px, 52px);
+  @include mobile {
+    @include position(73px, 47px);
+  }
+}
+
+.kakao {
+  @include position(94px, 110px);
+  @include mobile {
+    @include position(73px, 93px);
+  }
+}
+
+.instagram {
+  @include position(71px, 165px);
+  @include mobile {
+    @include position(51px, 135px);
+  }
+}
+
+.link {
+  @include position(10px, 182px);
+  @include mobile {
+    @include position(9px, 150px);
+  }
 }
