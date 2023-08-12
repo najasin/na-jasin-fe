@@ -3,4 +3,11 @@
   justify-content: center;
   width: 100%;
   gap: 24px;
+
+  @include mobile {
+    gap: 14px;
+    justify-content: flex-start;
+    width: 280px;
+    margin: 0 auto;
+  }
 }
