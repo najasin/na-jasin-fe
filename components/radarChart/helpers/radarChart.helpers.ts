@@ -13,7 +13,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as d3 from 'd3'
 
-import { DataPoint } from './radarChart.types'
+import { DataPoint } from '../radarChart.types'
+import { defaultOffsetRatioMap } from './axis.helpers'
 
 /**
  *
@@ -125,10 +126,14 @@ const drawRadarChart = (
         .attr('class', lineClassName)
         .style('stroke', 'grey')
         .style('stroke-width', '0.5px')
+        .style('opacity', 0.1) // 초기 투명도 설정
         .attr(
           'transform',
           `translate(${cfg.w / 2 - levelFactor}, ${cfg.h / 2 - levelFactor})`,
         )
+        .transition() // 애니메이션 효과 적용
+        .duration(1000) // 애니메이션 지속 시간 설정
+        .style('opacity', 1) // 투명도를 0에서 1로 변경하여 나타나게 함
     }
   }
 
@@ -143,6 +148,7 @@ const drawRadarChart = (
 
     axis
       .append('line')
+      .style('opacity', 0.1) // 초기 투명도 설정
       .attr('x1', cfg.w / 2)
       .attr('y1', cfg.h / 2)
       .attr('x2', (j, i) => {
@@ -162,31 +168,42 @@ const drawRadarChart = (
       .attr('class', lineClassName)
       .style('stroke', 'grey')
       .style('stroke-width', '1px')
+      .transition() // 애니메이션 효과 적용
+      .duration(1000) // 애니메이션 지속 시간 설정
+      .style('opacity', 1) // 투명도를 0에서 1로 변경하여 나타나게 함
+
+    const initialTextPositions: Array<{
+      cX: number
+      cY: number
+      offsetX: number
+      offsetY: number
+    }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
 
     axis
       .append('text')
       .attr('class', legendClassName)
       .text((d) => d)
+      .attr('text-anchor', 'middle')
       .style('font-weight', '400')
       .style('font-size', '16px')
       .style('fill', 'black')
-      .attr('transform', (d, i) => {
-        const dW = d.length
+      .each(function (this: any, d, i) {
+        const bbox = this.getBBox()
+        const cX = bbox.x + bbox.width / 2
+        const cY = bbox.y + bbox.height / 2
 
-        switch (i) {
-          case 0:
-            return `translate(-${dW * 3}, -${dW * 4})`
-          case 1:
-            return `translate(-${dW * 7}, -${dW * 1})`
-          case 2:
-            return `translate(-${dW * 4}, ${dW * 5})`
-          case 3:
-            return `translate(-${dW * 2}, ${dW * 4})`
-          case 4:
-            return `translate(${dW * 3}, -${dW * 2})`
-          default:
-        }
-        return 'translate(0, 0)'
+        initialTextPositions.push({
+          cX,
+          cY,
+          offsetX: defaultOffsetRatioMap[i].offsetXRatio * cfg.w,
+          offsetY: defaultOffsetRatioMap[i].offsetYRatio * cfg.h,
+        })
+      })
+      .attr('transform', (d, i) => {
+        const initialPosition = initialTextPositions[i]
+        return `translate(${initialPosition.cX + initialPosition.offsetX},${
+          initialPosition.cY + initialPosition.offsetY
+        })`
       })
       .attr(
         'x',
@@ -292,7 +309,7 @@ const drawRadarChart = (
       .attr('data-id', (j) => j.axis)
       .style('fill', radarColor)
       .style('fill-opacity', 0.9)
-      .on('mouseover', function (this: any, d) {
+      .on('mouseover', function (this: any) {
         d3.select(this).style('cursor', 'pointer')
 
         const newX = parseFloat(d3.select(this).attr('cx')) - 10
@@ -300,7 +317,7 @@ const drawRadarChart = (
         tooltip
           .attr('x', newX)
           .attr('y', newY)
-          .text(d.value >> 0)
+          // .text(d.value >> 0)
           .transition('200')
           .style('opacity', 1)
         const z = `polygon.${d3.select(this).attr('class')}`

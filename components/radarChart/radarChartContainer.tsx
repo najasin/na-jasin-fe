@@ -6,11 +6,11 @@ import { RadarChart } from './radarChart'
 import { DataPoint } from './radarChart.types'
 
 const DATA = [
-  { axis: 'strength', value: 10, order: 0 },
-  { axis: 'intelligence', value: 2, order: 1 },
-  { axis: 'charisma', value: 6, order: 2 },
-  { axis: 'dexterity', value: 4, order: 3 },
-  { axis: 'luck', value: 10, order: 4 },
+  { axis: '키워드1', value: 10, order: 0 },
+  { axis: '키워드2', value: 2, order: 1 },
+  { axis: '키워드3', value: 6, order: 2 },
+  { axis: '키워드4', value: 4, order: 3 },
+  { axis: '키워드5', value: 10, order: 4 },
 ]
 
 const DEFAULT_DATA = [
