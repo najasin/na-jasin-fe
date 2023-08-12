@@ -38,7 +38,7 @@ export default function RadarChartFetcher() {
     queryKey: ['radar'],
     queryFn: () => getRadarData(),
     staleTime: 10 * 1000,
-  })
+  }) // 서버 컴포넌트에서 같은 api를 dehydrate 했다면 클라이언트에서 api 요청하지 않고 캐싱된 데이터를 가져옵니다.
 
   const isRegistered = true
 
