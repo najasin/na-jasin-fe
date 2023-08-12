@@ -20,6 +20,7 @@ interface IRadarCompoundProps {
 interface IRadarChartDraggableProps extends IRadarCompoundProps {
   draggableData: DataPoint[]
   total: number
+  isRegistered: boolean
 }
 
 interface IRadarChartDefaultProps extends IRadarCompoundProps {
