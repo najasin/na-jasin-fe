@@ -26,24 +26,16 @@ export default function Fab() {
           className={cx('buttons')}
         >
           <div>
-            <div
-              style={{ position: 'absolute', bottom: '52px', right: '94px' }}
-            >
+            <div className={cx('absolute', 'facebook')}>
               <CircleButton name="facebook" image="facebook" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '110px', right: '94px' }}
-            >
+            <div className={cx('absolute', 'kakao')}>
               <CircleButton name="kakao" image="kakao" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '165px', right: '71px' }}
-            >
+            <div className={cx('absolute', 'instagram')}>
               <CircleButton name="instagram" image="instagram" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '182px', right: '10px' }}
-            >
+            <div className={cx('absolute', 'link')}>
               <CircleButton name="link" image="link" size="sm" />
             </div>
           </div>
