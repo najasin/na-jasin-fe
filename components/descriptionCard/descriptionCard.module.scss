@@ -1,0 +1,29 @@
+.card {
+  @include flexbox(column, center, flex-start);
+  @include font-style('button1');
+
+  position: relative;
+  width: 791px;
+  padding: 24px 0 25px 35px;
+  border-radius: 20px;
+  background-color: $light-grey;
+}
+
+.nicknameChip {
+  @include flexbox(row, center, center);
+
+  position: absolute;
+  top: 24px;
+  right: 15px;
+  height: 30px;
+  padding: 5.5px 15.5px;
+  border: 0.75px solid $dark-grey;
+  border-radius: 37.58px;
+  @include font-style('text5');
+}
+
+.answerBox {
+  @include flexbox(column, center, center);
+
+  gap: 25px;
+}
