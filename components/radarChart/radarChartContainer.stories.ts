@@ -21,9 +21,9 @@ export const RadarContainerInRegisteredMobile: Story = {
       키워드5: 2.6,
     },
     otherKeywordPercents: {},
-    frameSize: 500,
-    radarSize: 300,
-    framePadding: 200,
+    frameSize: 350,
+    radarSize: 200,
+    framePadding: 150,
   },
 }
 
@@ -44,8 +44,8 @@ export const RadarContainerNotRegistered: Story = {
       키워드4: 6,
       키워드5: 4,
     },
-    frameSize: 500,
-    radarSize: 300,
-    framePadding: 200,
+    frameSize: 350,
+    radarSize: 200,
+    framePadding: 150,
   },
 }
