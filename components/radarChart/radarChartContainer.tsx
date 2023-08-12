@@ -5,52 +5,82 @@ import { useEffect, useState } from 'react'
 import { RadarChart } from './radarChart'
 import { DataPoint } from './radarChart.types'
 
-const DATA = [
-  { axis: '키워드1', value: 10, order: 0 },
-  { axis: '키워드2', value: 2, order: 1 },
-  { axis: '키워드3', value: 6, order: 2 },
-  { axis: '키워드4', value: 4, order: 3 },
-  { axis: '키워드5', value: 10, order: 4 },
-]
-
-const DEFAULT_DATA = [
-  { axis: 'default1', value: 4, order: 0 },
-  { axis: 'default2', value: 8, order: 1 },
-  { axis: 'default3', value: 2, order: 2 },
-  { axis: 'default4', value: 6, order: 3 },
-  { axis: 'default5', value: 8, order: 4 },
-]
-
 const POLYGON_LAYOUT = {
   radarWidth: 300,
   radarHeight: 300,
   framePadding: 200,
 }
 
-export default function RadarChartContainer() {
-  const [inputData, setInputData] = useState<DataPoint[]>(DATA)
+interface IAxisMaps {
+  axis: string
+  value: number
+  order: number
+}
 
+interface OtherKeywordPercents {
+  [key: string]: number
+}
+
+interface IRadarChartContainerProps {
+  originKeywordPercents: OtherKeywordPercents
+  otherKeywordPercents: OtherKeywordPercents
+}
+
+export default function RadarChartContainer({
+  originKeywordPercents,
+  otherKeywordPercents,
+}: IRadarChartContainerProps) {
+  const [hasOtherRadarChart] = useState<boolean>(
+    Object.keys(otherKeywordPercents).length !== 0,
+  )
+  const [draggableAxis] = useState<IAxisMaps[]>(
+    Object.keys(originKeywordPercents).map((key, index) => ({
+      axis: key,
+      value: originKeywordPercents[key],
+      order: index,
+    })),
+  )
+  const [defaultAxis] = useState<IAxisMaps[]>(
+    Object.keys(otherKeywordPercents).map((key, index) => ({
+      axis: key,
+      value: otherKeywordPercents[key],
+      order: index,
+    })),
+  )
+  const [userGenerated, setUserGenerated] = useState<DataPoint[]>(draggableAxis)
+
+  console.log(draggableAxis, defaultAxis, hasOtherRadarChart)
   const handleDragOutUserInput = (data: DataPoint[]) => {
-    setInputData(data)
+    setUserGenerated(data)
   }
 
   useEffect(() => {
-    // inputData로 api 요청을 할 계획입니다.
-    // console.log('changeData', inputData)
-  }, [inputData])
+    // POST request { userGenerated }
+  }, [userGenerated])
 
   return (
-    <RadarChart width={400} height={400}>
-      <RadarChart.DraggablePolygon
-        draggableData={DATA}
-        {...POLYGON_LAYOUT}
-        onDragOutUserInput={handleDragOutUserInput}
-      />
-      <RadarChart.DefaultPolygon
-        defaultData={DEFAULT_DATA}
-        {...POLYGON_LAYOUT}
-        onDragOutUserInput={handleDragOutUserInput}
-      />
+    <RadarChart width={500} height={500}>
+      {hasOtherRadarChart && (
+        <>
+          <RadarChart.DraggablePolygon
+            draggableData={draggableAxis}
+            {...POLYGON_LAYOUT}
+            onDragOutUserInput={handleDragOutUserInput}
+          />
+          <RadarChart.DefaultPolygon
+            defaultData={defaultAxis}
+            {...POLYGON_LAYOUT}
+            onDragOutUserInput={handleDragOutUserInput}
+          />
+        </>
+      )}
+      {!hasOtherRadarChart && (
+        <RadarChart.DraggablePolygon
+          draggableData={draggableAxis}
+          {...POLYGON_LAYOUT}
+          onDragOutUserInput={handleDragOutUserInput}
+        />
+      )}
     </RadarChart>
   )
 }
