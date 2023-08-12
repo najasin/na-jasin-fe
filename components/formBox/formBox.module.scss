@@ -2,6 +2,7 @@
   width: 520px;
   @include mobile {
     width: 100%;
+    height: fit-content;
   }
 }
 
