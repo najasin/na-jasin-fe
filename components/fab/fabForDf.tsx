@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 import CircleButton from '@/components/fab/circleButton'
 
-import styles from './fab.module.scss'
+import styles from './fabForDf.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -26,36 +26,28 @@ export default function FabWithDef() {
           className={cx('buttons')}
         >
           <div>
-            <div
-              style={{ position: 'absolute', bottom: '109px', right: '94px' }}
-            >
+            <div className={cx('absolute', 'facebook')}>
               <CircleButton name="facebook" image="facebook" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '174px', right: '94px' }}
-            >
+            <div className={cx('absolute', 'kakao')}>
               <CircleButton name="kakao" image="kakao" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '236px', right: '71px' }}
-            >
+            <div className={cx('absolute', 'instagram')}>
               <CircleButton name="instagram" image="instagram" size="sm" />
             </div>
-            <div
-              style={{ position: 'absolute', bottom: '261px', right: '10px' }}
-            >
+            <div className={cx('absolute', 'link')}>
               <CircleButton name="link" image="link" size="sm" />
             </div>
           </div>
           <div className={cx('mdButtons')}>
             <CircleButton
-              name="text"
+              name="share"
               text="꿀팁받기"
               transparent={true}
               size="md"
             />
             <CircleButton
-              name="text"
+              name="weakness"
               text="단점보기"
               transparent={true}
               size="md"

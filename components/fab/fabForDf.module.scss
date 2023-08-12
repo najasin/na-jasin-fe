@@ -9,7 +9,7 @@
   @include mobile {
     right: 26px;
     bottom: 44px;
-    gap: 21px;
+    gap: 15px;
   }
 }
 
@@ -44,29 +44,29 @@
 }
 
 .facebook {
-  @include position(94px, 52px);
+  @include position(94px, 109px);
   @include mobile {
-    @include position(73px, 47px);
+    @include position(75px, 113px);
   }
 }
 
 .kakao {
-  @include position(94px, 110px);
+  @include position(94px, 174px);
   @include mobile {
-    @include position(73px, 93px);
+    @include position(75px, 158px);
   }
 }
 
 .instagram {
-  @include position(71px, 165px);
+  @include position(71px, 236px);
   @include mobile {
-    @include position(51px, 135px);
+    @include position(53px, 200px);
   }
 }
 
 .link {
-  @include position(10px, 182px);
+  @include position(10px, 261px);
   @include mobile {
-    @include position(9px, 150px);
+    @include position(11px, 215px);
   }
 }

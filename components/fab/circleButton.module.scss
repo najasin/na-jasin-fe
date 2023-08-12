@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: $black;
+  background-color: $blue-point;
   @include font-style('button5');
   @include mobile {
     @include font-style('button6');
@@ -52,6 +52,15 @@
 
 .instagram {
   background-color: #f00073;
+}
+
+.link {
+  background-color: $black;
+}
+
+.share {
+  border-color: $blue-point;
+  color: $blue-point;
 }
 
 .facebookImg,
