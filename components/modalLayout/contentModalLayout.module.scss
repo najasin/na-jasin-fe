@@ -1,0 +1,29 @@
+.modal {
+  width: 1080px;
+  margin: 106px auto 0;
+  padding: 44px 50px 0;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.header {
+  @include flexbox(row, space-between, center);
+
+  width: 975px;
+  margin: 0 auto;
+  margin-bottom: 52px;
+}
+
+.title {
+  @include font-style('text4');
+}
+
+.contents {
+  width: 791px;
+  margin: 0 auto;
+  @include flexbox(column, center);
+}
+
+.content {
+  margin-bottom: 81px;
+}

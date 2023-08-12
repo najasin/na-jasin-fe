@@ -1,0 +1,28 @@
+.modal {
+  width: 1080px;
+  margin: 106px auto 0;
+  padding: 44px 50px 0;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.header {
+  @include flexbox(row, space-between, center);
+
+  width: 975px;
+  margin: 0 auto;
+  margin-bottom: 12px;
+}
+
+.title {
+  @include font-style('text4');
+}
+
+.contents {
+  width: 970px;
+
+  @include flexbox(row, center, center);
+
+  margin: 0 auto;
+  gap: 70px;
+}
