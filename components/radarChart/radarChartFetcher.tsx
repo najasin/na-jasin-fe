@@ -57,8 +57,8 @@ export default function RadarChartFetcher() {
   const { otherKeywordPercents } = radar
 
   const rectangleLayout = {
-    frameSize: 500,
-    radarSize: 300,
+    frameSize: 350,
+    radarSize: 200,
   }
 
   return (

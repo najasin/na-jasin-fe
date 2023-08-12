@@ -142,7 +142,15 @@ export default function RadarChartContainer({
   }, [userGenerated])
 
   return (
-    <div style={{ overflow: 'hidden' }}>
+    <div
+      style={{
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <RadarChart width={frameSize} height={frameSize}>
         {hasOtherRadarChart && (
           <div style={{ position: 'relative' }}>
@@ -183,13 +191,13 @@ export default function RadarChartContainer({
           }}
         >
           <button
-            style={{ position: 'absolute', bottom: '0' }}
+            style={{ position: 'absolute', bottom: '0', left: '-180px' }}
             onClick={handleRotateZoomIn}
           >
             Zoom In
           </button>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '100px' }}
+            style={{ position: 'absolute', bottom: '0', left: '-100px' }}
             onClick={() => {
               counterRef.current = (counterRef.current + 1) % total
               handleRotateZoomIn()
@@ -198,7 +206,7 @@ export default function RadarChartContainer({
             plus
           </button>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '200px' }}
+            style={{ position: 'absolute', bottom: '0', left: '0px' }}
             onClick={() => {
               counterRef.current = Math.abs((counterRef.current - 1) % total)
               handleRotateZoomIn()
@@ -207,7 +215,7 @@ export default function RadarChartContainer({
             minus
           </button>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '300px' }}
+            style={{ position: 'absolute', bottom: '0', left: '100px' }}
             onClick={() => {
               handleRotateZoomOut()
             }}
