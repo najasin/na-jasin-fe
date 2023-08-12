@@ -26,7 +26,15 @@ export default function CircleButton({
       onClick={onClick}
     >
       {text && <p>{text}</p>}
-      {image && <Image src={imageUrl} alt={name} width={30} height={30} />}
+      {image && (
+        <Image
+          src={imageUrl}
+          alt={name}
+          width={30}
+          height={30}
+          className={cx(`${image}Img`)}
+        />
+      )}
     </button>
   )
 }
