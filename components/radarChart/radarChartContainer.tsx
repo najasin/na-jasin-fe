@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import classNames from 'classnames/bind'
 import * as d3 from 'd3'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
@@ -13,6 +14,9 @@ import {
   IAxisMaps,
   IRadarChartContainerProps,
 } from './radarChart.types'
+import styles from './radarChartContainer.module.scss'
+
+const cx = classNames.bind(styles)
 
 export default function RadarChartContainer({
   radarType,
@@ -129,18 +133,10 @@ export default function RadarChartContainer({
   }, [userGenerated])
 
   return (
-    <div
-      style={{
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className={cx('radarChartContainerWrapper')}>
       <RadarChart width={frameSize} height={frameSize}>
         {radarType === 'NJNS' && (
-          <div style={{ position: 'relative' }}>
+          <div className={cx('chartContainer')}>
             <RadarChart.DraggablePolygon
               draggableData={draggableAxis}
               radarWidth={radarSize}
@@ -153,7 +149,7 @@ export default function RadarChartContainer({
           </div>
         )}
         {radarType === 'MY' && (
-          <div style={{ position: 'relative' }}>
+          <div className={cx('chartContainer')}>
             {hasOthers && (
               <RadarChart.DraggablePolygon
                 draggableData={defaultAxis}
@@ -177,7 +173,7 @@ export default function RadarChartContainer({
           </div>
         )}
         {radarType === 'TJNS' && (
-          <div style={{ position: 'relative' }}>
+          <div className={cx('chartContainer')}>
             <RadarChart.DraggablePolygon
               draggableData={defaultAxis}
               radarWidth={radarSize}
@@ -199,38 +195,19 @@ export default function RadarChartContainer({
         )}
       </RadarChart>
       {isMobile && isRegistered && (
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 99,
-            background: 'white',
-          }}
-        >
+        <div className={cx('registerButtonWrapper')}>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '-180px' }}
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
               }
               handleRotateZoomIn()
             }}
+            className={cx('registerButton')}
           >
-            Zoom In
+            확대
           </button>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '-100px' }}
-            onClick={() => {
-              if (radarType === 'TJNS') {
-                setIsViewPolygon(false)
-              }
-              counterRef.current = (counterRef.current + 1) % total
-              handleRotateZoomIn()
-            }}
-          >
-            plus
-          </button>
-          <button
-            style={{ position: 'absolute', bottom: '0', left: '0px' }}
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
@@ -241,19 +218,33 @@ export default function RadarChartContainer({
                   : counterRef.current - 1) % total
               handleRotateZoomIn()
             }}
+            className={cx('registerButton')}
           >
-            minus
+            이전
           </button>
           <button
-            style={{ position: 'absolute', bottom: '0', left: '100px' }}
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              counterRef.current = (counterRef.current + 1) % total
+              handleRotateZoomIn()
+            }}
+            className={cx('registerButton')}
+          >
+            다음
+          </button>
+
+          <button
             onClick={() => {
               handleRotateZoomOut()
               if (radarType === 'TJNS') {
                 setTimeout(() => setIsViewPolygon(true), 750)
               }
             }}
+            className={cx('registerButton')}
           >
-            zoom out
+            축소
           </button>
         </div>
       )}
