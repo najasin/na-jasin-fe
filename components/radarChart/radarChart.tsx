@@ -29,6 +29,7 @@ function DraggablePolygon(
     radarHeight,
     framePadding,
     onDragOutUserInput,
+    isPossibleDrawNode,
   }: IRadarChartDraggableProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
@@ -46,6 +47,8 @@ function DraggablePolygon(
       radarHeight,
       framePadding,
       onDragOutUserInput,
+      true,
+      isPossibleDrawNode,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draggableData])
@@ -67,6 +70,9 @@ function DefaultPolygon({
   radarHeight,
   framePadding,
   onDragOutUserInput,
+  isDefault = true,
+  isViewPolygon = true,
+  isPossibleDrawNode = true,
 }: IRadarChartDefaultProps) {
   useEffect(() => {
     drawRadarChart(
@@ -75,16 +81,18 @@ function DefaultPolygon({
       'default-radar-chart-axis',
       'default-radar-chart-legend',
       'default-radar-chart-series',
-      true,
+      isDefault,
       defaultData,
       '#B8B8B8',
       radarWidth,
       radarHeight,
       framePadding,
       onDragOutUserInput,
+      isViewPolygon,
+      isPossibleDrawNode,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultData])
+  }, [defaultData, isViewPolygon])
 
   return (
     <div
