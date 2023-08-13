@@ -10,11 +10,19 @@
   position: relative;
 }
 
+.playButton {
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  bottom: -30px;
+  cursor: pointer;
+}
+
 .registerButtonWrapper {
   display: flex;
   position: absolute;
   z-index: 99;
-  bottom: -60px;
+  bottom: 0;
   background: 'white';
   gap: 10px;
 

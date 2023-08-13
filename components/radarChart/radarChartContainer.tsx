@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 import * as d3 from 'd3'
+import { motion } from 'framer-motion'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
@@ -128,6 +129,19 @@ export default function RadarChartContainer({
     )
   }
 
+  const bubbleVariants = {
+    opened: {
+      y: 80,
+      opacity: 1,
+    },
+    closed: {
+      y: 0,
+      opacity: 0,
+    },
+  }
+
+  const [isClicked, setIsClicked] = useState(false)
+
   useEffect(() => {
     // POST request { userGenerated }
   }, [userGenerated])
@@ -195,58 +209,85 @@ export default function RadarChartContainer({
         )}
       </RadarChart>
       {isMobile && isRegistered && (
-        <div className={cx('registerButtonWrapper')}>
-          <button
-            onClick={() => {
-              if (radarType === 'TJNS') {
-                setIsViewPolygon(false)
-              }
-              handleRotateZoomIn()
+        <>
+          <motion.div
+            className={cx('playButton')}
+            animate={{
+              rotate: isClicked ? 3 : 0,
             }}
-            className={cx('registerButton')}
+            onClick={() => setIsClicked(!isClicked)}
+            whileTap={{ backgroundColor: '#ffcdcc' }}
           >
-            확대
-          </button>
-          <button
-            onClick={() => {
-              if (radarType === 'TJNS') {
-                setIsViewPolygon(false)
-              }
-              counterRef.current =
-                (counterRef.current - 1 < 0
-                  ? total + counterRef.current - 1
-                  : counterRef.current - 1) % total
-              handleRotateZoomIn()
-            }}
-            className={cx('registerButton')}
-          >
-            이전
-          </button>
-          <button
-            onClick={() => {
-              if (radarType === 'TJNS') {
-                setIsViewPolygon(false)
-              }
-              counterRef.current = (counterRef.current + 1) % total
-              handleRotateZoomIn()
-            }}
-            className={cx('registerButton')}
-          >
-            다음
-          </button>
+            Play!
+          </motion.div>
+          {isClicked && (
+            <motion.div
+              className={cx('registerButtonWrapper')}
+              animate={isClicked ? 'opened' : 'closed'}
+            >
+              <motion.button
+                onClick={() => {
+                  if (radarType === 'TJNS') {
+                    setIsViewPolygon(false)
+                  }
+                  handleRotateZoomIn()
+                }}
+                className={cx('registerButton')}
+                variants={bubbleVariants}
+                whileTap={{ backgroundColor: '#71afff' }}
+              >
+                확대
+              </motion.button>
+              <motion.button
+                onClick={() => {
+                  if (radarType === 'TJNS') {
+                    setIsViewPolygon(false)
+                  }
+                  counterRef.current =
+                    (counterRef.current - 1 < 0
+                      ? total + counterRef.current - 1
+                      : counterRef.current - 1) % total
+                  handleRotateZoomIn()
+                }}
+                className={cx('registerButton')}
+                variants={bubbleVariants}
+                whileTap={{ backgroundColor: '#71afff' }}
+              >
+                이전
+              </motion.button>
+              <motion.button
+                onClick={() => {
+                  if (radarType === 'TJNS') {
+                    setIsViewPolygon(false)
+                  }
+                  counterRef.current = (counterRef.current + 1) % total
+                  handleRotateZoomIn()
+                }}
+                className={cx('registerButton')}
+                variants={bubbleVariants}
+                transition={{ delay: isClicked ? 0.07 : 0.05 }}
+                whileTap={{ backgroundColor: '#71afff' }}
+              >
+                다음
+              </motion.button>
 
-          <button
-            onClick={() => {
-              handleRotateZoomOut()
-              if (radarType === 'TJNS') {
-                setTimeout(() => setIsViewPolygon(true), 750)
-              }
-            }}
-            className={cx('registerButton')}
-          >
-            축소
-          </button>
-        </div>
+              <motion.button
+                onClick={() => {
+                  handleRotateZoomOut()
+                  if (radarType === 'TJNS') {
+                    setTimeout(() => setIsViewPolygon(true), 750)
+                  }
+                }}
+                className={cx('registerButton')}
+                variants={bubbleVariants}
+                transition={{ delay: isClicked ? 0.08 : 0.06 }}
+                whileTap={{ backgroundColor: '#71afff' }}
+              >
+                축소
+              </motion.button>
+            </motion.div>
+          )}
+        </>
       )}
     </div>
   )
