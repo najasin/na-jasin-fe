@@ -31,12 +31,6 @@ export default function RadarChartContainer({
 
   const [isViewPolygon, setIsViewPolygon] = useState(true)
 
-  // console.log(
-  //   radarType,
-  //   originKeywordPercents,
-  //   otherKeywordPercents,
-  //   hasOtherRadarChart,
-  // )
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
