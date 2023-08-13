@@ -11,7 +11,7 @@ const cx = classNames.bind(styles)
 
 export default function CharacterBox({
   baseImage,
-  characterItems,
+  selectedItems,
 }: ISelectedCharacter) {
   return (
     <div className={cx('wrap')}>
@@ -24,37 +24,37 @@ export default function CharacterBox({
             fill={true}
             priority={true}
           />
-          {'face' in characterItems && characterItems.face && (
+          {'face' in selectedItems && selectedItems.face && (
             <Image
               className={cx('item')}
-              src={characterItems.face}
+              src={selectedItems.face}
               alt="face item"
               priority={true}
               fill={true}
             />
           )}
-          {'body' in characterItems && characterItems.body && (
+          {'body' in selectedItems && selectedItems.body && (
             <Image
               className={cx('item')}
-              src={characterItems.body}
+              src={selectedItems.body}
               alt="body item"
               fill={true}
               priority={true}
             />
           )}
-          {'expression' in characterItems && characterItems.expression && (
+          {'expression' in selectedItems && selectedItems.expression && (
             <Image
               className={cx('item')}
-              src={characterItems.expression}
+              src={selectedItems.expression}
               alt="expression item"
               fill={true}
               priority={true}
             />
           )}
-          {'set' in characterItems && characterItems.set && (
+          {'set' in selectedItems && selectedItems.set && (
             <Image
               className={cx('item')}
-              src={characterItems.set}
+              src={selectedItems.set}
               alt="set item"
               fill={true}
               priority={true}
