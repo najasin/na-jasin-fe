@@ -26,22 +26,68 @@ export default function Inventory() {
     queryFn: fetchMyProfileRegisterData,
   })
   const [selectedCategory, setSelectedCategory] = useState<Category>('face')
+  const [selectedFaceItem, setSelectedFaceItem] = useState('')
+  const [selectedBodyItem, setSelectedBodyItem] = useState('')
+  const [selectedExpressionItem, setSelectedExpressionItem] = useState('')
+  const [selectedSet, setSelectedSet] = useState('')
+
   const selectedCategoryItems =
     data?.itemsData?.characterItems[selectedCategory] || []
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
-  console.log(data)
+
+  const handleItemSelectClick = (img: string) => {
+    switch (selectedCategory) {
+      case 'face':
+        setSelectedFaceItem(img)
+        setSelectedSet('')
+        break
+      case 'body':
+        setSelectedBodyItem(img)
+        setSelectedSet('')
+        break
+      case 'expression':
+        setSelectedExpressionItem(img)
+        setSelectedSet('')
+        break
+      case 'set':
+        setSelectedSet(img)
+        setSelectedFaceItem('')
+        setSelectedBodyItem('')
+        setSelectedExpressionItem('')
+        break
+      default:
+        break
+    }
+  }
+
+  const characterItems = selectedSet
+    ? { set: selectedSet }
+    : {
+        face: selectedFaceItem,
+        body: selectedBodyItem,
+        expression: selectedExpressionItem,
+      }
+
+  const handleResetBtnClick = () => {
+    setSelectedFaceItem('')
+    setSelectedBodyItem('')
+    setSelectedExpressionItem('')
+    setSelectedSet('')
+  }
   return (
     <div>
+      {!isMobile && (
+        <CharacterBox
+          baseImage={data?.itemsData?.baseImage}
+          characterItems={characterItems}
+        />
+      )}
       <FormBox title="나를 꾸며주세요" paddingTop={31}>
         <div className={cx('wrap')}>
           {isMobile && (
             <CharacterBox
               baseImage={data?.itemsData?.baseImage}
-              characterItems={{
-                face: '',
-                body: '',
-                expression: '',
-              }}
+              characterItems={characterItems}
             />
           )}
           <div className={cx('manuBar')}>
@@ -50,10 +96,13 @@ export default function Inventory() {
               setSelectedCategory={setSelectedCategory}
             />
             <div className={cx('resetBtn')}>
-              <ResetBtn />
+              <ResetBtn onClick={handleResetBtnClick} />
             </div>
           </div>
-          <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
+          <InventoryItemBoxList
+            selectedCategoryItems={selectedCategoryItems}
+            onSelectedItem={handleItemSelectClick}
+          />
           <div className={cx('btn')}>
             <CommonBtn>다음</CommonBtn>
           </div>
