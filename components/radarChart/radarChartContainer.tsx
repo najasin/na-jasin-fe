@@ -226,6 +226,9 @@ export default function RadarChartContainer({
           <button
             style={{ position: 'absolute', bottom: '0', left: '-100px' }}
             onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
               counterRef.current = (counterRef.current + 1) % total
               handleRotateZoomIn()
             }}
@@ -235,6 +238,9 @@ export default function RadarChartContainer({
           <button
             style={{ position: 'absolute', bottom: '0', left: '0px' }}
             onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
               counterRef.current = Math.abs((counterRef.current - 1) % total)
               handleRotateZoomIn()
             }}
