@@ -8,6 +8,7 @@
 
   @include tablet {
     gap: 30px;
+    margin: 0 auto;
   }
   @include mobile {
     margin: 0;
@@ -38,7 +39,10 @@
 
 .btn {
   width: 388px;
-
+  margin-bottom: 25px;
+  @include tablet {
+    margin: 0;
+  }
   @include mobile {
     width: 100%;
     max-width: 280px;
