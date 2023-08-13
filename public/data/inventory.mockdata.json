@@ -1,5 +1,5 @@
 {
-  "baseImage": "",
+  "baseImage": "https://picsum.photos/200/300?random=5",
   "characterItems": {
     "face": [
       {
