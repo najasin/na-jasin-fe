@@ -21,14 +21,14 @@
     @include flexbox(row, center, center);
 
     flex-shrink: 0;
-    width: 76px;
+    width: 64px;
     height: 36px;
-    padding: 10px 20px;
+    padding: 6px 10px;
     border: 0.5px solid #000;
     border-radius: 10px;
     background: #fff;
     color: #000;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: 0.5px;
     line-height: 24px;
