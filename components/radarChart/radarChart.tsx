@@ -42,7 +42,7 @@ function DraggablePolygon(
       'radar-chart-series',
       false,
       draggableData,
-      '#B467F3',
+      '#0052bd',
       radarWidth,
       radarHeight,
       framePadding,
