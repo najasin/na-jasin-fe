@@ -1,5 +1,11 @@
 .formBoxWrapper {
   width: 520px;
+
+  @include tablet {
+    width: 100%;
+    height: fit-content;
+  }
+
   @include mobile {
     width: 100%;
     height: fit-content;
@@ -31,10 +37,13 @@
 .itemWrapper {
   height: 401px;
   margin-top: -1px;
-
-  // padding: 0 30px 25px;
   border-top: none;
   border-radius: 0 0 20px 20px;
+
+  @include tablet {
+    height: 100%;
+    padding: 25px 66px;
+  }
   @include mobile {
     min-height: 556px;
     padding: 10px 22px 24px;
