@@ -1,0 +1,24 @@
+.button {
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 15px;
+  border-radius: 50px;
+  @include font-style('button1');
+
+  &.active {
+    border: 1px solid $black;
+    background-color: $black;
+    color: $white;
+  }
+
+  &.deactive {
+    border: 1px solid $dark-grey;
+    background-color: $primary1;
+    color: $black;
+  }
+
+  @include mobile {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
