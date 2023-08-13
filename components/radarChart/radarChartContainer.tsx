@@ -15,21 +15,28 @@ import {
 } from './radarChart.types'
 
 export default function RadarChartContainer({
-  isRegistered,
+  radarType,
   originKeywordPercents,
   otherKeywordPercents,
   frameSize,
   radarSize,
   framePadding,
+  hasOthers,
 }: IRadarChartContainerProps) {
+  const isRegistered = radarType === 'NJNS' || radarType === 'TJNS'
   const total = 5
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
   const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
   const svgRef = useRef<HTMLDivElement>(null)
 
-  const [hasOtherRadarChart] = useState<boolean>(
-    Object.keys(otherKeywordPercents).length !== 0,
-  )
+  const [isViewPolygon, setIsViewPolygon] = useState(true)
+
+  // console.log(
+  //   radarType,
+  //   originKeywordPercents,
+  //   otherKeywordPercents,
+  //   hasOtherRadarChart,
+  // )
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
@@ -55,6 +62,7 @@ export default function RadarChartContainer({
     const svg = d3.select(svgRef.current)?.select('svg')
 
     if (!svg) return
+
     const transitioned = svg.transition().duration(750)
     transitioned.attr(
       'transform',
@@ -137,7 +145,7 @@ export default function RadarChartContainer({
       }}
     >
       <RadarChart width={frameSize} height={frameSize}>
-        {hasOtherRadarChart && (
+        {radarType === 'NJNS' && (
           <div style={{ position: 'relative' }}>
             <RadarChart.DraggablePolygon
               draggableData={draggableAxis}
@@ -145,26 +153,55 @@ export default function RadarChartContainer({
               radarHeight={radarSize}
               framePadding={framePadding}
               onDragOutUserInput={handleDragOutUserInput}
+              isPossibleDrawNode={true}
               ref={svgRef}
             />
+          </div>
+        )}
+        {radarType === 'MY' && (
+          <div style={{ position: 'relative' }}>
+            {hasOthers && (
+              <RadarChart.DraggablePolygon
+                draggableData={defaultAxis}
+                radarWidth={radarSize}
+                radarHeight={radarSize}
+                framePadding={framePadding}
+                onDragOutUserInput={handleDragOutUserInput}
+                isPossibleDrawNode={false}
+                ref={svgRef}
+              />
+            )}
             <RadarChart.DefaultPolygon
-              defaultData={defaultAxis}
+              defaultData={draggableAxis}
               radarWidth={radarSize}
               radarHeight={radarSize}
               framePadding={framePadding}
               onDragOutUserInput={handleDragOutUserInput}
+              isDefault={!!hasOthers} // hasOthers ? true : false
+              isPossibleDrawNode={!!hasOthers} // hasOthers ? true : false
             />
           </div>
         )}
-        {!hasOtherRadarChart && (
-          <RadarChart.DraggablePolygon
-            draggableData={draggableAxis}
-            radarWidth={radarSize}
-            radarHeight={radarSize}
-            framePadding={framePadding}
-            onDragOutUserInput={handleDragOutUserInput}
-            ref={svgRef}
-          />
+        {radarType === 'TJNS' && (
+          <div style={{ position: 'relative' }}>
+            <RadarChart.DraggablePolygon
+              draggableData={defaultAxis}
+              radarWidth={radarSize}
+              radarHeight={radarSize}
+              framePadding={framePadding}
+              onDragOutUserInput={handleDragOutUserInput}
+              isPossibleDrawNode={true}
+              ref={svgRef}
+            />
+            <RadarChart.DefaultPolygon
+              defaultData={draggableAxis}
+              radarWidth={radarSize}
+              radarHeight={radarSize}
+              framePadding={framePadding}
+              onDragOutUserInput={handleDragOutUserInput}
+              isViewPolygon={isViewPolygon}
+            />
+          </div>
         )}
       </RadarChart>
       {isMobile && isRegistered && (
@@ -177,7 +214,12 @@ export default function RadarChartContainer({
         >
           <button
             style={{ position: 'absolute', bottom: '0', left: '-180px' }}
-            onClick={handleRotateZoomIn}
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              handleRotateZoomIn()
+            }}
           >
             Zoom In
           </button>
@@ -203,6 +245,9 @@ export default function RadarChartContainer({
             style={{ position: 'absolute', bottom: '0', left: '100px' }}
             onClick={() => {
               handleRotateZoomOut()
+              if (radarType === 'TJNS') {
+                setTimeout(() => setIsViewPolygon(true), 750)
+              }
             }}
           >
             zoom out

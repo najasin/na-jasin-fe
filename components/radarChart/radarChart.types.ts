@@ -19,10 +19,14 @@ interface IRadarCompoundProps {
 
 interface IRadarChartDraggableProps extends IRadarCompoundProps {
   draggableData: DataPoint[]
+  isPossibleDrawNode: boolean
 }
 
 interface IRadarChartDefaultProps extends IRadarCompoundProps {
   defaultData: DataPoint[]
+  isDefault?: boolean
+  isViewPolygon?: boolean
+  isPossibleDrawNode?: boolean
 }
 
 interface IAxisMaps {
@@ -36,12 +40,13 @@ interface OtherKeywordPercents {
 }
 
 interface IRadarChartContainerProps {
-  isRegistered: boolean
+  radarType: 'NJNS' | 'TJNS' | 'MY'
   originKeywordPercents: OtherKeywordPercents
   otherKeywordPercents: OtherKeywordPercents
   frameSize: number
   radarSize: number
   framePadding: number
+  hasOthers: boolean
 }
 
 export type {

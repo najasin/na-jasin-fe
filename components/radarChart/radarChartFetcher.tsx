@@ -1,8 +1,7 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-
-import { getRadarData } from './radar-mock.apis'
+// import { useQuery } from '@tanstack/react-query'
+// import { getRadarData } from './radar-mock.apis'
 import RadarChartContainer from './radarChartContainer'
 
 /**
@@ -33,14 +32,16 @@ import RadarChartContainer from './radarChartContainer'
  * }
  * ```
  */
-export default function RadarChartFetcher() {
-  const { data: radar } = useQuery({
-    queryKey: ['radar'],
-    queryFn: () => getRadarData(),
-    staleTime: 10 * 1000,
-  }) // 서버 컴포넌트에서 같은 api를 dehydrate 했다면 클라이언트에서 api 요청하지 않고 캐싱된 데이터를 가져옵니다.
-
-  const isRegistered = true
+export default function RadarChartFetcher({
+  radarType,
+}: {
+  radarType: 'MY' | 'NJNS' | 'TJNS'
+}) {
+  // const { data: radar } = useQuery({
+  //   queryKey: ['radar'],
+  //   queryFn: () => getRadarData(),
+  //   staleTime: 10 * 1000,
+  // }) // 서버 컴포넌트에서 같은 api를 dehydrate 했다면 클라이언트에서 api 요청하지 않고 캐싱된 데이터를 가져옵니다.
 
   const initialKeywordPercents = {
     키워드1: 2.6,
@@ -50,11 +51,42 @@ export default function RadarChartFetcher() {
     키워드5: 2.6,
   }
 
-  const { originKeywordPercents } = radar
+  const radar = {
+    originKeywordPercents: {
+      키워드1: 4,
+      키워드2: 6,
+      키워드3: 3,
+      키워드4: 8,
+      키워드5: 10,
+    },
+    // otherKeywordPercents: null,
+    otherKeywordPercents: {
+      키워드1: 2,
+      키워드2: 5,
+      키워드3: 7,
+      키워드4: 9,
+      키워드5: 10,
+    },
+  }
 
-  // otherKeywordPercents 데이터 없고, 타적나사가 아니면 빈 객체({}) 할당
-  // otherKeywordPercents 데이터 없고, 타적나사면 initialKeywordPercents 할당
-  const { otherKeywordPercents } = radar
+  let originKeywordPercents
+  if (radarType === 'NJNS') {
+    originKeywordPercents = initialKeywordPercents
+  } else {
+    originKeywordPercents = radar.originKeywordPercents
+  }
+
+  let hasOthers = true
+  let otherKeywordPercents
+  if (radarType === 'NJNS') {
+    hasOthers = false
+    otherKeywordPercents = {}
+  } else if (radar.otherKeywordPercents) {
+    otherKeywordPercents = radar.otherKeywordPercents
+  } else {
+    hasOthers = false
+    otherKeywordPercents = radar.originKeywordPercents
+  }
 
   const rectangleLayout = {
     frameSize: 350,
@@ -63,14 +95,13 @@ export default function RadarChartFetcher() {
 
   return (
     <RadarChartContainer
-      isRegistered={isRegistered}
-      originKeywordPercents={
-        isRegistered ? initialKeywordPercents : originKeywordPercents
-      }
-      otherKeywordPercents={isRegistered ? {} : otherKeywordPercents}
+      radarType={radarType}
+      originKeywordPercents={originKeywordPercents}
+      otherKeywordPercents={otherKeywordPercents}
       frameSize={rectangleLayout.frameSize}
       radarSize={rectangleLayout.radarSize}
       framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
+      hasOthers={hasOthers}
     />
   )
 }
