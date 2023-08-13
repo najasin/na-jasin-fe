@@ -54,11 +54,11 @@ function DraggablePolygon(
   }, [draggableData])
 
   return (
-    <div style={{ position: 'absolute', zIndex: '10' }}>
+    <div className={cx('draggablePolygonWrapper')}>
       <div
         ref={ref}
         id="radar-chart"
-        style={{ width: '100%', height: '100%', position: 'absolute' }}
+        className={cx('draggablePolygonChart')}
       ></div>
     </div>
   )
@@ -94,12 +94,7 @@ function DefaultPolygon({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultData, isViewPolygon])
 
-  return (
-    <div
-      id="default-radar-chart"
-      style={{ position: 'absolute', width: '100%', height: '100%' }}
-    />
-  )
+  return <div id="default-radar-chart" className={cx('defaultPolygonChart')} />
 }
 
 RadarChart.DraggablePolygon = forwardRef(DraggablePolygon)
