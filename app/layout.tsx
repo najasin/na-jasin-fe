@@ -1,3 +1,5 @@
+import RecoilRootWrapper from '@/store/recoilRootWrapper'
+
 import '@/styles/global.scss'
 import { gmarketSans } from '@/styles/local.fonts'
 
@@ -18,8 +20,10 @@ export default function RootLayout({
     <html lang="ko" className={gmarketSans.className}>
       <body>
         <TanstackProvider>
-          <Gnb />
-          <main>{children}</main>
+          <RecoilRootWrapper>
+            <Gnb />
+            <main>{children}</main>
+          </RecoilRootWrapper>
         </TanstackProvider>
       </body>
     </html>
