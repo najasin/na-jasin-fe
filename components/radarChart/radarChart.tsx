@@ -51,7 +51,7 @@ function DraggablePolygon(
   }, [draggableData])
 
   return (
-    <div style={{ position: 'absolute' }}>
+    <div style={{ position: 'absolute', zIndex: '10' }}>
       <div
         ref={ref}
         id="radar-chart"
@@ -87,7 +87,10 @@ function DefaultPolygon({
   }, [defaultData])
 
   return (
-    <div id="default-radar-chart" style={{ width: '100%', height: '100%' }} />
+    <div
+      id="default-radar-chart"
+      style={{ position: 'absolute', width: '100%', height: '100%' }}
+    />
   )
 }
 
