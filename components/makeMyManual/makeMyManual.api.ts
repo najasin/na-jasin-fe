@@ -1,7 +1,7 @@
 // 추후 instance로 변경
 export async function fetchMyProfileRegisterData() {
   try {
-    const response = await fetch('http://localhost:3000//api/jff')
+    const response = await fetch('http://localhost:3000//api/jff/my-manual')
     if (!response.ok) {
       throw new Error('Failed to fetch data')
     }
