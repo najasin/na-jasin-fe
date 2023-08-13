@@ -1,9 +1,17 @@
 .wrap {
+  display: flex;
   position: relative;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   margin: 0 65px;
+
+  @include tablet {
+    gap: 30px;
+  }
   @include mobile {
     margin: 0;
+    gap: 27px;
   }
 }
 
@@ -17,17 +25,14 @@
   top: 50%;
   right: -41px;
   @include mobile {
-    right: 22px;
+    right: 0;
+    bottom: 0;
   }
 
   transform: translateY(-50%);
 }
 
 .btn {
-  position: absolute;
-  right: 0;
-  bottom: 25px;
-  left: 0;
   width: 388px;
 
   @include mobile {
