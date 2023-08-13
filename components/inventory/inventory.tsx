@@ -1,21 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
+import CharacterBox from '@/components/characterBox/characterBox'
 import CommonBtn from '@/components/commonBtn/commonBtn'
 import FormBox from '@/components/formBox/formBox'
+import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
+import {
+  selectedBodyItemState,
+  selectedCategoryState,
+  selectedExpressionItemState,
+  selectedFaceItemState,
+  selectedSetState,
+} from '@/components/makeMyManual/makeMyManual.atom'
 import ResetBtn from '@/components/resetBtn/resetBtn'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
-import CharacterBox from '../characterBox/characterBox'
-import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
 import styles from './inventory.module.scss'
 import { InventoryCategoryBtnList } from './inventoryCategoryBtnList/inventoryCategoryBtnList'
-import { Category } from './inventoryCategoryBtnList/inventoryCategoryBtnList.types'
 import { InventoryItemBoxList } from './inventoryItemBoxList/inventoryItemBoxList'
 
 const cx = classNames.bind(styles)
@@ -25,40 +30,17 @@ export default function Inventory() {
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
   })
-  const [selectedCategory, setSelectedCategory] = useState<Category>('face')
-  const [selectedFaceItem, setSelectedFaceItem] = useState('')
-  const [selectedBodyItem, setSelectedBodyItem] = useState('')
-  const [selectedExpressionItem, setSelectedExpressionItem] = useState('')
-  const [selectedSet, setSelectedSet] = useState('')
+  const [selectedCategory, setSelectedCategory] = useRecoilState(
+    selectedCategoryState,
+  )
+  const selectedFaceItem = useRecoilValue(selectedFaceItemState)
+  const selectedBodyItem = useRecoilValue(selectedBodyItemState)
+  const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
+  const selectedSet = useRecoilValue(selectedSetState)
 
   const selectedCategoryItems =
     data?.itemsData?.characterItems[selectedCategory] || []
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
-
-  const handleItemSelectClick = (img: string) => {
-    switch (selectedCategory) {
-      case 'face':
-        setSelectedFaceItem(img)
-        setSelectedSet('')
-        break
-      case 'body':
-        setSelectedBodyItem(img)
-        setSelectedSet('')
-        break
-      case 'expression':
-        setSelectedExpressionItem(img)
-        setSelectedSet('')
-        break
-      case 'set':
-        setSelectedSet(img)
-        setSelectedFaceItem('')
-        setSelectedBodyItem('')
-        setSelectedExpressionItem('')
-        break
-      default:
-        break
-    }
-  }
 
   const characterItems = selectedSet
     ? { set: selectedSet }
@@ -68,11 +50,16 @@ export default function Inventory() {
         expression: selectedExpressionItem,
       }
 
+  const resetFace = useResetRecoilState(selectedFaceItemState)
+  const resetBody = useResetRecoilState(selectedBodyItemState)
+  const resetExpression = useResetRecoilState(selectedExpressionItemState)
+  const resetSet = useResetRecoilState(selectedSetState)
+
   const handleResetBtnClick = () => {
-    setSelectedFaceItem('')
-    setSelectedBodyItem('')
-    setSelectedExpressionItem('')
-    setSelectedSet('')
+    resetFace()
+    resetBody()
+    resetExpression()
+    resetSet()
   }
   return (
     <div>
@@ -99,10 +86,7 @@ export default function Inventory() {
               <ResetBtn onClick={handleResetBtnClick} />
             </div>
           </div>
-          <InventoryItemBoxList
-            selectedCategoryItems={selectedCategoryItems}
-            onSelectedItem={handleItemSelectClick}
-          />
+          <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
           <div className={cx('btn')}>
             <CommonBtn>다음</CommonBtn>
           </div>
