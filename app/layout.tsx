@@ -3,6 +3,7 @@ import RecoilRootWrapper from '@/store/recoilRootWrapper'
 import '@/styles/global.scss'
 import { gmarketSans } from '@/styles/local.fonts'
 
+import Footer from '@/components/footer/footer'
 import Gnb from '@/components/gnb/gnb'
 
 import TanstackProvider from '@/api/tanstack/tanstackProvider.context'
@@ -23,6 +24,7 @@ export default function RootLayout({
           <RecoilRootWrapper>
             <Gnb />
             <main>{children}</main>
+            <Footer />
           </RecoilRootWrapper>
         </TanstackProvider>
       </body>
