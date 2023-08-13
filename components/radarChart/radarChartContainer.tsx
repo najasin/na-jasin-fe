@@ -235,7 +235,10 @@ export default function RadarChartContainer({
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
               }
-              counterRef.current = Math.abs((counterRef.current - 1) % total)
+              counterRef.current =
+                (counterRef.current - 1 < 0
+                  ? total + counterRef.current - 1
+                  : counterRef.current - 1) % total
               handleRotateZoomIn()
             }}
           >
