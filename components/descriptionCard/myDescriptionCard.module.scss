@@ -1,0 +1,7 @@
+.card {
+  width: 100%;
+}
+
+.answer {
+  @include font-style('button1');
+}
