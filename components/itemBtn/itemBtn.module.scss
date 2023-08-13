@@ -22,6 +22,8 @@
 
   @include mobile {
     padding: 4px 12px;
+    letter-spacing: -0.3px;
+    line-height: 27px; /* 192.857% */
     @include font-style('button5');
   }
 }

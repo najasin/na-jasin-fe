@@ -6,17 +6,25 @@ import styles from './itemBox.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function ItemBox({ imgUrl }: { imgUrl: string }) {
+export default function ItemBox({
+  imgUrl,
+  onSelectedItem,
+}: {
+  imgUrl: string
+  onSelectedItem: (img: string) => void
+}) {
+  const handleItemClick = () => {
+    onSelectedItem(imgUrl)
+  }
   return (
-    <div className={cx('itemBox')}>
-      <div className={cx('img')}>
-        <Image
-          className={cx('img')}
-          src={imgUrl}
-          alt="캐릭터 item"
-          fill={true}
-        />
-      </div>
+    <div className={cx('itemBox')} onClick={handleItemClick}>
+      <Image
+        className={cx('img')}
+        src={imgUrl}
+        alt="캐릭터 item"
+        fill={true}
+        priority={true}
+      />
     </div>
   )
 }
