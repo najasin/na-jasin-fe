@@ -16,19 +16,21 @@ export default function CharacterBox({
   return (
     <div className={cx('wrap')}>
       {baseImage && (
-        <div className={cx('character-container')}>
+        <>
           <Image
             className={cx('img')}
             src={baseImage}
             alt="base image"
-            layout="fill"
+            fill={true}
+            priority={true}
           />
           {'face' in characterItems && characterItems.face && (
             <Image
               className={cx('item')}
               src={characterItems.face}
               alt="face item"
-              layout="fill"
+              priority={true}
+              fill={true}
             />
           )}
           {'body' in characterItems && characterItems.body && (
@@ -36,7 +38,8 @@ export default function CharacterBox({
               className={cx('item')}
               src={characterItems.body}
               alt="body item"
-              layout="fill"
+              fill={true}
+              priority={true}
             />
           )}
           {'expression' in characterItems && characterItems.expression && (
@@ -44,7 +47,8 @@ export default function CharacterBox({
               className={cx('item')}
               src={characterItems.expression}
               alt="expression item"
-              layout="fill"
+              fill={true}
+              priority={true}
             />
           )}
           {'set' in characterItems && characterItems.set && (
@@ -52,10 +56,11 @@ export default function CharacterBox({
               className={cx('item')}
               src={characterItems.set}
               alt="set item"
-              layout="fill"
+              fill={true}
+              priority={true}
             />
           )}
-        </div>
+        </>
       )}
     </div>
   )
