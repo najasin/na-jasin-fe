@@ -22,14 +22,18 @@
 
 .resetBtn {
   position: absolute;
-  top: 50%;
   right: -41px;
-  @include mobile {
+  bottom: 0;
+
+  @include tablet {
     right: 0;
     bottom: 0;
   }
 
-  transform: translateY(-50%);
+  @include mobile {
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .btn {

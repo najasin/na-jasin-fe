@@ -3,7 +3,12 @@
   justify-content: center;
   width: 100%;
   gap: 24px;
-
+  @include tablet {
+    gap: 26px;
+    justify-content: flex-start;
+    width: 388px;
+    margin: 0 auto;
+  }
   @include mobile {
     gap: 14px;
     justify-content: flex-start;
