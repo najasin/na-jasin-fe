@@ -1,0 +1,12 @@
+.card {
+  @include font-style('button1');
+
+  width: 100%;
+  padding: 20px 25px;
+  border-radius: 20px;
+  background-color: $light-grey;
+}
+
+.answer {
+  @include font-style('button1');
+}
