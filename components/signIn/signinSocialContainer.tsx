@@ -20,6 +20,7 @@ export default function SigninSocialContainer() {
         onClick={handleClickGetAuthenticationCodeKaKao}
       >
         <Image
+          className={cx('kakaoImage')}
           width={40}
           height={40}
           src="/images/signin-kakao.svg"
@@ -31,6 +32,7 @@ export default function SigninSocialContainer() {
         onClick={handleClickGetAuthenticationCodeGoogle}
       >
         <Image
+          className={cx('googleImage')}
           width={40}
           height={40}
           src="/images/signin-google.svg"
@@ -42,6 +44,7 @@ export default function SigninSocialContainer() {
         onClick={handleClickGetAuthenticationCodeGithub}
       >
         <Image
+          className={cx('githubImage')}
           width={40}
           height={40}
           src="/images/signin-github.svg"

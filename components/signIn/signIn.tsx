@@ -15,6 +15,7 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
       <div className={cx('imageContainer')}>
         <div className={cx('titleImageContainer')}>
           <Image
+            className={cx('titleImage')}
             width={340}
             height={288}
             src="/images/signin-title.png"
