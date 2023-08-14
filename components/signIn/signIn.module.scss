@@ -14,39 +14,86 @@
     padding-top: 68px;
     gap: 10px;
 
+    @include mobile {
+      gap: 60px;
+    }
+
     .titleImageContainer {
       position: relative;
       width: 340px;
       height: 288px;
 
+      @include mobile {
+        width: 200px;
+        height: 170px;
+      }
+
+      .titleImage {
+        @include mobile {
+          width: 200px;
+          height: 170px;
+        }
+      }
+
       .batLeftTopImage {
         position: absolute;
         top: -20px;
         left: -140px;
+
+        @include mobile {
+          left: -70px;
+          width: 80px;
+          height: 60px;
+        }
       }
 
       .batLeftBottomImage {
         position: absolute;
         bottom: -40px;
         left: -80px;
+
+        @include mobile {
+          bottom: -50px;
+          left: -40px;
+          width: 80px;
+          height: 60px;
+        }
       }
 
       .batRightMiddleImage {
         position: absolute;
         top: 50%;
         right: -120px;
+
+        @include mobile {
+          right: -70px;
+          width: 80px;
+          height: 60px;
+        }
       }
 
       .ghostLeftMiddleImage {
         position: absolute;
         top: 50%;
         left: -120px;
+
+        @include mobile {
+          left: -60px;
+          width: 50px;
+          height: 50px;
+        }
       }
 
       .ghostRightBottomImage {
         position: absolute;
         right: -30px;
         bottom: 0;
+
+        @include mobile {
+          bottom: -30px;
+          width: 40px;
+          height: 40px;
+        }
       }
     }
 
@@ -70,7 +117,16 @@
     gap: 40px;
 
     @include tablet {
+      padding-top: 30px;
       padding-bottom: 58px;
+      gap: 25px;
+    }
+
+    .kakaoImage,
+    .googleImage,
+    .githubImage {
+      width: 32px;
+      height: 32px;
     }
   }
 
