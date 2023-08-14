@@ -45,6 +45,7 @@ export default function RadarChartContainer({
   const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
   const svgRef = useRef<HTMLDivElement>(null)
 
+  const [isZoomIn, setIsZoomIn] = useState(true)
   const [isClicked, setIsClicked] = useState(false)
   const [isViewPolygon, setIsViewPolygon] = useState(true)
   const [draggableAxis] = useState<IAxisMaps[]>(
@@ -140,6 +141,23 @@ export default function RadarChartContainer({
     )
   }
 
+  const handleClickChangeZoom = () => {
+    if (isZoomIn) {
+      if (radarType === 'TJNS') {
+        setIsViewPolygon(false)
+      }
+      handleRotateZoomIn()
+    } else if (!isZoomIn) {
+      handleRotateZoomOut()
+      if (radarType === 'TJNS') {
+        setTimeout(() => setIsViewPolygon(true), 750)
+      }
+    }
+
+    setIsClicked(!isClicked)
+    setIsZoomIn(!isZoomIn)
+  }
+
   useEffect(() => {
     // POST request { userGenerated }
   }, [userGenerated])
@@ -210,31 +228,17 @@ export default function RadarChartContainer({
         <div className={cx('buttonContainer')}>
           <motion.button
             className={cx('playButton')}
-            onClick={() => setIsClicked(!isClicked)}
+            onClick={handleClickChangeZoom}
             whileHover={{ scale: 1.1 }}
             whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
-            Play!
+            {isZoomIn ? '크게 보기' : '작게 보기'}
           </motion.button>
           {isClicked && (
             <motion.div
               className={cx('registerButtonWrapper')}
               animate={isClicked ? 'opened' : 'closed'}
             >
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
-              >
-                확대
-              </motion.button>
               <motion.button
                 onClick={() => {
                   if (radarType === 'TJNS') {
@@ -268,22 +272,6 @@ export default function RadarChartContainer({
                 whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
               >
                 다음
-              </motion.button>
-
-              <motion.button
-                onClick={() => {
-                  handleRotateZoomOut()
-                  if (radarType === 'TJNS') {
-                    setTimeout(() => setIsViewPolygon(true), 750)
-                  }
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                transition={{ delay: isClicked ? 0.08 : 0.06 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
-              >
-                축소
               </motion.button>
             </motion.div>
           )}

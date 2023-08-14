@@ -21,7 +21,7 @@
   .playButton {
     @include flexbox(row, center, center);
 
-    width: 64px;
+    width: 80px;
     height: 36px;
     padding: 8px 12px;
     border: 1px solid $black;
@@ -41,7 +41,6 @@
     .registerButton {
       @include flexbox(row, center, center);
 
-      flex-shrink: 0;
       width: 64px;
       height: 36px;
       padding: 8px 12px;
