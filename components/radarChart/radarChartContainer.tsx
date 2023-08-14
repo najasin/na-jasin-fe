@@ -28,14 +28,25 @@ export default function RadarChartContainer({
   framePadding,
   hasOthers,
 }: IRadarChartContainerProps) {
+  const bubbleVariants = {
+    opened: {
+      y: 10,
+      opacity: 1,
+    },
+    closed: {
+      y: 0,
+      opacity: 0,
+    },
+  }
   const isRegistered = radarType === 'NJNS' || radarType === 'TJNS'
   const total = 5
+
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
   const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
   const svgRef = useRef<HTMLDivElement>(null)
 
+  const [isClicked, setIsClicked] = useState(false)
   const [isViewPolygon, setIsViewPolygon] = useState(true)
-
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
@@ -129,19 +140,6 @@ export default function RadarChartContainer({
     )
   }
 
-  const bubbleVariants = {
-    opened: {
-      y: 80,
-      opacity: 1,
-    },
-    closed: {
-      y: 0,
-      opacity: 0,
-    },
-  }
-
-  const [isClicked, setIsClicked] = useState(false)
-
   useEffect(() => {
     // POST request { userGenerated }
   }, [userGenerated])
@@ -209,17 +207,15 @@ export default function RadarChartContainer({
         )}
       </RadarChart>
       {isMobile && isRegistered && (
-        <>
-          <motion.div
+        <div className={cx('buttonContainer')}>
+          <motion.button
             className={cx('playButton')}
-            animate={{
-              rotate: isClicked ? 3 : 0,
-            }}
             onClick={() => setIsClicked(!isClicked)}
-            whileTap={{ backgroundColor: '#ffcdcc' }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
             Play!
-          </motion.div>
+          </motion.button>
           {isClicked && (
             <motion.div
               className={cx('registerButtonWrapper')}
@@ -234,7 +230,8 @@ export default function RadarChartContainer({
                 }}
                 className={cx('registerButton')}
                 variants={bubbleVariants}
-                whileTap={{ backgroundColor: '#71afff' }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
               >
                 확대
               </motion.button>
@@ -251,7 +248,8 @@ export default function RadarChartContainer({
                 }}
                 className={cx('registerButton')}
                 variants={bubbleVariants}
-                whileTap={{ backgroundColor: '#71afff' }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
               >
                 이전
               </motion.button>
@@ -266,7 +264,8 @@ export default function RadarChartContainer({
                 className={cx('registerButton')}
                 variants={bubbleVariants}
                 transition={{ delay: isClicked ? 0.07 : 0.05 }}
-                whileTap={{ backgroundColor: '#71afff' }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
               >
                 다음
               </motion.button>
@@ -281,13 +280,14 @@ export default function RadarChartContainer({
                 className={cx('registerButton')}
                 variants={bubbleVariants}
                 transition={{ delay: isClicked ? 0.08 : 0.06 }}
-                whileTap={{ backgroundColor: '#71afff' }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
               >
                 축소
               </motion.button>
             </motion.div>
           )}
-        </>
+        </div>
       )}
     </div>
   )
