@@ -68,6 +68,10 @@
     padding-top: 35px;
     padding-bottom: 35px;
     gap: 40px;
+
+    @include tablet {
+      padding-bottom: 58px;
+    }
   }
 
   .ourStoryButtonContainer {
@@ -75,12 +79,27 @@
     top: 50%;
     right: 124px;
 
+    @include tablet {
+      display: flex;
+      position: relative;
+      top: 0;
+      right: 0;
+      align-items: center;
+      justify-content: center;
+    }
+
     .ourStoryButton {
       display: block;
       position: relative;
       z-index: 1;
       width: 68px;
       height: 68px;
+
+      @include tablet {
+        width: 53px;
+        height: 53px;
+        transform: translate(240px, -11.5px);
+      }
 
       .clickText {
         position: absolute;
@@ -94,6 +113,13 @@
         letter-spacing: 0.376px;
         line-height: 18.025px; /* 128.75% */
         text-align: center;
+      }
+
+      .ourStoryButtonImage {
+        @include tablet {
+          width: 53px;
+          height: 53px;
+        }
       }
     }
 
@@ -114,6 +140,10 @@
       letter-spacing: 0.376px;
       line-height: 18.038px; /* 128.842% */
       text-align: center;
+
+      @include tablet {
+        position: relative;
+      }
     }
   }
 
@@ -127,6 +157,10 @@
     .castleImage {
       position: absolute;
       bottom: -80%;
+
+      @include tablet {
+        bottom: -100%;
+      }
     }
   }
 }

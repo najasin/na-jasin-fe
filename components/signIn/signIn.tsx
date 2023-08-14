@@ -63,6 +63,7 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
         <Link href="/" className={cx('ourStoryButton')}>
           <p className={cx('clickText', hsYuji.className)}>Click!</p>
           <Image
+            className={cx('ourStoryButtonImage')}
             width={68}
             height={68}
             src="/images/signin-our-story-btn.svg"
