@@ -1,0 +1,46 @@
+.radarChartContainerWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartContainer {
+  position: relative;
+}
+
+.playButton {
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  bottom: -30px;
+  cursor: pointer;
+}
+
+.registerButtonWrapper {
+  display: flex;
+  position: absolute;
+  z-index: 99;
+  bottom: 0;
+  background: 'white';
+  gap: 10px;
+
+  .registerButton {
+    @include flexbox(row, center, center);
+
+    flex-shrink: 0;
+    width: 64px;
+    height: 36px;
+    padding: 6px 10px;
+    border: 0.5px solid #000;
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 24px;
+    gap: 10px;
+  }
+}

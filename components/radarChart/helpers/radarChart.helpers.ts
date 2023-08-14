@@ -43,6 +43,8 @@ const drawRadarChart = (
   radarHeight: number,
   radarPadding: number,
   onDragOutUserInput: (data: DataPoint[]) => void,
+  isViewPolygon: boolean,
+  isPossibleDrawNode: boolean,
 ) => {
   // 기본 설정 값을 관리한다.
   const cfg = {
@@ -58,7 +60,8 @@ const drawRadarChart = (
     color: d3.scale.category10(),
   }
 
-  cfg.maxValue = Math.max(cfg.maxValue, d3.max(data.map((o) => o.value)))
+  // cfg.maxValue = Math.max(cfg.maxValue, d3.max(data.map((o) => o.value)))
+  cfg.maxValue = 10
 
   const allAxis = data.map((i) => i.axis)
   const total = allAxis.length
@@ -86,9 +89,9 @@ const drawRadarChart = (
   reCalculatePoints()
 
   const areagg = initPolygon()
-  drawPoly()
+  isViewPolygon && drawPoly() // draw 가능 여부
 
-  !isDefault && drawNode()
+  !isDefault && isPossibleDrawNode && drawNode() // 조정 가능 여부
 
   // 초기에 frame을 그린다.
   function drawFrame() {

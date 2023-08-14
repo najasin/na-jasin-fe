@@ -1,11 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { ForwardedRef, forwardRef, useEffect } from 'react'
 
 import classNames from 'classnames/bind'
-import * as d3 from 'd3'
 
-import { rotateOffsetRatioMap } from './helpers/axis.helpers'
 import { drawRadarChart } from './helpers/radarChart.helpers'
 import styles from './radarChart.module.scss'
 import {
@@ -24,112 +22,17 @@ export function RadarChart({ children, width, height }: IRadarChartProps) {
   )
 }
 
-function DraggablePolygon({
-  draggableData,
-  radarWidth,
-  radarHeight,
-  framePadding,
-  onDragOutUserInput,
-}: IRadarChartDraggableProps) {
-  const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
-
-  const svgRef = useRef(null)
-
-  const total = 5
-
-  const handleRotateZoomOut = () => {
-    if (!svgRef.current) {
-      return // svgRef.current가 null일 경우 처리
-    }
-
-    const svg = d3.select(svgRef.current)?.select('svg')
-
-    if (!svg) {
-      return
-    }
-
-    // // transition 생성
-    const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
-
-    t.attr(
-      'transform',
-      `translate(0, 0) scale(1) rotate(${-(360 / 5) * counterRef.current})`,
-    )
-  }
-
-  const handleRotateZoomIn = () => {
-    const scale = 1.5
-
-    const cfg = {
-      w: radarWidth,
-      h: radarHeight,
-      factorLegend: 0.85,
-      radians: 2 * Math.PI,
-    }
-
-    if (!svgRef.current) {
-      return // svgRef.current가 null일 경우 처리
-    }
-
-    const svg = d3.select(svgRef.current)?.select('svg')
-
-    if (!svg) {
-      return
-    }
-
-    const textElements = svg.selectAll<SVGTextElement>('.radar-chart-legend')
-
-    // textElements.text(() => '')
-
-    const initialTextPositions: Array<{
-      cX: number
-      cY: number
-      offsetX: number
-      offsetY: number
-    }> = [] // 초기 텍스트 엘리먼트 위치 저장용 배열
-
-    /* eslint-disable func-names */
-    textElements.each(function (this: SVGTextElement, d, i) {
-      const bbox = (this as SVGTextElement).getBBox()
-
-      const cX = bbox.x + bbox.width / 2
-      const cY = bbox.y + bbox.height / 2
-
-      initialTextPositions.push({
-        cX,
-        cY,
-        offsetX:
-          rotateOffsetRatioMap[counterRef.current][i].offsetXRatio * cfg.w,
-        offsetY:
-          rotateOffsetRatioMap[counterRef.current][i].offsetYRatio * cfg.h,
-      })
-    })
-
-    const tt = textElements.transition().duration(750)
-    tt.attr('transform', (_, i) => {
-      const initialPosition = initialTextPositions[i]
-
-      if (counterRef.current === 0) {
-        // counterRef.current가 0일 때는 초기 위치로 이동
-        return `translate(${initialPosition.offsetX}, ${initialPosition.offsetY})`
-      }
-      // 그 외에는 회전 변형 적용
-      return `rotate(${(360 / total) * counterRef.current}, ${
-        initialPosition.cX + initialPosition.offsetX
-      }, ${initialPosition.cY + initialPosition.offsetY})`
-    })
-
-    // // transition 생성
-    const t = svg.transition().duration(750) // 0.75초 동안 트랜지션
-
-    t.attr(
-      'transform',
-      `translate(0, 200) scale(${scale}) rotate(${
-        -(360 / 5) * counterRef.current
-      })`,
-    )
-  }
-
+function DraggablePolygon(
+  {
+    draggableData,
+    radarWidth,
+    radarHeight,
+    framePadding,
+    onDragOutUserInput,
+    isPossibleDrawNode,
+  }: IRadarChartDraggableProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   useEffect(() => {
     drawRadarChart(
       '#radar-chart',
@@ -139,54 +42,24 @@ function DraggablePolygon({
       'radar-chart-series',
       false,
       draggableData,
-      '#B467F3',
+      '#0052bd',
       radarWidth,
       radarHeight,
       framePadding,
       onDragOutUserInput,
+      true,
+      isPossibleDrawNode,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draggableData])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={cx('draggablePolygonWrapper')}>
       <div
-        ref={svgRef}
+        ref={ref}
         id="radar-chart"
-        style={{ width: '100%', height: '100%', position: 'absolute' }}
-      />
-      <button
-        style={{ position: 'absolute', right: '0' }}
-        onClick={handleRotateZoomIn}
-      >
-        Zoom In
-      </button>
-      <button
-        style={{ position: 'absolute', right: '-50px' }}
-        onClick={() => {
-          counterRef.current = (counterRef.current + 1) % total
-          handleRotateZoomIn()
-        }}
-      >
-        plus
-      </button>
-      <button
-        style={{ position: 'absolute', right: '-100px' }}
-        onClick={() => {
-          counterRef.current = Math.abs((counterRef.current - 1) % total)
-          handleRotateZoomIn()
-        }}
-      >
-        minus
-      </button>
-      <button
-        style={{ position: 'absolute', right: '-180px' }}
-        onClick={() => {
-          handleRotateZoomOut()
-        }}
-      >
-        zoom out
-      </button>
+        className={cx('draggablePolygonChart')}
+      ></div>
     </div>
   )
 }
@@ -197,6 +70,9 @@ function DefaultPolygon({
   radarHeight,
   framePadding,
   onDragOutUserInput,
+  isDefault = true,
+  isViewPolygon = true,
+  isPossibleDrawNode = true,
 }: IRadarChartDefaultProps) {
   useEffect(() => {
     drawRadarChart(
@@ -205,21 +81,21 @@ function DefaultPolygon({
       'default-radar-chart-axis',
       'default-radar-chart-legend',
       'default-radar-chart-series',
-      true,
+      isDefault,
       defaultData,
       '#B8B8B8',
       radarWidth,
       radarHeight,
       framePadding,
       onDragOutUserInput,
+      isViewPolygon,
+      isPossibleDrawNode,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultData])
+  }, [defaultData, isViewPolygon])
 
-  return (
-    <div id="default-radar-chart" style={{ width: '100%', height: '100%' }} />
-  )
+  return <div id="default-radar-chart" className={cx('defaultPolygonChart')} />
 }
 
-RadarChart.DraggablePolygon = DraggablePolygon
+RadarChart.DraggablePolygon = forwardRef(DraggablePolygon)
 RadarChart.DefaultPolygon = DefaultPolygon

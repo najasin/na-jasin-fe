@@ -10,7 +10,7 @@ import { logOnDev } from './instance.helpers'
 import { CustomAxiosInterface } from './instance.types'
 
 export const instance: CustomAxiosInterface = axios.create({
-  baseURL: '',
+  baseURL: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
     Accept: '*/*',
