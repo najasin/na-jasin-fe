@@ -1,0 +1,132 @@
+.signInWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(to right top, #006ed4, #005ec5, #003dac);
+
+  .imageContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 68px;
+    gap: 10px;
+
+    .titleImageContainer {
+      position: relative;
+      width: 340px;
+      height: 288px;
+
+      .batLeftTopImage {
+        position: absolute;
+        top: -20px;
+        left: -140px;
+      }
+
+      .batLeftBottomImage {
+        position: absolute;
+        bottom: -40px;
+        left: -80px;
+      }
+
+      .batRightMiddleImage {
+        position: absolute;
+        top: 50%;
+        right: -120px;
+      }
+
+      .ghostLeftMiddleImage {
+        position: absolute;
+        top: 50%;
+        left: -120px;
+      }
+
+      .ghostRightBottomImage {
+        position: absolute;
+        right: -30px;
+        bottom: 0;
+      }
+    }
+
+    .signInText {
+      color: $white;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
+
+  .socialContainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    gap: 40px;
+  }
+
+  .ourStoryButtonContainer {
+    position: absolute;
+    top: 50%;
+    right: 124px;
+
+    .ourStoryButton {
+      display: block;
+      position: relative;
+      z-index: 1;
+      width: 68px;
+      height: 68px;
+
+      .clickText {
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        transform: rotate(-10deg);
+        color: $white;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.376px;
+        line-height: 18.025px; /* 128.75% */
+        text-align: center;
+      }
+    }
+
+    .explainText {
+      display: flex;
+      position: absolute;
+      right: 30px;
+      bottom: 0;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 30px;
+      padding-right: 30px;
+      border-radius: 7px;
+      background: $white;
+      color: $blue-point;
+      font-size: 16px;
+      letter-spacing: 0.376px;
+      line-height: 18.038px; /* 128.842% */
+      text-align: center;
+    }
+  }
+
+  .castleImageContainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+
+    .castleImage {
+      position: absolute;
+      bottom: -80%;
+    }
+  }
+}
