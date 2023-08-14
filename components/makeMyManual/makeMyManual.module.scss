@@ -28,6 +28,36 @@
   margin: 20px auto;
 }
 
+.manualWrap {
+  height: 300px;
+  margin: 0 auto;
+  overflow: scroll;
+}
+
+.manual {
+  margin-bottom: 12px;
+  padding: 20px 12px;
+  border-radius: 20px;
+  background-color: $primary1;
+  @include font-style('text3');
+
+  @include tablet {
+    @include font-style('text4');
+  }
+  @include mobile {
+    @include font-style('text5');
+  }
+}
+
+.manualInput {
+  display: inline-block;
+  width: 80%;
+
+  @include tablet {
+    width: 70%;
+  }
+}
+
 .btn {
   margin: 0 auto;
 

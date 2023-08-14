@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
@@ -22,6 +24,7 @@ import {
   selectedSetState,
 } from './makeMyManual.atom'
 import styles from './makeMyManual.module.scss'
+import { IQuestions } from './makeMyManual.types'
 
 const cx = classNames.bind(styles)
 
@@ -41,7 +44,7 @@ export default function MakeMyManual() {
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
-  let inputVariant
+  let inputVariant: string
 
   if (isTablet) {
     inputVariant = 'medium'
@@ -107,7 +110,32 @@ export default function MakeMyManual() {
                 }
               />
             </Funnel.Step>
-            <Funnel.Step name="manual"></Funnel.Step>
+            <Funnel.Step name="manual">
+              <div className={cx('manualWrap')}>
+                {data?.itemsData?.questions?.map(
+                  (question: IQuestions) =>
+                    question && (
+                      <div key={question.id} className={cx('manual')}>
+                        <>
+                          {question.question.includes('---') ? (
+                            <>
+                              {question.question.split('---')[0]}
+                              <div className={cx('manualInput')}>
+                                <Input variant={inputVariant}>
+                                  <Input.TextField />
+                                </Input>
+                              </div>
+                              {question.question.split('---')[1]}
+                            </>
+                          ) : (
+                            question.question
+                          )}
+                        </>
+                      </div>
+                    ),
+                )}
+              </div>
+            </Funnel.Step>
 
             <Funnel.Step name="keword"></Funnel.Step>
 
