@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useRecoilState } from 'recoil'
 
-import CommonBtn from '@/components/commonBtn/commonBtn'
 import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
 import { selectedCategoryState } from '@/components/makeMyManual/makeMyManual.atom'
 
@@ -14,7 +13,13 @@ import { InventoryItemBoxList } from './inventoryItemBoxList/inventoryItemBoxLis
 
 const cx = classNames.bind(styles)
 
-export default function Inventory({ resetBtn }: { resetBtn: React.ReactNode }) {
+export default function Inventory({
+  resetBtn,
+  nextBtn,
+}: {
+  resetBtn: React.ReactNode
+  nextBtn: React.ReactNode
+}) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
@@ -36,9 +41,7 @@ export default function Inventory({ resetBtn }: { resetBtn: React.ReactNode }) {
         />
         <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
       </div>
-      <div className={cx('btn')}>
-        <CommonBtn>다음</CommonBtn>
-      </div>
+      <div className={cx('btn')}>{nextBtn}</div>
     </div>
   )
 }

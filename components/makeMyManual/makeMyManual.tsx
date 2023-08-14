@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
@@ -72,10 +70,6 @@ export default function MakeMyManual() {
     resetSet()
   }
 
-  useEffect(() => {
-    console.log(step)
-  }, [step])
-
   return (
     <div className={cx('layout')}>
       {!isTablet && step !== 'nickname' && (
@@ -108,6 +102,9 @@ export default function MakeMyManual() {
             <Funnel.Step name="character">
               <Inventory
                 resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
+                nextBtn={
+                  <CommonBtn onClick={() => setStep('manual')}>다음</CommonBtn>
+                }
               />
             </Funnel.Step>
             <Funnel.Step name="manual"></Funnel.Step>
