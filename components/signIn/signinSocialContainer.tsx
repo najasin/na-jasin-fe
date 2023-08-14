@@ -8,7 +8,11 @@ import styles from './signIn.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function SigninSocialContainer() {
+export default function SigninSocialContainer({
+  userType,
+}: {
+  userType: 'forFun' | 'forDev'
+}) {
   const handleClickGetAuthenticationCodeKaKao = () => {}
   const handleClickGetAuthenticationCodeGoogle = () => {}
   const handleClickGetAuthenticationCodeGithub = () => {}
@@ -39,18 +43,20 @@ export default function SigninSocialContainer() {
           alt="signin google"
         />
       </button>
-      <button
-        className={cx('github')}
-        onClick={handleClickGetAuthenticationCodeGithub}
-      >
-        <Image
-          className={cx('githubImage')}
-          width={40}
-          height={40}
-          src="/images/signin-github.svg"
-          alt="signin github"
-        />
-      </button>
+      {userType === 'forDev' && (
+        <button
+          className={cx('github')}
+          onClick={handleClickGetAuthenticationCodeGithub}
+        >
+          <Image
+            className={cx('githubImage')}
+            width={40}
+            height={40}
+            src="/images/signin-github.svg"
+            alt="signin github"
+          />
+        </button>
+      )}
     </div>
   )
 }

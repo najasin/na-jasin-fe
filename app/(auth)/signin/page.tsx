@@ -4,7 +4,7 @@ import SigninSocialContainer from '@/components/signIn/signinSocialContainer'
 export default function SignInPage() {
   return (
     <SignIn>
-      <SigninSocialContainer />
+      <SigninSocialContainer userType="forFun" />
     </SignIn>
   )
 }
