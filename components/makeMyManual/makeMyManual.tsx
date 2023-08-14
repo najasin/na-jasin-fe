@@ -2,13 +2,15 @@
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 import CharacterBox from '@/components/characterBox/characterBox'
 import Inventory from '@/components/inventory/inventory'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
+import FormBox from '../formBox/formBox'
+import ResetBtn from '../resetBtn/resetBtn'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   selectedBodyItemState,
@@ -40,27 +42,37 @@ export default function MakeMyManual() {
         body: selectedBodyItem,
         expression: selectedExpressionItem,
       }
+  const resetFace = useResetRecoilState(selectedFaceItemState)
+  const resetBody = useResetRecoilState(selectedBodyItemState)
+  const resetExpression = useResetRecoilState(selectedExpressionItemState)
+  const resetSet = useResetRecoilState(selectedSetState)
 
+  const handleResetBtnClick = () => {
+    resetFace()
+    resetBody()
+    resetExpression()
+    resetSet()
+  }
   return (
     <div className={cx('layout')}>
       {!isTablet && (
-        <div className={cx('character')}>
-          <CharacterBox
-            baseImage={data?.itemsData?.baseImage}
-            selectedItems={selectedItems}
-          />
-        </div>
+        <CharacterBox
+          baseImage={data?.itemsData?.baseImage}
+          selectedItems={selectedItems}
+        />
       )}
-      <Inventory
-        characterBox={
-          isTablet && (
+      <FormBox title="나를 꾸며주세요" paddingTop={31}>
+        <div className={cx('formContent')}>
+          {isTablet && (
             <CharacterBox
               baseImage={data?.itemsData?.baseImage}
               selectedItems={selectedItems}
             />
-          )
-        }
-      />
+          )}
+
+          <Inventory resetBtn={<ResetBtn onClick={handleResetBtnClick} />} />
+        </div>
+      </FormBox>
     </div>
   )
 }

@@ -5,3 +5,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.formContent {
+  position: relative;
+  height: 100%;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+  }
+
+  @include mobile {
+    gap: 20px;
+  }
+}
