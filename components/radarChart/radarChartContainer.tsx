@@ -229,6 +229,7 @@ export default function RadarChartContainer({
           <motion.button
             className={cx('playButton')}
             onClick={handleClickChangeZoom}
+            transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
@@ -254,7 +255,7 @@ export default function RadarChartContainer({
             }}
             className={cx('registerButton')}
             variants={bubbleVariants}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
@@ -270,7 +271,7 @@ export default function RadarChartContainer({
             }}
             className={cx('registerButton')}
             variants={bubbleVariants}
-            transition={{ duration: 0.4, delay: isClicked ? 0.07 : 0.05 }}
+            transition={{ duration: 0.3, delay: isClicked ? 0.07 : 0.05 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
