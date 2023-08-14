@@ -12,29 +12,19 @@
     margin: 0 auto;
   }
   @include mobile {
-    margin: 0;
     gap: 27px;
   }
 }
 
-.manuBar {
+.content {
+  display: flex;
   position: relative;
+  flex-direction: column;
   width: 100%;
-}
-
-.resetBtn {
-  position: absolute;
-  right: -41px;
-  bottom: 0;
+  gap: 24px;
 
   @include tablet {
-    right: 0;
-    bottom: 0;
-  }
-
-  @include mobile {
-    right: 0;
-    bottom: 0;
+    gap: 30px;
   }
 }
 
@@ -50,4 +40,12 @@
     max-width: 280px;
     margin: 0 auto;
   }
+}
+
+.resetBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(25%);
 }
