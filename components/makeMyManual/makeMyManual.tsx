@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
@@ -8,7 +10,10 @@ import CharacterBox from '@/components/characterBox/characterBox'
 import Inventory from '@/components/inventory/inventory'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
+import { useFunnel } from '@/hooks/useFunnel'
 
+import CommonBtn from '../commonBtn/commonBtn'
+import { Input } from '../commonInput/input'
 import FormBox from '../formBox/formBox'
 import ResetBtn from '../resetBtn/resetBtn'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
@@ -27,13 +32,26 @@ export default function MakeMyManual() {
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
   })
-
+  const [Funnel, step, setStep] = useFunnel(
+    ['nickname', 'character', 'manual', 'keword', 'statGraph'],
+    'nickname',
+  )
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
   const selectedSet = useRecoilValue(selectedSetState)
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
+  const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
+  let inputVariant
+
+  if (isTablet) {
+    inputVariant = 'medium'
+  } else if (isMobile) {
+    inputVariant = 'small'
+  } else {
+    inputVariant = 'large'
+  }
 
   const selectedItems = selectedSet
     ? { set: selectedSet }
@@ -53,24 +71,51 @@ export default function MakeMyManual() {
     resetExpression()
     resetSet()
   }
+
+  useEffect(() => {
+    console.log(step)
+  }, [step])
+
   return (
     <div className={cx('layout')}>
-      {!isTablet && (
+      {!isTablet && step !== 'nickname' && (
         <CharacterBox
           baseImage={data?.itemsData?.baseImage}
           selectedItems={selectedItems}
         />
       )}
+
       <FormBox title="나를 꾸며주세요" paddingTop={31}>
         <div className={cx('formContent')}>
-          {isTablet && (
+          {(isTablet || step === 'nickname') && (
             <CharacterBox
               baseImage={data?.itemsData?.baseImage}
               selectedItems={selectedItems}
             />
           )}
 
-          <Inventory resetBtn={<ResetBtn onClick={handleResetBtnClick} />} />
+          <Funnel>
+            <Funnel.Step name="nickname">
+              <div className={cx('input')}>
+                <Input variant={inputVariant}>
+                  <Input.TextField />
+                </Input>
+              </div>
+              <div className={cx('btn')}>
+                <CommonBtn onClick={() => setStep('character')}>다음</CommonBtn>
+              </div>
+            </Funnel.Step>
+            <Funnel.Step name="character">
+              <Inventory
+                resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
+              />
+            </Funnel.Step>
+            <Funnel.Step name="manual"></Funnel.Step>
+
+            <Funnel.Step name="keword"></Funnel.Step>
+
+            <Funnel.Step name="statGraph"></Funnel.Step>
+          </Funnel>
         </div>
       </FormBox>
     </div>

@@ -12,5 +12,5 @@ export type CharacterItems = ICharacterItemsWithParts | ICharacterItemsWithSet
 
 export interface ISelectedCharacter {
   baseImage: string
-  selectedItems: CharacterItems
+  selectedItems?: CharacterItems
 }

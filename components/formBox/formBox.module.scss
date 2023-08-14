@@ -35,8 +35,9 @@
 }
 
 .itemWrapper {
-  height: 401px;
-  margin-top: -1px;
+  height: 100%;
+
+  // margin-top: -1px;
   border-top: none;
   border-radius: 0 0 20px 20px;
 
@@ -45,7 +46,7 @@
     padding: 25px 66px;
   }
   @include mobile {
-    min-height: 556px;
+    // min-height: 556px;
     padding: 10px 22px 24px;
   }
 }

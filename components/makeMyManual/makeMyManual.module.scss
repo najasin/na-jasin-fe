@@ -9,6 +9,7 @@
 .formContent {
   position: relative;
   height: 100%;
+  padding: 0 65px 25px;
 
   @include tablet {
     display: flex;
@@ -18,5 +19,23 @@
 
   @include mobile {
     gap: 20px;
+    padding: 0 23px 25px;
+  }
+}
+
+.input {
+  width: 201px;
+  margin: 20px auto;
+}
+
+.btn {
+  margin: 0 auto;
+
+  @include tablet {
+    width: 388px;
+  }
+
+  @include mobile {
+    width: 280px;
   }
 }
