@@ -213,14 +213,12 @@
       @include flexbox(row, center, center);
 
       position: relative;
-      height: 160px;
+      width: 100%;
+      height: 100%;
 
       .castleImage {
-        position: absolute;
-        bottom: -80%;
-
         @include tablet {
-          bottom: -100%;
+          padding-top: 40px;
         }
       }
     }
