@@ -9,6 +9,7 @@ import Inventory from '@/components/inventory/inventory'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
+import FormBox from '../formBox/formBox'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   selectedBodyItemState,
@@ -51,16 +52,18 @@ export default function MakeMyManual() {
           />
         </div>
       )}
-      <Inventory
-        characterBox={
-          isTablet && (
-            <CharacterBox
-              baseImage={data?.itemsData?.baseImage}
-              selectedItems={selectedItems}
-            />
-          )
-        }
-      />
+      <FormBox title="나를 꾸며주세요" paddingTop={31}>
+        <Inventory
+          characterBox={
+            isTablet && (
+              <CharacterBox
+                baseImage={data?.itemsData?.baseImage}
+                selectedItems={selectedItems}
+              />
+            )
+          }
+        />
+      </FormBox>
     </div>
   )
 }

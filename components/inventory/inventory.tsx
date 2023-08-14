@@ -7,7 +7,6 @@ import classNames from 'classnames/bind'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 
 import CommonBtn from '@/components/commonBtn/commonBtn'
-import FormBox from '@/components/formBox/formBox'
 import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
 import {
   selectedBodyItemState,
@@ -52,29 +51,23 @@ export default function Inventory({
     resetSet()
   }
   return (
-    <div>
-      <FormBox title="나를 꾸며주세요" paddingTop={31}>
-        <div className={cx('wrap')}>
-          <div>
-            {characterBox}
-            <div className={cx('manuBar')}>
-              <InventoryCategoryBtnList
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-              />
-              <div className={cx('resetBtn')}>
-                <ResetBtn onClick={handleResetBtnClick} />
-              </div>
-            </div>
-            <InventoryItemBoxList
-              selectedCategoryItems={selectedCategoryItems}
-            />
-          </div>
-          <div className={cx('btn')}>
-            <CommonBtn>다음</CommonBtn>
+    <div className={cx('wrap')}>
+      <div>
+        {characterBox}
+        <div className={cx('manuBar')}>
+          <InventoryCategoryBtnList
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <div className={cx('resetBtn')}>
+            <ResetBtn onClick={handleResetBtnClick} />
           </div>
         </div>
-      </FormBox>
+        <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
+      </div>
+      <div className={cx('btn')}>
+        <CommonBtn>다음</CommonBtn>
+      </div>
     </div>
   )
 }
