@@ -1,5 +1,10 @@
 import SignIn from '@/components/signIn/signIn'
+import SigninSocialContainer from '@/components/signIn/signinSocialContainer'
 
 export default function SignInPage() {
-  return <SignIn />
+  return (
+    <SignIn>
+      <SigninSocialContainer />
+    </SignIn>
+  )
 }

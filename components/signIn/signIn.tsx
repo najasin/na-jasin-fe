@@ -1,5 +1,3 @@
-'use client'
-
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
@@ -11,11 +9,7 @@ import styles from './signIn.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function SignIn() {
-  const handleClickGetAuthenticationCodeKaKao = () => {}
-  const handleClickGetAuthenticationCodeGoogle = () => {}
-  const handleClickGetAuthenticationCodeGithub = () => {}
-
+export default function SignIn({ children }: { children: React.ReactNode }) {
   return (
     <div className={cx('signInWrapper')}>
       <div className={cx('imageContainer')}>
@@ -64,41 +58,7 @@ export default function SignIn() {
         </div>
         <p className={cx('signInText')}>SNS 계정 간편 로그인</p>
       </div>
-      <div className={cx('socialContainer')}>
-        <button
-          className={cx('kakao')}
-          onClick={handleClickGetAuthenticationCodeKaKao}
-        >
-          <Image
-            width={40}
-            height={40}
-            src="/images/signin-kakao.svg"
-            alt="signin kakao"
-          />
-        </button>
-        <button
-          className={cx('google')}
-          onClick={handleClickGetAuthenticationCodeGoogle}
-        >
-          <Image
-            width={40}
-            height={40}
-            src="/images/signin-google.svg"
-            alt="signin google"
-          />
-        </button>
-        <button
-          className={cx('github')}
-          onClick={handleClickGetAuthenticationCodeGithub}
-        >
-          <Image
-            width={40}
-            height={40}
-            src="/images/signin-github.svg"
-            alt="signin github"
-          />
-        </button>
-      </div>
+      {children}
       <div className={cx('ourStoryButtonContainer')}>
         <Link href="/" className={cx('ourStoryButton')}>
           <p className={cx('clickText', hsYuji.className)}>Click!</p>
