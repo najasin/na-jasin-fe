@@ -1,0 +1,77 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  background-color: #f3f3f6;
+
+  @include mobile {
+    height: 126px;
+    padding: 30px 28px 15px;
+  }
+
+  .container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 1180px;
+    @include tablet {
+      padding: 0 28px;
+    }
+    @include mobile {
+      position: relative;
+      align-items: start;
+      padding: 0;
+    }
+  }
+
+  .copyright {
+    color: $dark-grey;
+    @include font-style('button5');
+    @include mobile {
+      @include font-style('button6');
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  .infoContainer {
+    a {
+      color: $dark-grey;
+      text-decoration: none;
+      @include font-style('button5');
+      @include mobile {
+        @include font-style('button6');
+      }
+    }
+
+    .about {
+      margin-right: 30px;
+    }
+  }
+
+  .iconContainer {
+    display: flex;
+
+    .icon {
+      display: flex;
+      position: relative;
+      width: 25px;
+      height: 25px;
+      margin-left: 13px;
+
+      @include mobile {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+@media (width <= 375px) {
+  .footer {
+    width: 375px;
+  }
+}
