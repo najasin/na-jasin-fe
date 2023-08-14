@@ -1,8 +1,11 @@
 .button {
   width: fit-content;
   height: fit-content;
-  padding: 10px 20px;
+  padding: 6px 15px;
   border-radius: 10px;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+  cursor: pointer;
   @include font-style('button1');
 
   &.active {
@@ -13,13 +16,14 @@
 
   &.deactive {
     border: 1px solid $grey;
-    background-color: $primary1;
+    background-color: $white;
     color: $black;
-    cursor: default;
   }
 
   @include mobile {
     padding: 4px 12px;
+    letter-spacing: -0.3px;
+    line-height: 27px; /* 192.857% */
     @include font-style('button5');
   }
 }

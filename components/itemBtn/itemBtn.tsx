@@ -16,12 +16,7 @@ export default function ItemBtn({
   children,
 }: IItemBtnProps) {
   return (
-    <button
-      type={type}
-      className={cx('button', `${style}`)}
-      onClick={onClick}
-      disabled={style === ButtonStyle.DEACTIVE}
-    >
+    <button type={type} className={cx('button', `${style}`)} onClick={onClick}>
       {children}
     </button>
   )

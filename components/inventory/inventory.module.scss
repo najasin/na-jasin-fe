@@ -1,0 +1,51 @@
+.wrap {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0 65px;
+
+  @include tablet {
+    gap: 30px;
+    margin: 0 auto;
+  }
+  @include mobile {
+    margin: 0;
+    gap: 27px;
+  }
+}
+
+.manuBar {
+  position: relative;
+  width: 100%;
+}
+
+.resetBtn {
+  position: absolute;
+  right: -41px;
+  bottom: 0;
+
+  @include tablet {
+    right: 0;
+    bottom: 0;
+  }
+
+  @include mobile {
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.btn {
+  width: 388px;
+  margin-bottom: 25px;
+  @include tablet {
+    margin: 0;
+  }
+  @include mobile {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}

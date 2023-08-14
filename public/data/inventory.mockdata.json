@@ -1,0 +1,73 @@
+{
+  "baseImage": "https://picsum.photos/200/300?random=5",
+  "characterItems": {
+    "face": [
+      {
+        "id": "face_id_1",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
+      },
+      {
+        "id": "face_id_2",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
+      },
+      {
+        "id": "face_id_3",
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
+      }
+    ],
+    "body": [
+      {
+        "id": "body_id_1",
+        "showCase": "https://picsum.photos/200/300?random=2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "body_id_2",
+        "showCase": "https://picsum.photos/200/300?random=2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      },
+      {
+        "id": "body_id_3",
+        "showCase": "https://picsum.photos/200/300?random=2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
+      }
+    ],
+    "expression": [
+      {
+        "id": "expression_id_1",
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
+      },
+      {
+        "id": "expression_id_2",
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
+      },
+      {
+        "id": "expression_id_3",
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
+      }
+    ],
+    "set": [
+      {
+        "id": "set_id_1",
+        "showCase": "https://picsum.photos/200/300?random=4",
+        "layoutCase": "https://picsum.photos/200/300?random=4"
+      },
+      {
+        "id": "set_id_2",
+        "showCase": "https://picsum.photos/200/300?random=4",
+        "layoutCase": "https://picsum.photos/200/300?random=4"
+      },
+      {
+        "id": "set_id_3",
+        "showCase": "https://picsum.photos/200/300?random=4",
+        "layoutCase": "https://picsum.photos/200/300?random=4"
+      }
+    ]
+  }
+}
