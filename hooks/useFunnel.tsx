@@ -1,4 +1,6 @@
-import { Children, ReactNode, isValidElement, useState } from 'react'
+import { Children, ReactNode, isValidElement, useEffect, useState } from 'react'
+
+import { usePathname, useRouter } from 'next/navigation'
 
 interface FunnelProps<T extends readonly string[]> {
   step: T[number]
@@ -59,7 +61,13 @@ export const useFunnel = <T extends readonly string[]>(
     (props: Omit<FunnelProps<T>, 'step'>) => <Funnel step={step} {...props} />,
     { Step: (props: StepProps<T>) => <Step<T> {...props} /> },
   )
+  const pathname = usePathname()
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push(`${pathname}?step=${step}`)
+  }, [pathname, router, step])
 
   // FunnelElement와 현재 단계를 설정할 수 있는 setter를 튜플로 반환
-  return [FunnelElement, setStep] as const
+  return [FunnelElement, step, setStep] as const
 }
