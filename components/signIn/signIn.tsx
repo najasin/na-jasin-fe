@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { hsYuji } from '@/styles/local.fonts'
 
+import ButtonHoverTapAnimation from './buttonHoverTapAnimation'
 import styles from './signIn.module.scss'
 
 const cx = classNames.bind(styles)
@@ -15,13 +16,15 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
       <div className={cx('signInWrapper')}>
         <div className={cx('imageContainer')}>
           <div className={cx('titleImageContainer')}>
-            <Image
-              className={cx('titleImage')}
-              width={340}
-              height={288}
-              src="/images/signin-title.png"
-              alt="signin title"
-            />
+            <ButtonHoverTapAnimation hoverScale={1.1} tapScale={0.9}>
+              <Image
+                className={cx('titleImage')}
+                width={340}
+                height={288}
+                src="/images/signin-title.png"
+                alt="signin title"
+              />
+            </ButtonHoverTapAnimation>
             <Image
               className={cx('batLeftTopImage')}
               width={100}
@@ -64,13 +67,15 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
         <div className={cx('ourStoryButtonContainer')}>
           <Link href="/" className={cx('ourStoryButton')}>
             <p className={cx('clickText', hsYuji.className)}>Click!</p>
-            <Image
-              className={cx('ourStoryButtonImage')}
-              width={68}
-              height={68}
-              src="/images/signin-our-story-btn.svg"
-              alt="signin our story button"
-            />
+            <ButtonHoverTapAnimation hoverScale={1.1} tapScale={0.9}>
+              <Image
+                className={cx('ourStoryButtonImage')}
+                width={68}
+                height={68}
+                src="/images/signin-our-story-btn.svg"
+                alt="signin our story button"
+              />
+            </ButtonHoverTapAnimation>
           </Link>
           <p className={cx('explainText', hsYuji.className)}>
             우리의 이야기가 궁금하다면?

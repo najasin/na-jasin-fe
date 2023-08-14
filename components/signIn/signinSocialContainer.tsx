@@ -1,6 +1,7 @@
 'use client'
 
 import classNames from 'classnames/bind'
+import { motion } from 'framer-motion'
 
 import Image from 'next/image'
 
@@ -19,9 +20,11 @@ export default function SigninSocialContainer({
 
   return (
     <div className={cx('socialContainer')}>
-      <button
+      <motion.button
         className={cx('kakao')}
         onClick={handleClickGetAuthenticationCodeKaKao}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         <Image
           className={cx('kakaoImage')}
@@ -30,10 +33,12 @@ export default function SigninSocialContainer({
           src="/images/signin-kakao.svg"
           alt="signin kakao"
         />
-      </button>
-      <button
+      </motion.button>
+      <motion.button
         className={cx('google')}
         onClick={handleClickGetAuthenticationCodeGoogle}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         <Image
           className={cx('googleImage')}
@@ -42,11 +47,13 @@ export default function SigninSocialContainer({
           src="/images/signin-google.svg"
           alt="signin google"
         />
-      </button>
+      </motion.button>
       {userType === 'forDev' && (
-        <button
+        <motion.button
           className={cx('github')}
           onClick={handleClickGetAuthenticationCodeGithub}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
           <Image
             className={cx('githubImage')}
@@ -55,7 +62,7 @@ export default function SigninSocialContainer({
             src="/images/signin-github.svg"
             alt="signin github"
           />
-        </button>
+        </motion.button>
       )}
     </div>
   )
