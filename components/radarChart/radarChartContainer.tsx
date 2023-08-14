@@ -234,48 +234,49 @@ export default function RadarChartContainer({
           >
             {isZoomIn ? '크게 보기' : '작게 보기'}
           </motion.button>
-          {isClicked && (
-            <motion.div
-              className={cx('registerButtonWrapper')}
-              animate={isClicked ? 'opened' : 'closed'}
-            >
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  counterRef.current =
-                    (counterRef.current - 1 < 0
-                      ? total + counterRef.current - 1
-                      : counterRef.current - 1) % total
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
-              >
-                이전
-              </motion.button>
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  counterRef.current = (counterRef.current + 1) % total
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                transition={{ delay: isClicked ? 0.07 : 0.05 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
-              >
-                다음
-              </motion.button>
-            </motion.div>
-          )}
         </div>
+      )}
+      {isMobile && isRegistered && isClicked && (
+        <motion.div
+          className={cx('registerButtonWrapper')}
+          animate={isClicked ? 'opened' : 'closed'}
+        >
+          <motion.button
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              counterRef.current =
+                (counterRef.current - 1 < 0
+                  ? total + counterRef.current - 1
+                  : counterRef.current - 1) % total
+              handleRotateZoomIn()
+            }}
+            className={cx('registerButton')}
+            variants={bubbleVariants}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
+          >
+            이전
+          </motion.button>
+          <motion.button
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              counterRef.current = (counterRef.current + 1) % total
+              handleRotateZoomIn()
+            }}
+            className={cx('registerButton')}
+            variants={bubbleVariants}
+            transition={{ duration: 0.4, delay: isClicked ? 0.07 : 0.05 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
+          >
+            다음
+          </motion.button>
+        </motion.div>
       )}
     </div>
   )
