@@ -29,7 +29,7 @@
     background-color: $white;
     font-size: 13px;
     text-align: center;
-    filter: drop-shadow(0.5px 0.5px 1px #111);
+    filter: drop-shadow(0.5px 0.5px 0.5px #111);
   }
 
   .registerButtonWrapper {
@@ -54,7 +54,7 @@
       line-height: 24px;
       gap: 10px;
       text-align: center;
-      filter: drop-shadow(0.5px 0.5px 1px #111);
+      filter: drop-shadow(0.5px 0.5px 0.5px #111);
     }
   }
 }
