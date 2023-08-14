@@ -30,7 +30,7 @@ export default function RadarChartContainer({
 }: IRadarChartContainerProps) {
   const bubbleVariants = {
     opened: {
-      y: 10,
+      y: 30,
       opacity: 1,
     },
     closed: {
