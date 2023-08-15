@@ -184,7 +184,7 @@ export default function ConfettiButton() {
     <div className={cx('buttonContainer')}>
       <ButtonWithRefAndClick
         buttonRef={buttonRef}
-        onClick={handleClickInitBurst}
+        onClickInitBurst={handleClickInitBurst}
       />
       <canvas className={cx('canvas')} ref={canvasRef}></canvas>
     </div>
