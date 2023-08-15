@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind'
 
-import styles from './confettiCanvas.module.scss'
+import styles from './confettiCanvasBtn.module.scss'
 
 const cx = classNames.bind(styles)
 

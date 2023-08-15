@@ -5,14 +5,14 @@ import React, { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 
 import { CONFETTI_COLORS, cfg, randomRange } from './confetti.helpers'
-import styles from './confettiCanvas.module.scss'
+import styles from './confettiCanvasBtn.module.scss'
 import ButtonWithRefAndClick from './exampleBtn'
 import Confetto from './models/confetto.models'
 import Sequin from './models/sequin.models'
 
 const cx = classNames.bind(styles)
 
-export default function ConfettiButton() {
+export default function ConfettiCanvasBtn() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const confettiRef = useRef<Confetto[]>([])
