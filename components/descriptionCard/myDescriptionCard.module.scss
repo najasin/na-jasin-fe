@@ -10,3 +10,8 @@
 .answer {
   @include font-style('button1');
 }
+
+.manualInput {
+  display: inline-block;
+  width: 70%;
+}
