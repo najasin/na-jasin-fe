@@ -13,13 +13,7 @@ import { InventoryItemBoxList } from './inventoryItemBoxList/inventoryItemBoxLis
 
 const cx = classNames.bind(styles)
 
-export default function Inventory({
-  resetBtn,
-  nextBtn,
-}: {
-  resetBtn: React.ReactNode
-  nextBtn: React.ReactNode
-}) {
+export default function Inventory({ resetBtn }: { resetBtn: React.ReactNode }) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
@@ -33,15 +27,12 @@ export default function Inventory({
 
   return (
     <div className={cx('wrap')}>
-      <div className={cx('content')}>
-        <div className={cx('resetBtn')}>{resetBtn}</div>
-        <InventoryCategoryBtnList
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
-      </div>
-      <div className={cx('btn')}>{nextBtn}</div>
+      <div className={cx('resetBtn')}>{resetBtn}</div>
+      <InventoryCategoryBtnList
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <InventoryItemBoxList selectedCategoryItems={selectedCategoryItems} />
     </div>
   )
 }

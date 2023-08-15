@@ -2,28 +2,13 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  gap: 80px;
-  @include tablet {
-    gap: 30px;
-    margin: 0 auto;
-  }
-  @include mobile {
-    gap: 27px;
-  }
-}
-
-.content {
-  display: flex;
-  position: relative;
-  flex-direction: column;
   width: 100%;
   gap: 24px;
+  margin-bottom: 80px;
 
   @include tablet {
     gap: 30px;
+    margin-bottom: 0;
   }
 }
 
