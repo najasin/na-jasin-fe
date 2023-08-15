@@ -7,15 +7,16 @@ import classNames from 'classnames/bind'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 import CharacterBox from '@/components/characterBox/characterBox'
+import CommonBtn from '@/components/commonBtn/commonBtn'
+import { Input } from '@/components/commonInput/input'
+import FormBox from '@/components/formBox/formBox'
 import Inventory from '@/components/inventory/inventory'
+import ResetBtn from '@/components/resetBtn/resetBtn'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
-import CommonBtn from '../commonBtn/commonBtn'
-import { Input } from '../commonInput/input'
-import FormBox from '../formBox/formBox'
-import ResetBtn from '../resetBtn/resetBtn'
+import MyDescriptionCardList from '../myDescriptionCardList/myDescriptionCardList'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   selectedBodyItemState,
@@ -24,7 +25,6 @@ import {
   selectedSetState,
 } from './makeMyManual.atom'
 import styles from './makeMyManual.module.scss'
-import { IQuestions } from './makeMyManual.types'
 
 const cx = classNames.bind(styles)
 
@@ -35,7 +35,7 @@ export default function MakeMyManual() {
   })
   const [Funnel, step, setStep] = useFunnel(
     ['nickname', 'character', 'manual', 'keword', 'statGraph'],
-    'nickname',
+    'manual',
   )
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
@@ -98,42 +98,15 @@ export default function MakeMyManual() {
                   <Input.TextField />
                 </Input>
               </div>
-              <div className={cx('btn')}>
-                <CommonBtn onClick={() => setStep('character')}>다음</CommonBtn>
-              </div>
             </Funnel.Step>
             <Funnel.Step name="character">
               <Inventory
                 resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
-                nextBtn={
-                  <CommonBtn onClick={() => setStep('manual')}>다음</CommonBtn>
-                }
               />
             </Funnel.Step>
             <Funnel.Step name="manual">
               <div className={cx('manualWrap')}>
-                {data?.itemsData?.questions?.map(
-                  (question: IQuestions) =>
-                    question && (
-                      <div key={question.id} className={cx('manual')}>
-                        <>
-                          {question.question.includes('---') ? (
-                            <>
-                              {question.question.split('---')[0]}
-                              <div className={cx('manualInput')}>
-                                <Input variant={inputVariant}>
-                                  <Input.TextField />
-                                </Input>
-                              </div>
-                              {question.question.split('---')[1]}
-                            </>
-                          ) : (
-                            question.question
-                          )}
-                        </>
-                      </div>
-                    ),
-                )}
+                <MyDescriptionCardList questions={data?.itemsData?.questions} />
               </div>
             </Funnel.Step>
 
@@ -141,6 +114,9 @@ export default function MakeMyManual() {
 
             <Funnel.Step name="statGraph"></Funnel.Step>
           </Funnel>
+          <div className={cx('btn')}>
+            <CommonBtn onClick={() => setStep('')}>다음</CommonBtn>
+          </div>
         </div>
       </FormBox>
     </div>
