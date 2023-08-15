@@ -4,7 +4,7 @@ import React from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
 import CharacterBox from '@/components/characterBox/characterBox'
 import CommonBtn from '@/components/commonBtn/commonBtn'
@@ -16,12 +16,14 @@ import ResetBtn from '@/components/resetBtn/resetBtn'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import KeywordBtnList from '../keywordBtnList/keywordBtnList'
 import MyDescriptionCardList from '../myDescriptionCardList/myDescriptionCardList'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   selectedBodyItemState,
   selectedExpressionItemState,
   selectedFaceItemState,
+  selectedKeywordsState,
   selectedSetState,
 } from './makeMyManual.atom'
 import styles from './makeMyManual.module.scss'
@@ -35,12 +37,15 @@ export default function MakeMyManual() {
   })
   const [Funnel, step, setStep] = useFunnel(
     ['nickname', 'character', 'manual', 'keword', 'statGraph'],
-    'manual',
+    'keword',
   )
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
   const selectedSet = useRecoilValue(selectedSetState)
+  const [selectedKeywords, setSelectedKeywords] = useRecoilState(
+    selectedKeywordsState,
+  )
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
@@ -82,7 +87,7 @@ export default function MakeMyManual() {
         />
       )}
 
-      <FormBox title="나를 꾸며주세요" paddingTop={31}>
+      <FormBox title="나를 꾸며주세요" paddingTop={32}>
         <div className={cx('formContent')}>
           {(isTablet || step === 'nickname') && (
             <CharacterBox
@@ -100,9 +105,11 @@ export default function MakeMyManual() {
               </div>
             </Funnel.Step>
             <Funnel.Step name="character">
-              <Inventory
-                resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
-              />
+              <div className={cx('inventory')}>
+                <Inventory
+                  resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
+                />
+              </div>
             </Funnel.Step>
             <Funnel.Step name="manual">
               <div className={cx('manualWrap')}>
@@ -110,13 +117,22 @@ export default function MakeMyManual() {
               </div>
             </Funnel.Step>
 
-            <Funnel.Step name="keword"></Funnel.Step>
+            <Funnel.Step name="keword">
+              <div className={cx('keywords')}>
+                <KeywordBtnList
+                  selectedKeywords={selectedKeywords}
+                  setSelectedKeywords={setSelectedKeywords}
+                  keywords={data?.itemsData?.exampleKeywords}
+                />
+              </div>
+            </Funnel.Step>
 
             <Funnel.Step name="statGraph"></Funnel.Step>
           </Funnel>
-          <div className={cx('btn')}>
-            <CommonBtn onClick={() => setStep('')}>다음</CommonBtn>
-          </div>
+        </div>
+
+        <div className={cx('btn')}>
+          <CommonBtn onClick={() => setStep('')}>다음</CommonBtn>
         </div>
       </FormBox>
     </div>

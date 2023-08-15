@@ -26,3 +26,8 @@ export const selectedSetState = atom<string>({
   key: 'selectedSetState',
   default: '',
 })
+
+export const selectedKeywordsState = atom<string[]>({
+  key: 'selectedKeywords',
+  default: [],
+})
