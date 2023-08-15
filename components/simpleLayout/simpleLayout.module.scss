@@ -3,7 +3,7 @@
 }
 
 .contentsWrapper {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
   @include tablet {
     padding: 0 25px;
@@ -18,8 +18,8 @@
     margin-top: 20px;
   }
   @include mobile {
-    align-items: flex-start;
-    margin-top: 15px;
+    margin-top: 10px;
+    @include flexbox(column, space-between, inherit);
   }
 }
 
@@ -28,6 +28,18 @@
   @include mobile {
     @include font-style('button2');
 
-    margin-top: 46px;
+    margin-top: 23px;
+
+    &.hasBtn {
+      margin-top: 17px;
+    }
+  }
+}
+
+.button {
+  order: 1;
+  margin-left: auto;
+  @include mobile {
+    order: 0;
   }
 }
