@@ -6,7 +6,7 @@ import {
 } from '../confetti.helpers'
 
 /**
- * Confetto 생성자 함수
+ * Confetto 클래스
  * @constructor
  */
 class Confetto {

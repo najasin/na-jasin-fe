@@ -1,5 +1,9 @@
 import { cfg, randomRange } from '../confetti.helpers'
 
+/**
+ * Sequin 클래스
+ * @constructor
+ */
 class Sequin {
   color: string
 
