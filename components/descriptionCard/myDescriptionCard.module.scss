@@ -3,16 +3,11 @@
   padding: 20px 25px;
   border-radius: 20px;
   background-color: $light-grey;
+  @include font-style('button1');
 
   @include mobile {
     padding: 15px;
     border-radius: 10px;
-  }
-}
-
-.answer {
-  @include font-style('button1');
-  @include mobile {
     @include font-style('text5');
   }
 }
