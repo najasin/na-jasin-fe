@@ -54,7 +54,6 @@ export default function ScrollSlides() {
       window.innerWidth - document.documentElement.clientWidth
 
     const resetCarouselEndPosition = () => {
-      console.log(1)
       if (carouselRef && carouselRef.current) {
         const newPosition =
           carouselRef.current.clientWidth -
