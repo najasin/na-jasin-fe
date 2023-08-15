@@ -4,11 +4,9 @@
   flex-direction: column;
   width: 100%;
   gap: 24px;
-  margin-bottom: 80px;
 
   @include tablet {
     gap: 30px;
-    margin-bottom: 0;
   }
 }
 
