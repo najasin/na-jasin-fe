@@ -28,14 +28,26 @@ export default function RadarChartContainer({
   framePadding,
   hasOthers,
 }: IRadarChartContainerProps) {
+  const bubbleVariants = {
+    opened: {
+      y: 30,
+      opacity: 1,
+    },
+    closed: {
+      y: 0,
+      opacity: 0,
+    },
+  }
   const isRegistered = radarType === 'NJNS' || radarType === 'TJNS'
   const total = 5
+
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 767px)' })
   const counterRef = useRef<number>(0) // useRef를 사용하여 counter를 관리
   const svgRef = useRef<HTMLDivElement>(null)
 
+  const [isZoomIn, setIsZoomIn] = useState(true)
+  const [isClicked, setIsClicked] = useState(false)
   const [isViewPolygon, setIsViewPolygon] = useState(true)
-
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
@@ -129,18 +141,22 @@ export default function RadarChartContainer({
     )
   }
 
-  const bubbleVariants = {
-    opened: {
-      y: 80,
-      opacity: 1,
-    },
-    closed: {
-      y: 0,
-      opacity: 0,
-    },
-  }
+  const handleClickChangeZoom = () => {
+    if (isZoomIn) {
+      if (radarType === 'TJNS') {
+        setIsViewPolygon(false)
+      }
+      handleRotateZoomIn()
+    } else if (!isZoomIn) {
+      handleRotateZoomOut()
+      if (radarType === 'TJNS') {
+        setTimeout(() => setIsViewPolygon(true), 750)
+      }
+    }
 
-  const [isClicked, setIsClicked] = useState(false)
+    setIsClicked(!isClicked)
+    setIsZoomIn(!isZoomIn)
+  }
 
   useEffect(() => {
     // POST request { userGenerated }
@@ -209,85 +225,59 @@ export default function RadarChartContainer({
         )}
       </RadarChart>
       {isMobile && isRegistered && (
-        <>
-          <motion.div
+        <div className={cx('buttonContainer')}>
+          <motion.button
             className={cx('playButton')}
-            animate={{
-              rotate: isClicked ? 3 : 0,
-            }}
-            onClick={() => setIsClicked(!isClicked)}
-            whileTap={{ backgroundColor: '#ffcdcc' }}
+            onClick={handleClickChangeZoom}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
           >
-            Play!
-          </motion.div>
-          {isClicked && (
-            <motion.div
-              className={cx('registerButtonWrapper')}
-              animate={isClicked ? 'opened' : 'closed'}
-            >
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                whileTap={{ backgroundColor: '#71afff' }}
-              >
-                확대
-              </motion.button>
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  counterRef.current =
-                    (counterRef.current - 1 < 0
-                      ? total + counterRef.current - 1
-                      : counterRef.current - 1) % total
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                whileTap={{ backgroundColor: '#71afff' }}
-              >
-                이전
-              </motion.button>
-              <motion.button
-                onClick={() => {
-                  if (radarType === 'TJNS') {
-                    setIsViewPolygon(false)
-                  }
-                  counterRef.current = (counterRef.current + 1) % total
-                  handleRotateZoomIn()
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                transition={{ delay: isClicked ? 0.07 : 0.05 }}
-                whileTap={{ backgroundColor: '#71afff' }}
-              >
-                다음
-              </motion.button>
-
-              <motion.button
-                onClick={() => {
-                  handleRotateZoomOut()
-                  if (radarType === 'TJNS') {
-                    setTimeout(() => setIsViewPolygon(true), 750)
-                  }
-                }}
-                className={cx('registerButton')}
-                variants={bubbleVariants}
-                transition={{ delay: isClicked ? 0.08 : 0.06 }}
-                whileTap={{ backgroundColor: '#71afff' }}
-              >
-                축소
-              </motion.button>
-            </motion.div>
-          )}
-        </>
+            {isZoomIn ? '크게 보기' : '작게 보기'}
+          </motion.button>
+        </div>
+      )}
+      {isMobile && isRegistered && isClicked && (
+        <motion.div
+          className={cx('registerButtonWrapper')}
+          animate={isClicked ? 'opened' : 'closed'}
+        >
+          <motion.button
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              counterRef.current =
+                (counterRef.current - 1 < 0
+                  ? total + counterRef.current - 1
+                  : counterRef.current - 1) % total
+              handleRotateZoomIn()
+            }}
+            className={cx('registerButton')}
+            variants={bubbleVariants}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
+          >
+            이전
+          </motion.button>
+          <motion.button
+            onClick={() => {
+              if (radarType === 'TJNS') {
+                setIsViewPolygon(false)
+              }
+              counterRef.current = (counterRef.current + 1) % total
+              handleRotateZoomIn()
+            }}
+            className={cx('registerButton')}
+            variants={bubbleVariants}
+            transition={{ duration: 0.3, delay: isClicked ? 0.07 : 0.05 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}
+          >
+            다음
+          </motion.button>
+        </motion.div>
       )}
     </div>
   )
