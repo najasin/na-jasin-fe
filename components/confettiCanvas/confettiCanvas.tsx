@@ -2,10 +2,15 @@
 
 import React, { useEffect, useRef } from 'react'
 
+import classNames from 'classnames/bind'
+
 import { CONFETTI_COLORS, cfg, randomRange } from './confetti.helpers'
 import styles from './confettiCanvas.module.scss'
+import ButtonWithRefAndClick from './exampleBtn'
 import Confetto from './models/confetto.models'
 import Sequin from './models/sequin.models'
+
+const cx = classNames.bind(styles)
 
 export default function ConfettiButton() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -131,7 +136,7 @@ export default function ConfettiButton() {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
-    // Update other variables related to canvas size
+    // 캔버스 사이즈가 변경될 때 confetti와 Sequins를 변경합니다.
     confettiRef.current.forEach((confetto) => {
       const newPositionX = randomRange<number>(
         canvas.width / 2 - button.offsetWidth / 4,
@@ -176,11 +181,12 @@ export default function ConfettiButton() {
   }, [])
 
   return (
-    <div className={styles.buttonContainer}>
-      <button ref={buttonRef} onClick={handleClickInitBurst}>
-        click
-      </button>
-      <canvas className={styles.canvas} ref={canvasRef}></canvas>
+    <div className={cx('buttonContainer')}>
+      <ButtonWithRefAndClick
+        buttonRef={buttonRef}
+        onClick={handleClickInitBurst}
+      />
+      <canvas className={cx('canvas')} ref={canvasRef}></canvas>
     </div>
   )
 }
