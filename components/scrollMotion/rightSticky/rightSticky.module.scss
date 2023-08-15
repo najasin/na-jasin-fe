@@ -1,0 +1,81 @@
+.wrapper {
+  @include flexbox(row, center, center);
+
+  position: relative;
+  width: 100%;
+  gap: 20px;
+
+  .leftColWrapper {
+    width: 100%;
+    height: 100%;
+
+    .leftColUl {
+      .leftColLi {
+        .featureTitle {
+          width: 100%;
+          height: 100%;
+          padding: 16px;
+          color: grey;
+          font-size: 64px;
+          font-weight: bold;
+
+          &.currentColor {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
+  .rightColWrapper {
+    position: sticky;
+    top: 50%;
+    align-self: auto;
+    width: 100%;
+    height: 300px;
+    margin-right: 100px;
+
+    // background-color: grey;
+    aspect-ratio: 1 / 1;
+
+    .featureCard {
+      @include flexbox(row, center, center);
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease;
+      border-radius: 30px;
+      opacity: 0;
+      color: white;
+
+      &.isView {
+        opacity: 1;
+      }
+
+      &.black {
+        background-color: black;
+      }
+
+      &.pink {
+        background-color: pink;
+      }
+
+      &.purple {
+        background-color: purple;
+      }
+
+      &.red {
+        background-color: red;
+      }
+
+      &.green {
+        background-color: green;
+      }
+
+      &.blue {
+        background-color: blue;
+      }
+    }
+  }
+}
