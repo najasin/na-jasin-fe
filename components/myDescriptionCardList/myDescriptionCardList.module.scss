@@ -1,0 +1,12 @@
+.manualItem {
+  margin-bottom: 12px;
+
+  @include font-style('text3');
+
+  @include tablet {
+    @include font-style('text4');
+  }
+  @include mobile {
+    @include font-style('text5');
+  }
+}
