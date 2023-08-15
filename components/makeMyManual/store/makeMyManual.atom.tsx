@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { Category } from '../inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
+import { Category } from '@/components/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
 
 export const selectedCategoryState = atom<Category>({
   key: 'selectedCategoryState',

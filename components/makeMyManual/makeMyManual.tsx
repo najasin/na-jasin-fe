@@ -18,15 +18,17 @@ import { useFunnel } from '@/hooks/useFunnel'
 
 import KeywordBtnList from '../keywordBtnList/keywordBtnList'
 import MyDescriptionCardList from '../myDescriptionCardList/myDescriptionCardList'
+import RadarChartContainer from '../radarChart/radarChartContainer'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
+import styles from './makeMyManual.module.scss'
 import {
   selectedBodyItemState,
   selectedExpressionItemState,
   selectedFaceItemState,
   selectedKeywordsState,
   selectedSetState,
-} from './makeMyManual.atom'
-import styles from './makeMyManual.module.scss'
+} from './store/makeMyManual.atom'
+import { originKeywordPercentsSelector } from './store/originKeywordPercents.selecter'
 
 const cx = classNames.bind(styles)
 
@@ -37,7 +39,7 @@ export default function MakeMyManual() {
   })
   const [Funnel, step, setStep] = useFunnel(
     ['nickname', 'character', 'manual', 'keword', 'statGraph'],
-    'keword',
+    'nickname',
   )
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
@@ -46,6 +48,7 @@ export default function MakeMyManual() {
   const [selectedKeywords, setSelectedKeywords] = useRecoilState(
     selectedKeywordsState,
   )
+  const originKeywordPercents = useRecoilValue(originKeywordPercentsSelector)
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
@@ -66,6 +69,12 @@ export default function MakeMyManual() {
         body: selectedBodyItem,
         expression: selectedExpressionItem,
       }
+
+  const rectangleLayout = {
+    frameSize: 350,
+    radarSize: 200,
+  }
+
   const resetFace = useResetRecoilState(selectedFaceItemState)
   const resetBody = useResetRecoilState(selectedBodyItemState)
   const resetExpression = useResetRecoilState(selectedExpressionItemState)
@@ -76,6 +85,20 @@ export default function MakeMyManual() {
     resetBody()
     resetExpression()
     resetSet()
+  }
+
+  const handleSubmitBtnClick = () => {
+    if (step === 'nickname') {
+      setStep('character')
+    } else if (step === 'character') {
+      setStep('manual')
+    } else if (step === 'manual') {
+      setStep('keyword')
+    } else if (step === 'keword') {
+      setStep('statGraph')
+    } else if (step === 'statGraph') {
+      console.log('완료')
+    }
   }
 
   return (
@@ -127,12 +150,26 @@ export default function MakeMyManual() {
               </div>
             </Funnel.Step>
 
-            <Funnel.Step name="statGraph"></Funnel.Step>
+            <Funnel.Step name="statGraph">
+              {originKeywordPercents && (
+                <RadarChartContainer
+                  radarType="NJNS"
+                  originKeywordPercents={originKeywordPercents}
+                  otherKeywordPercents={{}}
+                  frameSize={rectangleLayout.frameSize}
+                  radarSize={rectangleLayout.radarSize}
+                  framePadding={
+                    rectangleLayout.frameSize - rectangleLayout.radarSize
+                  }
+                  hasOthers={false}
+                />
+              )}
+            </Funnel.Step>
           </Funnel>
         </div>
 
         <div className={cx('btn')}>
-          <CommonBtn onClick={() => setStep('')}>다음</CommonBtn>
+          <CommonBtn onClick={handleSubmitBtnClick}>다음</CommonBtn>
         </div>
       </FormBox>
     </div>

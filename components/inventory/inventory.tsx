@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 import { useRecoilState } from 'recoil'
 
 import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
-import { selectedCategoryState } from '@/components/makeMyManual/makeMyManual.atom'
+import { selectedCategoryState } from '@/components/makeMyManual/store/makeMyManual.atom'
 
 import styles from './inventory.module.scss'
 import { InventoryCategoryBtnList } from './inventoryCategoryBtnList/inventoryCategoryBtnList'
