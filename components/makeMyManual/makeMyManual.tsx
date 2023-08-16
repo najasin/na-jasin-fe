@@ -16,6 +16,10 @@ import { useFunnel } from '@/hooks/useFunnel'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
+import {
+  getSelectedItemsFromOtherItems,
+  getSelectedItemsFromSet,
+} from './makeMyManual.helpers'
 import styles from './makeMyManual.module.scss'
 import MakeMyManualFunnel from './makeMyManualFunnel/makeMyManualFunnel'
 import {
@@ -46,13 +50,13 @@ export default function MakeMyManual() {
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
-  const selectedItems = selectedSet
-    ? { set: selectedSet }
-    : {
-        face: selectedFaceItem,
-        body: selectedBodyItem,
-        expression: selectedExpressionItem,
-      }
+  const selectedItems =
+    getSelectedItemsFromSet(selectedSet) ||
+    getSelectedItemsFromOtherItems({
+      selectedFaceItem,
+      selectedBodyItem,
+      selectedExpressionItem,
+    })
 
   const onClickSubmit = () => {
     goNext()
