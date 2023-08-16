@@ -18,7 +18,8 @@ export default function OurIntro() {
     target: targetRef,
     offset: ['end end', 'end start'],
   })
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -200])
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
   const position = useTransform(scrollYProgress, (pos) =>
     pos >= 0.7 ? 'relative' : 'fixed',
@@ -35,6 +36,7 @@ export default function OurIntro() {
       <motion.div
         ref={targetRef}
         style={{
+          y,
           position,
           scale,
           opacity,
