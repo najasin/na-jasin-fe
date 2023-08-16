@@ -1,9 +1,10 @@
 'use client'
 
 import classNames from 'classnames/bind'
+import { motion } from 'framer-motion'
 import { useRecoilState } from 'recoil'
 
-import { featureState } from './featureStore.store'
+import { featureState, fullScreenState } from './featureStore.store'
 import styles from './rightSticky.module.scss'
 
 const cx = classNames.bind(styles)
@@ -19,14 +20,30 @@ type FeatureCardprops = {
 
 export function FeatureCard({ color, children, id }: FeatureCardprops) {
   const [featureId] = useRecoilState(featureState)
+  // const [opacity, setOpacity] = useState(featureId === id ? 1 : 0)
+
+  const [fullScreen, setFullScreen] = useRecoilState(fullScreenState)
+  // console.log(featureId, id) // id는 여러 개 찍힌다.
+
   return (
-    <div
+    <motion.div
+      // style={{ opacity, transition: 'all 0.5s ease' }}
       className={cx('featureCard', color, {
         isView: featureId === id,
+        isFullScreen: fullScreen,
       })}
     >
       {children}
-    </div>
+      <button
+        onClick={() => {
+          // console.log(featureId, id)
+          setFullScreen(featureId)
+        }}
+        className={cx('goToDetailBtn')}
+      >
+        상세페이지 보여주기
+      </button>
+    </motion.div>
   )
 }
 
