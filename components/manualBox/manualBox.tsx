@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
-import { IManualBoxProps } from '@/components/manualLayout/manualBox.types'
+import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
 
 import OthersDescriptionCard from '../descriptionCard/othersDescriptionCard'
 import styles from './myManualLayout.module.scss'

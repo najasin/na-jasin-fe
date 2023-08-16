@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import LinkBtn from '@/components/linkBtn/linkBtn'
-import ManualBox from '@/components/manualLayout/manualBox'
+import ManualBox from '@/components/manualBox/manualBox'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
 // mock myDatas
