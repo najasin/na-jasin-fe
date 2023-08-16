@@ -46,7 +46,7 @@ export default function MakeMyManual() {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm()
-  const [Funnel, step, setStep] = useFunnel(
+  const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
   )
@@ -105,17 +105,7 @@ export default function MakeMyManual() {
   }
 
   const onClickSubmit = () => {
-    if (step === 'nickname') {
-      setStep('character')
-    } else if (step === 'character') {
-      setStep('manual')
-    } else if (step === 'manual') {
-      setStep('keyword')
-    } else if (step === 'keyword') {
-      setStep('statGraph')
-    } else if (step === 'statGraph') {
-      console.log('완료') // API쏘기
-    }
+    goNext()
   }
 
   return (
@@ -127,7 +117,7 @@ export default function MakeMyManual() {
         />
       )}
 
-      <FormBox title="나를 꾸며주세요" paddingTop={32}>
+      <FormBox title="나를 꾸며주세요" paddingTop={32} onBackClick={goPrev}>
         <form onSubmit={handleSubmit(onClickSubmit)}>
           <div className={cx('formContent')}>
             {(isTablet || step === 'nickname') && (

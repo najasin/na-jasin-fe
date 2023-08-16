@@ -1,6 +1,6 @@
 import { Children, ReactNode, isValidElement, useEffect, useState } from 'react'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 interface FunnelProps<T extends readonly string[]> {
   step: T[number]
@@ -62,12 +62,40 @@ export const useFunnel = <T extends readonly string[]>(
     { Step: (props: StepProps<T>) => <Step<T> {...props} /> },
   )
   const pathname = usePathname()
+  const searchParams = useSearchParams().get('step')
   const router = useRouter()
+
+  useEffect(() => {
+    if (step === defaultStep) {
+      return
+    }
+    if (searchParams) setStep(searchParams)
+  }, [defaultStep, searchParams])
 
   useEffect(() => {
     router.push(`${pathname}?step=${step}`)
   }, [pathname, router, step])
 
+  useEffect(
+    () => () => {
+      setStep(defaultStep)
+      console.log('cleanup')
+    },
+    [defaultStep],
+  )
+
+  const goNext = () => {
+    const idx = steps.indexOf(step)
+    if (idx === steps.length - 1) return
+    setStep(steps[idx + 1])
+  }
+
+  const goPrev = () => {
+    const idx = steps.indexOf(step)
+    if (idx === 0) return
+
+    setStep(steps[idx - 1])
+  }
   // FunnelElement와 현재 단계를 설정할 수 있는 setter를 튜플로 반환
-  return [FunnelElement, step, setStep] as const
+  return { Funnel: FunnelElement, step, setStep, goNext, goPrev } as const
 }
