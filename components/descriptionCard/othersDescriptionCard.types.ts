@@ -1,5 +1,4 @@
-export interface DescriptionCardProps {
-  answers: Array<{ answer: string; id: string }>
+export interface IOthersDescriptionCardProps {
+  answers: Array<{ id: string; answer: string }>
   nickname: string
-  id: string
 }

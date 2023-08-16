@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind'
 
 import styles from './othersDescriptionCard.module.scss'
-import { DescriptionCardProps } from './othersDescriptionCard.types'
+import { IOthersDescriptionCardProps } from './othersDescriptionCard.types'
 
 const cx = classNames.bind(styles)
 
 export default function OthersDescriptionCard({
   answers,
   nickname,
-}: DescriptionCardProps) {
+}: IOthersDescriptionCardProps) {
   return (
     <div className={cx('card')}>
       {nickname && (
