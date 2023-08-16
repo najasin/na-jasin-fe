@@ -26,6 +26,7 @@ import {
   selectedBodyItemState,
   selectedExpressionItemState,
   selectedFaceItemState,
+  selectedKeywordsState,
   selectedSetState,
 } from './store/makeMyManual.atom'
 
@@ -38,7 +39,7 @@ export default function MakeMyManual() {
     refetchOnWindowFocus: true,
   })
 
-  const { handleSubmit, register, formState } = useForm()
+  const { handleSubmit, register, formState, setError, clearErrors } = useForm()
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
@@ -47,7 +48,7 @@ export default function MakeMyManual() {
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
   const selectedSet = useRecoilValue(selectedSetState)
-
+  const selectedKeywords = useRecoilValue(selectedKeywordsState)
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
   const selectedItems =
@@ -59,6 +60,19 @@ export default function MakeMyManual() {
     })
 
   const onClickSubmit = () => {
+    if (step === 'keyword') {
+      console.log(selectedKeywords.length)
+      if (selectedKeywords.length !== 5) {
+        console.log('발동 했니')
+
+        setError('keyword', {
+          type: 'keyword',
+          message: 'keyword error',
+        })
+        return clearErrors()
+      }
+    }
+
     goNext()
   }
 
@@ -74,12 +88,13 @@ export default function MakeMyManual() {
       <FormBox title="나를 꾸며주세요" paddingTop={32} onBackClick={goPrev}>
         <form onSubmit={handleSubmit(onClickSubmit)}>
           <div className={cx('formContent')}>
-            {(isTablet || step === 'nickname') && (
+            {((isTablet && step !== 'statGraph') || step === 'nickname') && (
               <CharacterBox
                 baseImage={data?.itemsData?.baseImage}
                 selectedItems={step === 'nickname' ? undefined : selectedItems}
               />
             )}
+
             <MakeMyManualFunnel
               Funnel={Funnel}
               step={step}

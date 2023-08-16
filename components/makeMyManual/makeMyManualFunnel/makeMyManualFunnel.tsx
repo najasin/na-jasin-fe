@@ -112,7 +112,6 @@ export default function MakeMyManualFunnel({
           />
         </div>
       </Funnel.Step>
-
       <Funnel.Step name="keyword">
         <div className={cx('keywords')}>
           <KeywordBtnList
@@ -121,7 +120,6 @@ export default function MakeMyManualFunnel({
           />
         </div>
       </Funnel.Step>
-
       <Funnel.Step name="statGraph">
         {originKeywordPercents && (
           <RadarChartContainer
