@@ -1,15 +1,22 @@
-.wrapper {
+.gnbWrapper {
   position: sticky;
   z-index: 10;
   top: 0;
   transition:
     top 0.3s,
     box-shadow 0.4s ease-out;
-  border-bottom: 1px solid #cbcbcb;
   background-color: $white;
+
+  &.hasBorder {
+    border-bottom: 1px solid #cbcbcb;
+  }
+
+  &.scrolled {
+    border-bottom: 1px solid #cbcbcb;
+  }
 }
 
-.container {
+.gnbContainer {
   @include flexbox(row, center, center);
 
   max-width: 1180px;
