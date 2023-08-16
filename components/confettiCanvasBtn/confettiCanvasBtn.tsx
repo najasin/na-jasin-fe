@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from 'react'
 
 import classNames from 'classnames/bind'
 
+import { throttleHelper } from '@/helpers/throttle.helpers'
+
 import { CONFETTI_COLORS, cfg, randomRange } from './confetti.helpers'
 import styles from './confettiCanvasBtn.module.scss'
 import ButtonWithRefAndClick from './exampleBtn'
@@ -173,10 +175,10 @@ export default function ConfettiCanvasBtn() {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
-    window.addEventListener('resize', resizeCanvas)
+    window.addEventListener('resize', throttleHelper(1000, resizeCanvas))
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener('resize', throttleHelper(1000, resizeCanvas))
     }
   }, [])
 

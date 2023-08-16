@@ -67,7 +67,7 @@ export default function ScrollSlides() {
 
     resetCarouselEndPosition()
 
-    const handleResize = throttleHelper(10, resetCarouselEndPosition)
+    const handleResize = throttleHelper(1000, resetCarouselEndPosition)
 
     window.addEventListener('resize', handleResize)
 
