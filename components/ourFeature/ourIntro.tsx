@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import classNames from 'classnames/bind'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -13,6 +13,7 @@ const cx = classNames.bind(styles)
 
 export default function OurIntro() {
   const targetRef = useRef<HTMLDivElement | null>(null)
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ['end end', 'end start'],
@@ -22,6 +23,12 @@ export default function OurIntro() {
   const position = useTransform(scrollYProgress, (pos) =>
     pos >= 0.7 ? 'relative' : 'fixed',
   )
+
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0)
+    }
+  }, [])
 
   return (
     <div className={cx('wrapper')}>
