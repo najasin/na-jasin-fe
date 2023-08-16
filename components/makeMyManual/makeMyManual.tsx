@@ -34,11 +34,7 @@ export default function MakeMyManual() {
     refetchOnWindowFocus: true,
   })
 
-  const {
-    handleSubmit,
-    register,
-    formState: { isSubmitting },
-  } = useForm()
+  const { handleSubmit, register, formState } = useForm()
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
@@ -49,14 +45,6 @@ export default function MakeMyManual() {
   const selectedSet = useRecoilValue(selectedSetState)
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
-
-  // const validationRules = {
-  //   required: '필수 입력입니다.',
-  //   minLength: {
-  //     value: 3,
-  //     message: '3글자 이상 입력해주세요.',
-  //   },
-  // }
 
   const selectedItems = selectedSet
     ? { set: selectedSet }
@@ -85,19 +73,24 @@ export default function MakeMyManual() {
             {(isTablet || step === 'nickname') && (
               <CharacterBox
                 baseImage={data?.itemsData?.baseImage}
-                selectedItems={selectedItems}
+                selectedItems={step === 'nickname' ? undefined : selectedItems}
               />
             )}
             <MakeMyManualFunnel
               Funnel={Funnel}
+              step={step}
               register={register}
-              isInvalid={false}
+              formState={formState}
             />
           </div>
           <div className={cx('btn')}>
             <CommonBtn
               type="submit"
-              style={isSubmitting ? ButtonStyle.DEACTIVE : ButtonStyle.ACTIVE}
+              style={
+                formState.isSubmitting
+                  ? ButtonStyle.DEACTIVE
+                  : ButtonStyle.ACTIVE
+              }
             >
               다음
             </CommonBtn>

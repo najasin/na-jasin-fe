@@ -1,7 +1,7 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
 import { Input } from '@/components/commonInput/input'
@@ -28,7 +28,8 @@ const cx = classNames.bind(styles)
 
 export default function MakeMyManualFunnel({
   Funnel,
-  register, // isInvalid,
+  step,
+  register,
 }: {
   Funnel: ((
     props: Omit<IFunnelProps<string[]>, 'step'>,
@@ -36,7 +37,8 @@ export default function MakeMyManualFunnel({
     Step: (props: IStepProps<string[]>) => React.JSX.Element
   }
   register: UseFormRegister<FieldValues>
-  isInvalid: boolean
+  formState: FormState<FieldValues>
+  step: string
 }) {
   const originKeywordPercents = useRecoilValue(originKeywordPercentsSelector)
   const [selectedKeywords, setSelectedKeywords] = useRecoilState(
@@ -71,12 +73,28 @@ export default function MakeMyManualFunnel({
     resetSet()
   }
 
+  const validationRules = {
+    required: true,
+    minLength: {
+      value: 1,
+      message: '1글자 이상 입력해주세요.',
+    },
+  }
+
   return (
     <Funnel>
       <Funnel.Step name="nickname">
         <div className={cx('input')}>
           <Input variant={inputVariant}>
-            <Input.TextField id="nickname" register={register('nickname')} />
+            <Input.TextField
+              id="nickname"
+              register={register('nickname', {
+                ...(step === 'nickname' && { ...validationRules }),
+              })}
+              // isInvalid={
+              //   formState.isSubmitted ? !!formState.errors.nickname : undefined
+              // }
+            />
           </Input>
         </div>
       </Funnel.Step>
@@ -87,7 +105,10 @@ export default function MakeMyManualFunnel({
       </Funnel.Step>
       <Funnel.Step name="manual">
         <div className={cx('manualWrap')}>
-          <MyDescriptionCardList register={register('manual')} />
+          <MyDescriptionCardList
+            register={register}
+            validationRules={step === 'manual' ? validationRules : undefined}
+          />
         </div>
       </Funnel.Step>
 
