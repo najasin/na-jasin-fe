@@ -30,6 +30,7 @@ export default function MakeMyManualFunnel({
   Funnel,
   step,
   register,
+  formState,
 }: {
   Funnel: ((
     props: Omit<IFunnelProps<string[]>, 'step'>,
@@ -91,9 +92,9 @@ export default function MakeMyManualFunnel({
               register={register('nickname', {
                 ...(step === 'nickname' && { ...validationRules }),
               })}
-              // isInvalid={
-              //   formState.isSubmitted ? !!formState.errors.nickname : undefined
-              // }
+              isInvalid={
+                formState.isSubmitted ? !!formState.errors.nickname : undefined
+              }
             />
           </Input>
         </div>
@@ -117,7 +118,6 @@ export default function MakeMyManualFunnel({
           <KeywordBtnList
             selectedKeywords={selectedKeywords}
             setSelectedKeywords={setSelectedKeywords}
-            // keywords={data?.itemsData?.exampleKeywords}
           />
         </div>
       </Funnel.Step>
