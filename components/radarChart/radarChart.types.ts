@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 interface DataPoint {
   axis: string
   value: number
@@ -47,6 +49,7 @@ interface IRadarChartContainerProps {
   radarSize: number
   framePadding: number
   hasOthers: boolean
+  setRadarData?: Dispatch<SetStateAction<IAxisMaps[] | null>>
 }
 
 export type {
