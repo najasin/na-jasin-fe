@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { Category } from '../inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
+import { Category } from '@/components/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
 
 export const selectedCategoryState = atom<Category>({
   key: 'selectedCategoryState',
@@ -25,4 +25,9 @@ export const selectedExpressionItemState = atom<string>({
 export const selectedSetState = atom<string>({
   key: 'selectedSetState',
   default: '',
+})
+
+export const selectedKeywordsState = atom<string[]>({
+  key: 'selectedKeywords',
+  default: [],
 })

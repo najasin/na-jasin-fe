@@ -1,7 +1,7 @@
 .button {
   width: fit-content;
   height: fit-content;
-  padding: 8px 15px;
+  padding: 6px 14.5px;
   border-radius: 50px;
   @include font-style('button1');
 
@@ -20,5 +20,6 @@
   @include mobile {
     padding: 8px 10px;
     font-size: 12px;
+    @include font-style('button6');
   }
 }

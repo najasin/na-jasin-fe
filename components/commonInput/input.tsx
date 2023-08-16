@@ -42,7 +42,8 @@ Input.TextField = forwardRef(function TextField(
       className={cx('inputTextField')}
       ref={ref}
       onChange={onChange}
-      {...props}
+      {...props.register}
+      aria-invalid={props.isInvalid}
     />
   )
 })

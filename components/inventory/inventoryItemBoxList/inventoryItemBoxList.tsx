@@ -8,7 +8,7 @@ import {
   selectedExpressionItemState,
   selectedFaceItemState,
   selectedSetState,
-} from '@/components/makeMyManual/makeMyManual.atom'
+} from '@/components/makeMyManual/store/makeMyManual.atom'
 
 import { Item } from '../inventory.types'
 import styles from './inventoryItemBoxList.module.scss'
