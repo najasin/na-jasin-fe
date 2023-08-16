@@ -1,0 +1,21 @@
+.formContent {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 38px;
+  }
+  @include mobile {
+    gap: 27px;
+    height: 100%;
+  }
+
+  .characterBoxWrapper {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
+}

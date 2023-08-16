@@ -1,0 +1,42 @@
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 70px;
+  align-items: center;
+  justify-content: center;
+  min-width: 326px;
+  margin: 20px 0 52px;
+
+  @include tablet {
+    margin-top: 30px;
+  }
+  @include mobile {
+    margin-top: 20px;
+  }
+
+  .formWrapper {
+    position: relative;
+    height: 100%;
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      width: 520px;
+      gap: 2px;
+    }
+
+    @include mobile {
+      width: 326px;
+    }
+  }
+
+  .progressBar {
+    margin-bottom: 10px;
+  }
+
+  .characterWrapper {
+    @include tablet {
+      display: none;
+    }
+  }
+}
