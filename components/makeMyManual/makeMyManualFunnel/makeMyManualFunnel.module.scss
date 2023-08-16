@@ -1,0 +1,42 @@
+.input {
+  width: 201px;
+  margin: 20px auto;
+}
+
+.inventory {
+  margin-bottom: 80px;
+
+  @include tablet {
+    margin-bottom: 30px;
+  }
+
+  @include mobile {
+    margin-bottom: 27px;
+  }
+}
+
+.manualWrap {
+  height: 300px;
+  margin: 0 auto 20px;
+  overflow: scroll;
+
+  @include tablet {
+    height: 213px;
+  }
+
+  @include mobile {
+    height: 211px;
+  }
+}
+
+.keywords {
+  height: 300px;
+  @include tablet {
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  @include mobile {
+    margin-bottom: 27px;
+  }
+}
