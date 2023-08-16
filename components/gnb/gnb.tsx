@@ -1,7 +1,12 @@
 'use client'
 
+import classNames from 'classnames/bind'
+
 import Image from 'next/image'
 import Link from 'next/link'
+
+import useBreakpoint from '@/hooks/useBreakpoint.hooks'
+import useScrolledState from '@/hooks/useScrolledState'
 
 import { UserType } from '@/types/user.enum'
 
@@ -9,7 +14,12 @@ import styles from './gnb.module.scss'
 import GnbChip from './gnbChip'
 import { GnbChipStyle } from './gnbChip.types'
 
+const cx = classNames.bind(styles)
+
 export default function Gnb() {
+  const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
+  const scrolled = useScrolledState()
+
   const user = {
     userId: 'id',
     userType: 'forFun',
@@ -20,8 +30,8 @@ export default function Gnb() {
   }
 
   return (
-    <nav className={styles.wrapper}>
-      <div className={styles.container}>
+    <nav className={cx('gnbWrapper', { hasBorder: !isTablet }, { scrolled })}>
+      <div className={styles.gnbContainer}>
         <div className={styles.left}>
           <Link href="/">
             <h1 className={styles.logo}>
