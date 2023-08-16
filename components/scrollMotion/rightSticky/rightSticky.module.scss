@@ -53,6 +53,10 @@
         opacity: 1;
       }
 
+      &.isFullScreen {
+        opacity: 0;
+      }
+
       &.black {
         background-color: black;
       }
@@ -75,6 +79,15 @@
 
       &.blue {
         background-color: blue;
+      }
+
+      .goToDetailBtn {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: white;
       }
     }
   }
