@@ -34,7 +34,11 @@ export default function OurIntro() {
     <div className={cx('wrapper')}>
       <motion.div
         ref={targetRef}
-        style={{ position, scale, opacity }}
+        style={{
+          position,
+          scale,
+          opacity,
+        }}
         className={cx('heroWrapper')}
       >
         <p className={cx('heroTitle')}>너가 모르는 너 사용법을 알려줄게</p>
