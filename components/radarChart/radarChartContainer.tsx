@@ -27,6 +27,7 @@ export default function RadarChartContainer({
   radarSize,
   framePadding,
   hasOthers,
+  setRadarData,
 }: IRadarChartContainerProps) {
   const bubbleVariants = {
     opened: {
@@ -159,8 +160,9 @@ export default function RadarChartContainer({
   }
 
   useEffect(() => {
-    // POST request { userGenerated }
-  }, [userGenerated])
+    if (!setRadarData) return
+    setRadarData(userGenerated)
+  }, [userGenerated, setRadarData])
 
   return (
     <div className={cx('radarChartContainerWrapper')}>
