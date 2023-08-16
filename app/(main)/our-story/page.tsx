@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind'
 
-import OurIntro from '@/components/ourFeature/ourIntro'
+import OurFeature from '@/components/ourStorySection/ourFeature/ourFeature'
+import OurIntro from '@/components/ourStorySection/ourIntro/ourIntro'
 import MockHeight from '@/components/scrollMotion/shared/mockHeight'
 
 import styles from './page.module.scss'
@@ -11,6 +12,7 @@ export default function OurStoryPage() {
   return (
     <div className={cx('pageWrapper')}>
       <OurIntro />
+      <OurFeature />
       <MockHeight />
     </div>
   )
