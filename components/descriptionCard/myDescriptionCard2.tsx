@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { UseFormRegisterReturn } from 'react-hook-form'
 
 import { Input } from '../commonInput/input'
 import { splitQuestion } from './myDescriptionCard.helpers'
@@ -12,10 +13,12 @@ export default function MyDescriptionCard2({
   question,
   answer,
   defaultValue,
+  register,
 }: {
   question: { id: string; question: string }
   answer?: string
   defaultValue?: string
+  register?: UseFormRegisterReturn
 }) {
   const [firstPart, secondPart] = splitQuestion(question.question) // Use the helper function
 
@@ -25,7 +28,7 @@ export default function MyDescriptionCard2({
       {!answer ? (
         <div className={cx('manualInput')}>
           <Input variant="small">
-            <Input.TextField defaultValue={defaultValue} />
+            <Input.TextField defaultValue={defaultValue} register={register} />
           </Input>
         </div>
       ) : (

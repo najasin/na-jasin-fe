@@ -11,6 +11,7 @@ export default function CommonBtn({
   type = 'submit',
   style = ButtonStyle.ACTIVE,
   onClick,
+
   children,
 }: CommonBtnProps) {
   return (

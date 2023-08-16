@@ -4,6 +4,7 @@ import React from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
+import { useForm } from 'react-hook-form'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 
 import CharacterBox from '@/components/characterBox/characterBox'
@@ -16,6 +17,7 @@ import ResetBtn from '@/components/resetBtn/resetBtn'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import KeywordBtnList from '../keywordBtnList/keywordBtnList'
 import MyDescriptionCardList from '../myDescriptionCardList/myDescriptionCardList'
 import RadarChartContainer from '../radarChart/radarChartContainer'
@@ -38,6 +40,12 @@ export default function MakeMyManual() {
     queryFn: fetchMyProfileRegisterData,
     refetchOnWindowFocus: true,
   })
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm()
   const [Funnel, step, setStep] = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
@@ -88,7 +96,7 @@ export default function MakeMyManual() {
     resetSet()
   }
 
-  const handleSubmitBtnClick = () => {
+  const goNextStep = () => {
     if (step === 'nickname') {
       setStep('character')
     } else if (step === 'character') {
@@ -124,7 +132,7 @@ export default function MakeMyManual() {
             <Funnel.Step name="nickname">
               <div className={cx('input')}>
                 <Input variant={inputVariant}>
-                  <Input.TextField />
+                  <Input.TextField register={register('nickname')} />
                 </Input>
               </div>
             </Funnel.Step>
@@ -138,7 +146,8 @@ export default function MakeMyManual() {
             <Funnel.Step name="manual">
               <div className={cx('manualWrap')}>
                 <MyDescriptionCardList
-                //  questions={data?.itemsData?.questions}
+                  //  questions={data?.itemsData?.questions}
+                  register={register('manual')}
                 />
               </div>
             </Funnel.Step>
@@ -172,7 +181,12 @@ export default function MakeMyManual() {
         </div>
 
         <div className={cx('btn')}>
-          <CommonBtn onClick={handleSubmitBtnClick}>다음</CommonBtn>
+          <CommonBtn
+            onClick={handleSubmit(goNextStep)}
+            style={isSubmitting ? ButtonStyle.DEACTIVE : ButtonStyle.ACTIVE}
+          >
+            다음
+          </CommonBtn>
         </div>
       </FormBox>
     </div>

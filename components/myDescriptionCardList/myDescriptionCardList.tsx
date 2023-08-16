@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
+import { UseFormRegisterReturn } from 'react-hook-form'
 
 import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
@@ -8,7 +9,11 @@ import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
 import styles from './myDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
-export default function MyDescriptionCardList() {
+export default function MyDescriptionCardList({
+  register,
+}: {
+  register?: UseFormRegisterReturn
+}) {
   // {
   //   questions,
   // }: {
@@ -30,6 +35,7 @@ export default function MyDescriptionCardList() {
                   id: question.id,
                   question: question.question,
                 }}
+                register={register}
               />
             </div>
           ),
