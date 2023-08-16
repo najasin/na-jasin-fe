@@ -1,0 +1,10 @@
+.linkBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 15px;
+  border-radius: 37.58px;
+  background-color: $light-grey;
+  gap: 7.52px;
+  @include font-style('button6');
+}
