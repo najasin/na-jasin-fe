@@ -17,6 +17,7 @@ export default function Inventory({ resetBtn }: { resetBtn: React.ReactNode }) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
+    refetchOnWindowFocus: true,
   })
   const [selectedCategory, setSelectedCategory] = useRecoilState(
     selectedCategoryState,

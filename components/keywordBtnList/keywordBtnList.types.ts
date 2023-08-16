@@ -1,5 +1,5 @@
 export interface IKeywordBtnListProps {
-  keywords: string[]
+  // keywords: string[]
   selectedKeywords: string[]
   setSelectedKeywords: React.Dispatch<React.SetStateAction<string[]>>
 }

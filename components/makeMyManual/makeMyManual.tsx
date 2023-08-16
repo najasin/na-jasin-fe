@@ -36,9 +36,10 @@ export default function MakeMyManual() {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: fetchMyProfileRegisterData,
+    refetchOnWindowFocus: true,
   })
   const [Funnel, step, setStep] = useFunnel(
-    ['nickname', 'character', 'manual', 'keword', 'statGraph'],
+    ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
   )
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
@@ -94,7 +95,7 @@ export default function MakeMyManual() {
       setStep('manual')
     } else if (step === 'manual') {
       setStep('keyword')
-    } else if (step === 'keword') {
+    } else if (step === 'keyword') {
       setStep('statGraph')
     } else if (step === 'statGraph') {
       console.log('완료')
@@ -136,16 +137,18 @@ export default function MakeMyManual() {
             </Funnel.Step>
             <Funnel.Step name="manual">
               <div className={cx('manualWrap')}>
-                <MyDescriptionCardList questions={data?.itemsData?.questions} />
+                <MyDescriptionCardList
+                //  questions={data?.itemsData?.questions}
+                />
               </div>
             </Funnel.Step>
 
-            <Funnel.Step name="keword">
+            <Funnel.Step name="keyword">
               <div className={cx('keywords')}>
                 <KeywordBtnList
                   selectedKeywords={selectedKeywords}
                   setSelectedKeywords={setSelectedKeywords}
-                  keywords={data?.itemsData?.exampleKeywords}
+                  // keywords={data?.itemsData?.exampleKeywords}
                 />
               </div>
             </Funnel.Step>

@@ -1,19 +1,27 @@
+import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 
 import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
 
+import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
 import styles from './myDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
-export default function MyDescriptionCardList({
-  questions,
-}: {
-  questions: IQuestions[]
-}) {
+export default function MyDescriptionCardList() {
+  // {
+  //   questions,
+  // }: {
+  //   questions: IQuestions[]
+  // }
+  const { data } = useQuery({
+    queryKey: ['myprofileRegister'],
+    queryFn: fetchMyProfileRegisterData,
+    refetchOnWindowFocus: true,
+  })
   return (
     <>
-      {questions?.map(
+      {data?.itemsData?.questions?.map(
         (question: IQuestions) =>
           question && (
             <div key={question.id} className={cx('manualItem')}>
