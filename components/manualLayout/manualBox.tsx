@@ -2,6 +2,7 @@ import classNames from 'classnames/bind'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
+import { IManualBoxProps } from '@/components/manualLayout/manualBox.types'
 
 import OthersDescriptionCard from '../descriptionCard/othersDescriptionCard'
 import styles from './myManualLayout.module.scss'
@@ -15,18 +16,7 @@ export default function ManualBox({
   nickname,
   onClickMyTypeBtn,
   onClickOthersTypeBtn,
-}: {
-  myDatas: Array<{
-    question: { id: string; question: string }
-    answer?: string
-    defaultValue?: string
-  }>
-  othersDatas: Array<{ id: string; question: string; answer: string }>
-  type: string
-  nickname: string
-  onClickMyTypeBtn: () => void
-  onClickOthersTypeBtn: () => void
-}) {
+}: IManualBoxProps) {
   const answers = othersDatas.map((data) => {
     const dividedQ = data.question.split('---')
     const answer = dividedQ[0] + data.answer + dividedQ[1]
