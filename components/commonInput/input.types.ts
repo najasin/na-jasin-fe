@@ -19,4 +19,5 @@ export interface TextFeildProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   onChange?: ChangeHandler
   register?: UseFormRegisterReturn
+  isInvalid?: boolean
 }

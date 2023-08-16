@@ -11,8 +11,10 @@ import styles from './myDescriptionCardList.module.scss'
 const cx = classNames.bind(styles)
 export default function MyDescriptionCardList({
   register,
+  isInvalid,
 }: {
   register?: UseFormRegisterReturn
+  isInvalid?: boolean
 }) {
   // {
   //   questions,
@@ -36,6 +38,7 @@ export default function MyDescriptionCardList({
                   question: question.question,
                 }}
                 register={register}
+                isInvalid={isInvalid}
               />
             </div>
           ),

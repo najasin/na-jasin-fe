@@ -71,6 +71,14 @@ export default function MakeMyManual() {
     inputVariant = 'large'
   }
 
+  // const validationRules = {
+  //   required: '필수 입력입니다.',
+  //   minLength: {
+  //     value: 3,
+  //     message: '3글자 이상 입력해주세요.',
+  //   },
+  // }
+
   const selectedItems = selectedSet
     ? { set: selectedSet }
     : {
@@ -96,7 +104,7 @@ export default function MakeMyManual() {
     resetSet()
   }
 
-  const goNextStep = () => {
+  const onClickSubmit = () => {
     if (step === 'nickname') {
       setStep('character')
     } else if (step === 'character') {
@@ -106,7 +114,7 @@ export default function MakeMyManual() {
     } else if (step === 'keyword') {
       setStep('statGraph')
     } else if (step === 'statGraph') {
-      console.log('완료')
+      console.log('완료') // API쏘기
     }
   }
 
@@ -120,74 +128,76 @@ export default function MakeMyManual() {
       )}
 
       <FormBox title="나를 꾸며주세요" paddingTop={32}>
-        <div className={cx('formContent')}>
-          {(isTablet || step === 'nickname') && (
-            <CharacterBox
-              baseImage={data?.itemsData?.baseImage}
-              selectedItems={selectedItems}
-            />
-          )}
+        <form onSubmit={handleSubmit(onClickSubmit)}>
+          <div className={cx('formContent')}>
+            {(isTablet || step === 'nickname') && (
+              <CharacterBox
+                baseImage={data?.itemsData?.baseImage}
+                selectedItems={selectedItems}
+              />
+            )}
 
-          <Funnel>
-            <Funnel.Step name="nickname">
-              <div className={cx('input')}>
-                <Input variant={inputVariant}>
-                  <Input.TextField register={register('nickname')} />
-                </Input>
-              </div>
-            </Funnel.Step>
-            <Funnel.Step name="character">
-              <div className={cx('inventory')}>
-                <Inventory
-                  resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
-                />
-              </div>
-            </Funnel.Step>
-            <Funnel.Step name="manual">
-              <div className={cx('manualWrap')}>
-                <MyDescriptionCardList
-                  //  questions={data?.itemsData?.questions}
-                  register={register('manual')}
-                />
-              </div>
-            </Funnel.Step>
+            <Funnel>
+              <Funnel.Step name="nickname">
+                <div className={cx('input')}>
+                  <Input variant={inputVariant}>
+                    <Input.TextField
+                      id="nickname"
+                      register={register('nickname')}
+                    />
+                  </Input>
+                </div>
+              </Funnel.Step>
+              <Funnel.Step name="character">
+                <div className={cx('inventory')}>
+                  <Inventory
+                    resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
+                  />
+                </div>
+              </Funnel.Step>
+              <Funnel.Step name="manual">
+                <div className={cx('manualWrap')}>
+                  <MyDescriptionCardList register={register('manual')} />
+                </div>
+              </Funnel.Step>
 
-            <Funnel.Step name="keyword">
-              <div className={cx('keywords')}>
-                <KeywordBtnList
-                  selectedKeywords={selectedKeywords}
-                  setSelectedKeywords={setSelectedKeywords}
-                  // keywords={data?.itemsData?.exampleKeywords}
-                />
-              </div>
-            </Funnel.Step>
+              <Funnel.Step name="keyword">
+                <div className={cx('keywords')}>
+                  <KeywordBtnList
+                    selectedKeywords={selectedKeywords}
+                    setSelectedKeywords={setSelectedKeywords}
+                    // keywords={data?.itemsData?.exampleKeywords}
+                  />
+                </div>
+              </Funnel.Step>
 
-            <Funnel.Step name="statGraph">
-              {originKeywordPercents && (
-                <RadarChartContainer
-                  radarType="NJNS"
-                  originKeywordPercents={originKeywordPercents}
-                  otherKeywordPercents={{}}
-                  frameSize={rectangleLayout.frameSize}
-                  radarSize={rectangleLayout.radarSize}
-                  framePadding={
-                    rectangleLayout.frameSize - rectangleLayout.radarSize
-                  }
-                  hasOthers={false}
-                />
-              )}
-            </Funnel.Step>
-          </Funnel>
-        </div>
+              <Funnel.Step name="statGraph">
+                {originKeywordPercents && (
+                  <RadarChartContainer
+                    radarType="NJNS"
+                    originKeywordPercents={originKeywordPercents}
+                    otherKeywordPercents={{}}
+                    frameSize={rectangleLayout.frameSize}
+                    radarSize={rectangleLayout.radarSize}
+                    framePadding={
+                      rectangleLayout.frameSize - rectangleLayout.radarSize
+                    }
+                    hasOthers={false}
+                  />
+                )}
+              </Funnel.Step>
+            </Funnel>
+          </div>
 
-        <div className={cx('btn')}>
-          <CommonBtn
-            onClick={handleSubmit(goNextStep)}
-            style={isSubmitting ? ButtonStyle.DEACTIVE : ButtonStyle.ACTIVE}
-          >
-            다음
-          </CommonBtn>
-        </div>
+          <div className={cx('btn')}>
+            <CommonBtn
+              type="submit"
+              style={isSubmitting ? ButtonStyle.DEACTIVE : ButtonStyle.ACTIVE}
+            >
+              다음
+            </CommonBtn>
+          </div>
+        </form>
       </FormBox>
     </div>
   )
