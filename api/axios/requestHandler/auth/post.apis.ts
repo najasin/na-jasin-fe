@@ -20,4 +20,4 @@ const logout = async (): Promise<LogoutResponse> => {
   return response
 }
 
-export default logout
+export { logout }
