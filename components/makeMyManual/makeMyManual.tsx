@@ -77,6 +77,14 @@ export default function MakeMyManual() {
 
     goNext()
   }
+  const setTitle = (): string => {
+    if (step === 'nickname') return '닉네임을 입력해 주세요'
+    if (step === 'character') return '나를 꾸며주세요'
+    if (step === 'character') {
+      return '나를 표현할 키워드 5가지를 선택해 보세요'
+    }
+    return '내 능력치를 설정해주세요'
+  }
 
   return (
     <div className={cx('layout')}>
@@ -87,7 +95,7 @@ export default function MakeMyManual() {
         />
       )}
 
-      <FormBox title="나를 꾸며주세요" paddingTop={32} onBackClick={goPrev}>
+      <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
         <form onSubmit={handleSubmit(onClickSubmit)}>
           <div className={cx('formContent')}>
             {((isTablet && step !== 'statGraph') || step === 'nickname') && (
