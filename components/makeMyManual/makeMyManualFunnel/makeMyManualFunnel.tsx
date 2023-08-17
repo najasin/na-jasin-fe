@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind'
 import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 
 import { Input } from '@/components/commonInput/input'
 import Inventory from '@/components/inventory/inventory'
@@ -13,15 +13,16 @@ import {
   selectedFaceItemState,
   selectedKeywordsState,
   selectedSetState,
+  statsGraphValueState,
 } from '@/components/makeMyManual/store/makeMyManual.atom'
 import MyDescriptionCardList from '@/components/myDescriptionCardList/myDescriptionCardList'
+import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 import ResetBtn from '@/components/resetBtn/resetBtn'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 
-import { originKeywordPercentsSelector } from '../store/originKeywordPercents.selecter'
 import styles from './makeMyManualFunnel.module.scss'
 
 const cx = classNames.bind(styles)
@@ -41,10 +42,12 @@ export default function MakeMyManualFunnel({
   formState: FormState<FieldValues>
   step: string
 }) {
-  const originKeywordPercents = useRecoilValue(originKeywordPercentsSelector)
   const [selectedKeywords, setSelectedKeywords] = useRecoilState(
     selectedKeywordsState,
   )
+  const [statsGraphValue, setStatsGraphValue] =
+    useRecoilState(statsGraphValueState)
+
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
   let inputVariant: string
@@ -80,6 +83,10 @@ export default function MakeMyManualFunnel({
       value: 1,
       message: '1글자 이상 입력해주세요.',
     },
+  }
+
+  const handleStatsGraphValue = (value: TrimmedDataProps) => {
+    setStatsGraphValue(value)
   }
 
   return (
@@ -121,15 +128,16 @@ export default function MakeMyManualFunnel({
         </div>
       </Funnel.Step>
       <Funnel.Step name="statGraph">
-        {originKeywordPercents && (
+        {statsGraphValueState && (
           <RadarChartContainer
             radarType="NJNS"
-            originKeywordPercents={originKeywordPercents}
+            originKeywordPercents={statsGraphValue}
             otherKeywordPercents={{}}
             frameSize={rectangleLayout.frameSize}
             radarSize={rectangleLayout.radarSize}
             framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
             hasOthers={false}
+            handleUpdateRadarData={handleStatsGraphValue}
           />
         )}
       </Funnel.Step>

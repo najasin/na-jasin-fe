@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
@@ -28,6 +28,7 @@ import {
   selectedFaceItemState,
   selectedKeywordsState,
   selectedSetState,
+  statsGraphValueState,
 } from './store/makeMyManual.atom'
 
 const cx = classNames.bind(styles)
@@ -49,8 +50,12 @@ export default function MakeMyManual() {
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
   const selectedSet = useRecoilValue(selectedSetState)
   const selectedKeywords = useRecoilValue(selectedKeywordsState)
+  const statsGraphValue = useRecoilValue(statsGraphValueState)
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
+  useEffect(() => {
+    console.log(formState.errors.nickname?.message)
+  }, [formState.errors.nickname])
   const selectedItems =
     getSelectedItemsFromSet(selectedSet) ||
     getSelectedItemsFromOtherItems({
@@ -61,16 +66,18 @@ export default function MakeMyManual() {
 
   const onClickSubmit = () => {
     if (step === 'keyword') {
-      console.log(selectedKeywords.length)
       if (selectedKeywords.length !== 5) {
-        console.log('발동 했니')
-
         setError('keyword', {
           type: 'keyword',
           message: 'keyword error',
         })
         return clearErrors()
       }
+    }
+
+    if (step === 'statGraph') {
+      // API 보내기
+      console.log(statsGraphValue)
     }
 
     goNext()
@@ -106,7 +113,7 @@ export default function MakeMyManual() {
             <CommonBtn
               type="submit"
               style={
-                formState.isSubmitting
+                formState.errors.nickname
                   ? ButtonStyle.DEACTIVE
                   : ButtonStyle.ACTIVE
               }
