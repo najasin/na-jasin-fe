@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 
+import ImageSection from '@/components/ourStorySection/imageSection/imageSection'
 import OurFeature from '@/components/ourStorySection/ourFeature/ourFeature'
 import OurIntro from '@/components/ourStorySection/ourIntro/ourIntro'
 import MockHeight from '@/components/scrollMotion/shared/mockHeight'
@@ -14,6 +15,8 @@ export default function OurStoryPage() {
       <OurIntro />
       <MockHeight />
       <OurFeature />
+      <MockHeight />
+      <ImageSection />
       <MockHeight />
     </div>
   )
