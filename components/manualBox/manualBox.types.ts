@@ -4,9 +4,11 @@ export interface IManualBoxProps {
     answer?: string
     defaultValue?: string
   }>
-  othersDatas: Array<{ id: string; question: string; answer: string }>
+  othersDatas: Array<{
+    nickname: string
+    qas: Array<{ id: string; question: string; answer: string }>
+  }>
   type: string
-  nickname: string
   onClickMyTypeBtn: () => void
   onClickOthersTypeBtn: () => void
 }

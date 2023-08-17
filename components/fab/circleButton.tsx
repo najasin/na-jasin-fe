@@ -18,7 +18,7 @@ export default function CircleButton({
   transparent,
   onClick,
 }: CircleButtonProps) {
-  const imageUrl = `images/${image}.svg`
+  const imageUrl = `/images/${image}.svg`
 
   return (
     <button

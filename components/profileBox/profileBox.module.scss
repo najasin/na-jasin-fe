@@ -1,0 +1,40 @@
+.profileBox {
+  max-width: 890px;
+  margin: 0 auto;
+  @include flexbox(row, center, center);
+
+  gap: 30px;
+
+  @include tablet {
+    justify-content: space-between;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    width: 280px;
+    margin: 0 auto;
+    gap: 37px;
+  }
+}
+
+.characterBox {
+  max-width: 400px;
+}
+
+.chartBox {
+  @include flexbox(row, center, center);
+
+  width: 480px;
+  height: 350px;
+  border: 1px solid $black;
+
+  @include tablet {
+    max-width: 340px;
+  }
+
+  @include mobile {
+    max-width: 340px;
+    height: 100%;
+    border: none;
+  }
+}

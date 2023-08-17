@@ -12,13 +12,33 @@ type Story = StoryObj<typeof OthersDescriptionCard>
 
 export const Default: Story = {
   args: {
-    answers: [
+    cardDatas: [
       {
-        answer: '저와 친해지는 방법은 맛있는 것을 사주는 것이에요.',
-        id: 'ex1',
+        nickname: 'hello',
+        datas: [
+          {
+            id: 'ex1',
+            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+          },
+          {
+            id: 'ex2',
+            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+          },
+        ],
       },
-      { answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.', id: 'ex2' },
+      {
+        nickname: 'bye',
+        datas: [
+          {
+            id: 'ex3',
+            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+          },
+          {
+            id: 'ex4',
+            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+          },
+        ],
+      },
     ],
-    nickname: 'example',
   },
 }
