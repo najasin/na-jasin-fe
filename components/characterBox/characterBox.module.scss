@@ -1,15 +1,16 @@
 .wrap {
   position: relative;
   width: 380px;
-  height: 340px;
+  height: 350px;
   overflow: hidden;
   border-radius: 20px;
   background-color: $primary1;
 
   @include tablet {
     width: 100%;
+    min-width: 300px;
     max-width: 388px;
-    height: 288px;
+    height: 350px;
     margin: 0 auto;
   }
   @include mobile {
@@ -21,4 +22,10 @@
 
 .img {
   object-fit: cover;
+}
+
+.editBtn {
+  position: absolute;
+  top: 14px;
+  right: 9px;
 }
