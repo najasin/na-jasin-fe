@@ -4,7 +4,7 @@ interface Step1DataState {
   [key: string]: string
 }
 
-interface Step2DataState {
+interface GraphDataState {
   [key: string]: number
 }
 
@@ -29,8 +29,8 @@ export const step1DataState = atom<Step1DataState>({
   default: initialstep1Data,
 })
 
-export const step2DataState = atom<Step2DataState>({
-  key: 'step2DataState',
+export const graphDataState = atom<GraphDataState>({
+  key: 'graphDataState',
   default: {
     키워드1: 3,
     키워드2: 3,
@@ -38,4 +38,9 @@ export const step2DataState = atom<Step2DataState>({
     키워드4: 3,
     키워드5: 3,
   },
+})
+
+export const nicknameState = atom({
+  key: 'nicknameState',
+  default: '',
 })

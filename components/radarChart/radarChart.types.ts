@@ -1,5 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { SetterOrUpdater } from 'recoil'
+
+interface GraphDataState {
+  [key: string]: number
+}
+
 interface DataPoint {
   axis: string
   value: number
@@ -49,7 +55,9 @@ interface IRadarChartContainerProps {
   radarSize: number
   framePadding: number
   hasOthers: boolean
-  setRadarData?: Dispatch<SetStateAction<IAxisMaps[] | null>>
+  setRadarData?:
+    | Dispatch<SetStateAction<IAxisMaps[] | null>>
+    | SetterOrUpdater<GraphDataState>
 }
 
 export type {
