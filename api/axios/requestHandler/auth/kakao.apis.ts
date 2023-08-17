@@ -1,7 +1,7 @@
 import { getRequest } from '../../common.apis'
 import { AuthResponse } from './auth.types'
 
-const loginInKakao = async (): Promise<AuthResponse | Error> => {
+const loginWithKakao = async (): Promise<AuthResponse | Error> => {
   try {
     const response = await getRequest<AuthResponse>('/auth2/authorize/kakao')
 
@@ -11,4 +11,4 @@ const loginInKakao = async (): Promise<AuthResponse | Error> => {
   }
 }
 
-export default loginInKakao
+export default loginWithKakao
