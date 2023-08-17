@@ -53,7 +53,7 @@ export default function ManualBox({
       <div className={cx('manual')}>
         <div className={cx('header')}>
           <p>자시니는 이렇게 사용해요</p>
-          <EditBtn />
+          {type === 'MY' && <EditBtn />}
         </div>
         <div className={cx('answers')}>
           {type === 'MY' ? (
