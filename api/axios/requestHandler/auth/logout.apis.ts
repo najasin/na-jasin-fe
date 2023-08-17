@@ -1,14 +1,23 @@
 import { postRequest } from '../../common.apis'
 import { LogoutResponse } from './auth.types'
 
-const logout = async (): Promise<LogoutResponse | Error> => {
-  try {
-    const response = await postRequest<LogoutResponse>('/auth2/logout')
+/**
+ *
+ * @example 외부에서 try catch 처리
+ * ```js
+ * try {
+ *  const data = await logout()
+ *
+ *  return response
+ * } catch (error) {
+ *  return error as Error
+ * }
+ * ```
+ */
+const logout = async (): Promise<LogoutResponse> => {
+  const response = await postRequest<LogoutResponse>('/auth2/logout')
 
-    return response
-  } catch (error) {
-    return error as Error
-  }
+  return response
 }
 
 export default logout
