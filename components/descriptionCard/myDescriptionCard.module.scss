@@ -14,14 +14,5 @@
 
 .manualInput {
   display: inline-block;
-  width: 70%;
-}
-
-.manualInput {
-  display: inline-block;
-  width: 80%;
-
-  @include tablet {
-    width: 70%;
-  }
+  width: 50%;
 }
