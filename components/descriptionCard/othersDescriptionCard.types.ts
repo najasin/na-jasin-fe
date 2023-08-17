@@ -1,4 +1,6 @@
 export interface IOthersDescriptionCardProps {
-  answers: Array<{ id: string; answer: string }>
-  nickname: string
+  cardDatas: Array<{
+    nickname: string
+    datas: Array<{ id: string; answer: string }>
+  }>
 }

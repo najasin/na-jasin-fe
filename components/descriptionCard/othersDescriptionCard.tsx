@@ -6,21 +6,21 @@ import { IOthersDescriptionCardProps } from './othersDescriptionCard.types'
 const cx = classNames.bind(styles)
 
 export default function OthersDescriptionCard({
-  answers,
-  nickname,
+  cardDatas,
 }: IOthersDescriptionCardProps) {
-  return (
-    <div className={cx('card')}>
-      {nickname && (
+  return cardDatas.map((cardData) => {
+    const { nickname, datas } = cardData
+    return (
+      <div key={cardData.nickname} className={cx('card')}>
         <div className={cx('nicknameChip')}>{`${nickname}님 작성`}</div>
-      )}
-      <div className={cx('answerBox')}>
-        {answers.map((answer) => (
-          <p key={answer.id} className={cx('answer')}>
-            {answer.answer}
-          </p>
-        ))}
+        <div className={cx('answerBox')}>
+          {datas.map((answer) => (
+            <p key={answer.id} className={cx('answer')}>
+              {answer.answer}
+            </p>
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    )
+  })
 }

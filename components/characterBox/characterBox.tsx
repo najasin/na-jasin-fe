@@ -10,37 +10,11 @@ const cx = classNames.bind(styles)
 export default function CharacterBox({
   baseImage,
   selectedItems,
+  editBtn,
 }: ISelectedCharacter) {
   return (
     <div className={cx('wrap')}>
-      <Image
-        className={cx('img')}
-        src="/images/character-base.svg"
-        alt="base image"
-        fill={true}
-        priority={true}
-      />
-      <Image
-        className={cx('img')}
-        src="/images/character-body-1.svg"
-        alt="body image"
-        fill={true}
-        priority={true}
-      />
-      <Image
-        className={cx('img')}
-        src="/images/character-expression-1.svg"
-        alt="exp image"
-        fill={true}
-        priority={true}
-      />
-      <Image
-        className={cx('img')}
-        src="/images/character-face-1.svg"
-        alt="face image"
-        fill={true}
-        priority={true}
-      />
+      {editBtn && <div className={cx('editBtn')}>{editBtn}</div>}
       {baseImage && (
         <>
           <Image

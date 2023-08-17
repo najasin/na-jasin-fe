@@ -1,3 +1,12 @@
+.manualBox {
+  width: 890px;
+  margin: 0 auto;
+
+  @include tablet {
+    max-width: 100%;
+  }
+}
+
 .typeBtns {
   display: flex;
   align-items: center;
@@ -31,6 +40,14 @@
   border: 1px solid $black;
   border-radius: 0 0 15px 15px;
   gap: 20px;
+
+  @include tablet {
+    padding: 23px 27px;
+  }
+
+  @include mobile {
+    padding: 25px 20px;
+  }
 }
 
 .header {

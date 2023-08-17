@@ -1,11 +1,17 @@
 .fab {
   display: flex;
   position: fixed;
+  z-index: 10;
   right: 130px;
-  bottom: 160px;
+  bottom: 80px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+
+  @include tablet {
+    right: 30px;
+  }
+
   @include mobile {
     right: 26px;
     bottom: 44px;
