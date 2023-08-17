@@ -237,6 +237,7 @@ export default function RadarChartContainer({
       {isMobile && isRegistered && (
         <div className={cx('buttonContainer')}>
           <motion.button
+            type="button"
             className={cx('playButton')}
             onClick={handleClickChangeZoom}
             transition={{ duration: 0.3 }}
@@ -253,6 +254,7 @@ export default function RadarChartContainer({
           animate={isClicked ? 'opened' : 'closed'}
         >
           <motion.button
+            type="button"
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
@@ -272,6 +274,7 @@ export default function RadarChartContainer({
             이전
           </motion.button>
           <motion.button
+            type="button"
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
