@@ -12,11 +12,11 @@ import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 // mock data
 const data = {
   itemsData: {
-    baseImage: '/images/baseCharacter.svg',
+    baseImage: '/images/baseImage.svg',
     selectedItems: {
-      face: '/images/plus.svg',
-      body: '/images/plus.svg',
-      expression: '/images/plus.svg',
+      face: '/images/headset.svg',
+      body: '/images/laptop.svg',
+      expression: '/images/tired.svg',
     },
   },
 }
