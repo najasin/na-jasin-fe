@@ -12,6 +12,7 @@ export default function OurStoryPage() {
   return (
     <div className={cx('pageWrapper')}>
       <OurIntro />
+      <MockHeight />
       <OurFeature />
       <MockHeight />
     </div>

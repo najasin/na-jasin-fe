@@ -8,6 +8,10 @@
   padding-left: 64px;
   gap: 32px;
 
+  &:first-child {
+    height: auto;
+  }
+
   .title {
     width: 100%;
     transition: color 1s ease;
