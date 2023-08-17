@@ -14,6 +14,7 @@ import {
   DataPoint,
   IAxisMaps,
   IRadarChartContainerProps,
+  TrimmedDataProps,
 } from './radarChart.types'
 import styles from './radarChartContainer.module.scss'
 
@@ -27,7 +28,7 @@ export default function RadarChartContainer({
   radarSize,
   framePadding,
   hasOthers,
-  setRadarData,
+  handleUpdateRadarData,
 }: IRadarChartContainerProps) {
   const bubbleVariants = {
     opened: {
@@ -63,10 +64,16 @@ export default function RadarChartContainer({
       order: index,
     })),
   )
-  const [userGenerated, setUserGenerated] = useState<DataPoint[]>(draggableAxis)
+  const [trimmedRadarData, setTrimmedRadarData] = useState<TrimmedDataProps>(
+    originKeywordPercents,
+  )
 
   const handleDragOutUserInput = (data: DataPoint[]) => {
-    setUserGenerated(data)
+    const trimmed = data.reduce(
+      (prev, curr) => ({ ...prev, [`${curr.axis}`]: curr.value }),
+      {},
+    )
+    setTrimmedRadarData(trimmed)
   }
 
   const handleRotateZoomOut = () => {
@@ -160,9 +167,10 @@ export default function RadarChartContainer({
   }
 
   useEffect(() => {
-    if (!setRadarData) return
-    setRadarData(userGenerated)
-  }, [userGenerated, setRadarData])
+    if (!handleUpdateRadarData) return
+
+    handleUpdateRadarData(trimmedRadarData)
+  }, [trimmedRadarData, handleUpdateRadarData])
 
   return (
     <div className={cx('radarChartContainerWrapper')}>
@@ -229,6 +237,7 @@ export default function RadarChartContainer({
       {isMobile && isRegistered && (
         <div className={cx('buttonContainer')}>
           <motion.button
+            type="button"
             className={cx('playButton')}
             onClick={handleClickChangeZoom}
             transition={{ duration: 0.3 }}
@@ -245,6 +254,7 @@ export default function RadarChartContainer({
           animate={isClicked ? 'opened' : 'closed'}
         >
           <motion.button
+            type="button"
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)
@@ -264,6 +274,7 @@ export default function RadarChartContainer({
             이전
           </motion.button>
           <motion.button
+            type="button"
             onClick={() => {
               if (radarType === 'TJNS') {
                 setIsViewPolygon(false)

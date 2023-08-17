@@ -1,8 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
-
-import { SetterOrUpdater } from 'recoil'
-
-interface GraphDataState {
+type TrimmedDataProps = {
   [key: string]: number
 }
 
@@ -55,12 +51,11 @@ interface IRadarChartContainerProps {
   radarSize: number
   framePadding: number
   hasOthers: boolean
-  setRadarData?:
-    | Dispatch<SetStateAction<IAxisMaps[] | null>>
-    | SetterOrUpdater<GraphDataState>
+  handleUpdateRadarData?: (value: TrimmedDataProps) => void
 }
 
 export type {
+  TrimmedDataProps,
   DataPoint,
   IRadarChartProps,
   IRadarCompoundProps,
