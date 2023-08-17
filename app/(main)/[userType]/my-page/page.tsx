@@ -13,7 +13,11 @@ import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 const data = {
   itemsData: {
     baseImage: '/images/baseCharacter.svg',
-    selectedImage: '/images/plus.svg',
+    selectedItems: {
+      face: '/images/plus.svg',
+      body: '/images/plus.svg',
+      expression: '/images/plus.svg',
+    },
   },
 }
 

@@ -8,7 +8,16 @@ import styles from './profileBox.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function ProfileBox({ data }) {
+export default function ProfileBox({
+  data,
+}: {
+  data: {
+    itemsData: {
+      baseImage: string
+      selectedItems: { face: string; body: string; expression: string }
+    }
+  }
+}) {
   return (
     <div className={cx('profileBox')}>
       <div className={cx('characterBox')}>
