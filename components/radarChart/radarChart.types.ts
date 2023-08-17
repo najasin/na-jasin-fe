@@ -51,7 +51,7 @@ interface IRadarChartContainerProps {
   radarSize: number
   framePadding: number
   hasOthers: boolean
-  handleUpdateRadarData: (value: TrimmedDataProps) => void
+  handleUpdateRadarData?: (value: TrimmedDataProps) => void
 }
 
 export type {
