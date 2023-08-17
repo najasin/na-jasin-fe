@@ -2,9 +2,20 @@
 
 import { useState } from 'react'
 
+import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
+import Fab from '@/components/fab/fab'
 import LinkBtn from '@/components/linkBtn/linkBtn'
 import ManualBox from '@/components/manualBox/manualBox'
+import ProfileBox from '@/components/profileBox/profileBox'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
+
+// mock data
+const data = {
+  itemsData: {
+    baseImage: '/images/baseCharacter.svg',
+    selectedImage: '/images/plus.svg',
+  },
+}
 
 // mock myDatas
 const myDatas = [
@@ -33,24 +44,34 @@ const myDatas = [
 // mock othersDatas
 const othersDatas = [
   {
-    id: 'ex1',
-    question: '저를 기분좋게 만드는 건 ---이에요.',
-    answer: '맛있는 음식',
+    nickname: 'hello',
+    qas: [
+      {
+        id: 'ex1',
+        question: '저를 기분좋게 만드는 건 ---이에요.',
+        answer: '맛있는 음식',
+      },
+      {
+        id: 'ex2',
+        question: '저를 기분좋게 만드는 건 ---이에요.',
+        answer: '맛있는 음식',
+      },
+    ],
   },
   {
-    id: 'ex2',
-    question: '저를 기분좋게 만드는 건 ---이에요.',
-    answer: '맛있는 음식',
-  },
-  {
-    id: 'ex3',
-    question: '저를 기분좋게 만드는 건 ---이에요.',
-    answer: '맛있는 음식',
-  },
-  {
-    id: 'ex4',
-    question: '저를 기분좋게 만드는 건 ---이에요.',
-    answer: '맛있는 음식',
+    nickname: 'bye',
+    qas: [
+      {
+        id: 'ex3',
+        question: '저를 기분좋게 만드는 건 ---이에요.',
+        answer: '맛있는 음식',
+      },
+      {
+        id: 'ex4',
+        question: '저를 기분좋게 만드는 건 ---이에요.',
+        answer: '맛있는 음식',
+      },
+    ],
   },
 ]
 
@@ -69,15 +90,24 @@ export default function MyPage() {
   }
 
   return (
-    <SimpleLayout title={`${nickname} 사용 설명서`} btnComponent={<LinkBtn />}>
-      <ManualBox
-        myDatas={myDatas}
-        othersDatas={othersDatas}
-        type={type}
-        onClickMyTypeBtn={handleClickMyTypeBtn}
-        onClickOthersTypeBtn={handleClickOthersTypeBtn}
-        nickname={nickname}
-      />
-    </SimpleLayout>
+    <>
+      <SimpleLayout
+        title={`${nickname} 사용 설명서`}
+        btnComponent={<LinkBtn />}
+        margin={50}
+      >
+        <ContentWrapper>
+          <ProfileBox data={data} />
+          <ManualBox
+            myDatas={myDatas}
+            othersDatas={othersDatas}
+            type={type}
+            onClickMyTypeBtn={handleClickMyTypeBtn}
+            onClickOthersTypeBtn={handleClickOthersTypeBtn}
+          />
+        </ContentWrapper>
+      </SimpleLayout>
+      <Fab />
+    </>
   )
 }
