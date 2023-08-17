@@ -5,7 +5,7 @@ import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptio
 import EditBtn from '@/components/editBtn/editBtn'
 import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
 
-import styles from './myManualBox.module.scss'
+import styles from './manualBox.module.scss'
 
 const cx = classNames.bind(styles)
 
