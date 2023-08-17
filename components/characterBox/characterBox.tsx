@@ -10,9 +10,11 @@ const cx = classNames.bind(styles)
 export default function CharacterBox({
   baseImage,
   selectedItems,
+  editBtn,
 }: ISelectedCharacter) {
   return (
     <div className={cx('wrap')}>
+      {editBtn && <div className={cx('editBtn')}>{editBtn}</div>}
       {baseImage && (
         <>
           <Image
