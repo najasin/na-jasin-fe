@@ -19,7 +19,7 @@ export const getRequest = async <T>(
 // /* post 요청 */
 export const postRequest = async <T>(
   url: string,
-  data: any,
+  data?: any,
   config?: AxiosRequestConfig,
 ): Promise<T> => {
   const response = await instance.post<CommonResponse<T>>(
