@@ -5,7 +5,7 @@ import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptio
 import EditBtn from '@/components/editBtn/editBtn'
 import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
 
-import styles from './myManualLayout.module.scss'
+import styles from './myManualBox.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -13,19 +13,23 @@ export default function ManualBox({
   myDatas,
   othersDatas,
   type,
-  nickname,
   onClickMyTypeBtn,
   onClickOthersTypeBtn,
 }: IManualBoxProps) {
   const answers = othersDatas.map((data) => {
-    const dividedQ = data.question.split('---')
-    const answer = dividedQ[0] + data.answer + dividedQ[1]
-    const { id } = data
-    return { id, answer }
+    const { nickname, qas } = data
+    const datas = qas.map((qa) => {
+      const { id } = qa
+      const dividedQ = qa.question.split('---')
+      const answer = dividedQ[0] + qa.answer + dividedQ[1]
+      const res = { id, answer }
+      return res
+    })
+    return { nickname, datas }
   })
 
   return (
-    <>
+    <div className={cx('manualBox')}>
       <div className={cx('typeBtns')}>
         <div
           className={cx(
@@ -62,10 +66,10 @@ export default function ManualBox({
               />
             ))
           ) : (
-            <OthersDescriptionCard answers={answers} nickname={nickname} />
+            <OthersDescriptionCard cardDatas={answers} />
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
