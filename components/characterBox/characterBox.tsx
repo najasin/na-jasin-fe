@@ -13,7 +13,7 @@ export default function CharacterBox({
 }: ISelectedCharacter) {
   return (
     <div className={cx('wrap')}>
-      {/* <Image
+      <Image
         className={cx('img')}
         src="/images/character-base.svg"
         alt="base image"
@@ -40,7 +40,7 @@ export default function CharacterBox({
         alt="face image"
         fill={true}
         priority={true}
-      /> */}
+      />
       {baseImage && (
         <>
           <Image

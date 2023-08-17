@@ -1,40 +1,40 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useForm } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
 
-import CharacterBox from '@/components/characterBox/characterBox'
+import { useRouter } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import FormBox from '../formBox/formBox'
-import MakeOthersDescriptionCardList from '../makeOthersDescriptionCardList/makeOthersDescriptionCardList'
-import RadarChartContainer from '../radarChart/radarChartContainer'
+import ContentModalLayout2 from '../modalLayout/contentModalLayout2'
 import SimpleLayout from '../simpleLayout/simpleLayout'
 import { fetchOthersData } from './makeOthersManual.api'
-import { graphDataState } from './makeOthersManual.atom'
 import styles from './makeOthersManual.module.scss'
+import MakeOthersManualFunnel from './makeOthersManualFunnel/makeOthersManualFunnel'
+import ModalDescriptionCardList from './modalDescriptionCardList/modalDescriptionCardList'
+import OthersCharacterBox from './othersCharacterBox/othersCharacterBox'
 
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
+  const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData2'],
     queryFn: fetchOthersData,
   })
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const [graphData, setGraphData] = useRecoilState(graphDataState)
-
-  const {
-    handleSubmit,
-    register,
-    formState: { isSubmitting },
-  } = useForm()
+  const { handleSubmit, register, formState } = useForm()
+  // const { handleSubmit, register, formState, setError, clearErrors } = useForm()
 
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['manual', 'statGraph'],
@@ -49,32 +49,13 @@ export default function MakeOthersManual() {
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
 
   const nickname = data?.othersData2?.nickname
-  const otherKeywordPercents = data?.othersData2?.otherKeywordPercents
-  const characterItems = data?.othersData2?.characterItems
-  const setItems = characterItems?.set?.showCase
-  const faceItems = characterItems?.face?.showCase
-  const bodyItems = characterItems?.body?.showCase
-  const expressionItems = characterItems?.expression?.showCase
 
-  const selectedItems = setItems
-    ? { set: setItems }
-    : {
-        face: faceItems,
-        body: bodyItems,
-        expression: expressionItems,
-      }
-
-  const rectangleLayout = {
-    frameSize: 350,
-    radarSize: 200,
+  const handleClickTrybtn = () => {
+    router.push('/')
   }
 
-  const validationRules = {
-    required: true,
-    minLength: {
-      value: 1,
-      message: '1글자 이상 입력해주세요.',
-    },
+  const handleClickGhostbtn = () => {
+    setIsModalOpen(true)
   }
 
   return (
@@ -86,10 +67,7 @@ export default function MakeOthersManual() {
         >
           <div className={cx('layout')}>
             {!isTablet && (
-              <CharacterBox
-                baseImage={data?.itemsData?.baseImage}
-                selectedItems={selectedItems}
-              />
+              <OthersCharacterBox onClickGhostBtn={handleClickGhostbtn} />
             )}
 
             <FormBox
@@ -100,58 +78,55 @@ export default function MakeOthersManual() {
               <form onSubmit={handleSubmit(onClickSubmit)}>
                 <div className={cx('formContent')}>
                   {isTablet && step === 'manual' && (
-                    <CharacterBox
-                      baseImage={data?.itemsData?.baseImage}
-                      selectedItems={selectedItems}
-                    />
+                    <OthersCharacterBox onClickGhostBtn={handleClickGhostbtn} />
                   )}
-
-                  <Funnel>
-                    <Funnel.Step name="manual">
-                      <div className={cx('manualWrap')}>
-                        <MakeOthersDescriptionCardList
-                          register={register}
-                          validationRules={
-                            step === 'manual' ? validationRules : undefined
-                          }
-                          step={step}
-                        />
-                      </div>
-                    </Funnel.Step>
-                    <Funnel.Step name="statGraph">
-                      {otherKeywordPercents && (
-                        <RadarChartContainer
-                          radarType="TJNS"
-                          setRadarData={setGraphData}
-                          originKeywordPercents={graphData}
-                          otherKeywordPercents={otherKeywordPercents}
-                          frameSize={rectangleLayout.frameSize}
-                          radarSize={rectangleLayout.radarSize}
-                          framePadding={
-                            rectangleLayout.frameSize -
-                            rectangleLayout.radarSize
-                          }
-                          hasOthers={false}
-                        />
-                      )}
-                    </Funnel.Step>
-                  </Funnel>
+                  <MakeOthersManualFunnel
+                    Funnel={Funnel}
+                    step={step}
+                    register={register}
+                    formState={formState}
+                  />
                 </div>
 
                 <div className={cx('btn')}>
                   <CommonBtn
                     type="submit"
                     style={
-                      isSubmitting ? ButtonStyle.DEACTIVE : ButtonStyle.ACTIVE
+                      formState.errors.manual
+                        ? ButtonStyle.DEACTIVE
+                        : ButtonStyle.ACTIVE
                     }
                   >
                     다음
                   </CommonBtn>
+                  <span className={cx('tryBtn')}>
+                    <CircleBtn onClick={handleClickTrybtn}>
+                      나도 해보기
+                    </CircleBtn>
+                  </span>
                 </div>
               </form>
             </FormBox>
           </div>
         </SimpleLayout>
+      )}
+      {isModalOpen && (
+        <>
+          <ContentModalLayout2
+            title={`${nickname}(이)는 이렇게 사용해요`}
+            content={<ModalDescriptionCardList />}
+            closeBtn={
+              <button
+                onClick={() => {
+                  setIsModalOpen(false)
+                }}
+              >
+                X
+              </button>
+            }
+            completeBtn={<CommonBtn>확인했어요</CommonBtn>}
+          />
+        </>
       )}
     </>
   )

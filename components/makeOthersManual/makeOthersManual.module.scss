@@ -1,53 +1,15 @@
-// .layout {
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 70px;
-//   align-items: center;
-//   justify-content: center;
-//   min-width: 326px;
-//   margin: 20px 0 52px;
-
-//   @include tablet {
-//     margin-top: 30px;
-//   }
-//   @include mobile {
-//     margin-top: 20px;
-//   }
-
-//   .formWrapper {
-//     position: relative;
-//     height: 100%;
-
-//     @include tablet {
-//       display: flex;
-//       flex-direction: column;
-//       width: 520px;
-//       gap: 2px;
-//     }
-
-//     @include mobile {
-//       width: 326px;
-//     }
-//   }
-
-//   .progressBar {
-//     margin-bottom: 10px;
-//   }
-
-//   .characterWrapper {
-//     @include tablet {
-//       display: none;
-//     }
-//   }
-// }
-
 .layout {
   display: flex;
+  position: relative;
   flex-wrap: wrap;
-  gap: 70px;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  margin-bottom: 50px;
+  gap: 70px;
+  @include mobile {
+    margin-bottom: 30px;
+  }
 }
 
 .formContent {
@@ -85,20 +47,6 @@
   }
 }
 
-.manualWrap {
-  height: 300px;
-  margin: 0 auto 20px;
-  overflow: scroll;
-
-  @include tablet {
-    height: 213px;
-  }
-
-  @include mobile {
-    height: 211px;
-  }
-}
-
 .keywords {
   height: 300px;
   @include tablet {
@@ -116,6 +64,7 @@
   margin: 0 auto 25px;
 
   @include tablet {
+    position: relative;
     margin-bottom: 0;
   }
 
@@ -124,3 +73,33 @@
   }
 }
 
+.tryBtn {
+  position: absolute;
+  right: -120px;
+  bottom: 0;
+  @include tablet {
+    right: -30px;
+    bottom: 25px;
+  }
+  @include mobile {
+    right: -20px;
+    bottom: 25px;
+  }
+}
+
+.modalOverlay {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.modal {
+  max-height: 600px;
+}

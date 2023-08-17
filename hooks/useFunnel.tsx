@@ -2,12 +2,12 @@ import { Children, ReactNode, isValidElement, useEffect, useState } from 'react'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-interface FunnelProps<T extends readonly string[]> {
+export interface IFunnelProps<T extends readonly string[]> {
   step: T[number]
   children: ReactNode
 }
 
-interface StepProps<T extends readonly string[]> {
+export interface IStepProps<T extends readonly string[]> {
   name: T[number]
   children?: ReactNode
 }
@@ -16,12 +16,12 @@ interface StepProps<T extends readonly string[]> {
 function Funnel<T extends readonly string[]>({
   step,
   children,
-}: FunnelProps<T>) {
+}: IFunnelProps<T>) {
   // 유효한 자식 요소 필터링
   const validElement = Children.toArray(children).filter(isValidElement)
   // 현재 단계와 일치하는 Step 컴포넌트를 찾음
   const targetElement = validElement.find(
-    (child) => (child.props as StepProps<T>)?.name === step,
+    (child) => (child.props as IStepProps<T>)?.name === step,
   )
 
   // 일치하는 Step 컴포넌트가 없으면 null 반환
@@ -33,7 +33,7 @@ function Funnel<T extends readonly string[]>({
 }
 
 // 단순히 자식 요소들을 렌더링해주는 Step 컴포넌트
-function Step<T extends readonly string[]>({ children }: StepProps<T>) {
+function Step<T extends readonly string[]>({ children }: IStepProps<T>) {
   return <>{children}</>
 }
 
@@ -58,8 +58,8 @@ export const useFunnel = <T extends readonly string[]>(
 
   // Funnel 컴포넌트와 함께 Step 컴포넌트를 반환하는 객체를 생성
   const FunnelElement = Object.assign(
-    (props: Omit<FunnelProps<T>, 'step'>) => <Funnel step={step} {...props} />,
-    { Step: (props: StepProps<T>) => <Step<T> {...props} /> },
+    (props: Omit<IFunnelProps<T>, 'step'>) => <Funnel step={step} {...props} />,
+    { Step: (props: IStepProps<T>) => <Step<T> {...props} /> },
   )
   const pathname = usePathname()
   const searchParams = useSearchParams().get('step')

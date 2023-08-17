@@ -1,0 +1,28 @@
+.characterBoxWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 388px;
+  height: 100%;
+  margin: 0 auto;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    width: 388px;
+    padding: 0;
+    gap: 29px;
+  }
+
+  @include mobile {
+    width: 280px;
+    gap: 20px;
+  }
+}
+
+.ghostBtnWrapper {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}

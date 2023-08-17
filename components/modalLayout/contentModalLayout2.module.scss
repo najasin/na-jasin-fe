@@ -1,0 +1,52 @@
+.modal {
+  width: 1080px;
+  max-height: 600px;
+  padding: 44px 50px 30px;
+  border-radius: 20px;
+  background-color: white;
+  @include tablet {
+    width: 100%;
+    margin: 50px;
+  }
+  @include mobile {
+    margin: 25px;
+  }
+}
+
+.header {
+  @include flexbox(row, space-between, center);
+
+  margin: 0 auto;
+  margin-bottom: 18px;
+}
+
+.title {
+  @include font-style('text3');
+  @include mobile {
+    @include font-style('button2');
+  }
+}
+
+.contents {
+  margin: 0 auto;
+  @include flexbox(column, center);
+}
+
+.content {
+  height: 400px;
+  margin-bottom: 28px;
+  overflow-y: scroll;
+}
+
+.modalOverlay {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 50%);
+}
