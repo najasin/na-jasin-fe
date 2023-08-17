@@ -9,6 +9,8 @@ import React, {
 
 import classNames from 'classnames/bind'
 
+import { hsYuji } from '@/styles/local.fonts'
+
 import styles from './input.module.scss'
 import { TextFeildProps } from './input.types'
 
@@ -38,12 +40,19 @@ Input.TextField = forwardRef(function TextField(
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <input
-      className={cx('inputTextField')}
-      ref={ref}
-      onChange={onChange}
-      {...props.register}
-      aria-invalid={props.isInvalid}
-    />
+    <>
+      <div className={cx('errorInfo')}>
+        {props.isInvalid && (
+          <p className={cx('errorInfoText', hsYuji.className)}>필수!</p>
+        )}
+      </div>
+      <input
+        className={cx('inputTextField')}
+        ref={ref}
+        onChange={onChange}
+        {...props.register}
+        aria-invalid={props.isInvalid}
+      />
+    </>
   )
 })

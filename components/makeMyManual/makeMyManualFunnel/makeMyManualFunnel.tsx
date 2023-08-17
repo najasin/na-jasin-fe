@@ -97,7 +97,7 @@ export default function MakeMyManualFunnel({
             <Input.TextField
               id="nickname"
               register={register('nickname', {
-                ...(step === 'nickname' && { ...validationRules }),
+                ...(step === 'nickname' && validationRules),
               })}
               isInvalid={
                 formState.isSubmitted ? !!formState.errors.nickname : undefined
@@ -116,6 +116,7 @@ export default function MakeMyManualFunnel({
           <MyDescriptionCardList
             register={register}
             validationRules={step === 'manual' ? validationRules : undefined}
+            formState={formState}
           />
         </div>
       </Funnel.Step>

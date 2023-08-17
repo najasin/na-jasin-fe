@@ -1,7 +1,5 @@
 'use client'
 
-import React, { useEffect } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useForm } from 'react-hook-form'
@@ -53,9 +51,6 @@ export default function MakeMyManual() {
   const statsGraphValue = useRecoilValue(statsGraphValueState)
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
-  useEffect(() => {
-    console.log(formState.errors.nickname?.message)
-  }, [formState.errors.nickname])
   const selectedItems =
     getSelectedItemsFromSet(selectedSet) ||
     getSelectedItemsFromOtherItems({
@@ -113,7 +108,11 @@ export default function MakeMyManual() {
             <CommonBtn
               type="submit"
               style={
-                formState.errors.nickname
+                formState.errors.nickname ||
+                formState.errors.character ||
+                formState.errors.manual ||
+                formState.errors.keyword ||
+                formState.errors.statGraph
                   ? ButtonStyle.DEACTIVE
                   : ButtonStyle.ACTIVE
               }

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
 
 import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
@@ -12,6 +12,7 @@ const cx = classNames.bind(styles)
 export default function MyDescriptionCardList({
   register,
   validationRules,
+  formState,
 }: {
   register?: UseFormRegister<FieldValues>
   validationRules?: {
@@ -21,6 +22,7 @@ export default function MyDescriptionCardList({
       message: string
     }
   }
+  formState?: FormState<FieldValues>
 }) {
   // {
   //   questions,
@@ -44,7 +46,12 @@ export default function MyDescriptionCardList({
                   question: question.question,
                 }}
                 register={
-                  register && register(`manual.${question.id}`, validationRules)
+                  register && register(`manual${question.id}`, validationRules)
+                }
+                isInvalid={
+                  formState && formState.isSubmitted
+                    ? !!formState.errors[`manual${question.id}`]
+                    : undefined
                 }
               />
             </div>
