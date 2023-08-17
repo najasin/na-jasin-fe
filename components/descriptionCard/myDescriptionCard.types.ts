@@ -1,5 +1,5 @@
 export interface IMyDescriptionCardProps {
-  question: { id: string; question: string }
+  question: { question: string }
   answer?: string
   defaultValue?: string
 }
