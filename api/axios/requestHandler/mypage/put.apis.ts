@@ -81,4 +81,51 @@ const updateAnswers = async ({
   return response
 }
 
-export { updateNickname, updateAnswers }
+/**
+ *
+ * @example 외부에서 try catch 처리
+ * ```js
+ * try {
+ *  const data = await updateCharacter({ characterItems, userType, token, })
+ *
+ *  return response
+ * } catch (error) {
+ *  return error as Error
+ * }
+ * ```
+ */
+const updateCharacter = async ({
+  characterItems,
+  userType,
+  token,
+}: {
+  characterItems:
+    | {
+        face: { id: string }
+        body: { id: string }
+        expression: { id: string }
+      }
+    | { sets: string }
+  userType: string
+  token?: string
+}): Promise<string> => {
+  const response = await putRequest<string>(
+    `/api/${userType}/character`,
+    {
+      characterItems,
+      userType,
+    },
+
+    token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : {},
+  )
+
+  return response
+}
+
+export { updateNickname, updateAnswers, updateCharacter }
