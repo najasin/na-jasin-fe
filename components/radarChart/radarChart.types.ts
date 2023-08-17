@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
+type TrimmedDataProps = {
+  [key: string]: number
+}
 
 interface DataPoint {
   axis: string
@@ -49,10 +51,11 @@ interface IRadarChartContainerProps {
   radarSize: number
   framePadding: number
   hasOthers: boolean
-  setRadarData?: Dispatch<SetStateAction<IAxisMaps[] | null>>
+  handleUpdateRadarData?: (value: TrimmedDataProps) => void
 }
 
 export type {
+  TrimmedDataProps,
   DataPoint,
   IRadarChartProps,
   IRadarCompoundProps,

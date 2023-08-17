@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { IAxisMaps } from './radarChart.types'
+import { TrimmedDataProps } from './radarChart.types'
 // import { useQuery } from '@tanstack/react-query'
 // import { getRadarData } from './radar-mock.apis'
 import RadarChartContainer from './radarChartContainer'
@@ -96,11 +96,14 @@ export default function RadarChartFetcher({
     radarSize: 200,
   }
 
-  const [radarData, setRadarData] = useState<IAxisMaps[] | null>(null)
+  const [radarData, setRadarData] = useState<TrimmedDataProps | null>(null)
+
+  const handleUpdateRadarData = (value: TrimmedDataProps) => {
+    setRadarData(value)
+  }
 
   useEffect(() => {
     // example
-    // console.log(radarData)
   }, [radarData])
 
   return (
@@ -112,7 +115,7 @@ export default function RadarChartFetcher({
       radarSize={rectangleLayout.radarSize}
       framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
       hasOthers={hasOthers}
-      setRadarData={setRadarData}
+      handleUpdateRadarData={handleUpdateRadarData}
     />
   )
 }
