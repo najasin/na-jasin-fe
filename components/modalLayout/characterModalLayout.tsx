@@ -9,7 +9,7 @@ export default function CharacterModalLayout({
   title,
   closeBtn,
   character,
-  content,
+  children,
 }: CharacterModalLayoutProps) {
   return (
     <div className={cx('modal')}>
@@ -19,7 +19,7 @@ export default function CharacterModalLayout({
       </div>
       <div className={cx('contents')}>
         {character}
-        {content}
+        {children}
       </div>
     </div>
   )
