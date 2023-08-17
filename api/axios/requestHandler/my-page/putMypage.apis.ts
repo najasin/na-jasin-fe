@@ -20,7 +20,7 @@ const updateNickname = async ({
 }: {
   nickname: string
   userType: string
-  token: string
+  token?: string
 }): Promise<string> => {
   const response = await putRequest<string>(
     `/api/${userType}/nickname`,
@@ -28,11 +28,13 @@ const updateNickname = async ({
       nickname,
       userType,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+    token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : {},
   )
 
   return response
@@ -58,7 +60,7 @@ const updateAnswers = async ({
 }: {
   answers: Array<{ id: string; answer: string }>
   userType: string
-  token: string
+  token?: string
 }): Promise<string> => {
   const response = await putRequest<string>(
     '/api/answers',
@@ -66,11 +68,14 @@ const updateAnswers = async ({
       answers,
       userType,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
+
+    token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : {},
   )
 
   return response
