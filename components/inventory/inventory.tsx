@@ -7,24 +7,39 @@ import { useRecoilState } from 'recoil'
 import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
 import { selectedCategoryState } from '@/components/makeMyManual/store/makeMyManual.atom'
 
+import getInventory from '@/api/axios/requestHandler/inventory/inventory.api'
+
 import styles from './inventory.module.scss'
 import { InventoryCategoryBtnList } from './inventoryCategoryBtnList/inventoryCategoryBtnList'
 import { InventoryItemBoxList } from './inventoryItemBoxList/inventoryItemBoxList'
 
 const cx = classNames.bind(styles)
 
-export default function Inventory({ resetBtn }: { resetBtn: React.ReactNode }) {
-  const { data } = useQuery({
-    queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
-    refetchOnWindowFocus: true,
-  })
+export default function Inventory({
+  isEdit = false,
+  resetBtn,
+}: {
+  isEdit?: boolean
+  resetBtn: React.ReactNode
+}) {
+  const querySetting = isEdit
+    ? {
+        queryKey: ['myprofileRegister'],
+        queryFn: fetchMyProfileRegisterData,
+        refetchOnWindowFocus: true,
+      }
+    : {
+        queryKey: ['inventory'],
+        queryFn: () => getInventory('jff'),
+        refetchOnWindowFocus: true,
+      }
+
+  const { data } = useQuery(querySetting)
   const [selectedCategory, setSelectedCategory] = useRecoilState(
     selectedCategoryState,
   )
 
-  const selectedCategoryItems =
-    data?.itemsData?.characterItems[selectedCategory] || []
+  const selectedCategoryItems = data?.characterItems[selectedCategory] || []
 
   return (
     <div className={cx('wrap')}>
