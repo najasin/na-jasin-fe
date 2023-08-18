@@ -1,6 +1,7 @@
 .inputWrapper {
   position: relative;
   width: 100%;
+  padding: 6px 0;
 }
 
 .inputTextField {
@@ -19,10 +20,15 @@
   display: inline-block;
   position: absolute;
   right: 0;
-  bottom: 12px;
+  bottom: 18px;
   transform: rotate(33deg);
   transform-origin: top left;
   color: red;
+
+  @include mobile {
+    bottom: 15px;
+    font-size: 8px;
+  }
 }
 
 .img {
