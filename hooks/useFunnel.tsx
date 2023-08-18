@@ -74,6 +74,7 @@ export const useFunnel = <T extends readonly string[]>(
       ),
     [step],
   )
+
   const pathname = usePathname()
   const searchParams = useSearchParams().get('step')
   const router = useRouter()
