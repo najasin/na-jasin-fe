@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import { postOthersManual } from '@/api/requestHandler/othersManual/postOthersManual.api'
+
 import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
@@ -64,13 +66,17 @@ export default function MakeOthersManual() {
       answer: inputData[question.id],
     }))
     const totalFormData = {
-      nickname: inputData.nickname,
-      answers: formattedAnswers,
-      otherKeywordPercents: statsGraphValue,
+      data: {
+        nickname: inputData.nickname,
+        answers: formattedAnswers,
+        otherKeywordPercents: statsGraphValue,
+      },
+      userType: 'jff',
+      userId: '1',
     }
     console.log(totalFormData)
     if (step === 'statGraph') {
-      // API 보내기
+      postOthersManual(totalFormData)
     }
     goNext()
   }
@@ -81,6 +87,11 @@ export default function MakeOthersManual() {
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen)
+  }
+
+  const setTitle = (): string => {
+    if (step === 'manual') return `${nickname} 사용설명서를 작성해주세요`
+    return `${nickname} 능력치를 설정해주세요`
   }
 
   return (
@@ -95,11 +106,7 @@ export default function MakeOthersManual() {
               <OthersCharacterBox onClickGhostBtn={handleModalOpen} />
             )}
             <div className={cx('formBoxWrapper')}>
-              <FormBox
-                title="나를 꾸며주세요"
-                paddingTop={32}
-                onBackClick={goPrev}
-              >
+              <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
                 <form onSubmit={handleSubmit(onClickSubmit)}>
                   <div className={cx('formContent')}>
                     {isTablet && step === 'manual' && (
@@ -117,7 +124,6 @@ export default function MakeOthersManual() {
                     <CommonBtn
                       type="submit"
                       style={
-                        // formState.errors.nickname
                         isAnyFieldEmpty
                           ? ButtonStyle.DEACTIVE
                           : ButtonStyle.ACTIVE

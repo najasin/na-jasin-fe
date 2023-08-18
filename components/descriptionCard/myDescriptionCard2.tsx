@@ -26,7 +26,7 @@ export default function MyDescriptionCard2({
 
   return (
     <div className={cx('card')}>
-      {firstPart}
+      <p className={cx('first')}>{firstPart}</p>
       {!answer ? (
         <div className={cx('manualInput')}>
           <Input variant="small">
