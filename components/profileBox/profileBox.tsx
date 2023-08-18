@@ -9,6 +9,12 @@ import CloseButton from '@/components/manualBox/closeButton'
 import CharacterModalLayout from '@/components/modalLayout/characterModalLayout'
 import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 
+import useBreakpoint from '@/hooks/useBreakpoint.hooks'
+
+import CommonBtn from '../commonBtn/commonBtn'
+import Inventory from '../inventory/inventory'
+import ModalPortal from '../modalPortal/modalPortal'
+import ResetBtn from '../resetBtn/resetBtn'
 import styles from './profileBox.module.scss'
 import { IProfileBoxProps } from './profileBox.types'
 
@@ -21,11 +27,20 @@ export default function ProfileBox({
 }: IProfileBoxProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
+  const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })
+
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
+    console.log('click')
   }
 
   const handleClickModalClose = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleSubmit = () => {
+    // api 요청
+    console.log('submit')
     setIsModalOpen(false)
   }
 
@@ -52,13 +67,33 @@ export default function ProfileBox({
         </div>
       </div>
       {isModalOpen && (
-        <CharacterModalLayout
-          title="자시니 다시 꾸미기"
-          closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
-          character={<CharacterBox baseImage={data?.itemsData?.baseImage} />}
-        >
-          <FormBox title="나를 꾸며주세요"></FormBox>
-        </CharacterModalLayout>
+        <ModalPortal>
+          <CharacterModalLayout
+            title="자시니 다시 꾸미기"
+            closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
+            character={
+              !isUnderTablet && (
+                <CharacterBox baseImage="/images/baseImage.svg" />
+              )
+            }
+          >
+            <div className={cx('formBox')}>
+              <FormBox title="나를 꾸며주세요" showBack={false}>
+                <div className={cx('wrapper')}>
+                  <div className={cx('container')}>
+                    {isUnderTablet && (
+                      <div className={cx('character')}>
+                        <CharacterBox baseImage="/images/baseImage.svg" />
+                      </div>
+                    )}
+                    <Inventory resetBtn={<ResetBtn />} />
+                    <CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>
+                  </div>
+                </div>
+              </FormBox>
+            </div>
+          </CharacterModalLayout>
+        </ModalPortal>
       )}
     </>
   )

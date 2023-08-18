@@ -38,3 +38,41 @@
     border: none;
   }
 }
+
+.formBox {
+  max-width: 100%;
+}
+
+.wrapper {
+  @include flexbox(row, center, center);
+}
+
+.container {
+  width: 388px;
+  @include flexbox(column, center, center);
+
+  gap: 100px;
+  margin-bottom: 25px;
+
+  @include tablet {
+    width: 100%;
+    gap: 30px;
+  }
+
+  @include mobile {
+    gap: 20px;
+    margin-bottom: 0;
+  }
+}
+
+.character {
+  @include tablet {
+    width: 388px;
+    height: 288px;
+  }
+
+  @include mobile {
+    width: 283px;
+    height: 248px;
+  }
+}
