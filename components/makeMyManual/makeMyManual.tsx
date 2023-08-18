@@ -12,7 +12,7 @@ import FormBox from '@/components/formBox/formBox'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
-import { postMyManual } from '@/api/requestHandler/myManual/postMyManual.api'
+import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
