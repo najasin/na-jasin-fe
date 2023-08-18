@@ -30,7 +30,7 @@ export default function KeywordBtnList({
   return (
     <div className={cx('wrap')}>
       {data?.exampleKeywords &&
-        data.itemsData.exampleKeywords.map((keyword: string, index: number) => {
+        data.exampleKeywords.map((keyword: string, index: number) => {
           const isActive = selectedKeywords.includes(keyword)
           const btnStyle = isActive ? ButtonStyle.ACTIVE : undefined
 
