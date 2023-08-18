@@ -1,7 +1,7 @@
 // 추후 instance로 변경
 export async function fetchOthersData() {
   try {
-    const response = await fetch('http://localhost:3000/api/others-manual')
+    const response = await fetch('http://localhost:3000/api/jff/others-manual')
     if (!response.ok) {
       throw new Error('Failed to fetch data')
     }
