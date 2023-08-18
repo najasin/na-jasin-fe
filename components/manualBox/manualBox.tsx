@@ -42,7 +42,7 @@ export default function ManualBox({
   })
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const { handleSubmit, register } = useForm()
+  const { handleSubmit, register, formState } = useForm()
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -52,7 +52,9 @@ export default function ManualBox({
     setIsModalOpen(false)
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = async (inputData) => {
+  const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
+    console.log('클릭')
+    console.log(inputData)
     const answers = transformData(inputData.answers)
 
     try {
@@ -65,6 +67,8 @@ export default function ManualBox({
       return response
     } catch (error) {
       return error as Error
+    } finally {
+      setIsModalOpen(false)
     }
   }
 
@@ -113,7 +117,7 @@ export default function ManualBox({
       </div>
       {isModalOpen && (
         <ModalPortal>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onClickSubmit)}>
             <ContentModalLayout
               title="자시니 다시 설명하기"
               closeBtn={
@@ -121,17 +125,25 @@ export default function ManualBox({
               }
               completeBtn={<CommonBtn type="submit">완료하기</CommonBtn>}
             >
-              {myDatas.map((data) => (
-                <MyDescriptionCard
-                  key={data.id}
-                  question={{ id: data.id, ...data.question }}
-                  defaultValue={data.answer}
-                  register={register(
-                    `answers.${data.id}.answer`,
-                    validationRules,
-                  )}
-                />
-              ))}
+              {myDatas.map((data) => {
+                const dataId = data.id
+                return (
+                  <MyDescriptionCard
+                    key={data.id}
+                    question={{ id: data.id, ...data.question }}
+                    defaultValue={data.answer}
+                    register={register(
+                      `answers[${data.id}].answer`,
+                      validationRules,
+                    )}
+                    isInvalid={
+                      formState && formState.isSubmitted
+                        ? !!formState.errors.answers[dataId]
+                        : undefined
+                    }
+                  />
+                )
+              })}
             </ContentModalLayout>
           </form>
         </ModalPortal>

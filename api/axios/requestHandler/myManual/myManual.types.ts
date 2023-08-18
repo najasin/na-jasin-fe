@@ -5,7 +5,7 @@ interface IMyManualDatas {
   nickname: string
   baseImage: string
   characterItems: CharacterItems
-  questions: IQuestions
+  questions: IQuestions[]
   exampleKeywords: string[]
 }
 

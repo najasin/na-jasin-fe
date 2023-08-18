@@ -51,6 +51,7 @@ Input.TextField = forwardRef(function TextField(
         ref={ref}
         onChange={onChange}
         {...props.register}
+        defaultValue={props.defaultValue}
         aria-invalid={props.isInvalid}
       />
     </>

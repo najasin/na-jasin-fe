@@ -25,11 +25,6 @@ export default function MyDescriptionCardList({
   }
   formState?: FormState<FieldValues>
 }) {
-  // {
-  //   questions,
-  // }: {
-  //   questions: IQuestions[]
-  // }
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: getMyManualRegister,
@@ -38,28 +33,29 @@ export default function MyDescriptionCardList({
 
   return (
     <>
-      {data?.questions?.map(
-        (question: IQuestions) =>
-          question && (
-            <div key={question.id} className={cx('manualItem')}>
-              <MyDescriptionCard
-                question={{
-                  id: question.id,
-                  question: question.question,
-                }}
-                register={
-                  register &&
-                  register(`answers.${question.id}.answer`, validationRules)
-                }
-                isInvalid={
-                  formState && formState.isSubmitted
-                    ? !!formState.errors[`answers.answer.${question.id}`]
-                    : undefined
-                }
-              />
-            </div>
-          ),
-      )}
+      {data?.questions &&
+        data?.questions.map(
+          (question: IQuestions) =>
+            question && (
+              <div key={question.id} className={cx('manualItem')}>
+                <MyDescriptionCard
+                  question={{
+                    id: question.id,
+                    question: question.question,
+                  }}
+                  register={
+                    register &&
+                    register(`answers.${question.id}.answer`, validationRules)
+                  }
+                  isInvalid={
+                    formState && formState.isSubmitted
+                      ? !!formState.errors[`answers.${question.id}.answer`]
+                      : undefined
+                  }
+                />
+              </div>
+            ),
+        )}
     </>
   )
 }
