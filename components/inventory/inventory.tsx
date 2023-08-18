@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 import { selectedCategoryState } from '@/components/makeMyManual/store/makeMyManual.atom'
 
 import getInventory from '@/api/axios/requestHandler/inventory/inventory.api'
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 
 // import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import styles from './inventory.module.scss'
