@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
 
 import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
@@ -11,10 +11,18 @@ import styles from './myDescriptionCardList.module.scss'
 const cx = classNames.bind(styles)
 export default function MyDescriptionCardList({
   register,
-  isInvalid,
+  validationRules,
+  formState,
 }: {
-  register?: UseFormRegisterReturn
-  isInvalid?: boolean
+  register?: UseFormRegister<FieldValues>
+  validationRules?: {
+    required: boolean
+    minLength: {
+      value: number
+      message: string
+    }
+  }
+  formState?: FormState<FieldValues>
 }) {
   // {
   //   questions,
@@ -26,6 +34,7 @@ export default function MyDescriptionCardList({
     queryFn: fetchMyProfileRegisterData,
     refetchOnWindowFocus: true,
   })
+
   return (
     <>
       {data?.itemsData?.questions?.map(
@@ -37,8 +46,15 @@ export default function MyDescriptionCardList({
                   id: question.id,
                   question: question.question,
                 }}
-                register={register}
-                isInvalid={isInvalid}
+                register={
+                  register &&
+                  register(`answers.${question.id}.answer`, validationRules)
+                }
+                isInvalid={
+                  formState && formState.isSubmitted
+                    ? !!formState.errors[`answers.answer.${question.id}`]
+                    : undefined
+                }
               />
             </div>
           ),
