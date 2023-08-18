@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
@@ -31,6 +31,7 @@ import { statsGraphValueState } from './store/makeOthersManual.atom'
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
+  const USERID = '1'
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData2'],
@@ -52,6 +53,7 @@ export default function MakeOthersManual() {
     'manual',
   )
 
+  const pathname = usePathname()
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
 
@@ -72,7 +74,7 @@ export default function MakeOthersManual() {
         otherKeywordPercents: statsGraphValue,
       },
       userType: 'jff',
-      userId: '1',
+      userId: USERID,
     }
     console.log(totalFormData)
     if (step === 'statGraph') {
@@ -93,6 +95,10 @@ export default function MakeOthersManual() {
     if (step === 'manual') return `${nickname} 사용설명서를 작성해주세요`
     return `${nickname} 능력치를 설정해주세요`
   }
+
+  useEffect(() => {
+    router.push(`${pathname}?userId=${USERID}`)
+  }, [router, pathname])
 
   return (
     <>
