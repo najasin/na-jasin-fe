@@ -65,7 +65,7 @@ export default function RadarChartContainer({
     })),
   )
   const [trimmedRadarData, setTrimmedRadarData] = useState<TrimmedDataProps>(
-    originKeywordPercents,
+    radarType === 'NJNS' ? originKeywordPercents : otherKeywordPercents,
   )
 
   const handleDragOutUserInput = (data: DataPoint[]) => {
