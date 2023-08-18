@@ -11,10 +11,15 @@ export default function CharacterBox({
   baseImage,
   selectedItems,
   editBtn,
+  nickname,
 }: ISelectedCharacter) {
   return (
     <div className={cx('wrap')}>
-      {editBtn && <div className={cx('editBtn')}>{editBtn}</div>}
+      {editBtn && (
+        <div style={{ zIndex: 10 }} className={cx('editBtn')}>
+          {editBtn}
+        </div>
+      )}
       {baseImage && (
         <>
           <Image
@@ -66,6 +71,7 @@ export default function CharacterBox({
           )}
         </>
       )}
+      {nickname && <div className={cx('nickname')}>{nickname}</div>}
     </div>
   )
 }
