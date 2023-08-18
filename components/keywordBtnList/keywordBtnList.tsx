@@ -3,9 +3,10 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
+
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import KeywordBtn from '../keywordBtn/keywordBtn'
-import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
 import styles from './keywordBtnList.module.scss'
 import { IKeywordBtnListProps } from './keywordBtnList.types'
 
@@ -17,7 +18,7 @@ export default function KeywordBtnList({
 }: IKeywordBtnListProps) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
+    queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
   const handleClick = (keyword: string) => {

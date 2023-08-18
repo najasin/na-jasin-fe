@@ -12,10 +12,10 @@ import FormBox from '@/components/formBox/formBox'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
-import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,
@@ -37,7 +37,7 @@ const cx = classNames.bind(styles)
 export default function MakeMyManual() {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
+    queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
 
@@ -66,7 +66,6 @@ export default function MakeMyManual() {
     })
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
-    console.log(typeof data)
     if (step === 'keyword') {
       if (selectedKeywords.length !== 5) {
         setError('keyword', {
@@ -83,7 +82,7 @@ export default function MakeMyManual() {
       try {
         const response = await postMyManual({
           userType: 'jff',
-          nickname: data.nickname,
+          nickname: inputData.nickname,
           selectedFaceItem,
           selectedBodyItem,
           selectedExpressionItem,

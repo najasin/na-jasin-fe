@@ -4,10 +4,10 @@ import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { useRecoilState } from 'recoil'
 
-import { fetchMyProfileRegisterData } from '@/components/makeMyManual/makeMyManual.api'
 import { selectedCategoryState } from '@/components/makeMyManual/store/makeMyManual.atom'
 
 import getInventory from '@/api/axios/requestHandler/inventory/inventory.api'
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 
 import styles from './inventory.module.scss'
 import { InventoryCategoryBtnList } from './inventoryCategoryBtnList/inventoryCategoryBtnList'
@@ -25,7 +25,7 @@ export default function Inventory({
   const querySetting = !isEdit
     ? {
         queryKey: ['myprofileRegister'],
-        queryFn: fetchMyProfileRegisterData,
+        queryFn: getMyManualRegister,
         refetchOnWindowFocus: true,
       }
     : {

@@ -5,7 +5,8 @@ import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
 
-import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
+
 import styles from './myDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -31,7 +32,7 @@ export default function MyDescriptionCardList({
   // }
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
+    queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
 
