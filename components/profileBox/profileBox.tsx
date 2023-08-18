@@ -51,8 +51,6 @@ export default function ProfileBox({
   )
   const [selectedSet, setSelectedSet] = useRecoilState(selectedSetState)
 
-  console.log(selectedBodyItem, selectedFaceItem, selectedExpressionItem)
-
   const selectedItems =
     getSelectedItemsFromSet(selectedSet) ||
     getSelectedItemsFromOtherItems({
