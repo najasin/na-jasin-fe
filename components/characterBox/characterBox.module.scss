@@ -9,14 +9,12 @@
   @include tablet {
     width: 100%;
     min-width: 300px;
-    max-width: 388px;
     height: 350px;
     margin: 0 auto;
   }
   @include mobile {
     width: 100%;
-    min-width: 283px;
-    max-width: 283px;
+    max-width: 280px;
     height: 248px;
   }
 }
