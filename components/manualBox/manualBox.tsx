@@ -9,6 +9,7 @@ import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
 
 import CommonBtn from '../commonBtn/commonBtn'
 import ContentModalLayout from '../modalLayout/contentModalLayout'
+import ModalPortal from '../modalPortal/modalPortal'
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
 
@@ -41,6 +42,12 @@ export default function ManualBox({
   }
 
   const handleClickModalClose = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleSubmit = () => {
+    // api 요청
+    console.log('submit')
     setIsModalOpen(false)
   }
 
@@ -88,19 +95,21 @@ export default function ManualBox({
         </div>
       </div>
       {isModalOpen && (
-        <ContentModalLayout
-          title="자시니 다시 설명하기"
-          closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
-          completeBtn={<CommonBtn>완료하기</CommonBtn>}
-        >
-          {myDatas.map((data) => (
-            <MyDescriptionCard
-              key={data.id}
-              question={data.question}
-              defaultValue={data.answer}
-            />
-          ))}
-        </ContentModalLayout>
+        <ModalPortal>
+          <ContentModalLayout
+            title="자시니 다시 설명하기"
+            closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
+            completeBtn={<CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>}
+          >
+            {myDatas.map((data) => (
+              <MyDescriptionCard
+                key={data.id}
+                question={data.question}
+                defaultValue={data.answer}
+              />
+            ))}
+          </ContentModalLayout>
+        </ModalPortal>
       )}
     </>
   )
