@@ -3,6 +3,7 @@
   padding: 44px 50px 25px;
   border: 1px solid black;
   border-radius: 20px;
+  background-color: $white;
 
   @include tablet {
     max-width: 100%;
