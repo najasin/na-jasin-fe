@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 
+import { useRouter } from 'next/navigation'
+
 import CharacterBox from '@/components/characterBox/characterBox'
 import CommonBtn from '@/components/commonBtn/commonBtn'
 import EditBtn from '@/components/editBtn/editBtn'
@@ -61,6 +63,8 @@ export default function ProfileBox({
 
   const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })
 
+  const router = useRouter()
+
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
     console.log('click')
@@ -73,7 +77,7 @@ export default function ProfileBox({
   const handleSubmit = () => {
     // updateCharacter()
     setIsModalOpen(false)
-    // get을 다시 해주거나 refresh 해야 반영이 될거 같아요.
+    router.refresh()
   }
 
   const { face, body, expression, set } = data.itemsData.selectedItems
