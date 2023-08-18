@@ -14,4 +14,5 @@ export interface ISelectedCharacter {
   baseImage: string
   selectedItems?: CharacterItems
   editBtn?: React.ReactNode
+  nickname?: string
 }

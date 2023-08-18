@@ -9,20 +9,20 @@
       },
       {
         "id": "face_id_2",
-        "showCase": "https://picsum.photos/200/300?random=1",
-        "layoutCase": "https://picsum.photos/200/300?random=1"
+        "showCase": "https://picsum.photos/200/300?random=2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
       },
       {
         "id": "face_id_3",
-        "showCase": "https://picsum.photos/200/300?random=1",
-        "layoutCase": "https://picsum.photos/200/300?random=1"
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
       }
     ],
     "body": [
       {
         "id": "body_id_1",
-        "showCase": "https://picsum.photos/200/300?random=2",
-        "layoutCase": "https://picsum.photos/200/300?random=2"
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
       },
       {
         "id": "body_id_2",
@@ -31,20 +31,20 @@
       },
       {
         "id": "body_id_3",
-        "showCase": "https://picsum.photos/200/300?random=2",
-        "layoutCase": "https://picsum.photos/200/300?random=2"
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
       }
     ],
     "expression": [
       {
         "id": "expression_id_1",
-        "showCase": "https://picsum.photos/200/300?random=3",
-        "layoutCase": "https://picsum.photos/200/300?random=3"
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
       },
       {
         "id": "expression_id_2",
-        "showCase": "https://picsum.photos/200/300?random=3",
-        "layoutCase": "https://picsum.photos/200/300?random=3"
+        "showCase": "https://picsum.photos/200/300?random=2",
+        "layoutCase": "https://picsum.photos/200/300?random=2"
       },
       {
         "id": "expression_id_3",
@@ -55,13 +55,13 @@
     "set": [
       {
         "id": "set_id_1",
-        "showCase": "https://picsum.photos/200/300?random=4",
-        "layoutCase": "https://picsum.photos/200/300?random=4"
+        "showCase": "https://picsum.photos/200/300?random=1",
+        "layoutCase": "https://picsum.photos/200/300?random=1"
       },
       {
         "id": "set_id_2",
-        "showCase": "https://picsum.photos/200/300?random=4",
-        "layoutCase": "https://picsum.photos/200/300?random=4"
+        "showCase": "https://picsum.photos/200/300?random=3",
+        "layoutCase": "https://picsum.photos/200/300?random=3"
       },
       {
         "id": "set_id_3",
@@ -69,59 +69,5 @@
         "layoutCase": "https://picsum.photos/200/300?random=4"
       }
     ]
-  },
-  "questions": [
-    {
-      "id": "1111",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "22222",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "3",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "4",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "5",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "6",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "7",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "8",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "9",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    },
-    {
-      "id": "10",
-      "question": "저와 친해지는 방법은 ---(이)에요"
-    }
-  ],
-  "exampleKeywords": [
-    "키워드1",
-    "키워드2",
-    "키워드3",
-    "키워드4",
-    "키워드5",
-    "키워드6",
-    "키워드7",
-    "키워드8",
-    "키워드9",
-    "키워드10"
-  ]
+  }
 }

@@ -16,7 +16,7 @@ export default function OthersDescriptionCard({
         <div className={cx('answerBox')}>
           {datas.map((answer) => (
             <p key={answer.id} className={cx('answer')}>
-              {answer.answer}
+              {answer.sentence}
             </p>
           ))}
         </div>

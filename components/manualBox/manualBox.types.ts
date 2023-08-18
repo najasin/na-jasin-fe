@@ -1,8 +1,8 @@
 export interface IManualBoxProps {
   myDatas: Array<{
-    question: { id: string; question: string }
+    id: string
+    question: { question: string }
     answer?: string
-    defaultValue?: string
   }>
   othersDatas: Array<{
     nickname: string

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles)
 export default function ContentModalLayout({
   title,
   closeBtn,
-  content,
+  children,
   completeBtn,
 }: ContentModalLayoutProps) {
   return (
@@ -18,7 +18,7 @@ export default function ContentModalLayout({
         {closeBtn}
       </div>
       <div className={cx('contents')}>
-        <div className={cx('content')}>{content}</div>
+        <div className={cx('content')}>{children}</div>
         <div>{completeBtn}</div>
       </div>
     </div>

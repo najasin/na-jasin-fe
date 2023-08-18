@@ -18,11 +18,11 @@ export const Default: Story = {
         datas: [
           {
             id: 'ex1',
-            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+            sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
           {
             id: 'ex2',
-            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+            sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
         ],
       },
@@ -31,11 +31,11 @@ export const Default: Story = {
         datas: [
           {
             id: 'ex3',
-            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+            sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
           {
             id: 'ex4',
-            answer: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
+            sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
         ],
       },

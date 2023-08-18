@@ -37,7 +37,7 @@ export default function MyDescriptionCardList({
 
   return (
     <>
-      {data?.itemsData?.questions?.map(
+      {data?.questions?.map(
         (question: IQuestions) =>
           question && (
             <div key={question.id} className={cx('manualItem')}>
