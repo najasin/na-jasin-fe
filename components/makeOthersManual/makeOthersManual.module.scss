@@ -6,7 +6,7 @@
   justify-content: center;
   margin: 0 auto;
   margin-bottom: 50px;
-  gap: 70px;
+  gap: 84px;
   @include mobile {
     margin-bottom: 30px;
   }
@@ -30,7 +30,7 @@
   }
 
   @include mobile {
-    width: 280px;
+    width: 100%;
     gap: 20px;
   }
 }
@@ -69,13 +69,13 @@
   }
 
   @include mobile {
-    width: 280px;
+    width: 100%;
   }
 }
 
 .tryBtn {
   position: absolute;
-  right: -120px;
+  right: -10px;
   bottom: 0;
   @include tablet {
     right: -30px;
@@ -102,4 +102,9 @@
 
 .modal {
   max-height: 600px;
+}
+
+.formBoxWrapper {
+  min-width: 335px;
+  overflow: hidden;
 }

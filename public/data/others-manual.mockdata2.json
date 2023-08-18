@@ -18,7 +18,16 @@
       "layoutCase": "https://picsum.photos/200/300?random=3"
     }
   },
-  "questions": ["저와 친해지는 방법은 ---이에요", "저와 노는 방법은 ---이에요"],
+  "questions": [
+    {
+      "id": "1",
+      "question": "저와 친해지는 방법은 ---이에요"
+    },
+    {
+      "id": "2",
+      "question": "저와 노는 방법은 ---이에요"
+    }
+  ],
   "myManualQAPair": [
     {
       "id": "1",

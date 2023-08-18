@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 
 import MakeOthersDescriptionCardList from '@/components/makeOthersDescriptionCardList/makeOthersDescriptionCardList'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
@@ -18,10 +18,10 @@ import styles from './makeOthersManualFunnel.module.scss'
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManualFunnel({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   Funnel,
   step,
   register,
+  formState,
 }: {
   Funnel: ((
     props: Omit<IFunnelProps<string[]>, 'step'>,
@@ -37,10 +37,8 @@ export default function MakeOthersManualFunnel({
     queryFn: fetchOthersData,
   })
 
-  const [statsGraphValue, setStatsGraphValue] =
-    useRecoilState(statsGraphValueState)
+  const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
 
-  console.log(statsGraphValue)
   const originKeywordPercents = data?.othersData2?.originKeywordPercents
   const otherKeywordPercents = data?.othersData2?.otherKeywordPercents
 
@@ -76,6 +74,7 @@ export default function MakeOthersManualFunnel({
             register={register}
             validationRules={step === 'manual' ? validationRules : undefined}
             step={step}
+            formState={formState}
           />
         </div>
       </Funnel.Step>

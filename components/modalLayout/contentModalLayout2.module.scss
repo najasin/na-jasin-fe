@@ -10,6 +10,7 @@
   }
   @include mobile {
     margin: 25px;
+    padding: 33px 24px 32px;
   }
 }
 
@@ -23,7 +24,7 @@
 .title {
   @include font-style('text3');
   @include mobile {
-    @include font-style('button2');
+    @include font-style('text4');
   }
 }
 
@@ -36,6 +37,9 @@
   height: 400px;
   margin-bottom: 28px;
   overflow-y: scroll;
+  @include mobile {
+    margin-bottom: 21px;
+  }
 }
 
 .modalOverlay {

@@ -1,7 +1,7 @@
 .descriptionCardList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   @include mobile {
     gap: 10px;
   }
