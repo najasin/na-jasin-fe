@@ -8,7 +8,7 @@ import { getQueryClient } from '@/api/tanstack/tanstack.helpers'
 
 export default async function OthersManual() {
   const queryClient = getQueryClient()
-  await queryClient.prefetchQuery(['othersData'], fetchOthersData)
+  await queryClient.prefetchQuery(['othersData2'], fetchOthersData)
   const dehydratedState = dehydrate(queryClient)
   return (
     <QueryHydrate state={dehydratedState}>
