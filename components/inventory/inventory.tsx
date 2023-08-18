@@ -22,7 +22,7 @@ export default function Inventory({
   isEdit?: boolean
   resetBtn: React.ReactNode
 }) {
-  const querySetting = isEdit
+  const querySetting = !isEdit
     ? {
         queryKey: ['myprofileRegister'],
         queryFn: fetchMyProfileRegisterData,
