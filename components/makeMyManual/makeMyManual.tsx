@@ -128,7 +128,7 @@ export default function MakeMyManual() {
               <CharacterBox
                 baseImage={data?.baseImage}
                 selectedItems={step === 'nickname' ? undefined : selectedItems}
-                nickname={step !== 'nickname' && watch('nickname')}
+                nickname={step !== 'nickname' ? watch('nickname') : undefined}
               />
             )}
 

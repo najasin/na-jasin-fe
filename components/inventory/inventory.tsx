@@ -7,8 +7,8 @@ import { useRecoilState } from 'recoil'
 import { selectedCategoryState } from '@/components/makeMyManual/store/makeMyManual.atom'
 
 import getInventory from '@/api/axios/requestHandler/inventory/inventory.api'
-import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 
+// import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import styles from './inventory.module.scss'
 import { InventoryCategoryBtnList } from './inventoryCategoryBtnList/inventoryCategoryBtnList'
 import { InventoryItemBoxList } from './inventoryItemBoxList/inventoryItemBoxList'
@@ -22,10 +22,10 @@ export default function Inventory({
   isEdit?: boolean
   resetBtn: React.ReactNode
 }) {
-  const querySetting = !isEdit
+  const querySetting = !isEdit // type error
     ? {
-        queryKey: ['myprofileRegister'],
-        queryFn: getMyManualRegister,
+        queryKey: ['inventory'],
+        queryFn: () => getInventory('jff'),
         refetchOnWindowFocus: true,
       }
     : {

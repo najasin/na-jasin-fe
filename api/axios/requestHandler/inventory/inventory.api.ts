@@ -1,13 +1,13 @@
+import { ICharacterItems } from '@/components/inventory/inventory.types'
+
 import { getRequest } from '../../common.apis'
 
-const getInventory = async (userType: string) => {
-  try {
-    const response = await getRequest(`/api/${userType}/characterItems`)
+const getInventory = async (userType: string): Promise<ICharacterItems> => {
+  const response = await getRequest<ICharacterItems>(
+    `/api/${userType}/characterItems`,
+  )
 
-    return response
-  } catch (error) {
-    return error as Error
-  }
+  return response
 }
 
 export default getInventory
