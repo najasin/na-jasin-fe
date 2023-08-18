@@ -168,7 +168,6 @@ export default function ProfileBox({
                       </div>
                     )}
 
-
                     <Inventory
                       resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
                       isEdit={true}
