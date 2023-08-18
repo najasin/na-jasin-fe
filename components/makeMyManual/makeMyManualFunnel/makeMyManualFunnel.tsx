@@ -47,11 +47,12 @@ export default function MakeMyManualFunnel({
   )
   const [statsGraphValue, setStatsGraphValue] =
     useRecoilState(statsGraphValueState)
+  console.log(statsGraphValue)
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
-  let inputVariant: string
 
+  let inputVariant: string
   if (isTablet) {
     inputVariant = 'medium'
   } else if (isMobile) {
@@ -64,6 +65,14 @@ export default function MakeMyManualFunnel({
     frameSize: 350,
     radarSize: 200,
   }
+
+  const originKeywordPercents = selectedKeywords.reduce(
+    (acc, keyword) => ({
+      ...acc,
+      [keyword]: 2.6,
+    }),
+    {},
+  )
 
   const resetFace = useResetRecoilState(selectedFaceItemState)
   const resetBody = useResetRecoilState(selectedBodyItemState)
@@ -90,49 +99,51 @@ export default function MakeMyManualFunnel({
   }
 
   return (
-    <Funnel>
-      <Funnel.Step name="nickname">
-        <div className={cx('input')}>
-          <Input variant={inputVariant}>
-            <Input.TextField
-              id="nickname"
-              register={register('nickname', {
-                ...(step === 'nickname' && validationRules),
-              })}
-              isInvalid={
-                formState.isSubmitted ? !!formState.errors.nickname : undefined
-              }
+    <>
+      <Funnel>
+        <Funnel.Step name="nickname">
+          <div className={cx('input')}>
+            <Input variant={inputVariant}>
+              <Input.TextField
+                id="nickname"
+                register={register('nickname', {
+                  ...(step === 'nickname' && validationRules),
+                })}
+                isInvalid={
+                  formState.isSubmitted
+                    ? !!formState.errors.nickname
+                    : undefined
+                }
+              />
+            </Input>
+          </div>
+        </Funnel.Step>
+        <Funnel.Step name="character">
+          <div className={cx('inventory')}>
+            <Inventory resetBtn={<ResetBtn onClick={handleResetBtnClick} />} />
+          </div>
+        </Funnel.Step>
+        <Funnel.Step name="manual">
+          <div className={cx('manualWrap')}>
+            <MyDescriptionCardList
+              register={register}
+              validationRules={step === 'manual' ? validationRules : undefined}
+              formState={formState}
             />
-          </Input>
-        </div>
-      </Funnel.Step>
-      <Funnel.Step name="character">
-        <div className={cx('inventory')}>
-          <Inventory resetBtn={<ResetBtn onClick={handleResetBtnClick} />} />
-        </div>
-      </Funnel.Step>
-      <Funnel.Step name="manual">
-        <div className={cx('manualWrap')}>
-          <MyDescriptionCardList
-            register={register}
-            validationRules={step === 'manual' ? validationRules : undefined}
-            formState={formState}
-          />
-        </div>
-      </Funnel.Step>
-      <Funnel.Step name="keyword">
-        <div className={cx('keywords')}>
-          <KeywordBtnList
-            selectedKeywords={selectedKeywords}
-            setSelectedKeywords={setSelectedKeywords}
-          />
-        </div>
-      </Funnel.Step>
-      <Funnel.Step name="statGraph">
-        {statsGraphValueState && (
+          </div>
+        </Funnel.Step>
+        <Funnel.Step name="keyword">
+          <div className={cx('keywords')}>
+            <KeywordBtnList
+              selectedKeywords={selectedKeywords}
+              setSelectedKeywords={setSelectedKeywords}
+            />
+          </div>
+        </Funnel.Step>
+        <Funnel.Step name="statGraph">
           <RadarChartContainer
             radarType="NJNS"
-            originKeywordPercents={statsGraphValue}
+            originKeywordPercents={originKeywordPercents} // state가 아닌 일반 객체 넣으면 무한 depth
             otherKeywordPercents={{}}
             frameSize={rectangleLayout.frameSize}
             radarSize={rectangleLayout.radarSize}
@@ -140,8 +151,8 @@ export default function MakeMyManualFunnel({
             hasOthers={false}
             handleUpdateRadarData={handleStatsGraphValue}
           />
-        )}
-      </Funnel.Step>
-    </Funnel>
+        </Funnel.Step>
+      </Funnel>
+    </>
   )
 }

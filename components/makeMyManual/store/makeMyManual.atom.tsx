@@ -4,7 +4,7 @@ import { Category } from '@/components/inventory/inventoryCategoryBtnList/invent
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 
 // eslint-disable-next-line import/no-cycle
-import { originKeywordPercentsSelector } from './originKeywordPercents.selecter'
+// import { originKeywordPercentsSelector } from './originKeywordPercents.selecter'
 
 export const selectedCategoryState = atom<Category>({
   key: 'selectedCategoryState',
@@ -38,5 +38,7 @@ export const selectedKeywordsState = atom<string[]>({
 
 export const statsGraphValueState = atom<TrimmedDataProps>({
   key: 'statsGraphValue',
-  default: originKeywordPercentsSelector,
+  default: {},
+
+  // default: originKeywordPercentsSelector,
 })

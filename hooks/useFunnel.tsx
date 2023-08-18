@@ -1,4 +1,11 @@
-import { Children, ReactNode, isValidElement, useEffect, useState } from 'react'
+import {
+  Children,
+  ReactNode,
+  isValidElement,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
@@ -57,10 +64,17 @@ export const useFunnel = <T extends readonly string[]>(
   const [step, setStep] = useState(defaultStep)
 
   // Funnel 컴포넌트와 함께 Step 컴포넌트를 반환하는 객체를 생성
-  const FunnelElement = Object.assign(
-    (props: Omit<IFunnelProps<T>, 'step'>) => <Funnel step={step} {...props} />,
-    { Step: (props: IStepProps<T>) => <Step<T> {...props} /> },
+  const FunnelElement = useMemo(
+    () =>
+      Object.assign(
+        (props: Omit<IFunnelProps<T>, 'step'>) => (
+          <Funnel step={step} {...props} />
+        ),
+        { Step: (props: IStepProps<T>) => <Step<T> {...props} /> },
+      ),
+    [step],
   )
+
   const pathname = usePathname()
   const searchParams = useSearchParams().get('step')
   const router = useRouter()
@@ -93,7 +107,6 @@ export const useFunnel = <T extends readonly string[]>(
   const goPrev = () => {
     const idx = steps.indexOf(step)
     if (idx === 0) return
-
     setStep(steps[idx - 1])
   }
   // FunnelElement와 현재 단계를 설정할 수 있는 setter를 튜플로 반환
