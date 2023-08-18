@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 
 import styles from './contentModalLayout2.module.scss'
-import { ContentModalLayoutProps } from './contentModalLayout.types'
+import { ContentModalLayoutProps2 } from './contentModalLayout2.types'
 
 const cx = classNames.bind(styles)
 
@@ -10,7 +10,7 @@ export default function ContentModalLayout2({
   closeBtn,
   content,
   completeBtn,
-}: ContentModalLayoutProps) {
+}: ContentModalLayoutProps2) {
   return (
     <div className={cx('modalOverlay')}>
       <div className={cx('modal')}>

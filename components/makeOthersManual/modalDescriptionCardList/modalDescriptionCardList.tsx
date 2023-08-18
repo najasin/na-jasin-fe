@@ -23,7 +23,7 @@ export default function ModalDescriptionCardList() {
         <li key={maunalData.id}>
           <MyDescriptionCard
             key={maunalData.id}
-            question={{ id: maunalData.id, question: maunalData.question }}
+            question={{ question: maunalData.question }}
             answer={maunalData.answer}
           />
         </li>
