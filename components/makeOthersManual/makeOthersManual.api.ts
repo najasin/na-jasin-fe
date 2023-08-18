@@ -28,7 +28,7 @@ const instance: CustomAxiosInterface = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : 'https://api.na-jasin.com',
+      : 'https://na-jasin.com',
   headers: {
     'Content-Type': 'application/json',
     Accept: '*/*',
