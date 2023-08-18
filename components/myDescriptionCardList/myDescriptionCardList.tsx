@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
 
-import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
+import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
 
 import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
@@ -41,7 +41,7 @@ export default function MyDescriptionCardList({
         (question: IQuestions) =>
           question && (
             <div key={question.id} className={cx('manualItem')}>
-              <MyDescriptionCard2
+              <MyDescriptionCard
                 question={{
                   id: question.id,
                   question: question.question,
