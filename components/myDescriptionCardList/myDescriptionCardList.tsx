@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
+import { FormState, UseFormRegister } from 'react-hook-form'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
-import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
+import {
+  IFormInputs,
+  IQuestions,
+} from '@/components/makeMyManual/makeMyManual.types'
 
 import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 
@@ -15,7 +18,7 @@ export default function MyDescriptionCardList({
   validationRules,
   formState,
 }: {
-  register?: UseFormRegister<FieldValues>
+  register?: UseFormRegister<IFormInputs>
   validationRules?: {
     required: boolean
     minLength: {
@@ -23,7 +26,7 @@ export default function MyDescriptionCardList({
       message: string
     }
   }
-  formState?: FormState<FieldValues>
+  formState?: FormState<IFormInputs>
 }) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
@@ -45,11 +48,11 @@ export default function MyDescriptionCardList({
                   }}
                   register={
                     register &&
-                    register(`answers.${question.id}.answer`, validationRules)
+                    register(`answers.${question.id}`, validationRules)
                   }
                   isInvalid={
                     formState && formState.isSubmitted
-                      ? !!formState.errors[`answers.${question.id}.answer`]
+                      ? !!formState.errors.answers?.[question.id]
                       : undefined
                   }
                 />

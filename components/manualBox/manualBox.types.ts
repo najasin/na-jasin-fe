@@ -12,3 +12,7 @@ export interface IManualBoxProps {
   onClickMyTypeBtn: () => void
   onClickOthersTypeBtn: () => void
 }
+
+export interface IFormData {
+  answers: Record<string, string>
+}

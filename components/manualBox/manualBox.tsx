@@ -8,7 +8,10 @@ import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
 import { transformData } from '@/components/makeMyManual/makeMyManual.helpers'
-import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
+import {
+  IFormData,
+  IManualBoxProps,
+} from '@/components/manualBox/manualBox.types'
 import ContentModalLayout from '@/components/modalLayout/contentModalLayout'
 import ModalPortal from '@/components/modalPortal/modalPortal'
 
@@ -42,7 +45,7 @@ export default function ManualBox({
   })
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const { handleSubmit, register, formState } = useForm()
+  const { handleSubmit, register, formState } = useForm<IFormData>()
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -132,13 +135,10 @@ export default function ManualBox({
                     key={data.id}
                     question={{ id: data.id, ...data.question }}
                     defaultValue={data.answer}
-                    register={register(
-                      `answers[${data.id}].answer`,
-                      validationRules,
-                    )}
+                    register={register(`answers.${data.id}`, validationRules)}
                     isInvalid={
                       formState && formState.isSubmitted
-                        ? !!formState.errors.answers[dataId]
+                        ? !!formState.errors.answers?.[dataId]
                         : undefined
                     }
                   />

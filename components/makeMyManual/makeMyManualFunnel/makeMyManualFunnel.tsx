@@ -1,7 +1,7 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
+import { FormState, UseFormRegister } from 'react-hook-form'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
 
 import { Input } from '@/components/commonInput/input'
@@ -23,6 +23,7 @@ import ResetBtn from '@/components/resetBtn/resetBtn'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 
+import { IFormInputs } from '../makeMyManual.types'
 import styles from './makeMyManualFunnel.module.scss'
 
 const cx = classNames.bind(styles)
@@ -38,8 +39,8 @@ export default function MakeMyManualFunnel({
   ) => React.JSX.Element) & {
     Step: (props: IStepProps<string[]>) => React.JSX.Element
   }
-  register: UseFormRegister<FieldValues>
-  formState: FormState<FieldValues>
+  register: UseFormRegister<IFormInputs>
+  formState: FormState<IFormInputs>
   step: string
 }) {
   const [selectedKeywords, setSelectedKeywords] = useRecoilState(
