@@ -41,12 +41,14 @@ export default function MakeMyManual() {
     refetchOnWindowFocus: true,
   })
 
-  const { handleSubmit, register, formState, setError, clearErrors } = useForm()
+  const { watch, handleSubmit, register, formState, setError, clearErrors } =
+    useForm()
 
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
   )
+
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
@@ -114,6 +116,7 @@ export default function MakeMyManual() {
         <CharacterBox
           baseImage={data?.baseImage}
           selectedItems={selectedItems}
+          nickname={watch('nickname')}
         />
       )}
 
@@ -124,6 +127,7 @@ export default function MakeMyManual() {
               <CharacterBox
                 baseImage={data?.baseImage}
                 selectedItems={step === 'nickname' ? undefined : selectedItems}
+                nickname={step !== 'nickname' && watch('nickname')}
               />
             )}
 

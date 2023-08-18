@@ -29,3 +29,17 @@
   top: 14px;
   right: 9px;
 }
+
+.nickname {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  left: 0;
+  text-align: center;
+  @include tablet {
+    bottom: 25px;
+  }
+  @include mobile {
+    bottom: 13px;
+  }
+}
