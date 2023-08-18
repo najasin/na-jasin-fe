@@ -1,0 +1,14 @@
+.leftTextListWrapper {
+  width: 50%;
+  height: 100%;
+}
+
+.rightCardWrapper {
+  @include flexbox(row, center, center);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+}

@@ -48,13 +48,16 @@
       border-radius: 30px;
       opacity: 0;
       color: white;
+      scale: 1;
 
       &.isView {
         opacity: 1;
+        scale: 1;
       }
 
       &.isFullScreen {
         opacity: 0;
+        scale: 0.75;
       }
 
       &.black {
