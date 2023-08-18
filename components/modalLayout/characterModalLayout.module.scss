@@ -1,13 +1,12 @@
 .modal {
   width: 1080px;
-  margin: 106px auto 0;
   padding: 44px 50px 25px;
-  border: 1px solid black;
+  border: 1px solid $white;
   border-radius: 20px;
+  background-color: $white;
 
   @include tablet {
     max-width: 100%;
-    padding: 68px 74px;
   }
 
   @include mobile {
