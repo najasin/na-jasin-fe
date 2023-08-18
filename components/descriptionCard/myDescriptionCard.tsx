@@ -38,7 +38,7 @@ export default function MyDescriptionCard({
           </Input>
         </div>
       ) : (
-        <p className={cx('answer')}>{answer}</p>
+        <span className={cx('answer')}>{answer}</span>
       )}
       {secondPart}
     </div>
