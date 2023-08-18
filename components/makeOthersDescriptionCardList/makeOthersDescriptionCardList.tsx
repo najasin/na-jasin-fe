@@ -9,7 +9,7 @@ import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { Input } from '../commonInput/input'
 import MyDescriptionCard2 from '../descriptionCard/myDescriptionCard2'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
-import { fetchOthersData } from '../makeOthersManual/makeOthersManual.api'
+import { fetchOthersManual } from '../makeOthersManual/makeOthersManual.api'
 import styles from './makeOthersDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -33,7 +33,7 @@ export default function MakeOthersDescriptionCardList({
 }) {
   const { data } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
     refetchOnWindowFocus: true,
   })
 
