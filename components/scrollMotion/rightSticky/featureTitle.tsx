@@ -24,8 +24,9 @@ export default function FeatureTitle({
   const isInView = useInView(ref, {
     margin: '-50% 0px -50% 0px',
   })
-  // const [x, setX] = useState(0)
+  const [x, setX] = useState(0)
   const [opacity, setOpacity] = useState(1)
+  // const [scale, setScale] = useState(1)
 
   // console.log('featureId at title', featureId)
   // console.log('fullScreen at title', fullScreen)
@@ -39,18 +40,20 @@ export default function FeatureTitle({
 
   useEffect(() => {
     if (fullScreen) {
-      // setX(-600)
+      setX(-600)
       setOpacity(0)
+      // setScale(0.9)
     } else {
-      // setX(0)
+      setX(0)
       setOpacity(1)
+      // setScale(1)
     }
   }, [fullScreen])
 
   return (
     <motion.p
       // style={{ x, transition: 'all 0.5s ease' }}
-      style={{ opacity, transition: 'all 0.5s ease' }}
+      style={{ x, opacity, transition: 'all 0.5s ease' }}
       ref={ref}
       className={cx('featureTitle', {
         currentColor: isInView,

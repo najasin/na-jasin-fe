@@ -6,7 +6,7 @@ export async function fetchMyProfileRegisterData() {
       throw new Error('Failed to fetch data')
     }
     const data = await response.json()
-    console.log('Fetched data:', data)
+    // console.log('Fetched data:', data)
     return data
   } catch (error) {
     console.error('Error fetching data:', error)
