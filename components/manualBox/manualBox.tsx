@@ -3,16 +3,19 @@ import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
+import CommonBtn from '@/components/commonBtn/commonBtn'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
+import { transformData } from '@/components/makeMyManual/makeMyManual.helpers'
 import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
+import ContentModalLayout from '@/components/modalLayout/contentModalLayout'
+import ModalPortal from '@/components/modalPortal/modalPortal'
+
+import { updateAnswers } from '@/api/axios/requestHandler/mypage/put.apis'
 
 import { validationRules } from '@/helpers/validationRule.helpers'
 
-import CommonBtn from '../commonBtn/commonBtn'
-import ContentModalLayout from '../modalLayout/contentModalLayout'
-import ModalPortal from '../modalPortal/modalPortal'
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
 
@@ -49,10 +52,20 @@ export default function ManualBox({
     setIsModalOpen(false)
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // api 요청
-    console.log(data.answers)
-    // setIsModalOpen(false)
+  const onSubmit: SubmitHandler<FieldValues> = async (inputData) => {
+    const answers = transformData(inputData.answers)
+
+    try {
+      const response = await updateAnswers({
+        answers,
+        userType: 'jff',
+        token: 'token',
+      })
+
+      return response
+    } catch (error) {
+      return error as Error
+    }
   }
 
   return (
