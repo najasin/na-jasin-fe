@@ -1,3 +1,5 @@
+import { IAnswerItem, ITransformedAnswerItem } from './makeMyManual.types'
+
 export const getSelectedItemsFromSet = (selectedSet: string) => {
   if (selectedSet) {
     return { set: selectedSet }
@@ -23,3 +25,11 @@ export const getSelectedItemsFromOtherItems = ({
   }
   return undefined
 }
+
+export const transformData = (
+  data: Record<string, IAnswerItem>,
+): ITransformedAnswerItem[] =>
+  Object.keys(data).map((key: string) => ({
+    id: key,
+    answer: data[key].answer,
+  }))
