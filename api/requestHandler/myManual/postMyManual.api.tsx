@@ -1,17 +1,33 @@
+import { IAnswerItem } from '@/components/makeMyManual/makeMyManual.types'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 
 import { postRequest } from '@/api/axios/common.apis'
 
 /**
  *
- * @example 외부에서 try catch 처리
+ * @example
  * ```js
-
+ try {
+ *  const response = await postMyManual({
+        userType,
+        token,
+        nickname,
+        selectedFaceItem,
+        selectedBodyItem,
+        selectedExpressionItem,
+        selectedSet,
+        answers,
+        statsGraphValue,
+        )
+ *
+ *  return response
+ * } catch (error) {
+ *  return error as Error
+ * }
  * ```
  */
 const postMyManual = async ({
   userType,
-  token,
   nickname,
   selectedFaceItem,
   selectedBodyItem,
@@ -21,43 +37,34 @@ const postMyManual = async ({
   statsGraphValue,
 }: {
   userType: string
-  token: string
   nickname: string
-  selectedFaceItem: string
-  selectedBodyItem: string
-  selectedExpressionItem: string
-  selectedSet: string
-  answers: []
+  selectedFaceItem?: string
+  selectedBodyItem?: string
+  selectedExpressionItem?: string
+  selectedSet?: string
+  answers: IAnswerItem[]
   statsGraphValue: TrimmedDataProps
 }): Promise<string> => {
-  const response = await postRequest<string>(
-    `/api/${userType}/my-manual`,
-    {
-      nickname,
-      characterItems:
-        ((selectedFaceItem || selectedBodyItem || selectedExpressionItem) && {
-          face: {
-            id: selectedFaceItem,
-          },
-          body: {
-            id: selectedBodyItem,
-          },
-          expression: {
-            id: selectedExpressionItem,
-          },
-        }) ||
-        (selectedSet && {
-          set: selectedSet,
-        }),
-      answers,
-      originKeywordPercents: statsGraphValue,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  )
+  const response = await postRequest<string>(`/api/${userType}/my-manual`, {
+    nickname,
+    characterItems:
+      ((selectedFaceItem || selectedBodyItem || selectedExpressionItem) && {
+        face: {
+          id: selectedFaceItem,
+        },
+        body: {
+          id: selectedBodyItem,
+        },
+        expression: {
+          id: selectedExpressionItem,
+        },
+      }) ||
+      (selectedSet && {
+        set: selectedSet,
+      }),
+    answers,
+    originKeywordPercents: statsGraphValue,
+  })
 
   return response
 }
