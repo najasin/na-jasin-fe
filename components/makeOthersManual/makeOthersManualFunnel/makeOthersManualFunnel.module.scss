@@ -1,0 +1,13 @@
+.manualWrap {
+  height: 300px;
+  margin: 0 auto 20px;
+  overflow: scroll;
+
+  @include tablet {
+    height: 213px;
+  }
+
+  @include mobile {
+    height: 211px;
+  }
+}

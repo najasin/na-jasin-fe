@@ -1,0 +1,8 @@
+.descriptionCardList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  @include mobile {
+    gap: 10px;
+  }
+}

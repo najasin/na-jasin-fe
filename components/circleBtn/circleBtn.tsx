@@ -1,7 +1,6 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import { motion } from 'framer-motion'
 
 import styles from './circleBtn.module.scss'
 import { ICircleBtnProps } from './circleBtn.types'
@@ -14,14 +13,8 @@ export default function CircleBtn({
   children,
 }: ICircleBtnProps) {
   return (
-    <motion.button
-      className={cx('button')}
-      onClick={onClick}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      type={type}
-    >
+    <button className={cx('button')} onClick={onClick} type={type}>
       {children}
-    </motion.button>
+    </button>
   )
 }
