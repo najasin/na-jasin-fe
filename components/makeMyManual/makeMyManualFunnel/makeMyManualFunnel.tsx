@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind'
 import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
 
 import { Input } from '@/components/commonInput/input'
 import Inventory from '@/components/inventory/inventory'
@@ -45,9 +45,7 @@ export default function MakeMyManualFunnel({
   const [selectedKeywords, setSelectedKeywords] = useRecoilState(
     selectedKeywordsState,
   )
-  const [statsGraphValue, setStatsGraphValue] =
-    useRecoilState(statsGraphValueState)
-  console.log(statsGraphValue)
+  const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
 
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })

@@ -34,6 +34,7 @@ export default function MyDescriptionCardList({
     queryFn: fetchMyProfileRegisterData,
     refetchOnWindowFocus: true,
   })
+
   return (
     <>
       {data?.itemsData?.questions?.map(
@@ -46,11 +47,12 @@ export default function MyDescriptionCardList({
                   question: question.question,
                 }}
                 register={
-                  register && register(`manual${question.id}`, validationRules)
+                  register &&
+                  register(`answers.${question.id}.answer`, validationRules)
                 }
                 isInvalid={
                   formState && formState.isSubmitted
-                    ? !!formState.errors[`manual${question.id}`]
+                    ? !!formState.errors[`answers.answer.${question.id}`]
                     : undefined
                 }
               />

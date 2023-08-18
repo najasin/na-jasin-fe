@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
 import CharacterBox from '@/components/characterBox/characterBox'
@@ -12,11 +12,14 @@ import FormBox from '@/components/formBox/formBox'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import { postMyManual } from '@/api/requestHandler/myManual/postMyManual.api'
+
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,
+  transformData,
 } from './makeMyManual.helpers'
 import styles from './makeMyManual.module.scss'
 import MakeMyManualFunnel from './makeMyManualFunnel/makeMyManualFunnel'
@@ -39,6 +42,7 @@ export default function MakeMyManual() {
   })
 
   const { handleSubmit, register, formState, setError, clearErrors } = useForm()
+
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
@@ -59,7 +63,8 @@ export default function MakeMyManual() {
       selectedExpressionItem,
     })
 
-  const onClickSubmit = () => {
+  const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
+    console.log(typeof data)
     if (step === 'keyword') {
       if (selectedKeywords.length !== 5) {
         setError('keyword', {
@@ -71,10 +76,27 @@ export default function MakeMyManual() {
     }
 
     if (step === 'statGraph') {
-      // API 보내기
-      console.log(statsGraphValue)
-    }
+      const answers = transformData(inputData.answers)
+      console.log(answers)
+      try {
+        const response = await postMyManual({
+          userType: 'jff',
+          nickname: data.nickname,
+          selectedFaceItem,
+          selectedBodyItem,
+          selectedExpressionItem,
+          selectedSet,
+          answers,
+          statsGraphValue,
+        })
 
+        return response
+      } catch (error) {
+        console.error('An error occurred:', error)
+
+        return error as Error
+      }
+    }
     goNext()
   }
   const setTitle = (): string => {
