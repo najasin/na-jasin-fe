@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 
-import { fetchOthersData } from '../makeOthersManual.api'
+import { fetchOthersManual } from '../makeOthersManual.api'
 import styles from './modalDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -13,7 +13,7 @@ const cx = classNames.bind(styles)
 export default function ModalDescriptionCardList() {
   const { data } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
   })
   const myManualQAPair = data?.othersData2?.myManualQAPair
 

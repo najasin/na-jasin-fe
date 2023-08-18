@@ -6,7 +6,7 @@ import classNames from 'classnames/bind'
 import CharacterBox from '@/components/characterBox/characterBox'
 import GhostBtn from '@/components/ghostBtn/ghostBtn'
 
-import { fetchOthersData } from '../makeOthersManual.api'
+import { fetchOthersManual } from '../makeOthersManual.api'
 import styles from './othersCharacterBox.module.scss'
 
 const cx = classNames.bind(styles)
@@ -18,7 +18,7 @@ export default function OthersCharacterBox({
 }) {
   const { data } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
   })
 
   const characterItems = data?.othersData2?.characterItems

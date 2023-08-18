@@ -21,7 +21,7 @@ import FormBox from '../formBox/formBox'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
 import ContentModalLayout2 from '../modalLayout/contentModalLayout2'
 import SimpleLayout from '../simpleLayout/simpleLayout'
-import { fetchOthersData } from './makeOthersManual.api'
+import { fetchOthersManual } from './makeOthersManual.api'
 import styles from './makeOthersManual.module.scss'
 import MakeOthersManualFunnel from './makeOthersManualFunnel/makeOthersManualFunnel'
 import ModalDescriptionCardList from './modalDescriptionCardList/modalDescriptionCardList'
@@ -35,7 +35,7 @@ export default function MakeOthersManual() {
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
   const statsGraphValue = useRecoilValue(statsGraphValueState)

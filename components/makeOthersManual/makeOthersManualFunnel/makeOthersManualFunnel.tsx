@@ -11,7 +11,7 @@ import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 
-import { fetchOthersData } from '../makeOthersManual.api'
+import { fetchOthersManual } from '../makeOthersManual.api'
 import { statsGraphValueState } from '../store/makeOthersManual.atom'
 import styles from './makeOthersManualFunnel.module.scss'
 
@@ -34,7 +34,7 @@ export default function MakeOthersManualFunnel({
 }) {
   const { data } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
   })
 
   const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
