@@ -112,7 +112,7 @@ export default function MakeMyManual() {
     <div className={cx('layout')}>
       {!isTablet && step !== 'nickname' && (
         <CharacterBox
-          baseImage={data?.itemsData?.baseImage}
+          baseImage={data?.baseImage}
           selectedItems={selectedItems}
         />
       )}
@@ -122,7 +122,7 @@ export default function MakeMyManual() {
           <div className={cx('formContent')}>
             {((isTablet && step !== 'statGraph') || step === 'nickname') && (
               <CharacterBox
-                baseImage={data?.itemsData?.baseImage}
+                baseImage={data?.baseImage}
                 selectedItems={step === 'nickname' ? undefined : selectedItems}
               />
             )}
