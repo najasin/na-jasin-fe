@@ -1,29 +1,44 @@
 .modal {
   width: 1080px;
-  margin: 106px auto 0;
-  padding: 44px 50px 0;
-  border: 1px solid black;
+  padding: 44px 50px 25px;
+  border: 1px solid $white;
   border-radius: 20px;
+  background-color: $white;
+
+  @include tablet {
+    max-width: 100%;
+  }
+
+  @include mobile {
+    padding: 34px 36px;
+  }
 }
 
 .header {
   @include flexbox(row, space-between, center);
 
-  width: 975px;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 52px;
 }
 
 .title {
-  @include font-style('text4');
+  @include font-style('text3');
+  @include mobile {
+    @include font-style('button2');
+  }
 }
 
 .contents {
-  width: 791px;
+  width: 100%;
   margin: 0 auto;
   @include flexbox(column, center);
+
+  gap: 42px;
 }
 
 .content {
-  margin-bottom: 81px;
+  @include flexbox(column, center);
+
+  gap: 20px;
 }

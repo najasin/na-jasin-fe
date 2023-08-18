@@ -9,8 +9,11 @@ import ManualBox from '@/components/manualBox/manualBox'
 import ProfileBox from '@/components/profileBox/profileBox'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
+// mock nickname
+const nicknames = 'example'
+
 // mock data
-const data = {
+const characterData = {
   itemsData: {
     baseImage: '/images/baseImage.svg',
     selectedItems: {
@@ -24,24 +27,29 @@ const data = {
 // mock myDatas
 const myDatas = [
   {
-    question: { id: 'ex1', question: '저를 기분좋게 만드는 건 ---이에요.' },
+    id: 'ex1',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    question: { id: 'ex2', question: '저를 기분좋게 만드는 건 ---이에요.' },
+    id: 'ex2',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    question: { id: 'ex3', question: '저를 기분좋게 만드는 건 ---이에요.' },
+    id: 'ex3',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    question: { id: 'ex4', question: '저를 기분좋게 만드는 건 ---이에요.' },
+    id: 'ex4',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    question: { id: 'ex5', question: '저를 기분좋게 만드는 건 ---이에요.' },
-    defaultValue: '맛있는 음식',
+    id: 'ex5',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
+    answer: '맛있는 음식',
   },
 ]
 
@@ -79,8 +87,21 @@ const othersDatas = [
   },
 ]
 
-// mock nickname
-const nickname = 'example'
+const myKeywordPercent = {
+  안녕하: 1,
+  안녕ㅇ: 2,
+  안녕ㄴ: 3,
+  안녕ㅁ: 4,
+  안녕ㅔ: 5,
+}
+
+const othersKeywordPercent = {
+  안녕하: 5,
+  안녕ㅇ: 4,
+  안녕ㄴ: 3,
+  안녕ㅁ: 2,
+  안녕ㅔ: 1,
+}
 
 export default function MyPage() {
   const [type, setType] = useState('MY')
@@ -96,12 +117,16 @@ export default function MyPage() {
   return (
     <>
       <SimpleLayout
-        title={`${nickname} 사용 설명서`}
+        title={`${nicknames} 사용 설명서`}
         btnComponent={<LinkBtn />}
         margin={50}
       >
         <ContentWrapper>
-          <ProfileBox data={data} />
+          <ProfileBox
+            myKeywordPercents={myKeywordPercent}
+            othersKeywordPercents={othersKeywordPercent}
+            data={characterData}
+          />
           <ManualBox
             myDatas={myDatas}
             othersDatas={othersDatas}

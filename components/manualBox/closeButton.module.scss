@@ -1,0 +1,11 @@
+.image {
+  @include tablet {
+    width: 18px;
+    height: 18px;
+  }
+
+  @include mobile {
+    width: 14px;
+    height: 14px;
+  }
+}
