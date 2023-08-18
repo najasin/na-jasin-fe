@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
 import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
+
+import { validationRules } from '@/helpers/validationRule.helpers'
 
 import CommonBtn from '../commonBtn/commonBtn'
 import ContentModalLayout from '../modalLayout/contentModalLayout'
@@ -36,6 +39,7 @@ export default function ManualBox({
   })
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const { handleSubmit, register } = useForm()
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -45,10 +49,10 @@ export default function ManualBox({
     setIsModalOpen(false)
   }
 
-  const handleSubmit = () => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // api 요청
-    console.log('submit')
-    setIsModalOpen(false)
+    console.log(data.answers)
+    // setIsModalOpen(false)
   }
 
   return (
@@ -84,7 +88,7 @@ export default function ManualBox({
               myDatas.map((data) => (
                 <MyDescriptionCard
                   key={data.id}
-                  question={data.question}
+                  question={{ id: data.id, ...data.question }}
                   answer={data.answer}
                 />
               ))
@@ -96,19 +100,27 @@ export default function ManualBox({
       </div>
       {isModalOpen && (
         <ModalPortal>
-          <ContentModalLayout
-            title="자시니 다시 설명하기"
-            closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
-            completeBtn={<CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>}
-          >
-            {myDatas.map((data) => (
-              <MyDescriptionCard
-                key={data.id}
-                question={data.question}
-                defaultValue={data.answer}
-              />
-            ))}
-          </ContentModalLayout>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <ContentModalLayout
+              title="자시니 다시 설명하기"
+              closeBtn={
+                <CloseButton onClickModalClose={handleClickModalClose} />
+              }
+              completeBtn={<CommonBtn type="submit">완료하기</CommonBtn>}
+            >
+              {myDatas.map((data) => (
+                <MyDescriptionCard
+                  key={data.id}
+                  question={{ id: data.id, ...data.question }}
+                  defaultValue={data.answer}
+                  register={register(
+                    `answers.${data.id}.answer`,
+                    validationRules,
+                  )}
+                />
+              ))}
+            </ContentModalLayout>
+          </form>
         </ModalPortal>
       )}
     </>
