@@ -86,7 +86,7 @@ export default function ProfileBox({
                         <CharacterBox baseImage="/images/baseImage.svg" />
                       </div>
                     )}
-                    <Inventory resetBtn={<ResetBtn />} />
+                    <Inventory isEdit={true} resetBtn={<ResetBtn />} />
                     <CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>
                   </div>
                 </div>

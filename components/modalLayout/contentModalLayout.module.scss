@@ -38,7 +38,9 @@
 }
 
 .content {
-  @include flexbox(column, center);
+  @include flexbox(column, flex-start);
 
+  max-height: 400px;
+  overflow-y: scroll;
   gap: 20px;
 }
