@@ -17,6 +17,11 @@ interface IMyPageDatas {
       showCase: string
       layoutCase: string
     }
+    set: {
+      id: number
+      showCase: string
+      layoutCase: string
+    }
   }
   myManualQAPair: Array<{ id: number; question: string; answer: string }>
   othersManualQAPairs: Array<{
