@@ -30,42 +30,42 @@ const characterData = {
 // mock myDatas
 const myDatas = [
   {
-    id: 'ex1',
+    id: 1,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex2',
+    id: 2,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex3',
+    id: 3,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex4',
+    id: 4,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex5',
+    id: 5,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex56',
+    id: 6,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex7',
+    id: 7,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
   {
-    id: 'ex8',
+    id: 8,
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
@@ -77,12 +77,12 @@ const othersDatas = [
     nickname: 'hello',
     qas: [
       {
-        id: 'ex1',
+        id: 1,
         question: '저를 기분좋게 만드는 건 ---이에요.',
         answer: '맛있는 음식',
       },
       {
-        id: 'ex2',
+        id: 2,
         question: '저를 기분좋게 만드는 건 ---이에요.',
         answer: '맛있는 음식',
       },
@@ -92,12 +92,12 @@ const othersDatas = [
     nickname: 'bye',
     qas: [
       {
-        id: 'ex3',
+        id: 1,
         question: '저를 기분좋게 만드는 건 ---이에요.',
         answer: '맛있는 음식',
       },
       {
-        id: 'ex4',
+        id: 2,
         question: '저를 기분좋게 만드는 건 ---이에요.',
         answer: '맛있는 음식',
       },

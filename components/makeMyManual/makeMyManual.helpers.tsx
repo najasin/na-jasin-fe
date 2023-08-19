@@ -27,9 +27,9 @@ export const getSelectedItemsFromOtherItems = ({
 }
 
 export const transformData = (
-  data: Record<string, IAnswerItem>,
+  data: Record<number, IAnswerItem>,
 ): ITransformedAnswerItem[] =>
   Object.keys(data).map((key: string) => ({
-    id: key,
-    answer: data[key].answer,
+    id: +key,
+    answer: data[+key].answer,
   }))
