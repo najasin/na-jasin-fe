@@ -5,7 +5,7 @@ import { putRequest } from '../../common.apis'
  * @example 외부에서 try catch 처리
  * ```js
  * try {
- *  const response = await updateNickname({nickname: 'hi', userType: 'jff', token: 'token' })
+ *  const response = await updateNickname({nickname: 'hi', userType: 'JFF', token: 'token' })
  *
  *  return response
  * } catch (error) {
@@ -45,7 +45,7 @@ const updateNickname = async ({
  * @example 외부에서 try catch 처리
  * ```js
  * try {
- *  const data = await updateAnswers({ answers: [{ id: 'dasda', answer: 'dasda' }], userType: 'jff', token: 'token' })
+ *  const data = await updateAnswers({ answers: [{ id: 'dasda', answer: 'dasda' }], userType: 'JFF', token: 'token' })
  *
  *  return response
  * } catch (error) {

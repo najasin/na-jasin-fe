@@ -3,7 +3,7 @@ import { IMyManualDatas } from './myManual.types'
 
 export async function getMyManualRegister() {
   try {
-    const response = await getRequest<IMyManualDatas>('/api/jff/my-manual')
+    const response = await getRequest<IMyManualDatas>('/api/JFF/my-manual')
     if (!response) {
       throw new Error('Failed to fetch data')
     }

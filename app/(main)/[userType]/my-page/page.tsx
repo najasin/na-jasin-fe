@@ -17,7 +17,7 @@ const getMyPageData = async (userType: string, userId: string) => {
 }
 
 export default async function MyPage() {
-  const data = await getMyPageData('jff', 'example')
+  const data = await getMyPageData('JFF', 'example')
   console.log(data)
 
   if (data instanceof Error) {

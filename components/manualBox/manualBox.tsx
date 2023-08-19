@@ -68,7 +68,7 @@ export default function ManualBox({ myDatas, othersDatas }: IManualBoxProps) {
     try {
       const response = await updateAnswers({
         answers,
-        userType: 'jff',
+        userType: 'JFF',
         token: 'token',
       })
 

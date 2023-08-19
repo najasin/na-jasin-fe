@@ -76,7 +76,7 @@
 //         answers: formattedAnswers,
 //         otherKeywordPercents: statsGraphValue,
 //       },
-//       userType: 'jff',
+//       userType: 'JFF',
 //       userId: USERID,
 //     }
 

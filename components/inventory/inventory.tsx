@@ -25,12 +25,12 @@ export default function Inventory({
   const querySetting = !isEdit // type error
     ? {
         queryKey: ['inventory'],
-        queryFn: () => getInventory('jff'),
+        queryFn: () => getInventory('JFF'),
         refetchOnWindowFocus: true,
       }
     : {
         queryKey: ['inventory'],
-        queryFn: () => getInventory('jff'),
+        queryFn: () => getInventory('JFF'),
         refetchOnWindowFocus: true,
       }
 

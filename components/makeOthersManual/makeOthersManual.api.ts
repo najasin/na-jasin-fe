@@ -62,7 +62,7 @@ interface CharacterData {
 /* page get 요청 */
 export const fetchOthersManual = async () => {
   const response = await getRequest<CharacterData>(
-    '/api/jff/others-manual?userId=1',
+    '/api/JFF/others-manual?userId=1',
   )
 
   return response
@@ -71,7 +71,7 @@ export const fetchOthersManual = async () => {
 /* page post 요청 */
 export const postOthersManual = async (data: FormData) => {
   const response = await postRequest<string>(
-    '/api/jff/others-manual?userId=1',
+    '/api/JFF/others-manual?userId=1',
     data.data,
   )
 

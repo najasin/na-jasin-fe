@@ -6,7 +6,7 @@ import { IMyPageDatas } from './mypage.types'
  * @example 외부에서 try catch 처리
  * ```js
  * try {
- *  const data = await getMypage({ userType: 'jff', userId: 'dasdas' })
+ *  const data = await getMypage({ userType: 'JFF', userId: 'dasdas' })
  *
  *  return data
  * } catch (error) {

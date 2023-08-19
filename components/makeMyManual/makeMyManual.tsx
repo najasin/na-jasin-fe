@@ -84,7 +84,7 @@ export default function MakeMyManual() {
       const answers = transformData(inputData.answers)
       try {
         const response = await postMyManual({
-          userType: 'jff',
+          userType: 'JFF',
           nickname: inputData.nickname,
           selectedFaceItem: selectedFaceItem.id,
           selectedBodyItem: selectedBodyItem.id,
