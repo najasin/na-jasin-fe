@@ -102,10 +102,10 @@ const updateCharacter = async ({
   userType,
   token,
 }: {
-  face: { id?: string }
-  body: { id?: string }
-  expression: { id?: string }
-  set: { id?: string }
+  face: { id?: number }
+  body: { id?: number }
+  expression: { id?: number }
+  set: { id?: number }
   userType: string
   token?: string
 }): Promise<string> => {
