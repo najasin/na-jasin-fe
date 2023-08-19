@@ -16,12 +16,18 @@ const getMyPageData = async (userType: string, userId: string) => {
   }
 }
 
-export default async function MyPage() {
-  const data = await getMyPageData('jff', 'example')
-  console.log(data)
+export default async function MyPage({
+  params,
+  searchParams,
+}: {
+  params: { [key: string]: string }
+  searchParams: { [key: string]: string }
+}) {
+  console.log(params, searchParams)
+  const data = await getMyPageData(params.userType, searchParams.userId)
 
   if (data instanceof Error) {
-    console.log(data)
+    // console.log(data)
   } else {
     const {
       nickname,
@@ -29,7 +35,7 @@ export default async function MyPage() {
       characterItems,
       myManualQAPair,
       othersManualQAPairs,
-      originalKeywordPercents,
+      originKeywordPercents,
       otherKeywordPercents,
     } = data
 
@@ -37,6 +43,7 @@ export default async function MyPage() {
       baseImage,
       characterItems,
     }
+
     return (
       <>
         <SimpleLayout
@@ -46,7 +53,7 @@ export default async function MyPage() {
         >
           <ContentWrapper>
             <ProfileBox
-              myKeywordPercents={originalKeywordPercents}
+              myKeywordPercents={originKeywordPercents}
               othersKeywordPercents={otherKeywordPercents}
               data={characterData}
               nickname={nickname}
