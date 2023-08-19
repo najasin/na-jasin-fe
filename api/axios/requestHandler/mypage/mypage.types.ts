@@ -28,7 +28,7 @@ interface IMyPageDatas {
     nickname: string
     qas: Array<{ id: number; question: string; answer: string }>
   }>
-  originalKeywordPercents: {
+  originKeywordPercents: {
     [keyword: string]: number
   }
   otherKeywordPercents: {
