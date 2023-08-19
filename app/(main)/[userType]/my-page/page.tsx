@@ -1,7 +1,3 @@
-'use client'
-
-import { useState } from 'react'
-
 import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
 import Fab from '@/components/fab/fab'
 import LinkBtn from '@/components/linkBtn/linkBtn'
@@ -16,13 +12,27 @@ const nicknames = 'example'
 
 // mock data
 const characterData = {
-  itemsData: {
-    baseImage: '/images/baseImage.svg',
-    selectedItems: {
-      face: '/images/headset.svg',
-      body: '/images/laptop.svg',
-      expression: '/images/tired.svg',
-      set: '',
+  baseImage: '/images/baseImage.svg',
+  characterItems: {
+    face: {
+      id: 1,
+      showCase: '/images/headset.svg',
+      layoutCase: '/images/headset.svg',
+    },
+    body: {
+      id: 2,
+      showCase: '/images/laptop.svg',
+      layoutCase: '/images/laptop.svg',
+    },
+    expression: {
+      id: 1,
+      showCase: '/images/tired.svg',
+      layoutCase: '/images/tired.svg',
+    },
+    set: {
+      id: 1,
+      showCase: '',
+      layoutCase: '',
     },
   },
 }
@@ -121,18 +131,31 @@ const othersKeywordPercent = {
   안녕ㅔ: 1,
 }
 
+// const getMyPageData = async (userType: string, userId: string) => {
+//   try {
+//     const data = await getMypage({ userType, userId })
+//     return data
+//   } catch (error) {
+//     return error as Error
+//   }
+// }
+
 export default function MyPage() {
-  const [type, setType] = useState('MY')
+  //   const data = getMyPageData('jff', 'example')
 
-  const handleClickMyTypeBtn = () => {
-    setType('MY')
-  }
-
-  const handleClickOthersTypeBtn = () => {
-    setType('OTHERS')
-  }
-
-  // const data = getMypage({ userType: 'jff', userId: 'hello' })
+  //   if (data instanceof Error) {
+  //     console.log(data)
+  //   } else if (data) {
+  //     const {
+  //       nickname,
+  //       baseImage,
+  //       characterItems,
+  //       myManualQAPair,
+  //       othersManualQAPairs,
+  //       originalKeywordPercents,
+  //       otherKeywordPercents,
+  //     } =
+  //   }
 
   return (
     <>
@@ -148,13 +171,7 @@ export default function MyPage() {
             data={characterData}
             nickname={nicknames}
           />
-          <ManualBox
-            myDatas={myDatas}
-            othersDatas={othersDatas}
-            type={type}
-            onClickMyTypeBtn={handleClickMyTypeBtn}
-            onClickOthersTypeBtn={handleClickOthersTypeBtn}
-          />
+          <ManualBox myDatas={myDatas} othersDatas={othersDatas} />
         </ContentWrapper>
       </SimpleLayout>
       <Fab />
