@@ -21,6 +21,8 @@ export default function OthersCharacterBox({
     queryFn: fetchOthersManual,
   })
 
+  const nickname = data?.othersData2?.nickname
+  const baseImage = data?.othersData2?.baseImage
   const characterItems = data?.othersData2?.characterItems
   const setItems = characterItems?.set?.showCase
   const faceItems = characterItems?.face?.showCase
@@ -39,7 +41,8 @@ export default function OthersCharacterBox({
     <>
       <span className={cx('characterBoxWrapper')}>
         <CharacterBox
-          baseImage={data?.itemsData?.baseImage}
+          nickname={nickname}
+          baseImage={baseImage}
           selectedItems={selectedItems}
         />
         <span className={cx('ghostBtnWrapper')}>
