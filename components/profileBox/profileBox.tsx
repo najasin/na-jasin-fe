@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
@@ -54,11 +56,11 @@ export default function ProfileBox({
   const [selectedSet, setSelectedSet] = useRecoilState(selectedSetState)
 
   const selectedItems =
-    getSelectedItemsFromSet(selectedSet) ||
+    getSelectedItemsFromSet(selectedSet.layoutCase) ||
     getSelectedItemsFromOtherItems({
-      selectedFaceItem,
-      selectedBodyItem,
-      selectedExpressionItem,
+      selectedFaceItem: selectedFaceItem.layoutCase,
+      selectedBodyItem: selectedBodyItem.layoutCase,
+      selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
 
   const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })
@@ -80,7 +82,13 @@ export default function ProfileBox({
     router.refresh()
   }
 
-  const { face, body, expression, set } = data.itemsData.selectedItems
+  const { face, body, expression, set } = data.characterItems
+
+  const characterItems = {
+    face: face.layoutCase,
+    body: body.layoutCase,
+    expression: expression.layoutCase,
+  }
 
   const resetFace = useResetRecoilState(selectedFaceItemState)
   const resetBody = useResetRecoilState(selectedBodyItemState)
@@ -96,16 +104,19 @@ export default function ProfileBox({
 
   useEffect(() => {
     if (face) {
-      setSelectedFaceItem(face)
+      setSelectedFaceItem({ id: face.id, layoutCase: face.layoutCase })
     }
     if (body) {
-      setSelectedBodyItem(body)
+      setSelectedBodyItem({ id: body.id, layoutCase: body.layoutCase })
     }
     if (expression) {
-      setSelectedExpressionItem(expression)
+      setSelectedExpressionItem({
+        id: expression.id,
+        layoutCase: expression.layoutCase,
+      })
     }
     if (set) {
-      setSelectedSet(set)
+      setSelectedSet({ id: set.id, layoutCase: set.layoutCase })
     }
   }, [
     face,
@@ -123,8 +134,8 @@ export default function ProfileBox({
       <div className={cx('profileBox')}>
         <div className={cx('characterBox')}>
           <CharacterBox
-            baseImage={data?.itemsData?.baseImage}
-            selectedItems={data?.itemsData?.selectedItems}
+            baseImage={data?.baseImage}
+            selectedItems={characterItems}
             editBtn={<EditBtn onClick={handleClickModalOpen} />}
             nickname={nickname}
           />
@@ -149,7 +160,7 @@ export default function ProfileBox({
             character={
               !isUnderTablet && (
                 <CharacterBox
-                  baseImage={data.itemsData.baseImage}
+                  baseImage={data.baseImage}
                   selectedItems={selectedItems}
                 />
               )
@@ -162,12 +173,11 @@ export default function ProfileBox({
                     {isUnderTablet && (
                       <div className={cx('character')}>
                         <CharacterBox
-                          baseImage={data.itemsData.baseImage}
+                          baseImage={data.baseImage}
                           selectedItems={selectedItems}
                         />
                       </div>
                     )}
-
 
                     <Inventory
                       resetBtn={<ResetBtn onClick={handleResetBtnClick} />}

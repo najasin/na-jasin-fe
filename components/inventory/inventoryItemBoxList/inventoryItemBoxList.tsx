@@ -2,6 +2,7 @@ import classNames from 'classnames/bind'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import ItemBox from '@/components/itemBox/itemBox'
+import { ICharacterItemIdSet } from '@/components/makeMyManual/makeMyManual.types'
 import {
   selectedBodyItemState,
   selectedCategoryState,
@@ -26,25 +27,25 @@ export function InventoryItemBoxList({
     selectedExpressionItemState,
   )
   const setSelectedSet = useSetRecoilState(selectedSetState)
-  const handleItemSelectClick = (img: string) => {
+  const handleItemSelectClick = (data: ICharacterItemIdSet) => {
     switch (selectedCategory) {
       case 'face':
-        setSelectedFaceItem(img)
-        setSelectedSet('')
+        setSelectedFaceItem(data)
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'body':
-        setSelectedBodyItem(img)
-        setSelectedSet('')
+        setSelectedBodyItem(data)
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'expression':
-        setSelectedExpressionItem(img)
-        setSelectedSet('')
+        setSelectedExpressionItem(data)
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'set':
-        setSelectedSet(img)
-        setSelectedFaceItem('')
-        setSelectedBodyItem('')
-        setSelectedExpressionItem('')
+        setSelectedSet(data)
+        setSelectedFaceItem({ id: undefined, layoutCase: '' })
+        setSelectedBodyItem({ id: undefined, layoutCase: '' })
+        setSelectedExpressionItem({ id: undefined, layoutCase: '' })
         break
       default:
         break
@@ -55,7 +56,7 @@ export function InventoryItemBoxList({
       {selectedCategoryItems.map((item: Item) => (
         <ItemBox
           key={item.id}
-          imgUrl={item.showCase}
+          data={item}
           onSelectedItem={handleItemSelectClick}
         />
       ))}

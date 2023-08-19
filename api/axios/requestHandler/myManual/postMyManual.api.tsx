@@ -38,10 +38,10 @@ const postMyManual = async ({
 }: {
   userType: string
   nickname: string
-  selectedFaceItem?: string
-  selectedBodyItem?: string
-  selectedExpressionItem?: string
-  selectedSet?: string
+  selectedFaceItem?: number
+  selectedBodyItem?: number
+  selectedExpressionItem?: number
+  selectedSet?: number
   answers: IAnswerItem[]
   statsGraphValue: TrimmedDataProps
 }): Promise<string> => {

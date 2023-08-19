@@ -59,11 +59,11 @@ export default function MakeMyManual() {
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
   const selectedItems =
-    getSelectedItemsFromSet(selectedSet) ||
+    getSelectedItemsFromSet(selectedSet.layoutCase) ||
     getSelectedItemsFromOtherItems({
-      selectedFaceItem,
-      selectedBodyItem,
-      selectedExpressionItem,
+      selectedFaceItem: selectedFaceItem.layoutCase,
+      selectedBodyItem: selectedBodyItem.layoutCase,
+      selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
@@ -85,10 +85,10 @@ export default function MakeMyManual() {
         const response = await postMyManual({
           userType: 'jff',
           nickname: inputData.nickname,
-          selectedFaceItem,
-          selectedBodyItem,
-          selectedExpressionItem,
-          selectedSet,
+          selectedFaceItem: selectedFaceItem.id,
+          selectedBodyItem: selectedBodyItem.id,
+          selectedExpressionItem: selectedExpressionItem.id,
+          selectedSet: selectedSet.id,
           answers,
           statsGraphValue,
         })
