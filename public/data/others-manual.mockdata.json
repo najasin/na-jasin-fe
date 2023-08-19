@@ -16,6 +16,11 @@
       "id": 1,
       "showCase": "/images/character-expression-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=3"
+    },
+    "set": {
+      "id": 1,
+      "showCase": "/images/character-expression-1.svg",
+      "layoutCase": "https://picsum.photos/200/300?random=3"
     }
   },
   "questions": [

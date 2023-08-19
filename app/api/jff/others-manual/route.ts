@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 
-import othersData2 from '@/public/data/others-manual.mockdata2.json'
+import othersData from '@/public/data/others-manual.mockdata.json'
 
 export async function GET() {
-  return NextResponse.json({ ...othersData2 })
+  return NextResponse.json({ ...othersData })
 }
 
 export async function POST(req: Request) {
