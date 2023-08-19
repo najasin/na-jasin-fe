@@ -54,6 +54,21 @@ const myDatas = [
     question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
     answer: '맛있는 음식',
   },
+  {
+    id: 'ex56',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
+    answer: '맛있는 음식',
+  },
+  {
+    id: 'ex7',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
+    answer: '맛있는 음식',
+  },
+  {
+    id: 'ex8',
+    question: { question: '저를 기분좋게 만드는 건 ---이에요.' },
+    answer: '맛있는 음식',
+  },
 ]
 
 // mock othersDatas

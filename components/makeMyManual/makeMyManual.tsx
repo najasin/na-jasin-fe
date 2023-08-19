@@ -12,16 +12,17 @@ import FormBox from '@/components/formBox/formBox'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
-import { postMyManual } from '@/api/requestHandler/myManual/postMyManual.api'
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
+import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
-import { fetchMyProfileRegisterData } from './makeMyManual.api'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,
   transformData,
 } from './makeMyManual.helpers'
 import styles from './makeMyManual.module.scss'
+import { IFormInputs } from './makeMyManual.types'
 import MakeMyManualFunnel from './makeMyManualFunnel/makeMyManualFunnel'
 import {
   selectedBodyItemState,
@@ -37,12 +38,12 @@ const cx = classNames.bind(styles)
 export default function MakeMyManual() {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
+    queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
 
   const { watch, handleSubmit, register, formState, setError, clearErrors } =
-    useForm()
+    useForm<IFormInputs>()
 
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
@@ -66,24 +67,24 @@ export default function MakeMyManual() {
     })
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
-    console.log(typeof data)
     if (step === 'keyword') {
       if (selectedKeywords.length !== 5) {
+        console.log('하이')
+
         setError('keyword', {
-          type: 'keyword',
+          type: 'error',
           message: 'keyword error',
         })
-        return clearErrors()
+        return clearErrors(['keyword'])
       }
     }
 
     if (step === 'statGraph') {
       const answers = transformData(inputData.answers)
-      console.log(answers)
       try {
         const response = await postMyManual({
           userType: 'jff',
-          nickname: data.nickname,
+          nickname: inputData.nickname,
           selectedFaceItem,
           selectedBodyItem,
           selectedExpressionItem,
@@ -104,7 +105,7 @@ export default function MakeMyManual() {
   const setTitle = (): string => {
     if (step === 'nickname') return '닉네임을 입력해 주세요'
     if (step === 'character') return '나를 꾸며주세요'
-    if (step === 'character') {
+    if (step === 'keyword') {
       return '나를 표현할 키워드 5가지를 선택해 보세요'
     }
     return '내 능력치를 설정해주세요'
@@ -127,7 +128,7 @@ export default function MakeMyManual() {
               <CharacterBox
                 baseImage={data?.baseImage}
                 selectedItems={step === 'nickname' ? undefined : selectedItems}
-                nickname={step !== 'nickname' && watch('nickname')}
+                nickname={step !== 'nickname' ? watch('nickname') : undefined}
               />
             )}
 
@@ -144,7 +145,7 @@ export default function MakeMyManual() {
               style={
                 formState.errors.nickname ||
                 formState.errors.character ||
-                formState.errors.manual ||
+                formState.errors.answers ||
                 formState.errors.keyword ||
                 formState.errors.statGraph
                   ? ButtonStyle.DEACTIVE

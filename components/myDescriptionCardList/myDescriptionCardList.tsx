@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form'
+import { FormState, UseFormRegister } from 'react-hook-form'
 
-import MyDescriptionCard2 from '@/components/descriptionCard/myDescriptionCard2'
-import { IQuestions } from '@/components/makeMyManual/makeMyManual.types'
+import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
+import {
+  IFormInputs,
+  IQuestions,
+} from '@/components/makeMyManual/makeMyManual.types'
 
-import { fetchMyProfileRegisterData } from '../makeMyManual/makeMyManual.api'
+import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
+
 import styles from './myDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -14,7 +18,7 @@ export default function MyDescriptionCardList({
   validationRules,
   formState,
 }: {
-  register?: UseFormRegister<FieldValues>
+  register?: UseFormRegister<IFormInputs>
   validationRules?: {
     required: boolean
     minLength: {
@@ -22,43 +26,39 @@ export default function MyDescriptionCardList({
       message: string
     }
   }
-  formState?: FormState<FieldValues>
+  formState?: FormState<IFormInputs>
 }) {
-  // {
-  //   questions,
-  // }: {
-  //   questions: IQuestions[]
-  // }
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: fetchMyProfileRegisterData,
+    queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
 
   return (
     <>
-      {data?.questions?.map(
-        (question: IQuestions) =>
-          question && (
-            <div key={question.id} className={cx('manualItem')}>
-              <MyDescriptionCard2
-                question={{
-                  id: question.id,
-                  question: question.question,
-                }}
-                register={
-                  register &&
-                  register(`answers.${question.id}.answer`, validationRules)
-                }
-                isInvalid={
-                  formState && formState.isSubmitted
-                    ? !!formState.errors[`answers.answer.${question.id}`]
-                    : undefined
-                }
-              />
-            </div>
-          ),
-      )}
+      {data?.questions &&
+        data?.questions.map(
+          (question: IQuestions) =>
+            question && (
+              <div key={question.id} className={cx('manualItem')}>
+                <MyDescriptionCard
+                  question={{
+                    id: question.id,
+                    question: question.question,
+                  }}
+                  register={
+                    register &&
+                    register(`answers.${question.id}`, validationRules)
+                  }
+                  isInvalid={
+                    formState && formState.isSubmitted
+                      ? !!formState.errors.answers?.[question.id]
+                      : undefined
+                  }
+                />
+              </div>
+            ),
+        )}
     </>
   )
 }

@@ -1,15 +1,24 @@
 import { useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
+import CommonBtn from '@/components/commonBtn/commonBtn'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptionCard'
 import EditBtn from '@/components/editBtn/editBtn'
-import { IManualBoxProps } from '@/components/manualBox/manualBox.types'
+import { transformData } from '@/components/makeMyManual/makeMyManual.helpers'
+import {
+  IFormData,
+  IManualBoxProps,
+} from '@/components/manualBox/manualBox.types'
+import ContentModalLayout from '@/components/modalLayout/contentModalLayout'
+import ModalPortal from '@/components/modalPortal/modalPortal'
 
-import CommonBtn from '../commonBtn/commonBtn'
-import ContentModalLayout from '../modalLayout/contentModalLayout'
-import ModalPortal from '../modalPortal/modalPortal'
+import { updateAnswers } from '@/api/axios/requestHandler/mypage/put.apis'
+
+import { validationRules } from '@/helpers/validationRule.helpers'
+
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
 
@@ -36,6 +45,7 @@ export default function ManualBox({
   })
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const { handleSubmit, register, formState } = useForm<IFormData>()
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -45,10 +55,24 @@ export default function ManualBox({
     setIsModalOpen(false)
   }
 
-  const handleSubmit = () => {
-    // api 요청
-    console.log('submit')
-    setIsModalOpen(false)
+  const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
+    console.log('클릭')
+    console.log(inputData)
+    const answers = transformData(inputData.answers)
+
+    try {
+      const response = await updateAnswers({
+        answers,
+        userType: 'jff',
+        token: 'token',
+      })
+
+      return response
+    } catch (error) {
+      return error as Error
+    } finally {
+      setIsModalOpen(false)
+    }
   }
 
   return (
@@ -84,7 +108,7 @@ export default function ManualBox({
               myDatas.map((data) => (
                 <MyDescriptionCard
                   key={data.id}
-                  question={data.question}
+                  question={{ id: data.id, ...data.question }}
                   answer={data.answer}
                 />
               ))
@@ -96,19 +120,32 @@ export default function ManualBox({
       </div>
       {isModalOpen && (
         <ModalPortal>
-          <ContentModalLayout
-            title="자시니 다시 설명하기"
-            closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
-            completeBtn={<CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>}
-          >
-            {myDatas.map((data) => (
-              <MyDescriptionCard
-                key={data.id}
-                question={data.question}
-                defaultValue={data.answer}
-              />
-            ))}
-          </ContentModalLayout>
+          <form onSubmit={handleSubmit(onClickSubmit)}>
+            <ContentModalLayout
+              title="자시니 다시 설명하기"
+              closeBtn={
+                <CloseButton onClickModalClose={handleClickModalClose} />
+              }
+              completeBtn={<CommonBtn type="submit">완료하기</CommonBtn>}
+            >
+              {myDatas.map((data) => {
+                const dataId = data.id
+                return (
+                  <MyDescriptionCard
+                    key={data.id}
+                    question={{ id: data.id, ...data.question }}
+                    defaultValue={data.answer}
+                    register={register(`answers.${data.id}`, validationRules)}
+                    isInvalid={
+                      formState && formState.isSubmitted
+                        ? !!formState.errors.answers?.[dataId]
+                        : undefined
+                    }
+                  />
+                )
+              })}
+            </ContentModalLayout>
+          </form>
         </ModalPortal>
       )}
     </>

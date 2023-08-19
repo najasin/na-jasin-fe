@@ -11,7 +11,7 @@ export interface ICharacterItemsWithSet {
 export type CharacterItems = ICharacterItemsWithParts | ICharacterItemsWithSet
 
 export interface ISelectedCharacter {
-  baseImage: string
+  baseImage?: string
   selectedItems?: CharacterItems
   editBtn?: React.ReactNode
   nickname?: string
