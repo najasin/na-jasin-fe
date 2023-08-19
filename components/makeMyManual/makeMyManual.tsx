@@ -16,6 +16,7 @@ import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyMa
 import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
+import ProgressBar from '../progressBar/progressBar'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,
@@ -120,43 +121,56 @@ export default function MakeMyManual() {
           nickname={watch('nickname')}
         />
       )}
+      <div className={cx('content')}>
+        <ProgressBar
+          currentStep={step}
+          totalSteps={[
+            'nickname',
+            'character',
+            'manual',
+            'keyword',
+            'statGraph',
+          ]}
+        />
+        <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
+          <form onSubmit={handleSubmit(onClickSubmit)}>
+            <div className={cx('formContent')}>
+              {((isTablet && step !== 'statGraph') || step === 'nickname') && (
+                <CharacterBox
+                  baseImage={data?.baseImage}
+                  selectedItems={
+                    step === 'nickname' ? undefined : selectedItems
+                  }
+                  nickname={step !== 'nickname' ? watch('nickname') : undefined}
+                />
+              )}
 
-      <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
-        <form onSubmit={handleSubmit(onClickSubmit)}>
-          <div className={cx('formContent')}>
-            {((isTablet && step !== 'statGraph') || step === 'nickname') && (
-              <CharacterBox
-                baseImage={data?.baseImage}
-                selectedItems={step === 'nickname' ? undefined : selectedItems}
-                nickname={step !== 'nickname' ? watch('nickname') : undefined}
+              <MakeMyManualFunnel
+                Funnel={Funnel}
+                step={step}
+                register={register}
+                formState={formState}
               />
-            )}
-
-            <MakeMyManualFunnel
-              Funnel={Funnel}
-              step={step}
-              register={register}
-              formState={formState}
-            />
-          </div>
-          <div className={cx('btn')}>
-            <CommonBtn
-              type="submit"
-              style={
-                formState.errors.nickname ||
-                formState.errors.character ||
-                formState.errors.answers ||
-                formState.errors.keyword ||
-                formState.errors.statGraph
-                  ? ButtonStyle.DEACTIVE
-                  : ButtonStyle.ACTIVE
-              }
-            >
-              다음
-            </CommonBtn>
-          </div>
-        </form>
-      </FormBox>
+            </div>
+            <div className={cx('btn')}>
+              <CommonBtn
+                type="submit"
+                style={
+                  formState.errors.nickname ||
+                  formState.errors.character ||
+                  formState.errors.answers ||
+                  formState.errors.keyword ||
+                  formState.errors.statGraph
+                    ? ButtonStyle.DEACTIVE
+                    : ButtonStyle.ACTIVE
+                }
+              >
+                다음
+              </CommonBtn>
+            </div>
+          </form>
+        </FormBox>
+      </div>
     </div>
   )
 }
