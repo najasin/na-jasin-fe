@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 import classNames from 'classnames/bind'
@@ -24,13 +26,7 @@ import styles from './manualBox.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function ManualBox({
-  myDatas,
-  othersDatas,
-  type,
-  onClickMyTypeBtn,
-  onClickOthersTypeBtn,
-}: IManualBoxProps) {
+export default function ManualBox({ myDatas, othersDatas }: IManualBoxProps) {
   const otherAnswers = othersDatas.map((data) => {
     const { nickname, qas } = data
     const datas = qas.map((qa) => {
@@ -46,6 +42,15 @@ export default function ManualBox({
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const { handleSubmit, register, formState } = useForm<IFormData>()
+  const [descriptionType, setDescriptionType] = useState<string>('MY')
+
+  const handleClickMyTypeBtn = () => {
+    setDescriptionType('MY')
+  }
+
+  const handleClickOthersTypeBtn = () => {
+    setDescriptionType('OTHERS')
+  }
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -82,18 +87,22 @@ export default function ManualBox({
           <div
             className={cx(
               'typeBtn',
-              type === 'MY' ? 'typeBtnSelected' : 'typeBtnUnselected',
+              descriptionType === 'MY'
+                ? 'typeBtnSelected'
+                : 'typeBtnUnselected',
             )}
-            onClick={onClickMyTypeBtn}
+            onClick={handleClickMyTypeBtn}
           >
             기본
           </div>
           <div
             className={cx(
               'typeBtn',
-              type === 'OTHERS' ? 'typeBtnSelected' : 'typeBtnUnselected',
+              descriptionType === 'OTHERS'
+                ? 'typeBtnSelected'
+                : 'typeBtnUnselected',
             )}
-            onClick={onClickOthersTypeBtn}
+            onClick={handleClickOthersTypeBtn}
           >
             꿀팁
           </div>
@@ -101,14 +110,16 @@ export default function ManualBox({
         <div className={cx('manual')}>
           <div className={cx('header')}>
             <p>자시니는 이렇게 사용해요</p>
-            {type === 'MY' && <EditBtn onClick={handleClickModalOpen} />}
+            {descriptionType === 'MY' && (
+              <EditBtn onClick={handleClickModalOpen} />
+            )}
           </div>
           <div className={cx('answers')}>
-            {type === 'MY' ? (
+            {descriptionType === 'MY' ? (
               myDatas.map((data) => (
                 <MyDescriptionCard
                   key={data.id}
-                  question={{ id: data.id, ...data.question }}
+                  question={data.question}
                   answer={data.answer}
                 />
               ))
@@ -133,7 +144,7 @@ export default function ManualBox({
                 return (
                   <MyDescriptionCard
                     key={data.id}
-                    question={{ id: data.id, ...data.question }}
+                    question={data.question}
                     defaultValue={data.answer}
                     register={register(`answers.${data.id}`, validationRules)}
                     isInvalid={

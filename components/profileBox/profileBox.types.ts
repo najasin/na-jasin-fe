@@ -1,13 +1,27 @@
 export interface IProfileBoxProps {
   nickname: string
   data: {
-    itemsData: {
-      baseImage: string
-      selectedItems: {
-        face: string
-        body: string
-        expression: string
-        set: string
+    baseImage: string
+    characterItems: {
+      face: {
+        id: number
+        showCase: string
+        layoutCase: string
+      }
+      body: {
+        id: number
+        showCase: string
+        layoutCase: string
+      }
+      expression: {
+        id: number
+        showCase: string
+        layoutCase: string
+      }
+      set: {
+        id: number
+        showCase: string
+        layoutCase: string
       }
     }
   }
