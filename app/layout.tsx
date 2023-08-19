@@ -1,5 +1,7 @@
 import RecoilRootWrapper from '@/store/recoilRootWrapper'
 
+import Script from 'next/script'
+
 import '@/styles/global.scss'
 import { gmarketSans } from '@/styles/local.fonts'
 
@@ -27,6 +29,10 @@ export default function RootLayout({
             <Footer />
           </RecoilRootWrapper>
         </TanstackProvider>
+        <Script
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   )

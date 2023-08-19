@@ -9,6 +9,8 @@ import ManualBox from '@/components/manualBox/manualBox'
 import ProfileBox from '@/components/profileBox/profileBox'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
+// import { getMypage } from '@/api/axios/requestHandler/mypage/get.apis'
+
 // mock nickname
 const nicknames = 'example'
 
@@ -20,6 +22,7 @@ const characterData = {
       face: '/images/headset.svg',
       body: '/images/laptop.svg',
       expression: '/images/tired.svg',
+      set: '',
     },
   },
 }
@@ -129,6 +132,8 @@ export default function MyPage() {
     setType('OTHERS')
   }
 
+  // const data = getMypage({ userType: 'jff', userId: 'hello' })
+
   return (
     <>
       <SimpleLayout
@@ -141,6 +146,7 @@ export default function MyPage() {
             myKeywordPercents={myKeywordPercent}
             othersKeywordPercents={othersKeywordPercent}
             data={characterData}
+            nickname={nicknames}
           />
           <ManualBox
             myDatas={myDatas}
