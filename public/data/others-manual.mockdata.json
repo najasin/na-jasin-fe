@@ -5,22 +5,22 @@
     "face": {
       "id": 1,
       "showCase": "/images/character-face-1.svg",
-      "layoutCase": "https://picsum.photos/200/300?random=1"
+      "layoutCase": "/images/character-face-1.svg"
     },
     "body": {
       "id": 1,
       "showCase": "/images/character-body-1.svg",
-      "layoutCase": "https://picsum.photos/200/300?random=2"
+      "layoutCase": "/images/character-body-1.svg"
     },
     "expression": {
       "id": 1,
       "showCase": "/images/character-expression-1.svg",
-      "layoutCase": "https://picsum.photos/200/300?random=3"
+      "layoutCase": "/images/character-expression-1.svg"
     },
     "set": {
       "id": 1,
       "showCase": "/images/character-expression-1.svg",
-      "layoutCase": "https://picsum.photos/200/300?random=3"
+      "layoutCase": "/images/character-expression-1.svg"
     }
   },
   "questions": [

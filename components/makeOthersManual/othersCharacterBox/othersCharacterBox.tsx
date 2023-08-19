@@ -24,10 +24,10 @@ export default function OthersCharacterBox({
   const nickname = data?.nickname
   const baseImage = data?.baseImage
   const characterItems = data?.characterItems
-  const setItems = characterItems?.set?.showCase
-  const faceItems = characterItems?.face?.showCase
-  const bodyItems = characterItems?.body?.showCase
-  const expressionItems = characterItems?.expression?.showCase
+  const setItems = characterItems?.set?.layoutCase
+  const faceItems = characterItems?.face?.layoutCase
+  const bodyItems = characterItems?.body?.layoutCase
+  const expressionItems = characterItems?.expression?.layoutCase
 
   const selectedItems = setItems
     ? { set: setItems }
