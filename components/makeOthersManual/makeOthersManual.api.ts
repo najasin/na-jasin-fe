@@ -1,9 +1,4 @@
-import axios from 'axios'
-
-import {
-  CommonResponse,
-  CustomAxiosInterface,
-} from '@/api/axios/instance/instance.types'
+import { getRequest, postRequest } from '@/api/axios/common.apis'
 
 interface Answer {
   id: string
@@ -21,31 +16,7 @@ interface FormData {
     otherKeywordPercents: KeywordPercents
   }
   userType: string
-  userId: string
-}
-
-const instance: CustomAxiosInterface = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://na-jasin.com',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: '*/*',
-  },
-  timeout: 30000,
-})
-
-/* get 요청 */
-export const getRequest = async <T>(url: string): Promise<T> => {
-  const response = await instance.get<CommonResponse<T>>(url)
-  return response.data
-}
-
-/* post 요청 */
-export const postRequest = async <T>(url: string, data?: any): Promise<T> => {
-  const response = await instance.post<CommonResponse<T>>(url, data)
-  return response.data
+  userId: number
 }
 
 /* page get 요청 */

@@ -21,7 +21,7 @@ export default function Gnb() {
   const scrolled = useScrolledState()
 
   const user = {
-    userId: 'id',
+    userId: 1,
     userType: 'forFun',
   }
 

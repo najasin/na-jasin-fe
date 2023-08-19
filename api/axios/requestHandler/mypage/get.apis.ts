@@ -19,7 +19,7 @@ const getMypage = async ({
   userId,
 }: {
   userType: string
-  userId: string
+  userId: number
 }): Promise<IMyPageDatas> => {
   const response = await getRequest<IMyPageDatas>(
     `/api/${userType}/mypage?userId=${userId}`,

@@ -16,7 +16,7 @@ interface FormData {
     otherKeywordPercents: KeywordPercents
   }
   userType: string
-  userId: string
+  userId: number
 }
 
 const postOthersManual = async (data: FormData) => {

@@ -31,7 +31,7 @@ import { statsGraphValueState } from './store/makeOthersManual.atom'
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
-  const USERID = '1'
+  const USERID = 1
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData2'],

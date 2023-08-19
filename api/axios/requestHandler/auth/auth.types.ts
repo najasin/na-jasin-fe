@@ -1,7 +1,7 @@
 interface AuthResponse {
   accessToken: string
   refreshToken: string
-  userId: string
+  userId: number
   userType: string | null
 }
 
