@@ -22,3 +22,8 @@ export interface IFormInputs {
   character: CharacterItems
   statGraph: TrimmedDataProps
 }
+
+export interface ICharacterItemIdSet {
+  id: string
+  layoutCase: string
+}

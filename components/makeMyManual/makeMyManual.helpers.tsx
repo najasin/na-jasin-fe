@@ -8,19 +8,19 @@ export const getSelectedItemsFromSet = (selectedSet: string) => {
 }
 
 export const getSelectedItemsFromOtherItems = ({
-  selectedFaceItem,
-  selectedBodyItem,
-  selectedExpressionItem,
+  selectedFaceItemId,
+  selectedBodyItemId,
+  selectedExpressionItemId,
 }: {
-  selectedFaceItem: string
-  selectedBodyItem: string
-  selectedExpressionItem: string
+  selectedFaceItemId: string
+  selectedBodyItemId: string
+  selectedExpressionItemId: string
 }) => {
-  if (selectedFaceItem || selectedBodyItem || selectedExpressionItem) {
+  if (selectedFaceItemId || selectedBodyItemId || selectedExpressionItemId) {
     return {
-      face: selectedFaceItem,
-      body: selectedBodyItem,
-      expression: selectedExpressionItem,
+      face: selectedFaceItemId,
+      body: selectedBodyItemId,
+      expression: selectedExpressionItemId,
     }
   }
   return undefined
