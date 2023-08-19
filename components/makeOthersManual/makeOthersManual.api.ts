@@ -6,7 +6,7 @@ import {
 } from '@/api/axios/instance/instance.types'
 
 interface Answer {
-  id: string
+  id: number
   answer: string
 }
 

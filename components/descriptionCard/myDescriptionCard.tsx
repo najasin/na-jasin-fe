@@ -16,7 +16,7 @@ export default function MyDescriptionCard({
   register,
   isInvalid,
 }: {
-  question: { id: string; question: string }
+  question: { id: number; question: string }
   answer?: string
   defaultValue?: string
   register?: UseFormRegisterReturn

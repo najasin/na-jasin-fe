@@ -3,79 +3,79 @@
   "baseImage": "/images/character-base.svg",
   "characterItems": {
     "face": {
-      "id": "face_id_1",
+      "id": 1,
       "showCase": "/images/character-face-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=1"
     },
     "body": {
-      "id": "body_id_1",
+      "id": 1,
       "showCase": "/images/character-body-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=2"
     },
     "expression": {
-      "id": "expression_id_1",
+      "id": 1,
       "showCase": "/images/character-expression-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=3"
     }
   },
   "questions": [
     {
-      "id": "1",
+      "id": 1,
       "question": "저와 친해지는 방법은 ---이에요"
     },
     {
-      "id": "2",
+      "id": 2,
       "question": "저와 노는 방법은 ---이에요"
     }
   ],
   "myManualQAPair": [
     {
-      "id": "1",
+      "id": 1,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변1"
     },
     {
-      "id": "2",
+      "id": 2,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변2"
     },
     {
-      "id": "3",
+      "id": 3,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변3"
     },
     {
-      "id": "4",
+      "id": 4,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변4"
     },
     {
-      "id": "5",
+      "id": 5,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변5"
     },
     {
-      "id": "6",
+      "id": 6,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변6"
     },
     {
-      "id": "7",
+      "id": 7,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변7"
     },
     {
-      "id": "8",
+      "id": 8,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변8"
     },
     {
-      "id": "9",
+      "id": 9,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변9"
     },
     {
-      "id": "10",
+      "id": 10,
       "question": "저와 친해지는 방법은 ---이에요",
       "answer": "답변10"
     }
