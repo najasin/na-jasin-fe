@@ -1,69 +1,56 @@
 import { getRequest, postRequest } from '@/api/axios/common.apis'
 
-import { Item } from '../inventory/inventory.types'
-
-interface Answer {
+export interface IKeyword {
+  [key: string]: number
+}
+export interface Answer {
   id: number
   answer: string
 }
 
-interface FormData {
+export interface FormData {
   data: {
     nickname: string
     answers: Answer[]
-    otherKeywordPercents: KeywordPercents
+    otherKeywordPercents: IKeyword
   }
   userType: string
   userId: string
 }
 
-export interface UserData {
-  data: {
-    nickname: string
-    answers: Answer[]
-    otherKeywordPercents: KeywordPercents
-  }
-  userType: string
-  userId: string
+export type Item = {
+  id: number
+  showCase: string
+  layoutCase: string
 }
 
-interface CharacterItems {
+export interface ICharacterItems {
   face: Item
   body: Item
   expression: Item
   set: Item
 }
 
-interface Question {
-  id: number
-  question: string
-}
-
-interface MyManualQAPair {
-  id: number
-  question: string
-  answer: string
-}
-
-interface KeywordPercents {
-  [key: string]: number
-}
-
-interface CharacterData {
+export interface GetData {
   nickname: string
   baseImage: string
-  characterItems: CharacterItems
-  questions: Question[]
-  myManualQAPair: MyManualQAPair[]
-  originKeywordPercents: KeywordPercents
-  otherKeywordPercents: KeywordPercents
+  characterItems: ICharacterItems
+  questions: Array<{
+    id: number
+    question: string
+  }>
+  myManualQAPair: Array<{
+    id: number
+    question: string
+    answer: string
+  }>
+  originKeywordPercents: IKeyword
+  otherKeywordPercents: IKeyword
 }
 
 /* page get 요청 */
 export const fetchOthersManual = async () => {
-  const response = await getRequest<CharacterData>(
-    '/api/jff/others-manual?userId=1',
-  )
+  const response: GetData = await getRequest('api/jff/others-manual?userId=1')
 
   return response
 }

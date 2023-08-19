@@ -1,6 +1,5 @@
-import { IAnswerItem } from '../makeMyManual/makeMyManual.types'
-
 export interface IFormInputs {
-  nickname: string
-  answers: Record<string, IAnswerItem>
+  // nickname: string
+  // answers: Record<string, IAnswerItem>
+  [key: string]: string
 }
