@@ -1,5 +1,5 @@
 export type Item = {
-  id: string
+  id: number
   showCase: string
   layoutCase: string
 }

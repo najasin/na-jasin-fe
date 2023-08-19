@@ -2,7 +2,7 @@ import { CharacterItems } from '../characterBox/characterBox.types'
 import { TrimmedDataProps } from '../radarChart/radarChart.types'
 
 export interface IQuestions {
-  id: string
+  id: number
   question: string
 }
 
@@ -11,7 +11,7 @@ export interface IAnswerItem {
 }
 
 export interface ITransformedAnswerItem {
-  id: string
+  id: number
   answer: string
 }
 

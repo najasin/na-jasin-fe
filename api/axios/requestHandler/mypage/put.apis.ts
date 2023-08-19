@@ -58,7 +58,7 @@ const updateAnswers = async ({
   userType,
   token,
 }: {
-  answers: Array<{ id: string; answer: string }>
+  answers: Array<{ id: number; answer: string }>
   userType: string
   token?: string
 }): Promise<string> => {
@@ -101,9 +101,9 @@ const updateCharacter = async ({
 }: {
   characterItems:
     | {
-        face: { id: string }
-        body: { id: string }
-        expression: { id: string }
+        face: { id: number }
+        body: { id: number }
+        expression: { id: number }
       }
     | { sets: string }
   userType: string

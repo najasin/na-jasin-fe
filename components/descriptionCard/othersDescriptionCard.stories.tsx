@@ -17,11 +17,11 @@ export const Default: Story = {
         nickname: 'hello',
         datas: [
           {
-            id: 'ex1',
+            id: 1,
             sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
           {
-            id: 'ex2',
+            id: 2,
             sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
         ],
@@ -30,11 +30,11 @@ export const Default: Story = {
         nickname: 'bye',
         datas: [
           {
-            id: 'ex3',
+            id: 1,
             sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
           {
-            id: 'ex4',
+            id: 2,
             sentence: '저를 기분좋게 만드는 건 맛있는 음식이에요.',
           },
         ],

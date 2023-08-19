@@ -1,17 +1,10 @@
-import axios from 'axios'
+import { getRequest, postRequest } from '@/api/axios/common.apis'
 
-import {
-  CommonResponse,
-  CustomAxiosInterface,
-} from '@/api/axios/instance/instance.types'
+import { Item } from '../inventory/inventory.types'
 
 interface Answer {
-  id: string
+  id: number
   answer: string
-}
-
-interface KeywordPercents {
-  [keyword: string]: number
 }
 
 interface FormData {
@@ -24,33 +17,53 @@ interface FormData {
   userId: string
 }
 
-const instance: CustomAxiosInterface = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://na-jasin.com',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: '*/*',
-  },
-  timeout: 30000,
-})
-
-/* get 요청 */
-export const getRequest = async <T>(url: string): Promise<T> => {
-  const response = await instance.get<CommonResponse<T>>(url)
-  return response.data
+export interface UserData {
+  data: {
+    nickname: string
+    answers: Answer[]
+    otherKeywordPercents: KeywordPercents
+  }
+  userType: string
+  userId: string
 }
 
-/* post 요청 */
-export const postRequest = async <T>(url: string, data?: any): Promise<T> => {
-  const response = await instance.post<CommonResponse<T>>(url, data)
-  return response.data
+interface CharacterItems {
+  face: Item
+  body: Item
+  expression: Item
+  set: Item
+}
+
+interface Question {
+  id: number
+  question: string
+}
+
+interface MyManualQAPair {
+  id: number
+  question: string
+  answer: string
+}
+
+interface KeywordPercents {
+  [key: string]: number
+}
+
+interface CharacterData {
+  nickname: string
+  baseImage: string
+  characterItems: CharacterItems
+  questions: Question[]
+  myManualQAPair: MyManualQAPair[]
+  originKeywordPercents: KeywordPercents
+  otherKeywordPercents: KeywordPercents
 }
 
 /* page get 요청 */
 export const fetchOthersManual = async () => {
-  const response = await getRequest<any>('/api/jff/others-manual?userId=1')
+  const response = await getRequest<CharacterData>(
+    '/api/jff/others-manual?userId=1',
+  )
 
   return response
 }

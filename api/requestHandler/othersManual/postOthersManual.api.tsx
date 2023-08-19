@@ -1,7 +1,7 @@
 import { postRequest } from '@/api/axios/common.apis'
 
 interface Answer {
-  id: string
+  id: number
   answer: string
 }
 

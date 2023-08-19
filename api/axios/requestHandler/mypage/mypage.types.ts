@@ -3,25 +3,25 @@ interface IMyPageDatas {
   baseImage: string
   characterItems: {
     face: {
-      id: string
+      id: number
       showCase: string
       layoutCase: string
     }
     body: {
-      id: string
+      id: number
       showCase: string
       layoutCase: string
     }
     expression: {
-      id: string
+      id: number
       showCase: string
       layoutCase: string
     }
   }
-  myManualQAPair: Array<{ id: string; question: string; answer: string }>
+  myManualQAPair: Array<{ id: number; question: string; answer: string }>
   othersManualQAPairs: Array<{
     nickname: string
-    qas: Array<{ id: string; question: string; answer: string }>
+    qas: Array<{ id: number; question: string; answer: string }>
   }>
   originalKeywordPercents: {
     [keyword: string]: number

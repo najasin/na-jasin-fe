@@ -1,6 +1,6 @@
 import { dehydrate } from '@tanstack/query-core'
 
-import MakeOthersManual from '@/components/makeOthersManual/makeOthersManual'
+// import MakeOthersManual from '@/components/makeOthersManual/makeOthersManual'
 import { fetchOthersManual } from '@/components/makeOthersManual/makeOthersManual.api'
 
 import QueryHydrate from '@/api/tanstack/queryHydrate.context'
@@ -12,7 +12,7 @@ export default async function OthersManual() {
   const dehydratedState = dehydrate(queryClient)
   return (
     <QueryHydrate state={dehydratedState}>
-      <MakeOthersManual />
+      {/* <MakeOthersManual /> */}
     </QueryHydrate>
   )
 }
