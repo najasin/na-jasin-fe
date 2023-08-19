@@ -4,19 +4,18 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
+import { getCookie } from 'cookies-next'
 
 import { logOnDev } from './instance.helpers'
 import { CustomAxiosInterface } from './instance.types'
 
 export const instance: CustomAxiosInterface = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     Accept: '*/*',
   },
+  withCredentials: true,
   timeout: 30000,
 })
 
@@ -26,16 +25,14 @@ instance.interceptors.request.use(
     /**
      * request 직전 공통으로 진행할 작업
      */
+    if (config && config.headers) {
+      const act = getCookie('act')
+      // const rft = getCookie('rft')
 
-    // if (config && config.headers) {
-    //   const token = getCookie('token')
-
-    //   // 인증할 때 받은 토큰을 쿠키에 저장했다면 가져옵니다.
-    //   if (token) {
-    //     config.headers.Authorization = `Bearer ${token}`
-    //     config.headers['Content-Type'] = 'application/json'
-    //   }
-    // }
+      if (act) {
+        config.headers.Authorization = act
+      }
+    }
 
     if (process.env.NODE_ENV === 'development') {
       const { method, url } = config
