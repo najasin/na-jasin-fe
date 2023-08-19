@@ -1,20 +1,20 @@
 {
   "nickname": "자시니",
-  "baseImage": "https://picsum.photos/200/300?random=5",
+  "baseImage": "/images/character-base.svg",
   "characterItems": {
     "face": {
       "id": "face_id_1",
-      "showCase": "https://picsum.photos/200/300?random=1",
+      "showCase": "/images/character-face-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=1"
     },
     "body": {
       "id": "body_id_1",
-      "showCase": "https://picsum.photos/200/300?random=2",
+      "showCase": "/images/character-body-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=2"
     },
     "expression": {
       "id": "expression_id_1",
-      "showCase": "https://picsum.photos/200/300?random=3",
+      "showCase": "/images/character-expression-1.svg",
       "layoutCase": "https://picsum.photos/200/300?random=3"
     }
   },

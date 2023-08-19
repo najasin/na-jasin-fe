@@ -6,7 +6,7 @@ import classNames from 'classnames/bind'
 import CharacterBox from '@/components/characterBox/characterBox'
 import GhostBtn from '@/components/ghostBtn/ghostBtn'
 
-import { fetchOthersData } from '../makeOthersManual.api'
+import { fetchOthersManual } from '../makeOthersManual.api'
 import styles from './othersCharacterBox.module.scss'
 
 const cx = classNames.bind(styles)
@@ -18,9 +18,11 @@ export default function OthersCharacterBox({
 }) {
   const { data } = useQuery({
     queryKey: ['othersData2'],
-    queryFn: fetchOthersData,
+    queryFn: fetchOthersManual,
   })
 
+  const nickname = data?.othersData2?.nickname
+  const baseImage = data?.othersData2?.baseImage
   const characterItems = data?.othersData2?.characterItems
   const setItems = characterItems?.set?.showCase
   const faceItems = characterItems?.face?.showCase
@@ -39,7 +41,8 @@ export default function OthersCharacterBox({
     <>
       <span className={cx('characterBoxWrapper')}>
         <CharacterBox
-          baseImage={data?.itemsData?.baseImage}
+          nickname={nickname}
+          baseImage={baseImage}
           selectedItems={selectedItems}
         />
         <span className={cx('ghostBtnWrapper')}>
