@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 import { motion } from 'framer-motion'
 
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import styles from './signIn.module.scss'
 
@@ -14,8 +15,15 @@ export default function SigninSocialContainer({
 }: {
   userType: 'forFun' | 'forDev'
 }) {
-  const handleClickGetAuthenticationCodeKaKao = () => {}
-  const handleClickGetAuthenticationCodeGoogle = () => {}
+  const router = useRouter()
+  const handleClickGetAuthenticationCodeKaKao = () => {
+    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/auth2/authorize/kakao`)
+  }
+
+  const handleClickGetAuthenticationCodeGoogle = () => {
+    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/auth2/authorize/google`)
+  }
+
   const handleClickGetAuthenticationCodeGithub = () => {}
 
   return (
