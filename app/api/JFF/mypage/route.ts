@@ -10,5 +10,5 @@ export async function GET(req: Request) {
     return NextResponse.json('유저 타입 넣어주세요!')
   }
 
-  return NextResponse.json({ itemsData })
+  return NextResponse.json({ ...itemsData })
 }
