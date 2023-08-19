@@ -16,13 +16,13 @@ export default function MyDescriptionCard({
   register,
   isInvalid,
 }: {
-  question: { id: number; question: string }
+  question: string
   answer?: string
   defaultValue?: string
   register?: UseFormRegisterReturn
   isInvalid?: boolean
 }) {
-  const [firstPart, secondPart] = splitQuestion(question.question) // Use the helper function
+  const [firstPart, secondPart] = splitQuestion(question) // Use the helper function
 
   return (
     <div className={cx('card')}>

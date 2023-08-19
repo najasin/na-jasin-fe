@@ -42,10 +42,7 @@ export default function MyDescriptionCardList({
             question && (
               <div key={question.id} className={cx('manualItem')}>
                 <MyDescriptionCard
-                  question={{
-                    id: question.id,
-                    question: question.question,
-                  }}
+                  question={question.question}
                   register={
                     register &&
                     register(`answers.${question.id}`, validationRules)
