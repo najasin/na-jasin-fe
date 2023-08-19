@@ -31,21 +31,21 @@ export function InventoryItemBoxList({
     switch (selectedCategory) {
       case 'face':
         setSelectedFaceItem(data)
-        setSelectedSet({ id: '', layoutCase: '' })
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'body':
         setSelectedBodyItem(data)
-        setSelectedSet({ id: '', layoutCase: '' })
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'expression':
         setSelectedExpressionItem(data)
-        setSelectedSet({ id: '', layoutCase: '' })
+        setSelectedSet({ id: undefined, layoutCase: '' })
         break
       case 'set':
         setSelectedSet(data)
-        setSelectedFaceItem({ id: '', layoutCase: '' })
-        setSelectedBodyItem({ id: '', layoutCase: '' })
-        setSelectedExpressionItem({ id: '', layoutCase: '' })
+        setSelectedFaceItem({ id: undefined, layoutCase: '' })
+        setSelectedBodyItem({ id: undefined, layoutCase: '' })
+        setSelectedExpressionItem({ id: undefined, layoutCase: '' })
         break
       default:
         break

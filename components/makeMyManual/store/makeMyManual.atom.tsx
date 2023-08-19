@@ -15,22 +15,22 @@ export const selectedCategoryState = atom<Category>({
 
 export const selectedFaceItemState = atom<ICharacterItemIdSet>({
   key: 'selectedFaceItemState',
-  default: { id: '', layoutCase: '' },
+  default: { id: undefined, layoutCase: '' },
 })
 
 export const selectedBodyItemState = atom<ICharacterItemIdSet>({
   key: 'selectedBodyItemState',
-  default: { id: '', layoutCase: '' },
+  default: { id: undefined, layoutCase: '' },
 })
 
 export const selectedExpressionItemState = atom<ICharacterItemIdSet>({
   key: 'selectedExpressionItemState',
-  default: { id: '', layoutCase: '' },
+  default: { id: undefined, layoutCase: '' },
 })
 
 export const selectedSetState = atom<ICharacterItemIdSet>({
   key: 'selectedSetState',
-  default: { id: '', layoutCase: '' },
+  default: { id: undefined, layoutCase: '' },
 })
 
 export const selectedKeywordsState = atom<string[]>({

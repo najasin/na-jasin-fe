@@ -24,6 +24,6 @@ export interface IFormInputs {
 }
 
 export interface ICharacterItemIdSet {
-  id: string
+  id?: number
   layoutCase: string
 }

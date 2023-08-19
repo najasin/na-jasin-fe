@@ -14,7 +14,7 @@ export default itemBox
 export const Default: Story = {
   args: {
     data: {
-      id: '1',
+      id: 1,
       showCase: 'https://picsum.photos/id/237/200/300',
       layoutCase: 'https://picsum.photos/id/237/200/300s',
     },

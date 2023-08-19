@@ -58,9 +58,9 @@ export default function ProfileBox({
   const selectedItems =
     getSelectedItemsFromSet(selectedSet.layoutCase) ||
     getSelectedItemsFromOtherItems({
-      selectedFaceItemId: selectedFaceItem.id,
-      selectedBodyItemId: selectedBodyItem.id,
-      selectedExpressionItemId: selectedExpressionItem.id,
+      selectedFaceItem: selectedFaceItem.layoutCase,
+      selectedBodyItem: selectedBodyItem.layoutCase,
+      selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
 
   const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })

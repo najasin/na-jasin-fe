@@ -61,9 +61,9 @@ export default function MakeMyManual() {
   const selectedItems =
     getSelectedItemsFromSet(selectedSet.layoutCase) ||
     getSelectedItemsFromOtherItems({
-      selectedFaceItemId: selectedFaceItem.layoutCase,
-      selectedBodyItemId: selectedBodyItem.layoutCase,
-      selectedExpressionItemId: selectedExpressionItem.layoutCase,
+      selectedFaceItem: selectedFaceItem.layoutCase,
+      selectedBodyItem: selectedBodyItem.layoutCase,
+      selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
