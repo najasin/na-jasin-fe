@@ -27,10 +27,11 @@ instance.interceptors.request.use(
      */
     if (config && config.headers) {
       const act = getCookie('act')
-      // const rft = getCookie('rft')
+      const rft = getCookie('rft')
 
-      if (act) {
+      if (act && rft) {
         config.headers.Authorization = act
+        config.headers.Refresh = rft
       }
     }
 
