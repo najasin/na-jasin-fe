@@ -10,6 +10,26 @@ import ImageLoaderWrapper from './imageLoaderWrapper'
 
 const cx = classNames.bind(styles)
 
+/**
+ *
+ * @description 사용할 때 layout에 root div 주입해야 합니다.
+ * @example
+ * ```jsx
+ * export default function MyPageLayout({
+ *  children,
+ * }: {
+ *   children: React.ReactNode
+ * }) {
+ *   return (
+ *     <>
+ *       <div id="loader-portal"></div>
+ *         {children}
+ *       </>
+ *   )
+ * }
+ *
+ * ```
+ */
 export default function ImageLoader() {
   return (
     <ImageLoaderWrapper id="loader-portal">
