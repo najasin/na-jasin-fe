@@ -14,14 +14,21 @@
   }
   @include mobile {
     width: 100%;
+    min-width: 100%;
     max-width: 280px;
     height: 248px;
-    min-width: 100%;
   }
 }
 
 .img {
   object-fit: cover;
+}
+
+.character {
+  height: 100%;
+  @include float-animation;
+
+  animation: float 4s ease-in-out infinite;
 }
 
 .editBtn {

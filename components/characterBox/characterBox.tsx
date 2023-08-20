@@ -22,53 +22,56 @@ export default function CharacterBox({
       )}
       {baseImage && (
         <>
-          <Image
-            className={cx('img')}
-            src={baseImage}
-            alt="base image"
-            fill={true}
-            priority={true}
-          />
-          {selectedItems && (
-            <>
-              {'face' in selectedItems && selectedItems?.face && (
-                <Image
-                  className={cx('img')}
-                  src={selectedItems.face}
-                  alt="face item"
-                  priority={true}
-                  fill={true}
-                />
-              )}
-              {'body' in selectedItems && selectedItems.body && (
-                <Image
-                  className={cx('img')}
-                  src={selectedItems.body}
-                  alt="body item"
-                  fill={true}
-                  priority={true}
-                />
-              )}
-              {'expression' in selectedItems && selectedItems.expression && (
-                <Image
-                  className={cx('img')}
-                  src={selectedItems.expression}
-                  alt="expression item"
-                  fill={true}
-                  priority={true}
-                />
-              )}
-              {'set' in selectedItems && selectedItems.set && (
-                <Image
-                  className={cx('img')}
-                  src={selectedItems.set}
-                  alt="set item"
-                  fill={true}
-                  priority={true}
-                />
-              )}
-            </>
-          )}
+          <div className={cx('character')}>
+            <Image
+              className={cx('img')}
+              src={baseImage}
+              alt="base image"
+              fill={true}
+              priority={true}
+            />
+            {selectedItems && (
+              <>
+                {'face' in selectedItems && selectedItems?.face && (
+                  <Image
+                    className={cx('img')}
+                    // src={selectedItems.face}
+                    src="/images/character-face-1.svg"
+                    alt="face item"
+                    priority={true}
+                    fill={true}
+                  />
+                )}
+                {'body' in selectedItems && selectedItems.body && (
+                  <Image
+                    className={cx('img')}
+                    src={selectedItems.body}
+                    alt="body item"
+                    fill={true}
+                    priority={true}
+                  />
+                )}
+                {'expression' in selectedItems && selectedItems.expression && (
+                  <Image
+                    className={cx('img')}
+                    src={selectedItems.expression}
+                    alt="expression item"
+                    fill={true}
+                    priority={true}
+                  />
+                )}
+                {'set' in selectedItems && selectedItems.set && (
+                  <Image
+                    className={cx('img')}
+                    src={selectedItems.set}
+                    alt="set item"
+                    fill={true}
+                    priority={true}
+                  />
+                )}
+              </>
+            )}
+          </div>
         </>
       )}
       {nickname && <div className={cx('nickname')}>{nickname}</div>}
