@@ -1,8 +1,12 @@
 .button {
   width: 70px;
   height: 70px;
+  @include float-animation;
+
+  animation: float 4s ease-in-out infinite;
   border-radius: 50px;
   background-color: $blue-point;
+  box-shadow: 5px 5px 15px 0 rgb(151 151 151 / 20%);
   color: white;
   line-height: 18px;
   word-break: keep-all;
@@ -14,5 +18,4 @@
     font-weight: 300;
     line-height: 14px;
   }
-  @include hover-float(y, -02px);
 }
