@@ -1,12 +1,16 @@
 'use client'
 
 import classNames from 'classnames/bind'
+import { deleteCookie } from 'cookies-next'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import useScrolledState from '@/hooks/useScrolledState'
+
+import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 
 import { UserType } from '@/types/user.enum'
 
@@ -17,6 +21,7 @@ import { GnbChipStyle } from './gnbChip.types'
 const cx = classNames.bind(styles)
 
 export default function Gnb() {
+  const router = useRouter()
   const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
   const scrolled = useScrolledState()
 
@@ -25,8 +30,19 @@ export default function Gnb() {
     userType: 'forFun',
   }
 
-  const handleSignOut = () => {
-    console.log('로그아웃됨')
+  const handleSignOut = async () => {
+    try {
+      const res = await logout()
+
+      if (res === null) {
+        deleteCookie('act')
+        deleteCookie('rft')
+
+        router.push('/')
+      }
+    } catch (err) {
+      throw new Error()
+    }
   }
 
   return (
