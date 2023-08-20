@@ -105,6 +105,9 @@
 }
 
 .formBoxWrapper {
+  display: flex;
+  flex-direction: column;
   min-width: 335px;
   overflow: hidden;
+  gap: 10px;
 }
