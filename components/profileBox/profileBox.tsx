@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import CharacterBox from '@/components/characterBox/characterBox'
 import CommonBtn from '@/components/commonBtn/commonBtn'
@@ -24,7 +24,8 @@ import ResetBtn from '@/components/resetBtn/resetBtn'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
-// import { updateCharacter } from '@/api/axios/requestHandler/mypage/put.apis'
+import { updateCharacter } from '@/api/axios/requestHandler/mypage/put.apis'
+
 import {
   selectedBodyItemState,
   selectedExpressionItemState,
@@ -63,9 +64,23 @@ export default function ProfileBox({
       selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
 
+  const resetFace = useResetRecoilState(selectedFaceItemState)
+  const resetBody = useResetRecoilState(selectedBodyItemState)
+  const resetExpression = useResetRecoilState(selectedExpressionItemState)
+  const resetSet = useResetRecoilState(selectedSetState)
+
+  const handleResetBtnClick = () => {
+    resetFace()
+    resetBody()
+    resetExpression()
+    resetSet()
+  }
+
   const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })
 
   const router = useRouter()
+
+  const { userType } = useParams()
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -77,7 +92,13 @@ export default function ProfileBox({
   }
 
   const handleSubmit = () => {
-    // updateCharacter()
+    updateCharacter({
+      face: { id: selectedFaceItem.id },
+      body: { id: selectedBodyItem.id },
+      expression: { id: selectedExpressionItem.id },
+      set: { id: selectedSet.id },
+      userType: userType as string,
+    })
     setIsModalOpen(false)
     router.refresh()
   }
@@ -85,21 +106,10 @@ export default function ProfileBox({
   const { face, body, expression, set } = data.characterItems
 
   const characterItems = {
-    face: face.layoutCase,
-    body: body.layoutCase,
-    expression: expression.layoutCase,
-  }
-
-  const resetFace = useResetRecoilState(selectedFaceItemState)
-  const resetBody = useResetRecoilState(selectedBodyItemState)
-  const resetExpression = useResetRecoilState(selectedExpressionItemState)
-  const resetSet = useResetRecoilState(selectedSetState)
-
-  const handleResetBtnClick = () => {
-    resetFace()
-    resetBody()
-    resetExpression()
-    resetSet()
+    face: face?.layoutCase,
+    body: body?.layoutCase,
+    expression: expression?.layoutCase,
+    set: set?.layoutCase,
   }
 
   useEffect(() => {

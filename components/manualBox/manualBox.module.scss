@@ -35,8 +35,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  max-height: 500px;
   padding: 30px 35px;
+  overflow: scroll;
   border: 1px solid $black;
   border-radius: 0 0 15px 15px;
   gap: 20px;
