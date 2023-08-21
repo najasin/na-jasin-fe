@@ -15,6 +15,7 @@ export default function CircleButton({
   size = 'md',
   image,
   text,
+  action,
   transparent,
   onClick,
 }: CircleButtonProps) {
@@ -22,7 +23,14 @@ export default function CircleButton({
 
   return (
     <button
-      className={cx('circleBtn', size, image, name, transparent && 'blank')}
+      className={cx(
+        'circleBtn',
+        size,
+        image,
+        name,
+        action && 'action',
+        transparent && 'blank',
+      )}
       onClick={onClick}
     >
       {text && <p>{text}</p>}

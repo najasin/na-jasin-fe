@@ -76,3 +76,18 @@
     @include position(9px, 150px);
   }
 }
+
+.baseBtn {
+  animation: floating 2s infinite ease-in-out;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0); // Start and end position
+  }
+
+  50% {
+    transform: translateY(-10px); // Peak position
+  }
+}

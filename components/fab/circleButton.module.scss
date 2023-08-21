@@ -8,6 +8,8 @@
   @include mobile {
     @include font-style('button6');
   }
+
+  box-shadow: 5px 5px 8px rgb(0 0 0 / 20%);
 }
 
 .sm {
@@ -61,6 +63,14 @@
 .share {
   border-color: $blue-point;
   color: $blue-point;
+}
+
+.action {
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05); // Slightly bigger on hover
+  }
 }
 
 .facebookImg,
