@@ -37,6 +37,8 @@ export default function Gnb() {
       if (res === null) {
         deleteCookie('act')
         deleteCookie('rft')
+        deleteCookie('uid')
+        deleteCookie('utp')
 
         router.push('/')
       }
