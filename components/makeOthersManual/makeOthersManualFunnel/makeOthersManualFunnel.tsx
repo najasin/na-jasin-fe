@@ -11,7 +11,11 @@ import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 
-import { IKeyword, fetchOthersManual } from '../makeOthersManual.api'
+import {
+  IKeyword,
+  fetchOthersManual,
+} from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+
 import { IFormInputs } from '../makeOthersManual.type'
 import { statsGraphValueState } from '../store/makeOthersManual.atom'
 import styles from './makeOthersManualFunnel.module.scss'

@@ -6,7 +6,8 @@ import classNames from 'classnames/bind'
 import CharacterBox from '@/components/characterBox/characterBox'
 import GhostBtn from '@/components/ghostBtn/ghostBtn'
 
-import { fetchOthersManual } from '../makeOthersManual.api'
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+
 import styles from './othersCharacterBox.module.scss'
 
 const cx = classNames.bind(styles)

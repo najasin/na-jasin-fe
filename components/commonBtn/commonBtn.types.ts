@@ -15,4 +15,5 @@ export interface CommonBtnProps {
   style?: ButtonStyle
   children: React.ReactNode
   onClick?: ClickHandler | undefined
+  confetti?: boolean
 }

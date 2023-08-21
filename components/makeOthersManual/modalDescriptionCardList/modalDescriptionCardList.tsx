@@ -5,7 +5,8 @@ import classNames from 'classnames/bind'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 
-import { fetchOthersManual } from '../makeOthersManual.api'
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+
 import styles from './modalDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)

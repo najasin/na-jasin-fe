@@ -1,8 +1,8 @@
 import { dehydrate } from '@tanstack/query-core'
 
 import MakeOthersManual from '@/components/makeOthersManual/makeOthersManual'
-import { fetchOthersManual } from '@/components/makeOthersManual/makeOthersManual.api'
 
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 import QueryHydrate from '@/api/tanstack/queryHydrate.context'
 import { getQueryClient } from '@/api/tanstack/tanstack.helpers'
 

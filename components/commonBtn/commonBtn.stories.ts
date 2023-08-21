@@ -16,6 +16,7 @@ export const Active: Story = {
     type: 'submit',
     style: ButtonStyle.ACTIVE,
     children: '버튼',
+    confetti: true,
   },
 }
 

@@ -6,10 +6,11 @@ import { FormState, UseFormRegister } from 'react-hook-form'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+
 import { Input } from '../commonInput/input'
 import MyDescriptionCard2 from '../descriptionCard/myDescriptionCard2'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
-import { fetchOthersManual } from '../makeOthersManual/makeOthersManual.api'
 import { IFormInputs } from '../makeOthersManual/makeOthersManual.type'
 import styles from './makeOthersDescriptionCardList.module.scss'
 
@@ -73,18 +74,20 @@ export default function MakeOthersDescriptionCardList({
       </div>
       <h3 className={cx('manualTitle')}>사용법</h3>
       {qusetions?.map(
-        (question: IQuestions) =>
+        (question: IQuestions, index) =>
           question && (
-            <div key={`${question.id}`} className={cx('manualItem')}>
+            <div key={question.id} className={cx('manualItem')}>
               <MyDescriptionCard2
                 question={{
                   id: question.id,
                   question: question.question,
                 }}
-                register={register && register('asd', validationRules)}
+                register={
+                  register && register(`answer${index + 1}`, validationRules)
+                }
                 isInvalid={
                   formState && formState.isSubmitted
-                    ? !!formState.errors[`${question.id}`]
+                    ? !!formState.errors[`answer${index + 1}`]
                     : undefined
                 }
               />

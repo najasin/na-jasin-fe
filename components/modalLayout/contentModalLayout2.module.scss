@@ -34,7 +34,7 @@
 }
 
 .content {
-  height: 400px;
+  max-height: 400px;
   margin-bottom: 28px;
   overflow-y: scroll;
   @include mobile {

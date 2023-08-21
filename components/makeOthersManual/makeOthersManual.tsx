@@ -7,21 +7,27 @@ import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
-import { postOthersManual } from '@/api/requestHandler/othersManual/postOthersManual.api'
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import {
+  Answer,
+  FormData,
+  postOthersManual,
+} from '@/api/axios/requestHandler/othersManual/postOthersManual.api'
 
 import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import FormBox from '../formBox/formBox'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
+import CloseButton from '../manualBox/closeButton'
 import ContentModalLayout2 from '../modalLayout/contentModalLayout2'
+import ProgressBar from '../progressBar/progressBar'
 import SimpleLayout from '../simpleLayout/simpleLayout'
-import { Answer, FormData, fetchOthersManual } from './makeOthersManual.api'
 import styles from './makeOthersManual.module.scss'
 import { IFormInputs } from './makeOthersManual.type'
 import MakeOthersManualFunnel from './makeOthersManualFunnel/makeOthersManualFunnel'
@@ -32,7 +38,9 @@ import { statsGraphValueState } from './store/makeOthersManual.atom'
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
-  const USERID = '1'
+  const searchParams = useSearchParams()
+  const userId = searchParams.get('userId') as string
+
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData'],
@@ -41,13 +49,7 @@ export default function MakeOthersManual() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const statsGraphValue = useRecoilValue(statsGraphValueState)
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    formState,
-  } = useForm<IFormInputs>()
-  // const { handleSubmit, register, formState, setError, clearErrors } = useForm()
+  const { handleSubmit, register, formState, watch } = useForm<IFormInputs>()
 
   const { Funnel, step, goPrev, goNext } = useFunnel(
     ['manual', 'statGraph'],
@@ -57,16 +59,19 @@ export default function MakeOthersManual() {
   const pathname = usePathname()
   const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
-
   const nickname = data?.nickname as string
   const questions = data?.questions
-
-  const isAnyFieldEmpty = Object.keys(errors).length > 0
+  const watchedInputs = questions?.map((question, index) =>
+    watch(`answer${index + 1}`),
+  )
+  const nicknameValue = watch('nickname')
+  const manualFieldsFilled =
+    watchedInputs?.every((value) => value) && !!nicknameValue
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
-    const formattedAnswers = questions?.map((question: IQuestions) => ({
+    const formattedAnswers = questions?.map((question: IQuestions, index) => ({
       id: question.id,
-      answer: inputData[`${question.id}`] as string,
+      answer: inputData[`answer${index + 1}`],
     }))
 
     const totalFormData: FormData = {
@@ -75,8 +80,8 @@ export default function MakeOthersManual() {
         answers: formattedAnswers as Answer[],
         otherKeywordPercents: statsGraphValue,
       },
-      userType: 'jff',
-      userId: USERID,
+      userType: 'JFF',
+      userId,
     }
 
     if (step === 'statGraph') {
@@ -89,36 +94,42 @@ export default function MakeOthersManual() {
     router.push('/')
   }
 
-  const handleModalOpen = () => {
+  const handleModalState = () => {
     setIsModalOpen(!isModalOpen)
   }
 
   const setTitle = (): string => {
-    if (step === 'manual') return `${nickname} 사용설명서를 작성해주세요`
-    return `${nickname} 능력치를 설정해주세요`
+    if (step === 'manual') return `${nickname}의 사용설명서`
+    return `${nickname}의 능력치`
+  }
+
+  const setStep = (): string => {
+    if (step === 'manual') return '1'
+    return '2'
   }
 
   useEffect(() => {
-    router.push(`${pathname}?userId=${USERID}`)
+    router.push(`${pathname}?userId=1`)
   }, [router, pathname])
 
   return (
     <>
       {!isLoading && (
         <SimpleLayout
-          title={`${nickname} 사용설명서 만들기`}
+          title={`${nickname}의 사용설명서 만들기`}
           margin={!isMobile ? 32 : 10}
         >
           <div className={cx('layout')}>
             {!isTablet && (
-              <OthersCharacterBox onClickGhostBtn={handleModalOpen} />
+              <OthersCharacterBox onClickGhostBtn={handleModalState} />
             )}
             <div className={cx('formBoxWrapper')}>
+              <ProgressBar currentStep={setStep()} totalSteps={['1', '2']} />
               <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
                 <form onSubmit={handleSubmit(onClickSubmit)}>
                   <div className={cx('formContent')}>
                     {isTablet && step === 'manual' && (
-                      <OthersCharacterBox onClickGhostBtn={handleModalOpen} />
+                      <OthersCharacterBox onClickGhostBtn={handleModalState} />
                     )}
                     <MakeOthersManualFunnel
                       Funnel={Funnel}
@@ -132,9 +143,12 @@ export default function MakeOthersManual() {
                     <CommonBtn
                       type="submit"
                       style={
-                        isAnyFieldEmpty
+                        !manualFieldsFilled
                           ? ButtonStyle.DEACTIVE
                           : ButtonStyle.ACTIVE
+                      }
+                      confetti={
+                        step === 'statGraph' && formState.isSubmitSuccessful
                       }
                     >
                       다음
@@ -156,9 +170,9 @@ export default function MakeOthersManual() {
           <ContentModalLayout2
             title={`${nickname}(이)는 이렇게 사용해요`}
             content={<ModalDescriptionCardList />}
-            closeBtn={<button onClick={handleModalOpen}>X</button>}
+            closeBtn={<CloseButton onClickModalClose={handleModalState} />}
             completeBtn={
-              <CommonBtn onClick={handleModalOpen}>확인했어요</CommonBtn>
+              <CommonBtn onClick={handleModalState}>확인했어요</CommonBtn>
             }
           />
         </>

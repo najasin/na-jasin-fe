@@ -100,11 +100,10 @@
   background-color: rgb(0 0 0 / 50%);
 }
 
-.modal {
-  max-height: 600px;
-}
-
 .formBoxWrapper {
+  display: flex;
+  flex-direction: column;
   min-width: 335px;
   overflow: hidden;
+  gap: 10px;
 }
