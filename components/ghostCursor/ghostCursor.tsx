@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 
 import { throttleHelper } from '@/helpers/throttle.helpers'
 
+import { calcPosition } from './ghostCursor.helpers'
 import styles from './ghostCursor.module.scss'
 
 const cx = classNames.bind(styles)
@@ -40,14 +41,6 @@ export default function GhostCursor() {
   const ghostElemRef = useRef<HTMLDivElement>(null)
   const ghostMouthRef = useRef<HTMLDivElement>(null)
   const ghostEyesRef = useRef<HTMLDivElement>(null)
-
-  const calcPosition = (
-    num: number,
-    inMin: number,
-    inMax: number,
-    outMin: number,
-    outMax: number,
-  ): number => ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
 
   const getMousePosition = useCallback(
     (e: MouseEvent) => {
