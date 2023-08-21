@@ -27,16 +27,31 @@ export default function FabWithDef() {
         >
           <div>
             <div className={cx('absolute', 'facebook')}>
-              <CircleButton name="facebook" image="facebook" size="sm" />
+              <CircleButton
+                name="facebook"
+                image="facebook"
+                size="sm"
+                action={true}
+              />
             </div>
             <div className={cx('absolute', 'kakao')}>
-              <CircleButton name="kakao" image="kakao" size="sm" />
+              <CircleButton
+                name="kakao"
+                image="kakao"
+                size="sm"
+                action={true}
+              />
             </div>
             <div className={cx('absolute', 'instagram')}>
-              <CircleButton name="instagram" image="instagram" size="sm" />
+              <CircleButton
+                name="instagram"
+                image="instagram"
+                size="sm"
+                action={true}
+              />
             </div>
             <div className={cx('absolute', 'link')}>
-              <CircleButton name="link" image="link" size="sm" />
+              <CircleButton name="link" image="link" size="sm" action={true} />
             </div>
           </div>
           <div className={cx('mdButtons')}>
@@ -50,6 +65,7 @@ export default function FabWithDef() {
               name="weakness"
               text="단점보기"
               transparent={true}
+              action={true}
               size="md"
             />
           </div>
@@ -64,6 +80,7 @@ export default function FabWithDef() {
             name="plus"
             size="lg"
             image="plus"
+            action={true}
             onClick={handleClick}
           />
         </div>
