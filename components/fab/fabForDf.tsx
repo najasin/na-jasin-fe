@@ -75,7 +75,7 @@ export default function FabWithDef() {
         animate={{ rotate: isClicked ? 45 : 0 }}
         className={cx('basic')}
       >
-        <div className={cx('baseBtn')}>
+        <div className={cx(!isClicked && 'baseBtn')}>
           <CircleButton
             name="plus"
             size="lg"
