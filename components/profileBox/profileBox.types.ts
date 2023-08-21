@@ -27,4 +27,5 @@ export interface IProfileBoxProps {
   }
   myKeywordPercents: { [key: string]: number }
   othersKeywordPercents: { [key: string]: number }
+  isOwner: boolean
 }
