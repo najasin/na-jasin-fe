@@ -53,12 +53,14 @@ export default function Fab() {
         animate={{ rotate: isClicked ? 45 : 0 }}
         className={cx('basic')}
       >
-        <CircleButton
-          name="plus"
-          size="lg"
-          image="plus"
-          onClick={handleClick}
-        />
+        <div className={cx(!isClicked && 'baseBtn')}>
+          <CircleButton
+            name="plus"
+            size="lg"
+            image="plus"
+            onClick={handleClick}
+          />
+        </div>
       </motion.div>
     </div>
   )
