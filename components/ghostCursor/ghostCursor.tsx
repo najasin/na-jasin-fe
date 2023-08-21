@@ -34,8 +34,8 @@ export default function GhostCursor() {
 
   const [clicked, setClicked] = useState<boolean>(false)
   const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
   })
   const ghostElemRef = useRef<HTMLDivElement>(null)
   const ghostMouthRef = useRef<HTMLDivElement>(null)
