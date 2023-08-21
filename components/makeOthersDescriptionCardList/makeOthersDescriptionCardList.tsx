@@ -6,10 +6,11 @@ import { FormState, UseFormRegister } from 'react-hook-form'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+
 import { Input } from '../commonInput/input'
 import MyDescriptionCard2 from '../descriptionCard/myDescriptionCard2'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
-import { fetchOthersManual } from '../makeOthersManual/makeOthersManual.api'
 import { IFormInputs } from '../makeOthersManual/makeOthersManual.type'
 import styles from './makeOthersDescriptionCardList.module.scss'
 

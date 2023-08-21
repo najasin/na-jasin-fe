@@ -12,7 +12,12 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
-import { postOthersManual } from '@/api/requestHandler/othersManual/postOthersManual.api'
+import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import {
+  Answer,
+  FormData,
+  postOthersManual,
+} from '@/api/axios/requestHandler/othersManual/postOthersManual.api'
 
 import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
@@ -23,7 +28,6 @@ import CloseButton from '../manualBox/closeButton'
 import ContentModalLayout2 from '../modalLayout/contentModalLayout2'
 import ProgressBar from '../progressBar/progressBar'
 import SimpleLayout from '../simpleLayout/simpleLayout'
-import { Answer, FormData, fetchOthersManual } from './makeOthersManual.api'
 import styles from './makeOthersManual.module.scss'
 import { IFormInputs } from './makeOthersManual.type'
 import MakeOthersManualFunnel from './makeOthersManualFunnel/makeOthersManualFunnel'
