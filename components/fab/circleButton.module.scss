@@ -65,6 +65,14 @@
   color: $blue-point;
 }
 
+.action {
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05); // Slightly bigger on hover
+  }
+}
+
 .facebookImg,
 .kakaoImg,
 .instagramImg,
