@@ -17,12 +17,19 @@ import { IMyPageDatas } from './mypage.types'
 const getMypage = async ({
   userType,
   userId,
+  token,
 }: {
   userType: string
   userId: string
+  token: string | undefined
 }): Promise<IMyPageDatas> => {
   const response = await getRequest<IMyPageDatas>(
     `/api/${userType}/mypage?userId=${userId}`,
+    {
+      headers: {
+        Authorization: `${token}`,
+      },
+    },
   )
 
   return response

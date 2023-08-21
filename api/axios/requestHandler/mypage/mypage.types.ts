@@ -1,4 +1,5 @@
 interface IMyPageDatas {
+  userTypes: string[]
   nickname: string
   baseImage: string
   characterItems: {
@@ -34,6 +35,7 @@ interface IMyPageDatas {
   otherKeywordPercents: {
     [keyword: string]: number
   }
+  isOwner: boolean
 }
 
 export type { IMyPageDatas }

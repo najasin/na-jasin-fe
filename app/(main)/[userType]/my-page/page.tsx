@@ -1,3 +1,5 @@
+import { cookies } from 'next/headers'
+
 import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
 import Fab from '@/components/fab/fab'
 import LinkBtn from '@/components/linkBtn/linkBtn'
@@ -7,9 +9,13 @@ import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
 import { getMypage } from '@/api/axios/requestHandler/mypage/get.apis'
 
-const getMyPageData = async (userType: string, userId: string) => {
+const getMyPageData = async (
+  userType: string,
+  userId: string,
+  token: string | undefined,
+) => {
   try {
-    const data = await getMypage({ userType, userId })
+    const data = await getMypage({ userType, userId, token })
     return data
   } catch (error) {
     return error as Error
@@ -23,8 +29,12 @@ export default async function MyPage({
   params: { [key: string]: string }
   searchParams: { [key: string]: string }
 }) {
-  console.log(params, searchParams)
-  const data = await getMyPageData(params.userType, searchParams.userId)
+  const token = cookies().get('act')
+  const data = await getMyPageData(
+    params.userType,
+    searchParams.userId,
+    token?.value,
+  )
 
   if (data instanceof Error) {
     console.log(data)
