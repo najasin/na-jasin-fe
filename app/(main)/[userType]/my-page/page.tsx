@@ -47,6 +47,7 @@ export default async function MyPage({
       othersManualQAPairs,
       originKeywordPercents,
       otherKeywordPercents,
+      isOwner,
     } = data
 
     const characterData = {
@@ -66,10 +67,12 @@ export default async function MyPage({
               othersKeywordPercents={otherKeywordPercents}
               data={characterData}
               nickname={nickname}
+              isOwner={isOwner}
             />
             <ManualBox
               myDatas={myManualQAPair}
               othersDatas={othersManualQAPairs}
+              isOwner={isOwner}
             />
           </ContentWrapper>
         </SimpleLayout>

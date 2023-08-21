@@ -42,6 +42,7 @@ export default function ProfileBox({
   data,
   myKeywordPercents,
   othersKeywordPercents,
+  isOwner,
 }: IProfileBoxProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
@@ -146,7 +147,7 @@ export default function ProfileBox({
           <CharacterBox
             baseImage={data?.baseImage}
             selectedItems={characterItems}
-            editBtn={<EditBtn onClick={handleClickModalOpen} />}
+            editBtn={isOwner && <EditBtn onClick={handleClickModalOpen} />}
             nickname={nickname}
           />
         </div>

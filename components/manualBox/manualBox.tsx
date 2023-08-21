@@ -26,7 +26,11 @@ import styles from './manualBox.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function ManualBox({ myDatas, othersDatas }: IManualBoxProps) {
+export default function ManualBox({
+  myDatas,
+  othersDatas,
+  isOwner,
+}: IManualBoxProps) {
   const otherAnswers = othersDatas.map((data) => {
     const { nickname, qas } = data
     const datas = qas.map((qa) => {
@@ -110,7 +114,7 @@ export default function ManualBox({ myDatas, othersDatas }: IManualBoxProps) {
         <div className={cx('manual')}>
           <div className={cx('header')}>
             <p>자시니는 이렇게 사용해요</p>
-            {descriptionType === 'MY' && (
+            {descriptionType === 'MY' && isOwner && (
               <EditBtn onClick={handleClickModalOpen} />
             )}
           </div>

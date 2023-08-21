@@ -8,6 +8,7 @@ export interface IManualBoxProps {
     nickname: string
     qas: Array<{ id: number; question: string; answer: string }>
   }>
+  isOwner: boolean
 }
 
 export interface IFormData {
