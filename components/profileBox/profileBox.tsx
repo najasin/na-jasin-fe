@@ -140,6 +140,26 @@ export default function ProfileBox({
     setSelectedSet,
   ])
 
+  const refinedMyKeywordPercents: { [key: string]: number } =
+    myKeywordPercents.reduce<{ [key: string]: number }>(
+      (result, { keyword, percent }) => {
+        const newResult = { ...result }
+        newResult[keyword] = percent
+        return newResult
+      },
+      {},
+    )
+
+  const refinedOthersKeywordPercents: { [key: string]: number } =
+    othersKeywordPercents.reduce<{ [key: string]: number }>(
+      (result, { keyword, percent }) => {
+        const newResult = { ...result }
+        newResult[keyword] = percent
+        return newResult
+      },
+      {},
+    )
+
   return (
     <>
       <div className={cx('profileBox')}>
@@ -154,8 +174,8 @@ export default function ProfileBox({
         <div className={cx('chartBox')}>
           <RadarChartContainer
             radarType="MY"
-            originKeywordPercents={myKeywordPercents}
-            otherKeywordPercents={othersKeywordPercents}
+            originKeywordPercents={refinedMyKeywordPercents}
+            otherKeywordPercents={refinedOthersKeywordPercents}
             frameSize={340}
             radarSize={200}
             framePadding={140}
