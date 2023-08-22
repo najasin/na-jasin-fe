@@ -10,9 +10,9 @@ import { useRecoilValue } from 'recoil'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
-import { useFunnel } from '@/hooks/useFunnel'
+import { useFunnelwithNoQuery } from '@/hooks/useFunnelwithNoQuery'
 
-import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 import {
   Answer,
   FormData,
@@ -44,14 +44,14 @@ export default function MakeOthersManual() {
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData'],
-    queryFn: fetchOthersManual,
+    queryFn: () => fetchOthersManualById(userId),
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
   const statsGraphValue = useRecoilValue(statsGraphValueState)
 
   const { handleSubmit, register, formState, watch } = useForm<IFormInputs>()
 
-  const { Funnel, step, goPrev, goNext } = useFunnel(
+  const { Funnel, step, goPrev, goNext } = useFunnelwithNoQuery(
     ['manual', 'statGraph'],
     'manual',
   )
@@ -109,8 +109,8 @@ export default function MakeOthersManual() {
   }
 
   useEffect(() => {
-    router.push(`${pathname}?userId=1`)
-  }, [router, pathname])
+    router.push(`${pathname}?userId=${userId}`)
+  }, [router, pathname, userId])
 
   return (
     <>

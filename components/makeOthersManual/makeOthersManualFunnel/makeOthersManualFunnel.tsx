@@ -5,6 +5,8 @@ import classNames from 'classnames/bind'
 import { FormState, UseFormRegister } from 'react-hook-form'
 import { useSetRecoilState } from 'recoil'
 
+import { useSearchParams } from 'next/navigation'
+
 import MakeOthersDescriptionCardList from '@/components/makeOthersDescriptionCardList/makeOthersDescriptionCardList'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 import RadarChartContainer from '@/components/radarChart/radarChartContainer'
@@ -13,7 +15,7 @@ import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 
 import {
   IKeyword,
-  fetchOthersManual,
+  fetchOthersManualById,
 } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
 import { IFormInputs } from '../makeOthersManual.type'
@@ -37,15 +39,26 @@ export default function MakeOthersManualFunnel({
   formState: FormState<IFormInputs>
   step: string
 }) {
+  const searchParams = useSearchParams()
+  const userId = searchParams.get('userId') as string
+
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: fetchOthersManual,
+    queryFn: () => fetchOthersManualById(userId),
   })
 
   const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
 
-  const originKeywordPercents = data?.originKeywordPercents as IKeyword
+  // const originKeywordPercents = data?.originKeywordPercents as IKeyword
   const otherKeywordPercents = data?.otherKeywordPercents as IKeyword
+
+  const defaultOtherKeywordPercents = {
+    키워드1: 3,
+    키워드2: 3,
+    키워드3: 3,
+    키워드4: 3,
+    키워드5: 3,
+  }
 
   const rectangleLayout = {
     frameSize: 350,
@@ -67,28 +80,34 @@ export default function MakeOthersManualFunnel({
   return (
     <Funnel>
       <Funnel.Step name="manual">
-        <div className={cx('manualWrap')}>
-          <MakeOthersDescriptionCardList
-            register={register}
-            validationRules={step === 'manual' ? validationRules : undefined}
-            step={step}
-            formState={formState}
-          />
+        <div className={cx('enter')}>
+          <div className={cx('manualWrap')}>
+            <MakeOthersDescriptionCardList
+              register={register}
+              validationRules={step === 'manual' ? validationRules : undefined}
+              step={step}
+              formState={formState}
+            />
+          </div>
         </div>
       </Funnel.Step>
       <Funnel.Step name="statGraph">
-        {statsGraphValueState && (
-          <RadarChartContainer
-            radarType="TJNS"
-            originKeywordPercents={originKeywordPercents}
-            otherKeywordPercents={otherKeywordPercents}
-            frameSize={rectangleLayout.frameSize}
-            radarSize={rectangleLayout.radarSize}
-            framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
-            hasOthers={false}
-            handleUpdateRadarData={handleStatsGraphValue}
-          />
-        )}
+        <div className={cx('enter')}>
+          {statsGraphValueState && (
+            <RadarChartContainer
+              radarType="TJNS"
+              originKeywordPercents={defaultOtherKeywordPercents}
+              otherKeywordPercents={defaultOtherKeywordPercents}
+              frameSize={rectangleLayout.frameSize}
+              radarSize={rectangleLayout.radarSize}
+              framePadding={
+                rectangleLayout.frameSize - rectangleLayout.radarSize
+              }
+              hasOthers={!!otherKeywordPercents}
+              handleUpdateRadarData={handleStatsGraphValue}
+            />
+          )}
+        </div>
       </Funnel.Step>
     </Funnel>
   )

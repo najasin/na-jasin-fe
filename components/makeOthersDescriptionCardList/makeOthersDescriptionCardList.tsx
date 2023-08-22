@@ -4,9 +4,11 @@ import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FormState, UseFormRegister } from 'react-hook-form'
 
+import { useSearchParams } from 'next/navigation'
+
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
-import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
 import { Input } from '../commonInput/input'
 import MyDescriptionCard2 from '../descriptionCard/myDescriptionCard2'
@@ -33,10 +35,12 @@ export default function MakeOthersDescriptionCardList({
   formState?: FormState<IFormInputs>
   step: string
 }) {
+  const searchParams = useSearchParams()
+  const userId = searchParams.get('userId') as string
+
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: fetchOthersManual,
-    refetchOnWindowFocus: true,
+    queryFn: () => fetchOthersManualById(userId),
   })
 
   const qusetions = data?.questions

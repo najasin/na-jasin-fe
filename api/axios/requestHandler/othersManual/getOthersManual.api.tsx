@@ -35,12 +35,14 @@ export interface GetData {
 }
 
 /* page get 요청 */
-export const fetchOthersManual = async () => {
+
+export const fetchOthersManualById = async (
+  userId: string,
+): Promise<GetData> => {
   try {
-    const response = await getRequest<GetData>('api/jff/others-manual?userId=1')
-    if (!response) {
-      throw new Error('no response')
-    }
+    const response = await getRequest<GetData>(
+      `api/jff/others-manual?userId=${userId}`,
+    )
     return response
   } catch (error) {
     console.error(error)
