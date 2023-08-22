@@ -5,7 +5,7 @@ import { deleteCookie } from 'cookies-next'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import useScrolledState from '@/hooks/useScrolledState'
@@ -14,6 +14,7 @@ import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 
 import { UserType } from '@/types/user.enum'
 
+import { btnTextHelpers } from './gnb.helpers'
 import styles from './gnb.module.scss'
 import GnbChip from './gnbChip'
 import { GnbChipStyle } from './gnbChip.types'
@@ -22,12 +23,14 @@ const cx = classNames.bind(styles)
 
 export default function Gnb() {
   const router = useRouter()
+  const pathname = usePathname()
   const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
   const scrolled = useScrolledState()
 
+  const currentBtnText = btnTextHelpers(pathname)
+
   const user = {
-    userId: 'id',
-    userType: 'forFun',
+    userType: pathname.includes('jff') ? 'forFun' : 'forDev',
   }
 
   const handleSignOut = async () => {
@@ -63,7 +66,7 @@ export default function Gnb() {
           </Link>
         </div>
         <div className={styles.right}>
-          {!user.userId ? (
+          {currentBtnText === '로그인' ? (
             <Link href="/signin" className={styles.login}>
               <h2>로그인</h2>
             </Link>
