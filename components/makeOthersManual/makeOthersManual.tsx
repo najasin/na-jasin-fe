@@ -16,6 +16,7 @@ import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/g
 import {
   Answer,
   FormData,
+  IKeyword,
   postOthersManual,
 } from '@/api/axios/requestHandler/othersManual/postOthersManual.api'
 
@@ -61,6 +62,7 @@ export default function MakeOthersManual() {
   const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
   const nickname = data?.nickname as string
   const questions = data?.questions
+  const originKeywordPercents = data?.originKeywordPercents as IKeyword[]
   const watchedInputs = questions?.map((question, index) =>
     watch(`answer${index + 1}`),
   )
@@ -74,11 +76,16 @@ export default function MakeOthersManual() {
       answer: inputData[`answer${index + 1}`],
     }))
 
+    const statsGraphValueForPost = originKeywordPercents.map((item) => ({
+      id: item.id,
+      percent: statsGraphValue[item.keyword],
+    }))
+
     const totalFormData: FormData = {
       data: {
         nickname: inputData.nickname,
         answers: formattedAnswers as Answer[],
-        otherKeywordPercents: statsGraphValue,
+        otherKeywordPercents: statsGraphValueForPost,
       },
       userType: 'JFF',
       userId,

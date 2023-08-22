@@ -87,7 +87,6 @@ export const useFunnelwithNoQuery = <T extends readonly string[]>(
   useEffect(
     () => () => {
       setStep(defaultStep)
-      console.log('cleanup')
     },
     [defaultStep],
   )

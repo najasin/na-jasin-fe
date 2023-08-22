@@ -12,7 +12,7 @@ export interface FormData {
   data: {
     nickname: string
     answers: Answer[]
-    otherKeywordPercents: IKeyword
+    otherKeywordPercents: IKeyword[]
   }
   userType: string
   userId: string

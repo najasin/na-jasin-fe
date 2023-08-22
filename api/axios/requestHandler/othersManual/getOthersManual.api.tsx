@@ -30,8 +30,8 @@ export interface GetData {
     question: string
     answer: string
   }>
-  originKeywordPercents: IKeyword
-  otherKeywordPercents: IKeyword
+  originKeywordPercents: IKeyword[]
+  otherKeywordPercents: IKeyword[]
 }
 
 /* page get 요청 */

@@ -48,17 +48,20 @@ export default function MakeOthersManualFunnel({
   })
 
   const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
+  const originKeywordPercents = data?.originKeywordPercents as IKeyword[]
+  const otherKeywordPercents = data?.otherKeywordPercents as IKeyword[]
+  const formmattedOriginKeywordPercents: IKeyword = {}
+  const formmattedOtherKeywordPercents: IKeyword = {}
+  const defaultOtherKeywordPercents: IKeyword = {}
 
-  // const originKeywordPercents = data?.originKeywordPercents as IKeyword
-  const otherKeywordPercents = data?.otherKeywordPercents as IKeyword
+  originKeywordPercents.forEach((item) => {
+    formmattedOriginKeywordPercents[item.keyword] = item.percent
+    defaultOtherKeywordPercents[item.keyword] = 3
+  })
 
-  const defaultOtherKeywordPercents = {
-    키워드1: 3,
-    키워드2: 3,
-    키워드3: 3,
-    키워드4: 3,
-    키워드5: 3,
-  }
+  otherKeywordPercents.forEach((item) => {
+    formmattedOtherKeywordPercents[item.keyword] = item.percent
+  })
 
   const rectangleLayout = {
     frameSize: 350,
@@ -96,8 +99,12 @@ export default function MakeOthersManualFunnel({
           {statsGraphValueState && (
             <RadarChartContainer
               radarType="TJNS"
-              originKeywordPercents={defaultOtherKeywordPercents}
-              otherKeywordPercents={defaultOtherKeywordPercents}
+              originKeywordPercents={formmattedOriginKeywordPercents}
+              otherKeywordPercents={
+                otherKeywordPercents
+                  ? formmattedOtherKeywordPercents
+                  : defaultOtherKeywordPercents
+              }
               frameSize={rectangleLayout.frameSize}
               radarSize={rectangleLayout.radarSize}
               framePadding={
