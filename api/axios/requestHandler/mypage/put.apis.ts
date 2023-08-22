@@ -23,10 +23,9 @@ const updateNickname = async ({
   token?: string
 }): Promise<string> => {
   const response = await putRequest<string>(
-    `/api/${userType}/nickname`,
+    `/api/user/${userType}/nickname`,
     {
       nickname,
-      userType,
     },
     token
       ? {
@@ -63,10 +62,9 @@ const updateAnswers = async ({
   token?: string
 }): Promise<string> => {
   const response = await putRequest<string>(
-    '/api/answers',
+    `/api/user/${userType}/answer`,
     {
       answers,
-      userType,
     },
 
     token
@@ -110,13 +108,14 @@ const updateCharacter = async ({
   token?: string
 }): Promise<string> => {
   console.log(face, body, expression, set)
-  const characterItems = set.id ? { set } : { face, body, expression }
+  const characterItems = set.id
+    ? { face: null, body: null, expression: null, set }
+    : { face, body, expression, set: null }
   console.log(characterItems)
   const response = await putRequest<string>(
-    `/api/${userType}/character`,
+    `/api/user/${userType}/character`,
     {
       characterItems,
-      userType,
     },
 
     token

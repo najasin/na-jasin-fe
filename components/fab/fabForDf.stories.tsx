@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import FabForDf from './fabForDf'
 
 const fab: Meta<typeof FabForDf> = {
-  title: 'Components/FabForDf',
+  title: 'Fab/FabForDf',
   component: FabForDf,
 }
 

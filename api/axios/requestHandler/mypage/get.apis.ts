@@ -24,7 +24,7 @@ const getMypage = async ({
   token: string | undefined
 }): Promise<IMyPageDatas> => {
   const response = await getRequest<IMyPageDatas>(
-    `/api/${userType}/mypage?userId=${userId}`,
+    `/api/user/${userType}/mypage?userId=${userId}`,
     {
       headers: {
         Authorization: `${token}`,
