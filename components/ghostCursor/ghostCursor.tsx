@@ -8,6 +8,7 @@ import { throttleHelper } from '@/helpers/throttle.helpers'
 
 import { calcPosition } from './ghostCursor.helpers'
 import styles from './ghostCursor.module.scss'
+import { IGhostCursorProps } from './ghostCursor.types'
 
 const cx = classNames.bind(styles)
 
@@ -22,22 +23,14 @@ const cx = classNames.bind(styles)
  * })
  * ```
  */
-export default function GhostCursor() {
-  const [mouse, setMouse] = useState<{
-    x: number
-    y: number
-    dir: string
-  }>({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-    dir: '',
-  })
-
+export default function GhostCursor({
+  mouse,
+  setMouse,
+  position,
+  setPosition,
+}: IGhostCursorProps) {
   const [clicked, setClicked] = useState<boolean>(false)
-  const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  })
+
   const ghostElemRef = useRef<HTMLDivElement>(null)
   const ghostMouthRef = useRef<HTMLDivElement>(null)
   const ghostEyesRef = useRef<HTMLDivElement>(null)

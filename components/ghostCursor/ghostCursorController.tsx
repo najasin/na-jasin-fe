@@ -2,17 +2,21 @@
 
 import { useEffect, useState } from 'react'
 
-import dynamic from 'next/dynamic'
-
-const GhostCursor = dynamic(
-  () => import('@/components/ghostCursor/ghostCursor'),
-  {
-    ssr: false,
-  },
-)
+import GhostCursor from './ghostCursor'
+import { IMouse, IPosition } from './ghostCursor.types'
 
 export default function GhostCursorController() {
-  const [isClicked, setIsClicked] = useState(false)
+  const [mouse, setMouse] = useState<IMouse>({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+    dir: '',
+  })
+  const [position, setPosition] = useState<IPosition>({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  })
+
+  const [isClicked, setIsClicked] = useState<boolean>(false)
 
   const handleClick = () => {
     setIsClicked(true)
@@ -30,5 +34,16 @@ export default function GhostCursorController() {
     }
   }, [isClicked])
 
-  return <>{!isClicked && <GhostCursor />}</>
+  return (
+    <>
+      {!isClicked && (
+        <GhostCursor
+          mouse={mouse}
+          setMouse={setMouse}
+          position={position}
+          setPosition={setPosition}
+        />
+      )}
+    </>
+  )
 }
