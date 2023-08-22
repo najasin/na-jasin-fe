@@ -23,7 +23,7 @@ export default function GhostCursorController() {
 
     setTimeout(() => {
       setIsClicked(false)
-    }, 1000)
+    }, 2000)
   }
 
   useEffect(() => {
