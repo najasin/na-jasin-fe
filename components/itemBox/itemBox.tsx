@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { motion } from 'framer-motion'
 
 import Image from 'next/image'
 
@@ -22,7 +23,13 @@ export default function ItemBox({
     })
   }
   return (
-    <div className={cx('itemBox')} onClick={handleItemClick}>
+    <motion.button
+      type="button"
+      className={cx('itemBox')}
+      onClick={handleItemClick}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
       <Image
         className={cx('img')}
         src={data.showCase}
@@ -30,6 +37,6 @@ export default function ItemBox({
         fill={true}
         priority={true}
       />
-    </div>
+    </motion.button>
   )
 }

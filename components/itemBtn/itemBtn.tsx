@@ -1,6 +1,7 @@
 'use client'
 
 import classNames from 'classnames/bind'
+import { motion } from 'framer-motion'
 
 import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
 
@@ -16,8 +17,14 @@ export default function ItemBtn({
   children,
 }: IItemBtnProps) {
   return (
-    <button type={type} className={cx('button', `${style}`)} onClick={onClick}>
+    <motion.button
+      type={type}
+      className={cx('button', `${style}`)}
+      onClick={onClick}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
       {children}
-    </button>
+    </motion.button>
   )
 }
