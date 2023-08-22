@@ -82,6 +82,10 @@ export default function MakeMyManual() {
 
     if (step === 'statGraph') {
       const answers = transformData(inputData.answers)
+      const keywordPercents = selectedKeywords.map((keywordObj) => ({
+        id: keywordObj.id,
+        percent: statsGraphValue[keywordObj.keyword] || 0,
+      }))
       try {
         const response = await postMyManual({
           userType: 'jff',
@@ -91,7 +95,7 @@ export default function MakeMyManual() {
           selectedExpressionItem: selectedExpressionItem.id,
           selectedSet: selectedSet.id,
           answers,
-          statsGraphValue,
+          keywordPercents,
         })
 
         return response

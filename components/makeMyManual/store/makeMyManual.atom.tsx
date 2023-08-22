@@ -3,7 +3,7 @@ import { atom } from 'recoil'
 import { Category } from '@/components/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 
-import { ICharacterItemIdSet } from '../makeMyManual.types'
+import { ICharacterItemIdSet, IKeywordWithId } from '../makeMyManual.types'
 
 // eslint-disable-next-line import/no-cycle
 // import { originKeywordPercentsSelector } from './originKeywordPercents.selecter'
@@ -33,7 +33,7 @@ export const selectedSetState = atom<ICharacterItemIdSet>({
   default: { id: undefined, layoutCase: '' },
 })
 
-export const selectedKeywordsState = atom<string[]>({
+export const selectedKeywordsState = atom<IKeywordWithId[]>({
   key: 'selectedKeywords',
   default: [],
 })

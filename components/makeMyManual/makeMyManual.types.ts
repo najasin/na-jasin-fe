@@ -27,3 +27,13 @@ export interface ICharacterItemIdSet {
   id?: number
   layoutCase: string
 }
+
+export interface IKeywordWithId {
+  id: number | undefined
+  keyword: string
+}
+
+export interface IPercentWithId {
+  id: number | undefined
+  percent: number | undefined
+}

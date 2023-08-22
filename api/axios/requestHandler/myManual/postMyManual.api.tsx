@@ -1,5 +1,7 @@
-import { IAnswerItem } from '@/components/makeMyManual/makeMyManual.types'
-import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
+import {
+  IAnswerItem,
+  IPercentWithId,
+} from '@/components/makeMyManual/makeMyManual.types'
 
 import { postRequest } from '@/api/axios/common.apis'
 
@@ -34,7 +36,7 @@ const postMyManual = async ({
   selectedExpressionItem,
   selectedSet,
   answers,
-  statsGraphValue,
+  keywordPercents,
 }: {
   userType: string
   nickname: string
@@ -43,8 +45,19 @@ const postMyManual = async ({
   selectedExpressionItem?: number
   selectedSet?: number
   answers: IAnswerItem[]
-  statsGraphValue: TrimmedDataProps
+  keywordPercents: IPercentWithId[]
 }): Promise<string> => {
+  console.log({
+    nickname,
+    characterItems: {
+      ...(selectedFaceItem ? { face: selectedFaceItem } : {}),
+      ...(selectedBodyItem ? { body: selectedBodyItem } : {}),
+      ...(selectedExpressionItem ? { expression: selectedExpressionItem } : {}),
+      ...(selectedSet ? { set: selectedSet } : {}),
+    },
+    answers,
+    keywordPercents,
+  })
   const response = await postRequest<string>(`/api/${userType}/my-manual`, {
     nickname,
     characterItems:
@@ -63,7 +76,7 @@ const postMyManual = async ({
         set: selectedSet,
       }),
     answers,
-    originKeywordPercents: statsGraphValue,
+    keywordPercents,
   })
 
   return response
