@@ -11,9 +11,9 @@ const META_ROOT = {
     url: 'https://na-jasin.com',
     siteName: 'najasin',
     images: {
-      url: 'https://i.ibb.co/DpfKPC9/img-info.png',
-      width: 1168,
-      height: 561,
+      url: 'https://i.ibb.co/NjqLnt7/thumbnail-najasin.png',
+      width: 800,
+      height: 400,
       alt: 'najasin',
     },
     type: 'website',
@@ -21,9 +21,9 @@ const META_ROOT = {
   twitter: {
     card: 'summary_large_image',
     images: {
-      url: 'https://i.ibb.co/DpfKPC9/img-info.png',
-      width: 1168,
-      height: 561,
+      url: 'https://i.ibb.co/NjqLnt7/thumbnail-najasin.png',
+      width: 800,
+      height: 400,
       alt: 'najasin',
     },
     title: 'Na-JaSin',
