@@ -100,7 +100,7 @@ export default function MakeMyManualFunnel({
     <>
       <Funnel>
         <Funnel.Step name="nickname">
-          <div className={cx('input')}>
+          <div className={cx('input', 'enter')}>
             <Input variant={inputVariant}>
               <Input.TextField
                 id="nickname"
@@ -117,12 +117,12 @@ export default function MakeMyManualFunnel({
           </div>
         </Funnel.Step>
         <Funnel.Step name="character">
-          <div className={cx('inventory')}>
+          <div className={cx('inventory', 'enter')}>
             <Inventory resetBtn={<ResetBtn onClick={handleResetBtnClick} />} />
           </div>
         </Funnel.Step>
         <Funnel.Step name="manual">
-          <div className={cx('manualWrap')}>
+          <div className={cx('manualWrap', 'enter')}>
             <MyDescriptionCardList
               register={register}
               validationRules={step === 'manual' ? validationRules : undefined}
@@ -131,7 +131,7 @@ export default function MakeMyManualFunnel({
           </div>
         </Funnel.Step>
         <Funnel.Step name="keyword">
-          <div className={cx('keywords')}>
+          <div className={cx('keywords', 'enter')}>
             <KeywordBtnList
               selectedKeywords={selectedKeywords}
               setSelectedKeywords={setSelectedKeywords}
@@ -139,16 +139,20 @@ export default function MakeMyManualFunnel({
           </div>
         </Funnel.Step>
         <Funnel.Step name="statGraph">
-          <RadarChartContainer
-            radarType="NJNS"
-            originKeywordPercents={originKeywordPercents} // state가 아닌 일반 객체 넣으면 무한 depth
-            otherKeywordPercents={{}}
-            frameSize={rectangleLayout.frameSize}
-            radarSize={rectangleLayout.radarSize}
-            framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
-            hasOthers={false}
-            handleUpdateRadarData={handleStatsGraphValue}
-          />
+          <div className={cx('enter')}>
+            <RadarChartContainer
+              radarType="NJNS"
+              originKeywordPercents={originKeywordPercents} // state가 아닌 일반 객체 넣으면 무한 depth
+              otherKeywordPercents={{}}
+              frameSize={rectangleLayout.frameSize}
+              radarSize={rectangleLayout.radarSize}
+              framePadding={
+                rectangleLayout.frameSize - rectangleLayout.radarSize
+              }
+              hasOthers={false}
+              handleUpdateRadarData={handleStatsGraphValue}
+            />
+          </div>
         </Funnel.Step>
       </Funnel>
     </>
