@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
@@ -50,6 +52,7 @@ export default function MakeMyManual() {
     ['nickname', 'character', 'manual', 'keyword', 'statGraph'],
     'nickname',
   )
+  const [postSuccess, setPostSuccess] = useState(false)
 
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
@@ -97,7 +100,7 @@ export default function MakeMyManual() {
           answers,
           keywordPercents,
         })
-
+        setPostSuccess(true)
         return response
       } catch (error) {
         console.error('An error occurred:', error)
@@ -168,6 +171,7 @@ export default function MakeMyManual() {
                     ? ButtonStyle.DEACTIVE
                     : ButtonStyle.ACTIVE
                 }
+                confetti={step === 'statGraph' && postSuccess}
               >
                 다음
               </CommonBtn>

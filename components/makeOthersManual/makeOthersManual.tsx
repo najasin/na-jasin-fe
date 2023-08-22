@@ -172,7 +172,7 @@ export default function MakeOthersManual() {
                           ? ButtonStyle.DEACTIVE
                           : ButtonStyle.ACTIVE
                       }
-                      confetti={step === 'statGraph' && postSuccess && true}
+                      confetti={step === 'statGraph' && postSuccess}
                     >
                       {getButtonText()}
                     </CommonBtn>
