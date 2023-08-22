@@ -53,14 +53,14 @@ export default function RadarChartContainer({
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
-      value: originKeywordPercents[key],
+      value: originKeywordPercents[key] <= 10 ? 10 : originKeywordPercents[key],
       order: index,
     })),
   )
   const [defaultAxis] = useState<IAxisMaps[]>(
     Object.keys(otherKeywordPercents).map((key, index) => ({
       axis: key,
-      value: otherKeywordPercents[key],
+      value: otherKeywordPercents[key] <= 10 ? 10 : otherKeywordPercents[key],
       order: index,
     })),
   )
