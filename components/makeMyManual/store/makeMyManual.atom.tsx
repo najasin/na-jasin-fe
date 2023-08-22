@@ -3,10 +3,7 @@ import { atom } from 'recoil'
 import { Category } from '@/components/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 
-import { ICharacterItemIdSet } from '../makeMyManual.types'
-
-// eslint-disable-next-line import/no-cycle
-// import { originKeywordPercentsSelector } from './originKeywordPercents.selecter'
+import { ICharacterItemIdSet, IKeywordWithId } from '../makeMyManual.types'
 
 export const selectedCategoryState = atom<Category>({
   key: 'selectedCategoryState',
@@ -33,7 +30,7 @@ export const selectedSetState = atom<ICharacterItemIdSet>({
   default: { id: undefined, layoutCase: '' },
 })
 
-export const selectedKeywordsState = atom<string[]>({
+export const selectedKeywordsState = atom<IKeywordWithId[]>({
   key: 'selectedKeywords',
   default: [],
 })
@@ -41,6 +38,4 @@ export const selectedKeywordsState = atom<string[]>({
 export const statsGraphValueState = atom<TrimmedDataProps>({
   key: 'statsGraphValue',
   default: {},
-
-  // default: originKeywordPercentsSelector,
 })

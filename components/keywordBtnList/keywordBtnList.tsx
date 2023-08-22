@@ -7,12 +7,12 @@ import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyMa
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import KeywordBtn from '../keywordBtn/keywordBtn'
+import { IKeywordWithId } from '../makeMyManual/makeMyManual.types'
 import styles from './keywordBtnList.module.scss'
 import { IKeywordBtnListProps } from './keywordBtnList.types'
 
 const cx = classNames.bind(styles)
 export default function KeywordBtnList({
-  // keywords,
   selectedKeywords,
   setSelectedKeywords,
 }: IKeywordBtnListProps) {
@@ -21,26 +21,36 @@ export default function KeywordBtnList({
     queryFn: getMyManualRegister,
     refetchOnWindowFocus: true,
   })
-  const handleClick = (keyword: string) => {
+
+  const handleClick = (item: IKeywordWithId) => {
     setSelectedKeywords((prevSelected) =>
-      prevSelected.includes(keyword)
-        ? prevSelected.filter((selectedKeyword) => selectedKeyword !== keyword)
-        : [...prevSelected, keyword],
+      prevSelected.some(
+        (selectedKeyword) => selectedKeyword.keyword === item.keyword,
+      )
+        ? prevSelected.filter(
+            (selectedKeyword) => selectedKeyword.keyword !== item.keyword,
+          )
+        : [...prevSelected, item],
     )
   }
   return (
     <div className={cx('wrap')}>
       {data?.exampleKeywords &&
-        data.exampleKeywords.map((keyword: string, index: number) => {
-          const isActive = selectedKeywords.includes(keyword)
+        data.exampleKeywords.map((item: IKeywordWithId) => {
+          const { keyword } = item
+
+          const isActive = selectedKeywords.some(
+            (selectedKeyword) => selectedKeyword.id === item.id,
+          )
+
           const btnStyle = isActive ? ButtonStyle.ACTIVE : undefined
 
           return (
-            <div key={index}>
+            <div key={item.id}>
               <KeywordBtn
                 type="button"
                 style={btnStyle}
-                onClick={() => handleClick(keyword)}
+                onClick={() => handleClick(item)}
               >
                 {keyword}
               </KeywordBtn>

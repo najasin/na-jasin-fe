@@ -68,7 +68,7 @@ export default function MakeMyManualFunnel({
   const originKeywordPercents = selectedKeywords.reduce(
     (acc, keyword) => ({
       ...acc,
-      [keyword]: 2.6,
+      [keyword.keyword]: 2.6,
     }),
     {},
   )
@@ -92,7 +92,6 @@ export default function MakeMyManualFunnel({
       message: '1글자 이상 입력해주세요.',
     },
   }
-
   const handleStatsGraphValue = (value: TrimmedDataProps) => {
     setStatsGraphValue(value)
   }
