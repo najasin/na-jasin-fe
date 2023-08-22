@@ -1,12 +1,13 @@
 .modal {
   width: 1080px;
+  height: 100%;
   padding: 44px 50px 25px;
   border: 1px solid $white;
   border-radius: 20px;
   background-color: $white;
 
   @include tablet {
-    max-width: 100%;
+    width: 100%;
   }
 
   @include mobile {
@@ -35,11 +36,11 @@
 
 .contents {
   width: 100%;
-
-  @include flexbox(row, center, center);
-
+  height: 100%;
   margin: 0 auto;
+  overflow-y: scroll;
   gap: 30px;
+  @include flexbox(row, center, center);
 
   @include tablet {
     @include flexbox(column, center, center);
