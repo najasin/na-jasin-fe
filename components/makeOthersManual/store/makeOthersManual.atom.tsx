@@ -9,7 +9,7 @@ export const nicknameState = atom({
   default: '',
 })
 
-export const statsGraphValueState = atom<TrimmedDataProps>({
-  key: 'statsGraphValue',
+export const statsGraphValueState2 = atom<TrimmedDataProps>({
+  key: 'statsGraphValue2',
   default: {},
 })

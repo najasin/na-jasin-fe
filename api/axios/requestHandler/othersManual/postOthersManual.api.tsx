@@ -24,6 +24,5 @@ export const postOthersManual = async (data: FormData) => {
     `/api/${data.userType}/others-manual?userId=${data.userId}`,
     data.data,
   )
-
   return response
 }

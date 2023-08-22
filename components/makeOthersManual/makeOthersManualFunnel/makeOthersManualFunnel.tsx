@@ -19,7 +19,7 @@ import {
 } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
 import { IFormInputs } from '../makeOthersManual.type'
-import { statsGraphValueState } from '../store/makeOthersManual.atom'
+import { statsGraphValueState2 } from '../store/makeOthersManual.atom'
 import styles from './makeOthersManualFunnel.module.scss'
 
 const cx = classNames.bind(styles)
@@ -47,7 +47,7 @@ export default function MakeOthersManualFunnel({
     queryFn: () => fetchOthersManualById(userId),
   })
 
-  const setStatsGraphValue = useSetRecoilState(statsGraphValueState)
+  const setStatsGraphValue = useSetRecoilState(statsGraphValueState2)
   const originKeywordPercents = data?.originKeywordPercents as IKeyword[]
   const otherKeywordPercents = data?.otherKeywordPercents as IKeyword[]
   const formmattedOriginKeywordPercents: IKeyword = {}
@@ -94,24 +94,20 @@ export default function MakeOthersManualFunnel({
       </Funnel.Step>
       <Funnel.Step name="statGraph">
         <div className={cx('enter')}>
-          {statsGraphValueState && (
-            <RadarChartContainer
-              radarType="TJNS"
-              originKeywordPercents={formmattedOriginKeywordPercents}
-              otherKeywordPercents={
-                otherKeywordPercents
-                  ? formmattedOtherKeywordPercents
-                  : formmattedOriginKeywordPercents
-              }
-              frameSize={rectangleLayout.frameSize}
-              radarSize={rectangleLayout.radarSize}
-              framePadding={
-                rectangleLayout.frameSize - rectangleLayout.radarSize
-              }
-              hasOthers={!!otherKeywordPercents}
-              handleUpdateRadarData={handleStatsGraphValue}
-            />
-          )}
+          <RadarChartContainer
+            radarType="TJNS"
+            originKeywordPercents={formmattedOriginKeywordPercents}
+            otherKeywordPercents={
+              otherKeywordPercents
+                ? formmattedOtherKeywordPercents
+                : formmattedOriginKeywordPercents
+            }
+            frameSize={rectangleLayout.frameSize}
+            radarSize={rectangleLayout.radarSize}
+            framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
+            hasOthers={!!otherKeywordPercents}
+            handleUpdateRadarData={handleStatsGraphValue}
+          />
         </div>
       </Funnel.Step>
     </Funnel>
