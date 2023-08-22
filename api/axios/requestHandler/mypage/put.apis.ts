@@ -26,7 +26,6 @@ const updateNickname = async ({
     `/api/user/${userType}/nickname`,
     {
       nickname,
-      userType,
     },
     token
       ? {
