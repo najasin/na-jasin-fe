@@ -15,7 +15,7 @@ import { LogoutResponse } from './auth.types'
  * ```
  */
 const logout = async (): Promise<LogoutResponse> => {
-  const response = await postRequest<LogoutResponse>('/api/logout')
+  const response = await postRequest<LogoutResponse>('/api/auth/logout')
 
   return response
 }
