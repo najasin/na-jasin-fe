@@ -24,4 +24,4 @@ type KeywordPercents = Array<{ id: number; keyword: string; percent: number }>
 
 type QAs = Array<{ id: number; question: string; answer: string }>
 
-export type { IMyPageDatas }
+export type { IMyPageDatas, CharacterItem, KeywordPercents }
