@@ -18,7 +18,7 @@ declare global {
  * }, []);
  * ```
  */
-const createKaKaoShareButton = (imageUrl: string, shareUrl: string) => {
+const createKaKaoShareButton = (shareUrl: string, imageUrl?: string) => {
   if (window.Kakao) {
     const kakao = window.Kakao
     if (!kakao.isInitialized()) {
@@ -30,8 +30,7 @@ const createKaKaoShareButton = (imageUrl: string, shareUrl: string) => {
       content: {
         title: '나 자신',
         description: '#나자신 #카카오 #NaJasin',
-        // imageUrl: 'https://i.ibb.co/tsdspp7/favicon.webp',
-        imageUrl,
+        imageUrl: imageUrl || 'https://i.ibb.co/NjqLnt7/thumbnail-najasin.png',
         link: {
           //   mobileWebUrl: window.location.href,
           //   webUrl: window.location.href,
