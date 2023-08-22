@@ -44,17 +44,34 @@
     0% {
       transform: translateY(0);
     }
-  
+
     50% {
       transform: translateY(-10px);
     }
-  
+
     100% {
       transform: translateY(0);
     }
   }
 }
 
+@mixin slide-animation {
+  @keyframes slidein {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
 
 @mixin ellipsis($line: 1) {
   @if $line == 1 {
