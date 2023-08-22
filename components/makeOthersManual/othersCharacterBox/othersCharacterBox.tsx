@@ -3,10 +3,12 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 
+import { useSearchParams } from 'next/navigation'
+
 import CharacterBox from '@/components/characterBox/characterBox'
 import GhostBtn from '@/components/ghostBtn/ghostBtn'
 
-import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
 import styles from './othersCharacterBox.module.scss'
 
@@ -17,9 +19,12 @@ export default function OthersCharacterBox({
 }: {
   onClickGhostBtn: () => void
 }) {
+  const searchParams = useSearchParams()
+  const userId = searchParams.get('userId') as string
+
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: fetchOthersManual,
+    queryFn: () => fetchOthersManualById(userId),
   })
 
   const nickname = data?.nickname

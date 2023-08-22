@@ -10,12 +10,13 @@ import { useRecoilValue } from 'recoil'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
-import { useFunnel } from '@/hooks/useFunnel'
+import { useFunnelwithNoQuery } from '@/hooks/useFunnelwithNoQuery'
 
-import { fetchOthersManual } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
+import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 import {
   Answer,
   FormData,
+  IKeyword,
   postOthersManual,
 } from '@/api/axios/requestHandler/othersManual/postOthersManual.api'
 
@@ -33,34 +34,39 @@ import { IFormInputs } from './makeOthersManual.type'
 import MakeOthersManualFunnel from './makeOthersManualFunnel/makeOthersManualFunnel'
 import ModalDescriptionCardList from './modalDescriptionCardList/modalDescriptionCardList'
 import OthersCharacterBox from './othersCharacterBox/othersCharacterBox'
-import { statsGraphValueState } from './store/makeOthersManual.atom'
+import { statsGraphValueState2 } from './store/makeOthersManual.atom'
 
 const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
+  const [postSuccess, setPostSuccess] = useState(false)
+  const [postLoading, setPostLoading] = useState(false)
+
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
 
   const router = useRouter()
   const { data, isLoading } = useQuery({
     queryKey: ['othersData'],
-    queryFn: fetchOthersManual,
+    queryFn: () => fetchOthersManualById(userId),
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const statsGraphValue = useRecoilValue(statsGraphValueState)
+  const statsGraphValue = useRecoilValue(statsGraphValueState2)
 
   const { handleSubmit, register, formState, watch } = useForm<IFormInputs>()
 
-  const { Funnel, step, goPrev, goNext } = useFunnel(
+  const { Funnel, step, goPrev, goNext } = useFunnelwithNoQuery(
     ['manual', 'statGraph'],
     'manual',
   )
 
   const pathname = usePathname()
-  const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
-  const isMobile: boolean = useBreakpoint({ query: '(max-width: 768px)' })
+  const userType = pathname.includes('jff') ? 'jff' : 'df'
+  const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
+  const isMobile = useBreakpoint({ query: '(max-width: 768px)' })
   const nickname = data?.nickname as string
   const questions = data?.questions
+  const originKeywordPercents = data?.originKeywordPercents as IKeyword[]
   const watchedInputs = questions?.map((question, index) =>
     watch(`answer${index + 1}`),
   )
@@ -74,18 +80,31 @@ export default function MakeOthersManual() {
       answer: inputData[`answer${index + 1}`],
     }))
 
+    const statsGraphValueForPost = originKeywordPercents.map((item) => ({
+      id: item.id,
+      percent: statsGraphValue[item.keyword],
+    }))
+
     const totalFormData: FormData = {
       data: {
         nickname: inputData.nickname,
         answers: formattedAnswers as Answer[],
-        otherKeywordPercents: statsGraphValue,
+        otherKeywordPercents: statsGraphValueForPost,
       },
       userType: 'JFF',
       userId,
     }
 
     if (step === 'statGraph') {
-      postOthersManual(totalFormData)
+      try {
+        setPostLoading(true)
+        await postOthersManual(totalFormData)
+        setPostSuccess(true)
+        setPostLoading(false)
+        router.push(`/${userType}/my-page?userId=${userId}`)
+      } catch (error) {
+        console.error(error)
+      }
     }
     goNext()
   }
@@ -98,19 +117,25 @@ export default function MakeOthersManual() {
     setIsModalOpen(!isModalOpen)
   }
 
-  const setTitle = (): string => {
+  const setTitle = () => {
     if (step === 'manual') return `${nickname}의 사용설명서`
     return `${nickname}의 능력치`
   }
 
-  const setStep = (): string => {
+  const setStep = () => {
     if (step === 'manual') return '1'
     return '2'
   }
 
+  const getButtonText = () => {
+    if (postLoading) return '성공'
+    if (step === 'statGraph') return '완료'
+    return '다음'
+  }
+
   useEffect(() => {
-    router.push(`${pathname}?userId=1`)
-  }, [router, pathname])
+    router.push(`${pathname}?userId=${userId}`)
+  }, [router, pathname, userId])
 
   return (
     <>
@@ -147,11 +172,9 @@ export default function MakeOthersManual() {
                           ? ButtonStyle.DEACTIVE
                           : ButtonStyle.ACTIVE
                       }
-                      confetti={
-                        step === 'statGraph' && formState.isSubmitSuccessful
-                      }
+                      confetti={step === 'statGraph' && postSuccess && true}
                     >
-                      다음
+                      {getButtonText()}
                     </CommonBtn>
                     <span className={cx('tryBtn')}>
                       <CircleBtn onClick={handleClickTrybtn}>

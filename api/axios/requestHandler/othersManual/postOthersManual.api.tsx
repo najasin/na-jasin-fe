@@ -12,7 +12,7 @@ export interface FormData {
   data: {
     nickname: string
     answers: Answer[]
-    otherKeywordPercents: IKeyword
+    otherKeywordPercents: IKeyword[]
   }
   userType: string
   userId: string
@@ -21,9 +21,8 @@ export interface FormData {
 /* page post 요청 */
 export const postOthersManual = async (data: FormData) => {
   const response = await postRequest<string>(
-    '/api/jff/others-manual?userId=1',
+    `/api/${data.userType}/others-manual?userId=${data.userId}`,
     data.data,
   )
-
   return response
 }
