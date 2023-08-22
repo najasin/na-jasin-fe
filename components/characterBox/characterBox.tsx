@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import Image from 'next/image'
 
@@ -31,44 +32,74 @@ export default function CharacterBox({
               priority={true}
             />
             {selectedItems && (
-              <>
-                {'face' in selectedItems && selectedItems?.face && (
-                  <Image
-                    className={cx('img', 'face')}
-                    src={selectedItems.face}
-                    alt="face item"
-                    priority={true}
-                    fill={true}
-                  />
-                )}
+              <AnimatePresence>
                 {'body' in selectedItems && selectedItems.body && (
-                  <Image
-                    className={cx('img', 'body')}
-                    src={selectedItems.body}
-                    alt="body item"
-                    fill={true}
-                    priority={true}
-                  />
+                  <motion.div
+                    key={selectedItems.body}
+                    initial={{ opacity: 0 }} // 초기 상태
+                    animate={{ opacity: 1 }} // 애니메이션 상태
+                    transition={{ duration: 1 }} // 애니메이션 지속 시간                    className={cx('img', 'face')}
+                  >
+                    <Image
+                      className={cx('img', 'body')}
+                      src={selectedItems.body}
+                      alt="body item"
+                      fill={true}
+                      priority={true}
+                    />
+                  </motion.div>
                 )}
+                {'face' in selectedItems && selectedItems?.face && (
+                  <motion.div
+                    className={cx('img', 'face')}
+                    key={selectedItems.face}
+                    initial={{ opacity: 0 }} // 초기 상태
+                    animate={{ opacity: 1 }} // 애니메이션 상태
+                    transition={{ duration: 1 }} // 애니메이션 지속 시간
+                  >
+                    <Image
+                      src={selectedItems.face}
+                      alt="face item"
+                      priority={true}
+                      fill={true}
+                    />
+                  </motion.div>
+                )}
+
                 {'expression' in selectedItems && selectedItems.expression && (
-                  <Image
-                    className={cx('img', 'expression')}
-                    src={selectedItems.expression}
-                    alt="expression item"
-                    fill={true}
-                    priority={true}
-                  />
+                  <motion.div
+                    key={selectedItems.expression}
+                    initial={{ opacity: 0 }} // 초기 상태
+                    animate={{ opacity: 1 }} // 애니메이션 상태
+                    transition={{ duration: 1 }} // 애니메이션 지속 시간
+                  >
+                    <Image
+                      className={cx('img', 'expression')}
+                      src={selectedItems.expression}
+                      alt="expression item"
+                      fill={true}
+                      priority={true}
+                    />
+                  </motion.div>
                 )}
+
                 {'set' in selectedItems && selectedItems.set && (
-                  <Image
-                    className={cx('img')}
-                    src={selectedItems.set}
-                    alt="set item"
-                    fill={true}
-                    priority={true}
-                  />
+                  <motion.div
+                    key={selectedItems.set}
+                    initial={{ opacity: 0 }} // 초기 상태
+                    animate={{ opacity: 1 }} // 애니메이션 상태
+                    transition={{ duration: 1 }} // 애니메이션 지속 시간                    className={cx('img', 'face')}
+                  >
+                    <Image
+                      className={cx('img')}
+                      src={selectedItems.set}
+                      alt="set item"
+                      fill={true}
+                      priority={true}
+                    />
+                  </motion.div>
                 )}
-              </>
+              </AnimatePresence>
             )}
           </div>
         </>
