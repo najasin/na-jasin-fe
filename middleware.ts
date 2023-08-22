@@ -73,5 +73,14 @@ export function middleware(req: NextRequest) {
     return response
   }
 
+  // 토큰 없이 /jff/my-manual 이동 시
+  if (
+    pathname.startsWith('/jff/my-manual') &&
+    pathname.endsWith('/jff/my-manual') &&
+    (!actForCheck || !rftForCheck)
+  ) {
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+
   return NextResponse.next()
 }
