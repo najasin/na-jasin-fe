@@ -34,9 +34,8 @@ export default function CharacterBox({
               <>
                 {'face' in selectedItems && selectedItems?.face && (
                   <Image
-                    className={cx('img')}
-                    // src={selectedItems.face}
-                    src="/images/character-face-1.svg"
+                    className={cx('img', 'face')}
+                    src={selectedItems.face}
                     alt="face item"
                     priority={true}
                     fill={true}
@@ -44,7 +43,7 @@ export default function CharacterBox({
                 )}
                 {'body' in selectedItems && selectedItems.body && (
                   <Image
-                    className={cx('img')}
+                    className={cx('img', 'body')}
                     src={selectedItems.body}
                     alt="body item"
                     fill={true}
@@ -53,7 +52,7 @@ export default function CharacterBox({
                 )}
                 {'expression' in selectedItems && selectedItems.expression && (
                   <Image
-                    className={cx('img')}
+                    className={cx('img', 'expression')}
                     src={selectedItems.expression}
                     alt="expression item"
                     fill={true}
