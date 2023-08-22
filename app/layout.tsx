@@ -1,5 +1,6 @@
 import RecoilRootWrapper from '@/store/recoilRootWrapper'
 
+import dynamic from 'next/dynamic'
 import Script from 'next/script'
 
 import '@/styles/global.scss'
@@ -11,6 +12,13 @@ import Gnb from '@/components/gnb/gnb'
 import TanstackProvider from '@/api/tanstack/tanstackProvider.context'
 
 import { META_ROOT } from './_meta'
+
+const GhostCursorController = dynamic(
+  () => import('@/components/ghostCursor/ghostCursorController'),
+  {
+    ssr: false,
+  },
+)
 
 export const metadata = META_ROOT
 
@@ -25,7 +33,10 @@ export default function RootLayout({
         <TanstackProvider>
           <RecoilRootWrapper>
             <Gnb />
-            <main>{children}</main>
+            <main>
+              {children}
+              <GhostCursorController />
+            </main>
             <Footer />
           </RecoilRootWrapper>
         </TanstackProvider>
