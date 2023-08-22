@@ -39,7 +39,9 @@ export function middleware(req: NextRequest) {
     const uid = searchParams.get('userId')
     const userType = searchParams.get('userType')
 
-    const response = NextResponse.redirect(new URL('/jff/my-manual', req.url))
+    const response = userType
+      ? NextResponse.redirect(new URL(`/jff/my-page?userId=${uid}`, req.url))
+      : NextResponse.redirect(new URL('/jff/my-manual', req.url))
 
     response.cookies.set({
       name: 'act',
