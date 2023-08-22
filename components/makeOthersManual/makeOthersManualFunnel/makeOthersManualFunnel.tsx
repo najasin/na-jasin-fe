@@ -52,11 +52,9 @@ export default function MakeOthersManualFunnel({
   const otherKeywordPercents = data?.otherKeywordPercents as IKeyword[]
   const formmattedOriginKeywordPercents: IKeyword = {}
   const formmattedOtherKeywordPercents: IKeyword = {}
-  const defaultOtherKeywordPercents: IKeyword = {}
 
   originKeywordPercents.forEach((item) => {
     formmattedOriginKeywordPercents[item.keyword] = item.percent
-    defaultOtherKeywordPercents[item.keyword] = 3
   })
 
   otherKeywordPercents.forEach((item) => {
@@ -103,7 +101,7 @@ export default function MakeOthersManualFunnel({
               otherKeywordPercents={
                 otherKeywordPercents
                   ? formmattedOtherKeywordPercents
-                  : defaultOtherKeywordPercents
+                  : formmattedOriginKeywordPercents
               }
               frameSize={rectangleLayout.frameSize}
               radarSize={rectangleLayout.radarSize}
