@@ -5,6 +5,8 @@ import {
 
 import { postRequest } from '@/api/axios/common.apis'
 
+import { IMyManualPostResponse } from './myManual.types'
+
 /**
  *
  * @example
@@ -31,6 +33,7 @@ import { postRequest } from '@/api/axios/common.apis'
 const postMyManual = async ({
   userType,
   nickname,
+  baseImage,
   selectedFaceItem,
   selectedBodyItem,
   selectedExpressionItem,
@@ -40,15 +43,17 @@ const postMyManual = async ({
 }: {
   userType: string
   nickname: string
+  baseImage?: string
   selectedFaceItem?: number
   selectedBodyItem?: number
   selectedExpressionItem?: number
   selectedSet?: number
   answers: IAnswerItem[]
   keywordPercents: IPercentWithId[]
-}): Promise<string> => {
+}): Promise<IMyManualPostResponse> => {
   console.log({
     nickname,
+    baseImage,
     characterItems: {
       ...(selectedFaceItem ? { face: selectedFaceItem } : {}),
       ...(selectedBodyItem ? { body: selectedBodyItem } : {}),
@@ -58,26 +63,23 @@ const postMyManual = async ({
     answers,
     keywordPercents,
   })
-  const response = await postRequest<string>(`/api/${userType}/my-manual`, {
-    nickname,
-    characterItems:
-      ((selectedFaceItem || selectedBodyItem || selectedExpressionItem) && {
-        face: {
-          id: selectedFaceItem,
-        },
-        body: {
-          id: selectedBodyItem,
-        },
-        expression: {
-          id: selectedExpressionItem,
-        },
-      }) ||
-      (selectedSet && {
-        set: selectedSet,
-      }),
-    answers,
-    keywordPercents,
-  })
+  const response = await postRequest<IMyManualPostResponse>(
+    `/api/${userType}/my-manual`,
+    {
+      nickname,
+      baseImage,
+      characterItems: {
+        ...(selectedFaceItem ? { face: selectedFaceItem } : {}),
+        ...(selectedBodyItem ? { body: selectedBodyItem } : {}),
+        ...(selectedExpressionItem
+          ? { expression: selectedExpressionItem }
+          : {}),
+        ...(selectedSet ? { set: selectedSet } : {}),
+      },
+      answers,
+      keywordPercents,
+    },
+  )
 
   return response
 }

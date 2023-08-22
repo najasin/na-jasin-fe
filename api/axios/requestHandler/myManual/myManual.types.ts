@@ -12,4 +12,9 @@ interface IMyManualDatas {
   exampleKeywords: IKeywordWithId[]
 }
 
-export type { IMyManualDatas }
+interface IMyManualPostResponse {
+  userId: string
+  userType: string
+}
+
+export type { IMyManualDatas, IMyManualPostResponse }
