@@ -61,7 +61,7 @@ const drawRadarChart = (
   }
 
   // cfg.maxValue = Math.max(cfg.maxValue, d3.max(data.map((o) => o.value)))
-  cfg.maxValue = 10
+  cfg.maxValue = 100
 
   const allAxis = data.map((i) => i.axis)
   const total = allAxis.length
@@ -326,7 +326,7 @@ const drawRadarChart = (
               (-cfg.radians / total) * d.order * (180 / Math.PI)
             }, ${newX}, ${newY})`,
           ) // 툴팁 텍스트 반대 회전
-          .text((d.value * 10) >> 0)
+          .text(d.value >> 0)
           .transition('200')
           .style('opacity', 1)
         const z = `polygon.${d3.select(this).attr('class')}`
@@ -351,7 +351,7 @@ const drawRadarChart = (
     // 유저가 변경한 데이터 불변성 유지
     const changedData = data.map(({ axis, value, order }) => ({
       axis,
-      value: (value * 10) >> 0,
+      value: value >> 0,
       order,
     }))
     onDragOutUserInput(changedData)

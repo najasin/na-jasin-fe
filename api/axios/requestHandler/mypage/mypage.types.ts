@@ -3,39 +3,25 @@ interface IMyPageDatas {
   nickname: string
   baseImage: string
   characterItems: {
-    face: {
-      id: number
-      showCase: string
-      layoutCase: string
-    }
-    body: {
-      id: number
-      showCase: string
-      layoutCase: string
-    }
-    expression: {
-      id: number
-      showCase: string
-      layoutCase: string
-    }
-    set: {
-      id: number
-      showCase: string
-      layoutCase: string
-    }
+    face: CharacterItem
+    body: CharacterItem
+    expression: CharacterItem
+    set: CharacterItem
   }
-  myManualQAPair: Array<{ id: number; question: string; answer: string }>
+  myManualQAPair: QAs
   othersManualQAPairs: Array<{
     nickname: string
-    qas: Array<{ id: number; question: string; answer: string }>
+    qas: QAs
   }>
-  originKeywordPercents: {
-    [keyword: string]: number
-  }
-  otherKeywordPercents: {
-    [keyword: string]: number
-  }
+  originKeywordPercents: KeywordPercents
+  otherKeywordPercents: KeywordPercents
   isOwner: boolean
 }
 
-export type { IMyPageDatas }
+type CharacterItem = { id: number; showCase: string; layoutCase: string }
+
+type KeywordPercents = Array<{ id: number; keyword: string; percent: number }>
+
+type QAs = Array<{ id: number; question: string; answer: string }>
+
+export type { IMyPageDatas, CharacterItem, KeywordPercents }
