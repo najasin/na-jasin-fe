@@ -1,5 +1,6 @@
+import { IKeywordWithId } from '../makeMyManual/makeMyManual.types'
+
 export interface IKeywordBtnListProps {
-  // keywords: string[]
-  selectedKeywords: string[]
-  setSelectedKeywords: React.Dispatch<React.SetStateAction<string[]>>
+  selectedKeywords: IKeywordWithId[]
+  setSelectedKeywords: React.Dispatch<React.SetStateAction<IKeywordWithId[]>>
 }
