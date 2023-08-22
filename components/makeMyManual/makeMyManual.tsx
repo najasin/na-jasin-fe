@@ -43,7 +43,7 @@ const cx = classNames.bind(styles)
 export default function MakeMyManual() {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: getMyManualRegister,
+    queryFn: () => getMyManualRegister(),
     refetchOnWindowFocus: true,
   })
 

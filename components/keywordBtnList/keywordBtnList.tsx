@@ -18,7 +18,7 @@ export default function KeywordBtnList({
 }: IKeywordBtnListProps) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: getMyManualRegister,
+    queryFn: () => getMyManualRegister(),
     refetchOnWindowFocus: true,
   })
 
