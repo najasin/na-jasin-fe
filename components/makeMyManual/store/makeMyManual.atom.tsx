@@ -5,9 +5,6 @@ import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 
 import { ICharacterItemIdSet, IKeywordWithId } from '../makeMyManual.types'
 
-// eslint-disable-next-line import/no-cycle
-// import { originKeywordPercentsSelector } from './originKeywordPercents.selecter'
-
 export const selectedCategoryState = atom<Category>({
   key: 'selectedCategoryState',
   default: 'face',
@@ -41,6 +38,4 @@ export const selectedKeywordsState = atom<IKeywordWithId[]>({
 export const statsGraphValueState = atom<TrimmedDataProps>({
   key: 'statsGraphValue',
   default: {},
-
-  // default: originKeywordPercentsSelector,
 })
