@@ -5,17 +5,32 @@ import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { motion } from 'framer-motion'
 
+import { useParams, useSearchParams } from 'next/navigation'
+
 import CircleButton from '@/components/fab/circleButton'
+
+import handleClickCopyClipboard from '@/services/clipboard.helpers'
+import handleClickShareFacebook from '@/services/facebook.helpers'
 
 import styles from './fab.module.scss'
 
 const cx = classNames.bind(styles)
 
 export default function Fab() {
+  const { userType } = useParams()
+  const userId = useSearchParams().get('userId')
+
+  const shareUrl = `na-jasin.com/${userType}/others-manual?userId=${userId}`
+
   const [isClicked, setIsClicked] = useState(false)
 
   const handleClick = () => {
     setIsClicked(!isClicked)
+  }
+
+  const handleClickInstagramBtn = () => {
+    handleClickCopyClipboard(shareUrl, () => console.log('copy'))
+    window.open('https://www.instagram.com/', 'noopener', 'noreferer')
   }
 
   return (
@@ -34,10 +49,12 @@ export default function Fab() {
                 image="facebook"
                 size="sm"
                 action={true}
+                onClick={() => handleClickShareFacebook(shareUrl)}
               />
             </div>
             <div className={cx('absolute', 'kakao')}>
               <CircleButton
+                id="kakao-link-btn"
                 name="kakao"
                 image="kakao"
                 size="sm"
@@ -50,10 +67,17 @@ export default function Fab() {
                 image="instagram"
                 size="sm"
                 action={true}
+                onClick={handleClickInstagramBtn}
               />
             </div>
             <div className={cx('absolute', 'link')}>
-              <CircleButton name="link" image="link" size="sm" action={true} />
+              <CircleButton
+                name="link"
+                image="link"
+                size="sm"
+                action={true}
+                onClick={() => handleClickCopyClipboard(shareUrl)}
+              />
             </div>
           </div>
           <CircleButton
