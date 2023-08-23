@@ -25,6 +25,7 @@ import { validationRules } from '@/helpers/validationRule.helpers'
 
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
+import PlaceholderBox from './placeholderBox'
 
 const cx = classNames.bind(styles)
 
@@ -123,23 +124,29 @@ export default function ManualBox({
             )}
           </div>
           <div className={cx('answers')}>
-            {descriptionType === 'MY' ? (
+            {descriptionType === 'MY' &&
               myDatas.map((data) => (
                 <MyDescriptionCard
                   key={data.id}
                   question={data.question}
                   answer={data.answer}
                 />
-              ))
-            ) : (
+              ))}
+            {descriptionType === 'OTHERS' && otherAnswers.length > 0 && (
               <OthersDescriptionCard cardDatas={otherAnswers} />
+            )}
+            {descriptionType === 'OTHERS' && otherAnswers.length === 0 && (
+              <PlaceholderBox />
             )}
           </div>
         </div>
       </div>
       {isModalOpen && (
         <ModalPortal>
-          <form onSubmit={handleSubmit(onClickSubmit)}>
+          <form
+            style={{ height: '100%' }}
+            onSubmit={handleSubmit(onClickSubmit)}
+          >
             <ContentModalLayout
               title="자시니 다시 설명하기"
               closeBtn={
