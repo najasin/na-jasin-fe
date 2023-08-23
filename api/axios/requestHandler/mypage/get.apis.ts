@@ -21,15 +21,13 @@ const getMypage = async ({
 }: {
   userType: string
   userId: string
-  token: string | undefined
+  token?: string
 }): Promise<IMyPageDatas> => {
+  const config = token ? { headers: { Authorization: `${token}` } } : {}
+
   const response = await getRequest<IMyPageDatas>(
     `/api/user/${userType}/mypage?userId=${userId}`,
-    {
-      headers: {
-        Authorization: `${token}`,
-      },
-    },
+    config
   )
 
   return response
