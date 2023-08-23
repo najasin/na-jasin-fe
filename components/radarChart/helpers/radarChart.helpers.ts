@@ -393,7 +393,7 @@ const drawRadarChart = (
     }
 
     // 0보다 작아졌을 때 멈춘다.
-    if (newValue <= 0) {
+    if (newValue <= 25) {
       return
     }
 
