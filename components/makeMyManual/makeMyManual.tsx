@@ -55,7 +55,9 @@ export default function MakeMyManual() {
     'nickname',
   )
   const [postSuccess, setPostSuccess] = useState(false)
+
   const router = useRouter()
+
 
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
@@ -106,8 +108,9 @@ export default function MakeMyManual() {
           keywordPercents,
         })
         setPostSuccess(true)
-        console.log(response)
+
         router.push(`/${response.userType}/my-page?userId=${response.userId}`)
+
         return response
       } catch (error) {
         console.error('An error occurred:', error)
