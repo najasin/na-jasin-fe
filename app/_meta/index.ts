@@ -1,4 +1,7 @@
 const META_ROOT = {
+  icons: {
+    icon: '/images/favicon.png',
+  },
   title: {
     template: '%s : Na-JaSin',
     default: 'Na-JaSin',
