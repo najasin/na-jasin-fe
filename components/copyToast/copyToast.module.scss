@@ -1,0 +1,58 @@
+.copyToast {
+  position: fixed;
+  z-index: 100;
+  top: 80px;
+  right: 10px;
+  width: 150px;
+  padding: 10px 3px;
+  animation: toast 1.5s ease;
+  border: 1px solid $grey;
+  border-radius: 10px;
+  background-color: rgba($blue-point, 0.9);
+  color: $white;
+  gap: 5px;
+
+  @include tablet {
+    top: 120px;
+  }
+
+  @include mobile {
+    top: 110px;
+    width: 100px;
+    padding: 5px 3px;
+  }
+
+  @include flexbox(column, center, center);
+
+  @keyframes toast {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    60% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+.heading {
+  @include font-style('button4');
+  @include mobile {
+    @include font-style('button6');
+
+    font-weight: 400;
+  }
+}
+
+.content {
+  @include font-style('button6');
+  @include mobile {
+    font-size: 11px;
+  }
+}
