@@ -7,6 +7,8 @@ import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
+import { useRouter } from 'next/navigation'
+
 import CharacterBox from '@/components/characterBox/characterBox'
 import CommonBtn from '@/components/commonBtn/commonBtn'
 import FormBox from '@/components/formBox/formBox'
@@ -54,6 +56,9 @@ export default function MakeMyManual() {
   )
   const [postSuccess, setPostSuccess] = useState(false)
 
+  const router = useRouter()
+
+
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
   const selectedBodyItem = useRecoilValue(selectedBodyItemState)
   const selectedExpressionItem = useRecoilValue(selectedExpressionItemState)
@@ -84,6 +89,7 @@ export default function MakeMyManual() {
     }
 
     if (step === 'statGraph') {
+      if (!data?.baseImage) throw new Error()
       const answers = transformData(inputData.answers)
       const keywordPercents = selectedKeywords.map((keywordObj) => ({
         id: keywordObj.id,
@@ -93,6 +99,7 @@ export default function MakeMyManual() {
         const response = await postMyManual({
           userType: 'jff',
           nickname: inputData.nickname,
+          baseImage: data.baseImage,
           selectedFaceItem: selectedFaceItem.id,
           selectedBodyItem: selectedBodyItem.id,
           selectedExpressionItem: selectedExpressionItem.id,
@@ -101,6 +108,9 @@ export default function MakeMyManual() {
           keywordPercents,
         })
         setPostSuccess(true)
+
+        router.push(`/${response.userType}/my-page?userId=${response.userId}`)
+
         return response
       } catch (error) {
         console.error('An error occurred:', error)
