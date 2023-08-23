@@ -12,7 +12,7 @@ import { getMypage } from '@/api/axios/requestHandler/mypage/get.apis'
 const getMyPageData = async (
   userType: string,
   userId: string,
-  token: string | undefined,
+  token?: string,
 ) => {
   try {
     const data = await getMypage({ userType, userId, token })
