@@ -50,6 +50,18 @@ export default async function MyPage({
       isOwner,
     } = data
 
+    let isOthers = false
+
+    if (!otherKeywordPercents) {
+      isOthers = false
+    }
+
+    otherKeywordPercents.forEach(({ percent }) => {
+      if (percent !== 0) {
+        isOthers = true
+      }
+    })
+
     const characterData = {
       baseImage,
       characterItems,
@@ -64,7 +76,9 @@ export default async function MyPage({
           <ContentWrapper>
             <ProfileBox
               myKeywordPercents={originKeywordPercents}
-              othersKeywordPercents={otherKeywordPercents}
+              othersKeywordPercents={
+                isOthers ? otherKeywordPercents : originKeywordPercents
+              }
               data={characterData}
               nickname={nickname}
               isOwner={isOwner}
