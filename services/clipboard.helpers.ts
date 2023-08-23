@@ -16,7 +16,7 @@ const handleClickCopyClipboard = async (
     handler()
     setTimeout(() => {
       handler()
-    }, 500)
+    }, 1500)
   }
 }
 
