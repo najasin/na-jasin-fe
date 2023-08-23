@@ -73,6 +73,58 @@
   animation-timing-function: ease-in-out;
 }
 
+@mixin dot-flashing($animation-delay: 0.5s) {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: $animation-delay;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #fff;
+
+  &::before,
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+
+  &::before {
+    left: -10px;
+    width: 7px;
+    height: 7px;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 0s;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #fff;
+  }
+
+  &::after {
+    left: 10px;
+    width: 7px;
+    height: 7px;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 1s;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #fff;
+  }
+  @keyframes dot-flashing {
+    0% {
+      background-color: #fff;
+    }
+  
+    50%,
+    100% {
+      background-color: rgb(152 128 255 / 20%);
+    }
+  }
+}
+
+
 @mixin ellipsis($line: 1) {
   @if $line == 1 {
     display: block;

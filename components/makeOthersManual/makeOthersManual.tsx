@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
+import NotFound from '@/app/not-found'
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnelwithNoQuery } from '@/hooks/useFunnelwithNoQuery'
@@ -24,6 +25,7 @@ import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import FormBox from '../formBox/formBox'
+import ImageLoader from '../loadingImg/imageLoader'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
 import CloseButton from '../manualBox/closeButton'
 import ContentModalLayout2 from '../modalLayout/contentModalLayout2'
@@ -44,11 +46,12 @@ export default function MakeOthersManual() {
 
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
+  const { userType } = useParams() as { userType: string }
 
   const router = useRouter()
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['othersData'],
-    queryFn: () => fetchOthersManualById(userId),
+    queryFn: () => fetchOthersManualById(userType, userId),
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
   const statsGraphValue = useRecoilValue(statsGraphValueState2)
@@ -60,8 +63,7 @@ export default function MakeOthersManual() {
     'manual',
   )
 
-  const pathname = usePathname()
-  const userType = pathname.includes('jff') ? 'jff' : 'df'
+  // const userType = pathname.includes('jff') ? 'jff' : 'df'
   const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
   const isMobile = useBreakpoint({ query: '(max-width: 768px)' })
   const nickname = data?.nickname as string
@@ -102,8 +104,8 @@ export default function MakeOthersManual() {
         setPostSuccess(true)
         setPostLoading(false)
         router.push(`/${userType}/my-page?userId=${userId}`)
-      } catch (error) {
-        console.error(error)
+      } catch (err) {
+        console.error(err)
       }
     }
     goNext()
@@ -128,22 +130,23 @@ export default function MakeOthersManual() {
   }
 
   const getButtonText = () => {
-    if (postLoading) return '성공'
+    // if (postLoading) return '성공'
     if (step === 'statGraph') return '완료'
     return '다음'
   }
 
-  useEffect(() => {
-    router.push(`${pathname}?userId=${userId}`)
-  }, [router, pathname, userId])
+  if (error) return <NotFound />
 
   return (
     <>
-      {!isLoading && (
+      {isLoading ? (
+        <ImageLoader />
+      ) : (
         <SimpleLayout
           title={`${nickname}의 사용설명서 만들기`}
           margin={!isMobile ? 32 : 10}
         >
+          <ImageLoader />
           <div className={cx('layout')}>
             {!isTablet && (
               <OthersCharacterBox onClickGhostBtn={handleModalState} />
@@ -173,6 +176,7 @@ export default function MakeOthersManual() {
                           : ButtonStyle.ACTIVE
                       }
                       confetti={step === 'statGraph' && postSuccess}
+                      isLoading={!!postLoading}
                     >
                       {getButtonText()}
                     </CommonBtn>

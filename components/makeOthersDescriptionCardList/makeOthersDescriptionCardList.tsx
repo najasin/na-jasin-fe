@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 import { FormState, UseFormRegister } from 'react-hook-form'
 
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
@@ -37,10 +37,11 @@ export default function MakeOthersDescriptionCardList({
 }) {
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
+  const { userType } = useParams() as { userType: string }
 
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: () => fetchOthersManualById(userId),
+    queryFn: () => fetchOthersManualById(userType, userId),
   })
 
   const qusetions = data?.questions
@@ -77,27 +78,29 @@ export default function MakeOthersDescriptionCardList({
         </Input>
       </div>
       <h3 className={cx('manualTitle')}>사용법</h3>
-      {qusetions?.map(
-        (question: IQuestions, index) =>
-          question && (
-            <div key={question.id} className={cx('manualItem')}>
-              <MyDescriptionCard2
-                question={{
-                  id: question.id,
-                  question: question.question,
-                }}
-                register={
-                  register && register(`answer${index + 1}`, validationRules)
-                }
-                isInvalid={
-                  formState && formState.isSubmitted
-                    ? !!formState.errors[`answer${index + 1}`]
-                    : undefined
-                }
-              />
-            </div>
-          ),
-      )}
+      <ul>
+        {qusetions?.map(
+          (question: IQuestions, index) =>
+            question && (
+              <li key={question.id} className={cx('manualItem')}>
+                <MyDescriptionCard2
+                  question={{
+                    id: question.id,
+                    question: question.question,
+                  }}
+                  register={
+                    register && register(`answer${index + 1}`, validationRules)
+                  }
+                  isInvalid={
+                    formState && formState.isSubmitted
+                      ? !!formState.errors[`answer${index + 1}`]
+                      : undefined
+                  }
+                />
+              </li>
+            ),
+        )}
+      </ul>
     </>
   )
 }

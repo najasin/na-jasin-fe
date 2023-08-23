@@ -24,6 +24,7 @@ export default function CommonBtn({
   onClick,
   confetti = false,
   children,
+  isLoading = false,
 }: CommonBtnProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
@@ -213,7 +214,11 @@ export default function CommonBtn({
           ref={buttonRef}
           disabled={style === ButtonStyle.DEACTIVE}
         >
-          {children}
+          {isLoading && style === ButtonStyle.ACTIVE ? (
+            <div className={cx('loading')} />
+          ) : (
+            children
+          )}
         </button>
         <canvas className={cx('canvas')} ref={canvasRef}></canvas>
       </div>

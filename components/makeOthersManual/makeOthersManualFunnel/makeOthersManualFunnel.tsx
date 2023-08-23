@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 import { FormState, UseFormRegister } from 'react-hook-form'
 import { useSetRecoilState } from 'recoil'
 
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 
 import MakeOthersDescriptionCardList from '@/components/makeOthersDescriptionCardList/makeOthersDescriptionCardList'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
@@ -41,10 +41,10 @@ export default function MakeOthersManualFunnel({
 }) {
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
-
+  const { userType } = useParams() as { userType: string }
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: () => fetchOthersManualById(userId),
+    queryFn: () => fetchOthersManualById(userType, userId),
   })
 
   const setStatsGraphValue = useSetRecoilState(statsGraphValueState2)
@@ -57,9 +57,11 @@ export default function MakeOthersManualFunnel({
     formmattedOriginKeywordPercents[item.keyword] = item.percent
   })
 
-  otherKeywordPercents.forEach((item) => {
-    formmattedOtherKeywordPercents[item.keyword] = item.percent
-  })
+  if (otherKeywordPercents) {
+    ;(otherKeywordPercents as IKeyword[]).forEach((item) => {
+      formmattedOtherKeywordPercents[item.keyword] = item.percent
+    })
+  }
 
   const rectangleLayout = {
     frameSize: 350,
@@ -81,34 +83,30 @@ export default function MakeOthersManualFunnel({
   return (
     <Funnel>
       <Funnel.Step name="manual">
-        <div className={cx('enter')}>
-          <div className={cx('manualWrap')}>
-            <MakeOthersDescriptionCardList
-              register={register}
-              validationRules={step === 'manual' ? validationRules : undefined}
-              step={step}
-              formState={formState}
-            />
-          </div>
+        <div className={cx('manualWrap')}>
+          <MakeOthersDescriptionCardList
+            register={register}
+            validationRules={step === 'manual' ? validationRules : undefined}
+            step={step}
+            formState={formState}
+          />
         </div>
       </Funnel.Step>
       <Funnel.Step name="statGraph">
-        <div className={cx('enter')}>
-          <RadarChartContainer
-            radarType="TJNS"
-            originKeywordPercents={formmattedOriginKeywordPercents}
-            otherKeywordPercents={
-              otherKeywordPercents
-                ? formmattedOtherKeywordPercents
-                : formmattedOriginKeywordPercents
-            }
-            frameSize={rectangleLayout.frameSize}
-            radarSize={rectangleLayout.radarSize}
-            framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
-            hasOthers={!!otherKeywordPercents}
-            handleUpdateRadarData={handleStatsGraphValue}
-          />
-        </div>
+        <RadarChartContainer
+          radarType="TJNS"
+          originKeywordPercents={formmattedOriginKeywordPercents}
+          otherKeywordPercents={
+            otherKeywordPercents
+              ? formmattedOtherKeywordPercents
+              : formmattedOriginKeywordPercents
+          }
+          frameSize={rectangleLayout.frameSize}
+          radarSize={rectangleLayout.radarSize}
+          framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
+          hasOthers={!!otherKeywordPercents}
+          handleUpdateRadarData={handleStatsGraphValue}
+        />
       </Funnel.Step>
     </Funnel>
   )

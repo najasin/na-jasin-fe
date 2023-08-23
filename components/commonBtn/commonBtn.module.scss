@@ -1,12 +1,15 @@
 .buttonContainer {
-  display: flex;
+  @include flexbox(row, center, center);
+
   position: relative;
-  align-items: center;
-  justify-content: center;
 
   .button {
+    @include flexbox(row, center, center);
+
     width: 100%;
-    padding: 12px;
+    min-width: 72px;
+    height: 44px;
+    padding: 0 12px;
     transition: background-color 0.3s ease;
 
     &.active {
@@ -19,6 +22,8 @@
     @include font-style('button2');
     @include mobile {
       @include font-style('button5');
+
+      height: 41.6px;
     }
 
     &.deactive {
@@ -47,4 +52,8 @@
       width: 150%;
     }
   }
+}
+
+.loading {
+  @include dot-flashing;
 }

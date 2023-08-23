@@ -16,4 +16,5 @@ export interface CommonBtnProps {
   children: React.ReactNode
   onClick?: ClickHandler | undefined
   confetti?: boolean
+  isLoading?: boolean
 }

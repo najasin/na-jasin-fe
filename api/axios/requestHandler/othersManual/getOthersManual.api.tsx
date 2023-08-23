@@ -37,11 +37,12 @@ export interface GetData {
 /* page get 요청 */
 
 export const fetchOthersManualById = async (
+  userType: string,
   userId: string,
 ): Promise<GetData> => {
   try {
     const response = await getRequest<GetData>(
-      `api/jff/others-manual?userId=${userId}`,
+      `api/${userType}/others-manual?userId=${userId}`,
     )
     return response
   } catch (error) {
