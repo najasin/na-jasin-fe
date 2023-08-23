@@ -25,13 +25,15 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
                 alt="signin title"
               />
             </ButtonHoverTapAnimation>
-            <Image
-              className={cx('batLeftTopImage')}
-              width={100}
-              height={80}
-              src="/images/signin-bat-left-top.png"
-              alt="signin bat left top"
-            />
+            <div>
+              <Image
+                className={cx('batLeftTopImage')}
+                width={100}
+                height={80}
+                src="/images/signin-bat-left-top.png"
+                alt="signin bat left top"
+              />
+            </div>
             <Image
               className={cx('batLeftBottomImage')}
               width={100}

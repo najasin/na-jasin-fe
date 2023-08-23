@@ -1,0 +1,131 @@
+.wrap {
+  height: 80vh;
+  margin: 50px auto;
+  text-align: center;
+
+  @include tablet {
+    margin: 20px auto;
+  }
+  @include mobile {
+    margin: 10px auto;
+  }
+}
+
+.text {
+  font-size: 150px;
+
+  @include tablet {
+    font-size: 80px;
+  }
+  @include mobile {
+    font-size: 50px;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 50px auto;
+  margin-top: -100px;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgb(0 0 0 / 10%));
+  @include float-animation;
+
+  @include tablet {
+    width: 200px;
+    height: 200px;
+    margin-top: -50px;
+  }
+  @include mobile {
+    width: 150px;
+    height: 150px;
+    margin-top: -30px;
+  }
+}
+
+.h2 {
+  font-size: 32px;
+
+  @include tablet {
+    font-size: 28px;
+  }
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.h3 {
+  padding: 10px 0;
+  font-size: 21px;
+
+  @include tablet {
+    font-size: 18px;
+  }
+  @include mobile {
+    font-size: 16px;
+  }
+}
+
+.explain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 80%;
+  padding: 15px;
+}
+
+.btnWrap {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.btn {
+  width: 200px;
+
+  @include tablet {
+    width: 150px;
+  }
+
+  @include mobile {
+    width: 100px;
+  }
+}
+
+.batLeftTopImage {
+  position: absolute;
+  top: 89px;
+  left: -126px;
+  @include float-animation;
+
+  animation: float 1s ease-in-out infinite;
+
+  @include tablet {
+    top: 12px;
+  }
+
+  @include mobile {
+    top: 12px;
+    left: -96px;
+  }
+}
+
+.batRightBottomImage {
+  position: absolute;
+  top: 195px;
+  right: -116px;
+  @include float-animation;
+
+  animation: float 1s ease-in-out infinite;
+
+  @include tablet {
+    top: 111px;
+  }
+
+  @include mobile {
+    top: 69px;
+    right: -86px;
+  }
+}
