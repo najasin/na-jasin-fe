@@ -24,3 +24,4 @@ interface IRequestOptions {
 }
 
 export type { IMyManualDatas, IMyManualPostResponse, IRequestOptions }
+

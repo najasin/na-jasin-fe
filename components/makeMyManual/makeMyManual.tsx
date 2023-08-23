@@ -106,8 +106,8 @@ export default function MakeMyManual() {
           keywordPercents,
         })
         setPostSuccess(true)
-        console.log(response)
         router.push(`/${response.userType}/my-page?userId=${response.userId}`)
+
         return response
       } catch (error) {
         console.error('An error occurred:', error)

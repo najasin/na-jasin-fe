@@ -2,7 +2,7 @@ import { cookies } from 'next/headers'
 
 import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
 import Fab from '@/components/fab/fab'
-import LinkBtn from '@/components/linkBtn/linkBtn'
+// import LinkBtn from '@/components/linkBtn/linkBtn'
 import ManualBox from '@/components/manualBox/manualBox'
 import ProfileBox from '@/components/profileBox/profileBox'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
@@ -58,7 +58,7 @@ export default async function MyPage({
       <>
         <SimpleLayout
           title={`${nickname} 사용 설명서`}
-          btnComponent={<LinkBtn />}
+          // btnComponent={<LinkBtn />}
           margin={50}
         >
           <ContentWrapper>
