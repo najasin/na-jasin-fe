@@ -16,5 +16,6 @@
 .modalPortal {
   width: 100%;
   height: 100%;
-  @include flexbox(row, center, center);
+
+  // @include flexbox(row);
 }
