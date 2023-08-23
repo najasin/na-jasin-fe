@@ -40,3 +40,7 @@
     margin-bottom: 27px;
   }
 }
+
+.enter {
+  @include slide-animation;
+}
