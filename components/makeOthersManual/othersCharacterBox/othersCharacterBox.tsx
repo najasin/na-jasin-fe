@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 
 import CharacterBox from '@/components/characterBox/characterBox'
 import GhostBtn from '@/components/ghostBtn/ghostBtn'
@@ -21,10 +21,11 @@ export default function OthersCharacterBox({
 }) {
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
+  const { userType } = useParams() as { userType: string }
 
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: () => fetchOthersManualById(userId),
+    queryFn: () => fetchOthersManualById(userType, userId),
   })
 
   const nickname = data?.nickname

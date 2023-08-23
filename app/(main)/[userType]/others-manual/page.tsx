@@ -7,16 +7,16 @@ import QueryHydrate from '@/api/tanstack/queryHydrate.context'
 import { getQueryClient } from '@/api/tanstack/tanstack.helpers'
 
 export default async function OthersManual({
-  // params,
+  params,
   searchParams,
 }: {
-  // params: { slug: string }
+  params: { userType: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  // console.log(params, searchParams)
+  console.log(params.userType, searchParams.userId)
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery(['othersData'], () =>
-    fetchOthersManualById(searchParams.userId as string),
+    fetchOthersManualById(params.userType, searchParams.userId as string),
   )
   const dehydratedState = dehydrate(queryClient)
   return (

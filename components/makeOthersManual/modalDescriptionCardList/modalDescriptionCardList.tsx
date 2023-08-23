@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames/bind'
 
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 
@@ -16,10 +16,11 @@ const cx = classNames.bind(styles)
 export default function ModalDescriptionCardList() {
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
+  const { userType } = useParams() as { userType: string }
 
   const { data } = useQuery({
     queryKey: ['othersData'],
-    queryFn: () => fetchOthersManualById(userId),
+    queryFn: () => fetchOthersManualById(userType, userId),
   })
   const myManualQAPair = data?.myManualQAPair
 
@@ -31,7 +32,7 @@ export default function ModalDescriptionCardList() {
             <MyDescriptionCard
               key={maunalData.id}
               question={maunalData.question}
-              answer={maunalData.answer}
+              answer={maunalData.answer ?? '___'}
             />
           </li>
         ))}
