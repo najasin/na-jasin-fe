@@ -9,6 +9,8 @@
 
 .typeBtns {
   display: flex;
+  position: relative;
+  z-index: 99;
   align-items: center;
   justify-content: flex-start;
 }
@@ -19,6 +21,7 @@
   width: 63px;
   height: 36px;
   border-radius: 7.52px 7.52px 0 0;
+  font-size: 16px;
 }
 
 .typeBtnSelected {
