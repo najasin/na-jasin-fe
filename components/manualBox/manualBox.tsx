@@ -93,7 +93,8 @@ export default function ManualBox({
     <>
       <div className={cx('manualBox')}>
         <div className={cx('typeBtns')}>
-          <div
+          <button
+            type="button"
             className={cx(
               'typeBtn',
               descriptionType === 'MY'
@@ -103,8 +104,9 @@ export default function ManualBox({
             onClick={handleClickMyTypeBtn}
           >
             기본
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={cx(
               'typeBtn',
               descriptionType === 'OTHERS'
@@ -114,7 +116,7 @@ export default function ManualBox({
             onClick={handleClickOthersTypeBtn}
           >
             꿀팁
-          </div>
+          </button>
         </div>
         <div className={cx('manual')}>
           <div className={cx('header')}>
