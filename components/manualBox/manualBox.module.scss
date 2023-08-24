@@ -37,7 +37,6 @@
   width: 100%;
   max-height: 500px;
   padding: 30px 35px;
-  overflow: scroll;
   border: 1px solid $black;
   border-radius: 0 0 15px 15px;
   gap: 20px;
@@ -64,7 +63,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .form {
