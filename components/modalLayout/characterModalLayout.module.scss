@@ -1,18 +1,30 @@
 .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
   max-width: 1080px;
-  height: 100%;
-  margin: 0 auto;
   padding: 44px 50px 25px;
+  transform: translate(-50%, -50%);
   border: 1px solid $white;
   border-radius: 20px;
   background-color: $white;
 
   @include tablet {
     width: 100%;
+    height: 100%;
   }
 
   @include mobile {
+    height: 100%;
     padding: 34px 14px;
+  }
+}
+
+.contentContainer {
+  max-height: 90%;
+  overflow: scroll;
+  @include mobile {
+    max-height: 100%;
   }
 }
 
@@ -39,15 +51,7 @@
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  overflow-y: scroll;
   gap: 30px;
-  @include flexbox(row, center, center);
-
-  @include tablet {
-    @include flexbox(column, center, center);
-
-    gap: 29px;
-  }
 
   @include mobile {
     gap: 20px;
