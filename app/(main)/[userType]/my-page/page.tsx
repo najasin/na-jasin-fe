@@ -38,6 +38,8 @@ export default async function MyPage({
 
   if (data instanceof Error) {
     console.log(data)
+  } else if (data === undefined) {
+    throw new Error('data is undefined')
   } else {
     const {
       nickname,
