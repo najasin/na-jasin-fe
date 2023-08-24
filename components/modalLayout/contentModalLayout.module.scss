@@ -40,7 +40,7 @@
   overflow-y: hidden;
   gap: 42px;
 
-  @include flexbox(column, flex-start);
+  @include flexbox(column, space-between);
 }
 
 .content {
