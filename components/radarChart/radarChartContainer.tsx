@@ -53,14 +53,14 @@ export default function RadarChartContainer({
   const [draggableAxis] = useState<IAxisMaps[]>(
     Object.keys(originKeywordPercents).map((key, index) => ({
       axis: key,
-      value: originKeywordPercents[key] <= 10 ? 10 : originKeywordPercents[key],
+      value: originKeywordPercents[key] <= 25 ? 25 : originKeywordPercents[key],
       order: index,
     })),
   )
   const [defaultAxis] = useState<IAxisMaps[]>(
     Object.keys(otherKeywordPercents).map((key, index) => ({
       axis: key,
-      value: otherKeywordPercents[key] <= 10 ? 10 : otherKeywordPercents[key],
+      value: otherKeywordPercents[key] <= 25 ? 25 : otherKeywordPercents[key],
       order: index,
     })),
   )
@@ -70,9 +70,13 @@ export default function RadarChartContainer({
 
   const handleDragOutUserInput = (data: DataPoint[]) => {
     const trimmed = data.reduce(
-      (prev, curr) => ({ ...prev, [`${curr.axis}`]: curr.value }),
+      (prev, curr) => ({
+        ...prev,
+        [`${curr.axis}`]: curr.value <= 25 ? 25 : curr.value,
+      }),
       {},
     )
+
     setTrimmedRadarData(trimmed)
   }
 
