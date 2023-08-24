@@ -1,11 +1,13 @@
 .modal {
-  width: 1080px;
+  max-width: 1080px;
   height: 100%;
+  margin: 0 auto;
   padding: 44px 50px 25px;
   border: 1px solid $white;
   border-radius: 20px;
   background-color: $white;
 
+  @include flexbox(column);
   @include tablet {
     width: 100%;
   }
@@ -34,16 +36,17 @@
   width: 100%;
   height: 100%;
   margin: 0 auto;
-
-  @include flexbox(column, center);
-
+  overflow-x: hidden;
+  overflow-y: hidden;
   gap: 42px;
+
+  @include flexbox(column, flex-start);
 }
 
 .content {
   @include flexbox(column, flex-start);
 
-  max-height: 400px;
+  // max-height: 400px;
   overflow-y: scroll;
   gap: 20px;
 }
