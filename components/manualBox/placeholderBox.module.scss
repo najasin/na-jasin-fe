@@ -1,0 +1,18 @@
+.box {
+  height: 383px;
+
+  @include flexbox(row, center, center);
+
+  @include font-style('text2');
+
+  color: $grey;
+
+  @include tablet {
+    height: 397px;
+  }
+
+  @include mobile {
+    height: 393px;
+    @include font-style('button3');
+  }
+}
