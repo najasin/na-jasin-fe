@@ -193,6 +193,7 @@ export default function ProfileBox({
                 <CharacterBox
                   baseImage={data.baseImage}
                   selectedItems={selectedItems}
+                  nickname={nickname}
                 />
               </div>
               <div className={cx('formBoxWrapperResponsive')}>
