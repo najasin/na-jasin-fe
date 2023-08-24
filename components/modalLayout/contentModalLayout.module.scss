@@ -1,6 +1,7 @@
 .modal {
-  width: 100%;
+  max-width: 1080px;
   height: 100%;
+  margin: 0 auto;
   padding: 44px 50px 25px;
   border: 1px solid $white;
   border-radius: 20px;
@@ -32,20 +33,14 @@
 }
 
 .contents {
-  display: grid;
-  grid-template-rows: 1fr;
-
-  // height: 100%;
-  // margin: 0 auto;
-
-  // @include flexbox(column, flex-start);
-
-  // gap: 42px;
-
-  flex-grow: 1;
   width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   gap: 42px;
+
+  @include flexbox(column, flex-start);
 }
 
 .content {
