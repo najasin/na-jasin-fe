@@ -144,6 +144,7 @@ export default function ManualBox({
       {isModalOpen && (
         <ModalPortal>
           <form onSubmit={handleSubmit(onClickSubmit)} className={cx('form')}>
+
             <ContentModalLayout
               title="자시니 다시 설명하기"
               closeBtn={
