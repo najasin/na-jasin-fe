@@ -3,14 +3,48 @@
   z-index: 100;
   top: 80px;
   right: 10px;
-  width: 150px;
-  padding: 10px 3px;
-  animation: toast 1.5s ease;
-  border: 1px solid $grey;
+  width: 230px;
+  padding: 10px;
   border-radius: 10px;
-  background-color: rgba($blue-point, 0.9);
   color: $white;
   gap: 5px;
+
+  &.success {
+    animation: toast-in-out 3s ease;
+    border: 1px solid #569fff;
+    background-color: #5da3ff;
+  }
+
+  &.error {
+    animation: toast-in 1s ease;
+    border: 1px solid rgb(255 70 70);
+    background-color: rgb(255 86 86);
+  }
+
+  .close {
+    filter: invert(100%);
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+  }
+
+  .check,
+  .error {
+    filter: invert(100%);
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
   @include tablet {
     top: 120px;
@@ -22,21 +56,37 @@
     padding: 5px 3px;
   }
 
-  @include flexbox(column, center, center);
+  @include flexbox(column, center, flex-start);
 
-  @keyframes toast {
+  @keyframes toast-in-out {
     0% {
       transform: translateX(100%);
       opacity: 0;
     }
 
-    60% {
+    30% {
       transform: translateX(0%);
+      opacity: 1;
+    }
+
+    90% {
       opacity: 1;
     }
 
     100% {
       opacity: 0;
+    }
+  }
+
+  @keyframes toast-in {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0%);
+      opacity: 1;
     }
   }
 }
