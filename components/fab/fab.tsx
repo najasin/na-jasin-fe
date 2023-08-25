@@ -21,7 +21,7 @@ export default function Fab() {
   const { userType } = useParams()
   const userId = useSearchParams().get('userId')
 
-  const shareUrl = `na-jasin.com/${userType}/others-manual?userId=${userId}`
+  const shareUrl = `https://na-jasin.com/${userType}/others-manual?userId=${userId}`
 
   const [isClicked, setIsClicked] = useState(false)
   const [isCopied, setIsCopied] = useState(false)
@@ -63,6 +63,7 @@ export default function Fab() {
                 <CircleButton
                   id="kakao-link-btn"
                   name="kakao"
+                  shareUrl={shareUrl}
                   image="kakao"
                   size="sm"
                   action={true}
