@@ -152,6 +152,7 @@ export default function MakeOthersManual() {
         title={`${nickname}의 사용설명서 만들기`}
         margin={!isMobile ? 32 : 10}
       >
+        <ImageLoader />
         <div className={cx('layout')}>
           {!isTablet && (
             <OthersCharacterBox onClickGhostBtn={handleModalState} />

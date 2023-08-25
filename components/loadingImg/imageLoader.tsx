@@ -44,8 +44,8 @@ export default function ImageLoader() {
         >
           <Image
             width={180}
-            height={200}
-            src="/images/loading-mock-img.svg"
+            height={350}
+            src="/images/loading.svg"
             alt="loading mock img"
             className={cx('img')}
           />
