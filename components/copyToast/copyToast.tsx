@@ -13,7 +13,6 @@ const cx = classNames.bind(styles)
 
 export default function CopyToast({
   type = 'success',
-  onClose,
   title = type === 'success' ? 'Success' : 'Error',
   subtitle = type === 'success' ? '요청에 성공했습니다' : '요청에 실패했습니다',
 }: ICopyToast) {
@@ -21,7 +20,6 @@ export default function CopyToast({
 
   const handleCloseToast = () => {
     setIsVisible(false)
-    if (onClose) onClose()
   }
 
   if (!isVisible) {
