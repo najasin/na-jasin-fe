@@ -109,8 +109,8 @@ export default function MakeOthersManual() {
         setPostSuccess(true)
         router.push(`/${userType}/my-page?userId=${userId}`)
       } catch (err) {
-        console.error(err)
         setOpenToast(true)
+        router.refresh()
       }
       // } finally {
       //   setIsSubmitting(false)
@@ -138,9 +138,12 @@ export default function MakeOthersManual() {
   }
 
   const getButtonText = () => {
-    // if (postLoading) return '성공'
     if (step === 'statGraph') return '완료'
     return '다음'
+  }
+
+  const handleToastClose = () => {
+    setOpenToast(false)
   }
 
   if (error) return <NotFound />
@@ -152,7 +155,6 @@ export default function MakeOthersManual() {
         title={`${nickname}의 사용설명서 만들기`}
         margin={!isMobile ? 32 : 10}
       >
-        <ImageLoader />
         <div className={cx('layout')}>
           {!isTablet && (
             <OthersCharacterBox onClickGhostBtn={handleModalState} />
@@ -209,7 +211,7 @@ export default function MakeOthersManual() {
           />
         </>
       )}
-      {openToast && <CopyToast type="error" />}
+      {openToast && <CopyToast type="error" onClose={handleToastClose} />}
     </>
   )
 }
