@@ -27,7 +27,7 @@ export default function CircleButton({
 }: CircleButtonProps) {
   const { userType } = useParams()
   const userId = useSearchParams().get('userId')
-  const shareUrl = `na-jasin.com/${userType}/others-manual?userId=${userId}`
+  const shareUrl = `https://na-jasin.com/${userType}/others-manual?userId=${userId}`
   const imageUrl = `/images/${image}.svg`
 
   useEffect(() => {

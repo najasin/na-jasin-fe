@@ -30,10 +30,9 @@ const createKaKaoShareButton = (shareUrl: string, imageUrl?: string) => {
       content: {
         title: '나 자신',
         description: '#나자신 #카카오 #NaJasin',
+        // description: shareUrl,
         imageUrl: imageUrl || 'https://i.ibb.co/NjqLnt7/thumbnail-najasin.png',
         link: {
-          //   mobileWebUrl: window.location.href,
-          //   webUrl: window.location.href,
           mobileWebUrl: shareUrl,
           webUrl: shareUrl,
         },
@@ -46,15 +45,6 @@ const createKaKaoShareButton = (shareUrl: string, imageUrl?: string) => {
       buttons: [
         {
           title: '웹으로 보기',
-          link: {
-            // mobileWebUrl: window.location.href,
-            // webUrl: window.location.href,
-            mobileWebUrl: shareUrl,
-            webUrl: shareUrl,
-          },
-        },
-        {
-          title: '앱으로 보기',
           link: {
             // mobileWebUrl: window.location.href,
             // webUrl: window.location.href,
