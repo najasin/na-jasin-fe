@@ -3,5 +3,10 @@ export default function UserTypeLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return (
+    <>
+      <div id="loader-portal"></div>
+      {children}
+    </>
+  )
 }
