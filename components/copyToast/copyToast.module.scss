@@ -105,4 +105,8 @@
   @include mobile {
     font-size: 11px;
   }
+
+  p {
+    margin: 0;
+  }
 }
