@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
-import { useParams, useSearchParams } from 'next/navigation'
 
 import { CircleButtonProps } from '@/components/fab/circleButton.types'
 
@@ -19,19 +18,17 @@ export default function CircleButton({
   id,
   name,
   size = 'md',
+  shareUrl,
   image,
   text,
   action,
   transparent,
   onClick,
 }: CircleButtonProps) {
-  const { userType } = useParams()
-  const userId = useSearchParams().get('userId')
-  const shareUrl = `https://na-jasin.com/${userType}/others-manual?userId=${userId}`
   const imageUrl = `/images/${image}.svg`
 
   useEffect(() => {
-    if (id === 'kakao-link-btn') {
+    if (id === 'kakao-link-btn' && shareUrl) {
       createKaKaoShareButton(shareUrl)
     }
   })
