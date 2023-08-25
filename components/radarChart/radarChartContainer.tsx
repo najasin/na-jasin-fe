@@ -169,13 +169,34 @@ export default function RadarChartContainer({
       .style('transform-origin', `${cfg.w / 2}px ${cfg.h / 2}px`)
   }
 
+  // 스크롤 이벤트 막는 함수 추가
+  function preventDefault(e: TouchEvent) {
+    e.preventDefault()
+  }
+
+  // 스크롤 막는 함수 추가
+  function disableScroll() {
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('touchmove', preventDefault, { passive: false })
+  }
+
+  // 스크롤 활성화하는 함수 추가
+  function enableScroll() {
+    document.body.style.overflow = 'auto'
+    document.removeEventListener('touchmove', preventDefault)
+  }
+
   const handleClickChangeZoom = () => {
     if (isZoomIn) {
+      console.log(1)
+      disableScroll()
       if (radarType === 'TJNS') {
         setIsViewPolygon(false)
       }
       handleRotateZoomIn()
     } else if (!isZoomIn) {
+      console.log(2)
+      enableScroll()
       handleRotateZoomOut()
       if (radarType === 'TJNS') {
         setTimeout(() => setIsViewPolygon(true), 750)
