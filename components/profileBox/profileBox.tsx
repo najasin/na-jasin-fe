@@ -22,8 +22,6 @@ import ModalPortal from '@/components/modalPortal/modalPortal'
 import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 import ResetBtn from '@/components/resetBtn/resetBtn'
 
-import useBreakpoint from '@/hooks/useBreakpoint.hooks'
-
 import { updateCharacter } from '@/api/axios/requestHandler/mypage/put.apis'
 
 import {
@@ -77,8 +75,6 @@ export default function ProfileBox({
     resetSet()
   }
 
-  const isUnderTablet = useBreakpoint({ query: '(max-width: 1199px)' })
-
   const router = useRouter()
 
   const { userType } = useParams()
@@ -94,10 +90,13 @@ export default function ProfileBox({
 
   const handleSubmit = () => {
     updateCharacter({
-      face: selectedFaceItem.id,
-      body: selectedBodyItem.id,
-      expression: selectedExpressionItem.id,
-      set: selectedSet.id,
+      face: selectedFaceItem.id === undefined ? null : selectedFaceItem.id,
+      body: selectedBodyItem.id === undefined ? null : selectedBodyItem.id,
+      expression:
+        selectedExpressionItem.id === undefined
+          ? null
+          : selectedExpressionItem.id,
+      set: selectedSet.id === undefined ? null : selectedSet.id,
       userType: userType as string,
     })
     setIsModalOpen(false)
@@ -188,37 +187,29 @@ export default function ProfileBox({
           <CharacterModalLayout
             title="자시니 다시 꾸미기"
             closeBtn={<CloseButton onClickModalClose={handleClickModalClose} />}
-            character={
-              !isUnderTablet && (
+          >
+            <div className={cx('formBox')}>
+              <div className={cx('character')}>
                 <CharacterBox
                   baseImage={data.baseImage}
                   selectedItems={selectedItems}
+                  nickname={nickname}
                 />
-              )
-            }
-          >
-            <div className={cx('formBox')}>
-              <FormBox title="나를 꾸며주세요" showBack={false}>
-                <div className={cx('wrapper')}>
-                  <div className={cx('container')}>
-                    {isUnderTablet && (
-                      <div className={cx('character')}>
-                        <CharacterBox
-                          baseImage={data.baseImage}
-                          selectedItems={selectedItems}
-                        />
-                      </div>
-                    )}
+              </div>
+              <div className={cx('formBoxWrapperResponsive')}>
+                <FormBox title="나를 꾸며주세요" showBack={false}>
+                  <div className={cx('wrapper')}>
+                    <div className={cx('container')}>
+                      <Inventory
+                        resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
+                        isEdit={true}
+                      />
 
-                    <Inventory
-                      resetBtn={<ResetBtn onClick={handleResetBtnClick} />}
-                      isEdit={true}
-                    />
-
-                    <CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>
+                      <CommonBtn onClick={handleSubmit}>완료하기</CommonBtn>
+                    </div>
                   </div>
-                </div>
-              </FormBox>
+                </FormBox>
+              </div>
             </div>
           </CharacterModalLayout>
         </ModalPortal>

@@ -14,7 +14,6 @@ export const Default: Story = {
   args: {
     title: '자신이 다시 꾸미기',
     closeBtn: <button>X</button>,
-    character: <div>Character</div>,
     children: <div>Content</div>,
   },
 }

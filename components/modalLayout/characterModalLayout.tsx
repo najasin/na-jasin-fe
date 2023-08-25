@@ -8,7 +8,6 @@ const cx = classNames.bind(styles)
 export default function CharacterModalLayout({
   title,
   closeBtn,
-  character,
   children,
 }: CharacterModalLayoutProps) {
   return (
@@ -17,9 +16,8 @@ export default function CharacterModalLayout({
         <p className={cx('title')}>{title}</p>
         {closeBtn}
       </div>
-      <div className={cx('contents')}>
-        {character}
-        {children}
+      <div className={cx('contentContainer')}>
+        <div className={cx('contents')}>{children}</div>
       </div>
     </div>
   )
