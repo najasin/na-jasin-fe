@@ -1,5 +1,7 @@
 import { dehydrate } from '@tanstack/query-core'
 
+import { cookies } from 'next/headers'
+
 import MakeMyManual from '@/components/makeMyManual/makeMyManual'
 import SimpleLayout from '@/components/simpleLayout/simpleLayout'
 
@@ -9,7 +11,11 @@ import { getQueryClient } from '@/api/tanstack/tanstack.helpers'
 
 export default async function MyManual() {
   const queryClient = getQueryClient()
-  await queryClient.prefetchQuery(['myprofileRegister'], getMyManualRegister)
+  const token = cookies().get('act')
+
+  await queryClient.prefetchQuery(['myprofileRegister'], () =>
+    getMyManualRegister(token?.value),
+  )
   const dehydratedState = dehydrate(queryClient)
   return (
     <QueryHydrate state={dehydratedState}>

@@ -17,4 +17,11 @@ interface IMyManualPostResponse {
   userType: string
 }
 
-export type { IMyManualDatas, IMyManualPostResponse }
+interface IRequestOptions {
+  headers?: {
+    Authorization: string
+  }
+}
+
+export type { IMyManualDatas, IMyManualPostResponse, IRequestOptions }
+

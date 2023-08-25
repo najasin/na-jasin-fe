@@ -30,7 +30,7 @@ export default function MyDescriptionCardList({
 }) {
   const { data } = useQuery({
     queryKey: ['myprofileRegister'],
-    queryFn: getMyManualRegister,
+    queryFn: () => getMyManualRegister(),
     refetchOnWindowFocus: true,
   })
 
