@@ -36,8 +36,8 @@ export default function SigninSocialContainer({
       >
         <Image
           className={cx('kakaoImage')}
-          width={40}
-          height={40}
+          width={52}
+          height={52}
           src="/images/signin-kakao.svg"
           alt="signin kakao"
         />
@@ -50,8 +50,8 @@ export default function SigninSocialContainer({
       >
         <Image
           className={cx('googleImage')}
-          width={40}
-          height={40}
+          width={52}
+          height={52}
           src="/images/signin-google.svg"
           alt="signin google"
         />
@@ -65,8 +65,8 @@ export default function SigninSocialContainer({
         >
           <Image
             className={cx('githubImage')}
-            width={40}
-            height={40}
+            width={52}
+            height={52}
             src="/images/signin-github.svg"
             alt="signin github"
           />
