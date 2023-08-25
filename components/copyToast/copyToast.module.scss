@@ -3,15 +3,19 @@
   z-index: 100;
   top: 80px;
   right: 10px;
-  width: 230px;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   color: $white;
   gap: 5px;
 
+  p {
+    margin: 0;
+  }
+
   &.success {
-    animation: toast-in-out 3s ease;
+    animation: toast-in-out 5s ease;
     border: 1px solid #569fff;
+    opacity: 0;
     background-color: #5da3ff;
   }
 
@@ -36,12 +40,6 @@
 
   .left {
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .description {
-    display: flex;
     flex-direction: column;
     gap: 5px;
   }
@@ -52,8 +50,6 @@
 
   @include mobile {
     top: 110px;
-    width: 100px;
-    padding: 5px 3px;
   }
 
   @include flexbox(column, center, flex-start);
@@ -64,16 +60,18 @@
       opacity: 0;
     }
 
-    30% {
+    20% {
       transform: translateX(0%);
       opacity: 1;
     }
 
-    90% {
+    40% {
+      transform: translateX(0%);
       opacity: 1;
     }
 
     100% {
+      transform: translateX(0%);
       opacity: 0;
     }
   }
@@ -104,9 +102,5 @@
   @include font-style('button6');
   @include mobile {
     font-size: 11px;
-  }
-
-  p {
-    margin: 0;
   }
 }

@@ -29,36 +29,19 @@ export default function CopyToast({
   }
   return (
     <div className={cx('copyToast', type)}>
-      <Image
-        className={cx('close')}
-        src="/images/close.svg"
-        width={20}
-        height={20}
-        alt="Close Icon"
-        onClick={handleCloseToast}
-      />
+      {type === 'error' && (
+        <Image
+          className={cx('close')}
+          src="/images/close.svg"
+          width={20}
+          height={20}
+          alt="Close Icon"
+          onClick={handleCloseToast}
+        />
+      )}
       <div className={cx('left')}>
-        {type === 'success' ? (
-          <Image
-            className={cx('check')}
-            src="/images/check.png"
-            width={20}
-            height={20}
-            alt="Check Icon"
-          />
-        ) : (
-          <Image
-            className={cx('error')}
-            src="/images/error.png"
-            width={20}
-            height={20}
-            alt="Error Icon"
-          />
-        )}
-        <div className={cx('description')}>
-          <p className={cx('heading')}>{title}</p>
-          <p className={cx('content')}>{subtitle}</p>
-        </div>
+        <div className={cx('heading')}>{title}</div>
+        <div className={cx('content')}>{subtitle}</div>
       </div>
     </div>
   )
