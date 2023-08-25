@@ -25,6 +25,7 @@ import { validationRules } from '@/helpers/validationRule.helpers'
 
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
+import PlaceholderBox from './placeholderBox'
 
 const cx = classNames.bind(styles)
 
@@ -92,7 +93,8 @@ export default function ManualBox({
     <>
       <div className={cx('manualBox')}>
         <div className={cx('typeBtns')}>
-          <div
+          <button
+            type="button"
             className={cx(
               'typeBtn',
               descriptionType === 'MY'
@@ -102,8 +104,9 @@ export default function ManualBox({
             onClick={handleClickMyTypeBtn}
           >
             기본
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={cx(
               'typeBtn',
               descriptionType === 'OTHERS'
@@ -113,7 +116,7 @@ export default function ManualBox({
             onClick={handleClickOthersTypeBtn}
           >
             꿀팁
-          </div>
+          </button>
         </div>
         <div className={cx('manual')}>
           <div className={cx('header')}>
@@ -123,23 +126,27 @@ export default function ManualBox({
             )}
           </div>
           <div className={cx('answers')}>
-            {descriptionType === 'MY' ? (
+            {descriptionType === 'MY' &&
               myDatas.map((data) => (
                 <MyDescriptionCard
                   key={data.id}
                   question={data.question}
                   answer={data.answer}
                 />
-              ))
-            ) : (
+              ))}
+            {descriptionType === 'OTHERS' && otherAnswers.length > 0 && (
               <OthersDescriptionCard cardDatas={otherAnswers} />
+            )}
+            {descriptionType === 'OTHERS' && otherAnswers.length === 0 && (
+              <PlaceholderBox />
             )}
           </div>
         </div>
       </div>
       {isModalOpen && (
         <ModalPortal>
-          <form onSubmit={handleSubmit(onClickSubmit)}>
+          <form onSubmit={handleSubmit(onClickSubmit)} className={cx('form')}>
+
             <ContentModalLayout
               title="자시니 다시 설명하기"
               closeBtn={

@@ -9,6 +9,8 @@
 
 .typeBtns {
   display: flex;
+  position: relative;
+  z-index: 99;
   align-items: center;
   justify-content: flex-start;
 }
@@ -19,6 +21,7 @@
   width: 63px;
   height: 36px;
   border-radius: 7.52px 7.52px 0 0;
+  font-size: 16px;
 }
 
 .typeBtnSelected {
@@ -37,7 +40,6 @@
   width: 100%;
   max-height: 500px;
   padding: 30px 35px;
-  overflow: scroll;
   border: 1px solid $black;
   border-radius: 0 0 15px 15px;
   gap: 20px;
@@ -64,5 +66,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow: scroll;
+  overflow: auto;
+}
+
+.form {
+  height: 100%;
 }
