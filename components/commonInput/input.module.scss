@@ -12,6 +12,9 @@
   outline: none;
   background-color: inherit;
   @include font-style('button1');
+  @include mobile {
+    @include font-style('text5');
+  }
 }
 
 .errorInfoText {
