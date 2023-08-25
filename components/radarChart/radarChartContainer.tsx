@@ -86,10 +86,13 @@ export default function RadarChartContainer({
 
     if (!svg) return
 
-    const transitioned = svg.transition().duration(750)
-    transitioned.attr(
+    // const transitioned = svg.transition().duration(750)
+    const gElements = svg.select('g').transition().duration(750)
+    gElements.attr(
       'transform',
-      `translate(0, 0) scale(1) rotate(${-(360 / total) * counterRef.current})`,
+      `translate(75, 75) scale(1) rotate(${
+        -(360 / total) * counterRef.current
+      })`,
     )
   }
 
@@ -133,6 +136,7 @@ export default function RadarChartContainer({
     })
 
     const transitionedText = textElements.transition().duration(750)
+    // svg.style('will-change', 'transform')
     transitionedText.attr('transform', (_, i) => {
       const initialPosition = initialTextPositions[i]
 
@@ -144,22 +148,53 @@ export default function RadarChartContainer({
       }, ${initialPosition.cY + initialPosition.offsetY})`
     })
 
-    const transitioned = svg.transition().duration(750)
-    transitioned.attr(
-      'transform',
-      `translate(0, 200) scale(${cfg.scale}) rotate(${
-        -(360 / total) * counterRef.current
-      })`,
-    )
+    const gElements = svg.select('g').transition().duration(750)
+
+    // const transitioned = svg.transition().duration(750)
+    // svg.style('will-change', 'transform')
+    // transitioned.attr(
+    //   'transform',
+    //   `translate(0, 200) scale(${cfg.scale}) rotate(${
+    //     -(360 / total) * counterRef.current
+    //   })`,
+    // )
+
+    gElements
+      .attr(
+        'transform',
+        `translate(75, 275) scale(${cfg.scale}) rotate(${
+          -(360 / total) * counterRef.current
+        })`,
+      )
+      .style('transform-origin', `${cfg.w / 2}px ${cfg.h / 2}px`)
+  }
+
+  // 스크롤 이벤트 막는 함수 추가
+  function preventDefault(e: TouchEvent) {
+    e.preventDefault()
+  }
+
+  // 스크롤 막는 함수 추가
+  function disableScroll() {
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('touchmove', preventDefault, { passive: false })
+  }
+
+  // 스크롤 활성화하는 함수 추가
+  function enableScroll() {
+    document.body.style.overflow = 'auto'
+    document.removeEventListener('touchmove', preventDefault)
   }
 
   const handleClickChangeZoom = () => {
     if (isZoomIn) {
+      disableScroll()
       if (radarType === 'TJNS') {
         setIsViewPolygon(false)
       }
       handleRotateZoomIn()
     } else if (!isZoomIn) {
+      enableScroll()
       handleRotateZoomOut()
       if (radarType === 'TJNS') {
         setTimeout(() => setIsViewPolygon(true), 750)
@@ -244,6 +279,7 @@ export default function RadarChartContainer({
             type="button"
             className={cx('playButton')}
             onClick={handleClickChangeZoom}
+            style={{ touchAction: 'manipulation' }} // 추가
             transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ backgroundColor: '#71afff', scale: 0.9 }}

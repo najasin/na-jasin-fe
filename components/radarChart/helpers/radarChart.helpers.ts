@@ -46,6 +46,8 @@ const drawRadarChart = (
   isViewPolygon: boolean,
   isPossibleDrawNode: boolean,
 ) => {
+  let isDragging = false
+
   // 기본 설정 값을 관리한다.
   const cfg = {
     radius: 5,
@@ -347,7 +349,29 @@ const drawRadarChart = (
       .text((j) => Math.max(j.value, 0))
   }
 
+  // 스크롤 이벤트 막는 함수 추가
+  function preventDefault(e: TouchEvent) {
+    e.preventDefault()
+  }
+
+  // 스크롤 막는 함수 추가
+  function disableScroll() {
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('touchmove', preventDefault, { passive: false })
+  }
+
+  // 스크롤 활성화하는 함수 추가
+  function enableScroll() {
+    document.body.style.overflow = 'auto'
+    document.removeEventListener('touchmove', preventDefault)
+  }
+
   function moveEnd() {
+    if (isDragging) {
+      isDragging = false
+      enableScroll() // 드래그 끝났을 때 스크롤 다시 활성화
+    }
+
     // 유저가 변경한 데이터 불변성 유지
     const changedData = data.map(({ axis, value, order }) => ({
       axis,
@@ -359,6 +383,11 @@ const drawRadarChart = (
 
   // drag 시 위치를 계산해준다.
   function move(this: any, dobj: DataPoint, i: number) {
+    if (!isDragging) {
+      isDragging = true
+      disableScroll() // 드래그 중에 스크롤 막기
+    }
+
     const event = d3.event as d3.DragEvent
 
     this.parentNode.appendChild(this)
