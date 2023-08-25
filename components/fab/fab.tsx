@@ -111,11 +111,6 @@ export default function Fab() {
             />
           </div>
         </motion.div>
-        <CopyToast
-          type="success"
-          title="링크 복사 완료!"
-          subtitle="붙여넣어 보세요."
-        />
       </div>
       {isCopied && (
         <CopyToast
