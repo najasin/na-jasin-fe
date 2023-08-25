@@ -211,7 +211,6 @@ export default function MakeOthersManual() {
           />
         </>
       )}
-      <CopyToast type="success" onClose={handleToastClose} />
       {openToast && <CopyToast type="error" onClose={handleToastClose} />}
     </>
   )
