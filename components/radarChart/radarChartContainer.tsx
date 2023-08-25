@@ -188,14 +188,12 @@ export default function RadarChartContainer({
 
   const handleClickChangeZoom = () => {
     if (isZoomIn) {
-      console.log(1)
       disableScroll()
       if (radarType === 'TJNS') {
         setIsViewPolygon(false)
       }
       handleRotateZoomIn()
     } else if (!isZoomIn) {
-      console.log(2)
       enableScroll()
       handleRotateZoomOut()
       if (radarType === 'TJNS') {
