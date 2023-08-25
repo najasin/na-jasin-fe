@@ -24,6 +24,7 @@ import {
 import CircleBtn from '../circleBtn/circleBtn'
 import CommonBtn from '../commonBtn/commonBtn'
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
+import CopyToast from '../copyToast/copyToast'
 import FormBox from '../formBox/formBox'
 import ImageLoader from '../loadingImg/imageLoader'
 import { IQuestions } from '../makeMyManual/makeMyManual.types'
@@ -42,7 +43,8 @@ const cx = classNames.bind(styles)
 
 export default function MakeOthersManual() {
   const [postSuccess, setPostSuccess] = useState(false)
-  const [postLoading, setPostLoading] = useState(false)
+  const [openToast, setOpenToast] = useState(false)
+  // const [isSubmitting, setIsSubmitting] = useState(false)
 
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
@@ -98,15 +100,21 @@ export default function MakeOthersManual() {
     }
 
     if (step === 'statGraph') {
+      // if (isSubmitting) {
+      //   return
+      // }
+      // setIsSubmitting(true)
       try {
-        setPostLoading(true)
         await postOthersManual(totalFormData)
         setPostSuccess(true)
-        setPostLoading(false)
         router.push(`/${userType}/my-page?userId=${userId}`)
       } catch (err) {
-        console.error(err)
+        setOpenToast(true)
+        router.refresh()
       }
+      // } finally {
+      //   setIsSubmitting(false)
+      // }
     }
     goNext()
   }
@@ -130,68 +138,67 @@ export default function MakeOthersManual() {
   }
 
   const getButtonText = () => {
-    // if (postLoading) return '성공'
     if (step === 'statGraph') return '완료'
     return '다음'
+  }
+
+  const handleToastClose = () => {
+    setOpenToast(false)
   }
 
   if (error) return <NotFound />
 
   return (
     <>
-      {isLoading ? (
-        <ImageLoader />
-      ) : (
-        <SimpleLayout
-          title={`${nickname}의 사용설명서 만들기`}
-          margin={!isMobile ? 32 : 10}
-        >
-          <ImageLoader />
-          <div className={cx('layout')}>
-            {!isTablet && (
-              <OthersCharacterBox onClickGhostBtn={handleModalState} />
-            )}
-            <div className={cx('formBoxWrapper')}>
-              <ProgressBar currentStep={setStep()} totalSteps={['1', '2']} />
-              <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
-                <form onSubmit={handleSubmit(onClickSubmit)}>
-                  <div className={cx('formContent')}>
-                    {isTablet && step === 'manual' && (
-                      <OthersCharacterBox onClickGhostBtn={handleModalState} />
-                    )}
-                    <MakeOthersManualFunnel
-                      Funnel={Funnel}
-                      step={step}
-                      register={register}
-                      formState={formState}
-                    />
-                  </div>
+      {(isLoading || postSuccess) && <ImageLoader />}
+      <SimpleLayout
+        title={`${nickname}의 사용설명서 만들기`}
+        margin={!isMobile ? 32 : 10}
+      >
+        <div className={cx('layout')}>
+          {!isTablet && (
+            <OthersCharacterBox onClickGhostBtn={handleModalState} />
+          )}
+          <div className={cx('formBoxWrapper')}>
+            <ProgressBar currentStep={setStep()} totalSteps={['1', '2']} />
+            <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
+              <form onSubmit={handleSubmit(onClickSubmit)}>
+                <div className={cx('formContent')}>
+                  {isTablet && step === 'manual' && (
+                    <OthersCharacterBox onClickGhostBtn={handleModalState} />
+                  )}
+                  <MakeOthersManualFunnel
+                    Funnel={Funnel}
+                    step={step}
+                    register={register}
+                    formState={formState}
+                  />
+                </div>
 
-                  <div className={cx('btn')}>
-                    <CommonBtn
-                      type="submit"
-                      style={
-                        !manualFieldsFilled
-                          ? ButtonStyle.DEACTIVE
-                          : ButtonStyle.ACTIVE
-                      }
-                      confetti={step === 'statGraph' && postSuccess}
-                      isLoading={!!postLoading}
-                    >
-                      {getButtonText()}
-                    </CommonBtn>
-                    <span className={cx('tryBtn')}>
-                      <CircleBtn onClick={handleClickTrybtn}>
-                        나도 해보기
-                      </CircleBtn>
-                    </span>
-                  </div>
-                </form>
-              </FormBox>
-            </div>
+                <div className={cx('btn')}>
+                  <CommonBtn
+                    type="submit"
+                    style={
+                      !manualFieldsFilled
+                        ? ButtonStyle.DEACTIVE
+                        : ButtonStyle.ACTIVE
+                    }
+                    confetti={step === 'statGraph' && postSuccess}
+                    isLoading={!!postSuccess}
+                  >
+                    {getButtonText()}
+                  </CommonBtn>
+                  <span className={cx('tryBtn')}>
+                    <CircleBtn onClick={handleClickTrybtn}>
+                      나도 해보기
+                    </CircleBtn>
+                  </span>
+                </div>
+              </form>
+            </FormBox>
           </div>
-        </SimpleLayout>
-      )}
+        </div>
+      </SimpleLayout>
       {isModalOpen && (
         <>
           <ContentModalLayout2
@@ -204,6 +211,8 @@ export default function MakeOthersManual() {
           />
         </>
       )}
+      <CopyToast type="success" onClose={handleToastClose} />
+      {openToast && <CopyToast type="error" onClose={handleToastClose} />}
     </>
   )
 }

@@ -212,7 +212,7 @@ export default function CommonBtn({
           className={cx('button', `${style}`)}
           onClick={handleClick}
           ref={buttonRef}
-          disabled={style === ButtonStyle.DEACTIVE}
+          disabled={style === ButtonStyle.DEACTIVE || isLoading}
         >
           {isLoading && style === ButtonStyle.ACTIVE ? (
             <div className={cx('loading')} />

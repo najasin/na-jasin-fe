@@ -24,12 +24,12 @@
   object-fit: cover;
 }
 
-.character {
-  height: 100%;
-  @include float-animation;
+// .character {
+//   height: 100%;
+//   @include float-animation;
 
-  animation: float 4s ease-in-out infinite;
-}
+//   animation: float 4s ease-in-out infinite;
+// }
 
 .editBtn {
   position: absolute;

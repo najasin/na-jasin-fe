@@ -10,6 +10,10 @@ const meta: Meta<typeof CopyToast> = {
 export default meta
 type Story = StoryObj<typeof CopyToast>
 
-export const Default: Story = {
-  args: {},
+export const Success: Story = {
+  args: { type: 'success' },
+}
+
+export const Error: Story = {
+  args: { type: 'error' },
 }
