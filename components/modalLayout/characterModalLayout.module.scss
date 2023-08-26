@@ -1,10 +1,6 @@
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
   max-width: 1080px;
   padding: 44px 50px 25px;
-  transform: translate(-50%, -50%);
   border: 1px solid $white;
   border-radius: 20px;
   background-color: $white;
@@ -21,8 +17,11 @@
 }
 
 .contentContainer {
-  max-height: 90%;
+  max-height: 100%;
   overflow: scroll;
+  @include tablet {
+    max-height: 90%;
+  }
   @include mobile {
     max-height: 100%;
   }
