@@ -39,13 +39,6 @@
 .itemWrapper {
   border-top: none;
   border-radius: 0 0 20px 20px;
-
-  @include tablet {
-    padding: 25px 66px;
-  }
-  @include mobile {
-    padding: 10px 22px 24px;
-  }
 }
 
 .backBtn {

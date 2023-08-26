@@ -147,7 +147,7 @@ export default function MakeMyManual() {
           ]}
         />
         <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
-          <form onSubmit={handleSubmit(onClickSubmit)}>
+          <form onSubmit={handleSubmit(onClickSubmit)} className={cx('wrap')}>
             <div className={cx('formContent')}>
               {((isTablet && step !== 'statGraph') || step === 'nickname') && (
                 <CharacterBox
