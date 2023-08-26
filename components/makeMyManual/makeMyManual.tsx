@@ -178,7 +178,7 @@ export default function MakeMyManual() {
                 }
                 confetti={step === 'statGraph' && postSuccess}
               >
-                다음
+                {step === 'statGraph' ? '완료' : '다음'}
               </CommonBtn>
             </div>
           </form>
