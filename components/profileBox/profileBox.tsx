@@ -24,6 +24,7 @@ import ResetBtn from '@/components/resetBtn/resetBtn'
 
 import { updateCharacter } from '@/api/axios/requestHandler/mypage/put.apis'
 
+import CopyToast from '../copyToast/copyToast'
 import {
   selectedBodyItemState,
   selectedExpressionItemState,
@@ -43,6 +44,7 @@ export default function ProfileBox({
   isOwner,
 }: IProfileBoxProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [selectedFaceItem, setSelectedFaceItem] = useRecoilState(
     selectedFaceItemState,
@@ -88,16 +90,26 @@ export default function ProfileBox({
     setIsModalOpen(false)
   }
 
-  const handleSubmit = () => {
-    updateCharacter({
-      face: selectedFaceItem.id,
-      body: selectedBodyItem.id,
-      expression: selectedExpressionItem.id,
-      set: selectedSet.id,
-      userType: userType as string,
-    })
-    setIsModalOpen(false)
-    router.refresh()
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true)
+      const response = await updateCharacter({
+        face: selectedFaceItem.id,
+        body: selectedBodyItem.id,
+        expression: selectedExpressionItem.id,
+        set: selectedSet.id,
+        userType: userType as string,
+      })
+      return response
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000)
+      setIsModalOpen(false)
+      router.refresh()
+    }
   }
 
   const { face, body, expression, set } = data.characterItems
@@ -178,6 +190,7 @@ export default function ProfileBox({
             hasOthers={true}
           />
         </div>
+        {isLoading && <CopyToast />}
       </div>
       {isModalOpen && (
         <ModalPortal>

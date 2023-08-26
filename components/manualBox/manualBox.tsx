@@ -23,6 +23,7 @@ import { updateAnswers } from '@/api/axios/requestHandler/mypage/put.apis'
 
 import { validationRules } from '@/helpers/validationRule.helpers'
 
+import CopyToast from '../copyToast/copyToast'
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
 import PlaceholderBox from './placeholderBox'
@@ -53,6 +54,7 @@ export default function ManualBox({
   })
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { handleSubmit, register, formState } = useForm<IFormData>()
   const [descriptionType, setDescriptionType] = useState<string>('MY')
 
@@ -78,6 +80,7 @@ export default function ManualBox({
     const answers = transformData(inputData.answers)
 
     try {
+      setIsLoading(true)
       const response = await updateAnswers({
         answers,
         userType: 'jff',
@@ -88,6 +91,9 @@ export default function ManualBox({
     } catch (error) {
       return error as Error
     } finally {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000)
       setIsModalOpen(false)
       router.refresh()
     }
@@ -146,6 +152,7 @@ export default function ManualBox({
             )}
           </div>
         </div>
+        {isLoading && <CopyToast />}
       </div>
       {isModalOpen && (
         <ModalPortal>
