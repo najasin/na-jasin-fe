@@ -161,8 +161,11 @@ export default function MakeOthersManual() {
           )}
           <div className={cx('formBoxWrapper')}>
             <ProgressBar currentStep={setStep()} totalSteps={['1', '2']} />
-            <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
-              <form onSubmit={handleSubmit(onClickSubmit)}>
+            <FormBox title={setTitle()} paddingTop={0} onBackClick={goPrev}>
+              <form
+                className={cx('form')}
+                onSubmit={handleSubmit(onClickSubmit)}
+              >
                 <div className={cx('formContent')}>
                   {isTablet && step === 'manual' && (
                     <OthersCharacterBox onClickGhostBtn={handleModalState} />
@@ -174,7 +177,6 @@ export default function MakeOthersManual() {
                     formState={formState}
                   />
                 </div>
-
                 <div className={cx('btn')}>
                   <CommonBtn
                     type="submit"
