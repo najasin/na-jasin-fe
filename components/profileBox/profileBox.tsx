@@ -90,13 +90,10 @@ export default function ProfileBox({
 
   const handleSubmit = () => {
     updateCharacter({
-      face: selectedFaceItem.id === undefined ? null : selectedFaceItem.id,
-      body: selectedBodyItem.id === undefined ? null : selectedBodyItem.id,
-      expression:
-        selectedExpressionItem.id === undefined
-          ? null
-          : selectedExpressionItem.id,
-      set: selectedSet.id === undefined ? null : selectedSet.id,
+      face: selectedFaceItem.id,
+      body: selectedBodyItem.id,
+      expression: selectedExpressionItem.id,
+      set: selectedSet.id,
       userType: userType as string,
     })
     setIsModalOpen(false)

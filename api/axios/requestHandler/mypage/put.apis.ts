@@ -100,20 +100,24 @@ const updateCharacter = async ({
   userType,
   token,
 }: {
-  face: number | null
-  body: number | null
-  expression: number | null
-  set: number | null
+  face?: number
+  body?: number
+  expression?: number
+  set?: number
   userType: string
   token?: string
 }): Promise<string> => {
-  console.log(face, body, expression, set)
-  const characterItems = { face, body, expression, set }
-  console.log(characterItems)
+  const characterItems = {
+    ...(face !== undefined ? { face } : {}),
+    ...(body !== undefined ? { body } : {}),
+    ...(expression !== undefined ? { expression } : {}),
+    ...(set !== undefined ? { set } : {}),
+  }
+
   const response = await putRequest<string>(
     `/api/user/${userType}/character`,
     {
-      characterItems,
+      ...characterItems,
     },
 
     token
