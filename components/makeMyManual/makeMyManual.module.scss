@@ -1,3 +1,12 @@
+.wrap {
+  @include tablet {
+    padding: 0 66px 25px;
+  }
+  @include mobile {
+    padding: 10px 22px 24px;
+  }
+}
+
 .layout {
   display: flex;
   flex-wrap: wrap;
