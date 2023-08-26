@@ -12,6 +12,9 @@
     height: 100%;
 
     .heroTitle {
+      /* display: flex, overflow: hidden이 있어야 애니메이션이 자연스럽습니다. */
+      display: flex;
+      overflow: hidden;
       font-size: 32px;
       font-weight: 500;
     }
