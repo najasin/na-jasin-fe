@@ -76,8 +76,6 @@ export default function MakeMyManual() {
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
     if (step === 'keyword') {
       if (selectedKeywords.length !== 5) {
-        console.log('하이')
-
         setError('keyword', {
           type: 'error',
           message: 'keyword error',
@@ -120,9 +118,9 @@ export default function MakeMyManual() {
   const setTitle = (): string => {
     if (step === 'nickname') return '닉네임을 입력해 주세요'
     if (step === 'character') return '나를 꾸며주세요'
-    if (step === 'keyword') {
-      return '나를 표현할 키워드 5가지를 선택해 보세요'
-    }
+    if (step === 'manual') return '나 사용 설명서를 작성해보세요'
+    if (step === 'keyword') return '나를 표현할 키워드 5가지를 선택해 보세요'
+
     return '내 능력치를 설정해주세요'
   }
 
