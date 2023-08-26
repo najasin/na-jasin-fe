@@ -86,6 +86,7 @@ export default async function MyPage({
               isOwner={isOwner}
             />
             <ManualBox
+              ownerNickname={nickname}
               myDatas={myManualQAPair}
               othersDatas={othersManualQAPairs}
               isOwner={isOwner}

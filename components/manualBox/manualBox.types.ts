@@ -1,4 +1,5 @@
 export interface IManualBoxProps {
+  ownerNickname: string
   myDatas: Array<{
     id: number
     question: string

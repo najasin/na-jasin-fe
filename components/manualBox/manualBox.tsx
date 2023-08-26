@@ -30,6 +30,7 @@ import PlaceholderBox from './placeholderBox'
 const cx = classNames.bind(styles)
 
 export default function ManualBox({
+  ownerNickname,
   myDatas,
   othersDatas,
   isOwner,
@@ -41,7 +42,10 @@ export default function ManualBox({
       const { id } = qa
       const { question, answer } = qa
       const dividedQ = question.split('---')
-      const sentence = dividedQ[0] + answer + dividedQ[1]
+      const tempSentence = dividedQ[0] + answer + dividedQ[1]
+      console.log(tempSentence)
+      const dividedS = tempSentence.split('000')
+      const sentence = ownerNickname + dividedS[1]
       const res = { id, sentence }
       return res
     })
