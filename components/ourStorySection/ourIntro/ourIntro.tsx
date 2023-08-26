@@ -16,9 +16,9 @@ export default function OurIntro() {
     target: targetRef,
     offset: ['end end', 'end start'],
   })
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -200])
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -75])
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1])
   const position = useTransform(scrollYProgress, (pos) =>
     pos >= 0.7 ? 'relative' : 'fixed',
   )
