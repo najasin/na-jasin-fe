@@ -5,8 +5,6 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames/bind'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-import Image from 'next/image'
-
 import styles from './ourIntro.module.scss'
 
 const cx = classNames.bind(styles)
@@ -32,7 +30,12 @@ export default function OurIntro() {
   }, [])
 
   return (
-    <div className={cx('wrapper')}>
+    <motion.div
+      className={cx('wrapper')}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <motion.div
         ref={targetRef}
         style={{
@@ -44,15 +47,7 @@ export default function OurIntro() {
         className={cx('heroWrapper')}
       >
         <p className={cx('heroTitle')}>너가 모르는 너 사용법을 알려줄게</p>
-        <div className={cx('imgContainer')}>
-          <Image
-            width={220}
-            height={450}
-            src="/images/hero-mobile.png"
-            alt="hero mobile"
-          />
-        </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
