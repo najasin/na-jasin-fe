@@ -7,7 +7,7 @@ import { useSetRecoilState } from 'recoil'
 
 import { useParams, useSearchParams } from 'next/navigation'
 
-import MakeOthersDescriptionCardList from '@/components/makeOthersDescriptionCardList/makeOthersDescriptionCardList'
+import MakeOthersDescriptionCardList from '@/components/makeOthersManual/makeOthersDescriptionCard/makeOthersDescriptionCardList'
 import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
 import RadarChartContainer from '@/components/radarChart/radarChartContainer'
 

@@ -10,10 +10,10 @@ import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
 import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
-import { Input } from '../commonInput/input'
-import MyDescriptionCard2 from '../descriptionCard/myDescriptionCard2'
-import { IQuestions } from '../makeMyManual/makeMyManual.types'
-import { IFormInputs } from '../makeOthersManual/makeOthersManual.type'
+import { Input } from '../../commonInput/input'
+import { IQuestions } from '../../makeMyManual/makeMyManual.types'
+import { IFormInputs } from '../makeOthersManual.type'
+import MakeOthersDescriptionCard from './makeOthersDescriptionCard'
 import styles from './makeOthersDescriptionCardList.module.scss'
 
 const cx = classNames.bind(styles)
@@ -83,7 +83,7 @@ export default function MakeOthersDescriptionCardList({
           (question: IQuestions, index) =>
             question && (
               <li key={question.id} className={cx('manualItem')}>
-                <MyDescriptionCard2
+                <MakeOthersDescriptionCard
                   question={{
                     id: question.id,
                     question: question.question,
