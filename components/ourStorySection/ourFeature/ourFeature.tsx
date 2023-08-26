@@ -28,8 +28,8 @@ export default function OurFeature() {
         ))}
       </ul>
       <ul className={cx('ourFeatureRightCardWrapper')}>
-        {FEATURES.map(({ id }) => (
-          <RightCard key={id} id={id} />
+        {FEATURES.map(({ id, imageSrc }) => (
+          <RightCard key={id} id={id} imageSrc={imageSrc} />
         ))}
       </ul>
     </section>

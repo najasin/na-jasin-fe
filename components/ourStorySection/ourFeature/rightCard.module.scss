@@ -2,7 +2,13 @@
   position: fixed;
   top: calc((var(--top-height) / 2) + var(--gnb-height));
   right: 0;
-  width: 700px;
+
+  /* 
+    desktop: 700 x 450 
+    mobile, tablet: 300 x 450
+  */
+
+  width: 300px;
   height: 450px;
   margin-right: calc(var(--gnb-height) * 2);
   overflow: hidden;

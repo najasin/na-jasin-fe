@@ -13,11 +13,12 @@ import styles from './rightCard.module.scss'
 
 type FeatureCardProps = {
   id: string
+  imageSrc: string
 }
 
 const cx = classNames.bind(styles)
 
-export default function RightCard({ id }: FeatureCardProps) {
+export default function RightCard({ id, imageSrc }: FeatureCardProps) {
   const [featureId] = useRecoilState(featureIdAtom)
   const targetRef = useRef<HTMLDivElement>(null)
   const [opacity, setOpacity] = useState(0)
@@ -41,7 +42,7 @@ export default function RightCard({ id }: FeatureCardProps) {
     >
       <Image
         className={cx('image')}
-        src="/images/ourstory-mypage-mock.png"
+        src={imageSrc}
         fill={true}
         alt="our story image"
       />
