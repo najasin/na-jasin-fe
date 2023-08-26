@@ -1,0 +1,23 @@
+.leftTitleWrapper {
+  @include flexbox(column, flex-start, center);
+
+  position: fixed;
+  top: calc(var(--top-height) + var(--gnb-height));
+  left: 0;
+  width: 50%;
+  height: 100%;
+  padding-left: calc(var(--gnb-height) * 2);
+
+  .leftTitle {
+    width: 100%;
+    height: auto;
+    color: $white;
+    font-size: calc(var(--gnb-height) / 2);
+    font-weight: 500;
+  }
+
+  .leftText {
+    width: 100%;
+    color: grey;
+  }
+}
