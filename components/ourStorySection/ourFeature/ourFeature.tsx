@@ -1,50 +1,37 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 import classNames from 'classnames/bind'
-import { useInView } from 'framer-motion'
-import { useRecoilState } from 'recoil'
 
-import { featureIdAtom } from '../shared/store/featureStore.store'
-import FeatureCard from './featureCard'
-import FeatureTitle from './featureTitle'
+import CurrentHeightChecker from './currentHeightChecker'
+import LeftTitle from './leftTitle'
 import { FEATURES } from './ourFeature.models'
 import styles from './ourFeature.module.scss'
+import RightCard from './rightCard'
 
 const cx = classNames.bind(styles)
 
 export default function OurFeature() {
-  const [, setFeatureId] = useRecoilState(featureIdAtom)
-  const targetRef = useRef<HTMLUListElement>(null)
-
-  const isInView = useInView(targetRef, {
-    margin: '0px 0px 0px 0px',
-  })
-
-  useEffect(() => {
-    if (!isInView) {
-      setFeatureId('')
-    }
-  }, [isInView, setFeatureId])
+  const ourFeatureTargetRef = useRef<HTMLUListElement>(null)
 
   return (
-    <>
-      <ul ref={targetRef} className={cx('leftTextListWrapper')}>
+    <section className={cx('ourFeatureContainer')}>
+      <ul ref={ourFeatureTargetRef} className={cx('ourFeatureLeftTextWrapper')}>
         {FEATURES.map(({ id, title, text }) => (
-          <FeatureTitle key={id} id={id} title={title} text={text} />
+          <div key={id}>
+            <LeftTitle id={id} text={text}>
+              {title}
+            </LeftTitle>
+            <CurrentHeightChecker height="120vh" id={id} />
+          </div>
         ))}
       </ul>
-      <div className={cx('rightCardWrapper')}>
-        {FEATURES.map(({ id, colorText }) => (
-          <FeatureCard
-            parentView={isInView}
-            key={id}
-            id={id}
-            colorText={colorText}
-          />
+      <ul className={cx('ourFeatureRightCardWrapper')}>
+        {FEATURES.map(({ id }) => (
+          <RightCard key={id} id={id} />
         ))}
-      </div>
-    </>
+      </ul>
+    </section>
   )
 }
