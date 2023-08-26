@@ -124,7 +124,7 @@ export default function ManualBox({
         </div>
         <div className={cx('manual')}>
           <div className={cx('header')}>
-            <p>자시니는 이렇게 사용해요</p>
+            <p>{ownerNickname}(이)는 이렇게 사용해요</p>
             {descriptionType === 'MY' && isOwner && (
               <EditBtn onClick={handleClickModalOpen} />
             )}
