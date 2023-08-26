@@ -1,10 +1,9 @@
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { hsYuji } from '@/styles/local.fonts'
-
+// import Link from 'next/link'
+// import { hsYuji } from '@/styles/local.fonts'
 import ButtonHoverTapAnimation from './buttonHoverTapAnimation'
 import styles from './signIn.module.scss'
 
@@ -66,7 +65,7 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
           <p className={cx('signInText')}>SNS 계정 간편 로그인</p>
         </div>
         {children}
-        <div className={cx('ourStoryButtonContainer')}>
+        {/* <div className={cx('ourStoryButtonContainer')}>
           <Link href="/" className={cx('ourStoryButton')}>
             <p className={cx('clickText', hsYuji.className)}>Click!</p>
             <ButtonHoverTapAnimation hoverScale={1.1} tapScale={0.9}>
@@ -82,7 +81,7 @@ export default function SignIn({ children }: { children: React.ReactNode }) {
           <p className={cx('explainText', hsYuji.className)}>
             우리의 이야기가 궁금하다면?
           </p>
-        </div>
+        </div> */}
         <div className={cx('castleImageContainer')}>
           <Image
             className={cx('castleImage')}
