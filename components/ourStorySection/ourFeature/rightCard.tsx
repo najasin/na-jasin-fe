@@ -8,19 +8,28 @@ import { useRecoilState } from 'recoil'
 
 import Image from 'next/image'
 
+import useBreakpoint from '@/hooks/useBreakpoint.hooks'
+
 import { featureIdAtom } from '../shared/store/featureStore.store'
 import styles from './rightCard.module.scss'
 
 type FeatureCardProps = {
   id: string
   imageSrc: string
+  imageMobileSrc: string
 }
 
 const cx = classNames.bind(styles)
 
-export default function RightCard({ id, imageSrc }: FeatureCardProps) {
+export default function RightCard({
+  id,
+  imageSrc,
+  imageMobileSrc,
+}: FeatureCardProps) {
   const [featureId] = useRecoilState(featureIdAtom)
   const targetRef = useRef<HTMLDivElement>(null)
+
+  const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
 
   const opacityVariants = {
     hidden: { opacity: 0, y: -35 },
@@ -34,11 +43,13 @@ export default function RightCard({ id, imageSrc }: FeatureCardProps) {
       animate={featureId === id ? 'visible' : 'hidden'}
       variants={opacityVariants}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className={cx('rightCardWrapper')}
+      className={cx('rightCardWrapper', {
+        isTablet,
+      })}
     >
       <Image
         className={cx('image')}
-        src={imageSrc}
+        src={isTablet ? imageMobileSrc : imageSrc}
         fill={true}
         alt="our story image"
       />

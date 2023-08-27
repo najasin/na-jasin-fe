@@ -8,11 +8,15 @@
     mobile, tablet: 300 x 450
   */
 
-  width: 300px;
+  width: 700px;
   height: 450px;
   margin-right: calc(var(--gnb-height) * 2);
   overflow: hidden;
   border-radius: 10px;
+
+  &.isTablet {
+    width: 300px;
+  }
 
   .image {
     display: block;
