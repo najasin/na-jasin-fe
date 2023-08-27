@@ -5,6 +5,8 @@ import { useRef } from 'react'
 import classNames from 'classnames/bind'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+import Image from 'next/image'
+
 import styles from './ourIntro.module.scss'
 
 const cx = classNames.bind(styles)
@@ -95,6 +97,28 @@ export default function OurIntro() {
             </motion.span>
           ))}
         </motion.p>
+
+        <div className={cx('scrollToIcon')}>
+          <span className={cx('scrollText')}>scroll</span>
+          <motion.div
+            className={cx('imageContainer')}
+            initial={{ y: -3 }}
+            animate={{
+              opacity: 1,
+              y: [0, -3, 0],
+              transition: { repeat: Infinity, duration: 1.5 },
+            }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Image
+              className={cx('image')}
+              src="/images/white-bottom-arrow.png"
+              fill={true}
+              alt="white bottom arrow"
+              sizes="(max-width: 1200px) 24px"
+            />
+          </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   )
