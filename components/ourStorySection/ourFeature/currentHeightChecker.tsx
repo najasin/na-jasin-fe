@@ -26,7 +26,7 @@ export default function CurrentHeightChecker({
     } else {
       setFeatureId('')
     }
-  }, [isInView])
+  }, [isInView, id, setFeatureId])
 
   return <div ref={targetRef} style={{ height, width: '64px' }} />
 }
