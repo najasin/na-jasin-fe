@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import classNames from 'classnames/bind'
 import { motion } from 'framer-motion'
@@ -21,24 +21,20 @@ const cx = classNames.bind(styles)
 export default function RightCard({ id, imageSrc }: FeatureCardProps) {
   const [featureId] = useRecoilState(featureIdAtom)
   const targetRef = useRef<HTMLDivElement>(null)
-  const [opacity, setOpacity] = useState(0)
-  const [y, setY] = useState(-75)
 
-  useEffect(() => {
-    if (featureId === id) {
-      setY(0)
-      setOpacity(1)
-    } else {
-      setOpacity(0)
-      setY(-75)
-    }
-  }, [featureId, id])
+  const opacityVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
 
   return (
     <motion.div
       ref={targetRef}
+      initial="hidden"
+      animate={featureId === id ? 'visible' : 'hidden'}
+      variants={opacityVariants}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
       className={cx('rightCardWrapper')}
-      style={{ y, opacity, transition: 'all 0.7s ease' }}
     >
       <Image
         className={cx('image')}
