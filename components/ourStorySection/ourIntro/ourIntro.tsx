@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 import classNames from 'classnames/bind'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -60,12 +60,6 @@ export default function OurIntro() {
       },
     },
   }
-
-  useEffect(() => {
-    window.onbeforeunload = function pushRefresh() {
-      window.scrollTo(0, 0)
-    }
-  }, [])
 
   return (
     <motion.div

@@ -34,6 +34,12 @@ export default function OurPreloader({
     showTextAnimations()
   }, [])
 
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
   return (
     <>
       {isLastVisible && (
