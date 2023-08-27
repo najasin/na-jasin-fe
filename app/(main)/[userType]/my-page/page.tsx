@@ -37,7 +37,12 @@ export default async function MyPage({
   )
 
   if (data instanceof Error) {
-    console.log(data)
+    if (
+      data.response.data.message === '존재하지 않는 유저입니다.' ||
+      data.response.data.message === '존재하지 않는 유저타입입니다.'
+    ) {
+      throw new Error(data.response.data.message)
+    }
   } else if (data === undefined) {
     throw new Error('data is undefined')
   } else {
