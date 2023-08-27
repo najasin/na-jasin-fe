@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { delaySetter } from './ourPreloader.helpers'
 import styles from './ourPreloader.module.scss'
@@ -42,36 +42,46 @@ export default function OurPreloader({
 
   return (
     <>
-      {isLastVisible && (
-        <div className={cx('preloaderWrapper')}>
-          <div className={cx('textList')}>
-            <motion.span
-              initial={{ y: 0, opacity: 0 }}
-              animate={
-                isFirstVisible ? { y: -30, opacity: 1 } : { y: 0, opacity: 0 }
-              }
-              transition={{
-                duration: isFirstVisible ? 0.5 : 0.2,
-                ease: isFirstVisible ? 'easeIn' : 'easeOut',
-              }}
-            >
-              나,
-            </motion.span>
-            <motion.span
-              initial={{ y: 0, opacity: 0 }}
-              animate={
-                isSecondVisible ? { y: -30, opacity: 1 } : { y: 0, opacity: 0 }
-              }
-              transition={{
-                duration: isSecondVisible ? 0.5 : 0.2,
-                ease: isSecondVisible ? 'easeIn' : 'easeOut',
-              }}
-            >
-              자신
-            </motion.span>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isLastVisible && (
+          <motion.div
+            className={cx('preloaderWrapper')}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <div className={cx('textList')}>
+              <motion.span
+                initial={{ y: 0, opacity: 0 }}
+                animate={
+                  isFirstVisible ? { y: -30, opacity: 1 } : { y: 0, opacity: 0 }
+                }
+                transition={{
+                  duration: isFirstVisible ? 0.5 : 0.2,
+                  ease: isFirstVisible ? 'easeIn' : 'easeOut',
+                }}
+              >
+                나,
+              </motion.span>
+              <motion.span
+                initial={{ y: 0, opacity: 0 }}
+                animate={
+                  isSecondVisible
+                    ? { y: -30, opacity: 1 }
+                    : { y: 0, opacity: 0 }
+                }
+                transition={{
+                  duration: isSecondVisible ? 0.5 : 0.2,
+                  ease: isSecondVisible ? 'easeIn' : 'easeOut',
+                }}
+              >
+                자신
+              </motion.span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {!isLastVisible && children}
     </>
   )
