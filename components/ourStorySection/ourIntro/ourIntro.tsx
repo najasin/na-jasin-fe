@@ -99,7 +99,7 @@ export default function OurIntro() {
         </motion.p>
 
         <div className={cx('scrollToIcon')}>
-          <span className={cx('scrollText')}>scroll</span>
+          <span className={cx('scrollText')}>scroll down</span>
           <motion.div
             className={cx('imageContainer')}
             initial={{ y: -3 }}
