@@ -46,6 +46,9 @@ export default function RightCard({
       className={cx('rightCardWrapper', {
         isTablet,
       })}
+      style={{
+        translateX: isTablet ? '-50%' : '0px',
+      }}
     >
       <Image
         className={cx('image')}

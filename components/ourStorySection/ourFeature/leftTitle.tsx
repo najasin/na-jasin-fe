@@ -6,6 +6,8 @@ import classNames from 'classnames/bind'
 import { motion } from 'framer-motion'
 import { useRecoilState } from 'recoil'
 
+import useBreakpoint from '@/hooks/useBreakpoint.hooks'
+
 import { featureIdAtom } from '../shared/store/featureStore.store'
 import styles from './leftTitle.module.scss'
 
@@ -24,6 +26,8 @@ export default function LeftTitle({ children, id, text }: IFeatureTitleProps) {
   const [opacity, setOpacity] = useState(0)
   const [y, setY] = useState(-35)
 
+  const isTablet: boolean = useBreakpoint({ query: '(max-width: 1199px)' })
+
   useEffect(() => {
     if (featureId === id) {
       setOpacity(1)
@@ -38,7 +42,12 @@ export default function LeftTitle({ children, id, text }: IFeatureTitleProps) {
     <motion.li
       ref={targetRef}
       className={cx('leftTitleWrapper')}
-      style={{ opacity, y, transition: 'all 0.7s ease' }}
+      style={{
+        opacity,
+        y,
+        transition: 'all 0.7s ease',
+        translateX: isTablet ? '-50%' : '0px',
+      }}
     >
       <motion.h1 className={cx('leftTitle')}>{children}</motion.h1>
       <p className={cx('leftText')}>{text}</p>

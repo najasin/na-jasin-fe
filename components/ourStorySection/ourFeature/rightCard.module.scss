@@ -14,6 +14,20 @@
   overflow: hidden;
   border-radius: 10px;
 
+  @media (width >= 1600px) {
+    right: 10%;
+  }
+
+  @media (width <= 1300px) {
+    margin-right: calc(var(--gnb-height));
+  }
+
+  @include tablet {
+    top: calc(var(--gnb-height) * 4);
+    left: 50%;
+    margin-right: 0;
+  }
+
   &.isTablet {
     width: 300px;
   }
