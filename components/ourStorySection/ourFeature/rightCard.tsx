@@ -55,6 +55,7 @@ export default function RightCard({
         src={isTablet ? imageMobileSrc : imageSrc}
         fill={true}
         alt="our story image"
+        sizes="(max-width: 1200px) 300px"
       />
     </motion.div>
   )
