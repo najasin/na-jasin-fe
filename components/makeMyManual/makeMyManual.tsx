@@ -23,6 +23,7 @@ import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.a
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
 import CopyToast from '../copyToast/copyToast'
+import ImageLoader from '../loadingImg/imageLoader'
 import ProgressBar from '../progressBar/progressBar'
 import {
   getSelectedItemsFromOtherItems,
@@ -44,7 +45,7 @@ import {
 const cx = classNames.bind(styles)
 
 export default function MakeMyManual() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: () => getMyManualRegister(),
     refetchOnWindowFocus: true,
@@ -148,6 +149,8 @@ export default function MakeMyManual() {
 
   return (
     <>
+      {(isLoading || postSuccess) && <ImageLoader />}
+
       <div className={cx('layout')}>
         {!isTablet && step !== 'nickname' && (
           <CharacterBox
