@@ -48,7 +48,7 @@ export default function OurPreloader({
             className={cx('preloaderWrapper')}
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
+            exit={{ opacity: 1, y: 100 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <div className={cx('textList')}>
