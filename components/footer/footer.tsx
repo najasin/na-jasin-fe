@@ -9,7 +9,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.copyright}>© Na-JaSin</div>
         <div className={styles.infoContainer}>
-          <Link href="/" className={styles.about}>
+          <Link href="/our-story" className={styles.about}>
             우리들의 이야기
           </Link>
           <Link href="/" className={styles.faq}>
