@@ -23,8 +23,8 @@ export default function RightCard({ id, imageSrc }: FeatureCardProps) {
   const targetRef = useRef<HTMLDivElement>(null)
 
   const opacityVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { opacity: 0, y: -35 },
+    visible: { opacity: 1, y: 0 },
   }
 
   return (
