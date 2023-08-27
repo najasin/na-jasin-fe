@@ -7,12 +7,12 @@ import { useRecoilState } from 'recoil'
 
 import { featureIdAtom } from '../shared/store/featureStore.store'
 
-export default function CurrentHeightChecker({
-  height,
+export default function DeleteElement({
   id,
+  height,
 }: {
-  height: string
   id: string
+  height: string
 }) {
   const targetRef = useRef<HTMLDivElement>(null)
   const [, setFeatureId] = useRecoilState(featureIdAtom)
@@ -22,11 +22,9 @@ export default function CurrentHeightChecker({
 
   useEffect(() => {
     if (isInView) {
-      setFeatureId(id)
-    } else {
-      // setFeatureId('')
+      setFeatureId('')
     }
   }, [isInView, id, setFeatureId])
 
-  return <div ref={targetRef} style={{ height, width: '64px' }} />
+  return <div ref={targetRef} style={{ height, width: '64px' }}></div>
 }
