@@ -5,7 +5,7 @@ import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import CommonBtn from '@/components/commonBtn/commonBtn'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
@@ -37,6 +37,7 @@ export default function ManualBox({
   isOwner,
 }: IManualBoxProps) {
   const router = useRouter()
+  const { userType } = useParams()
   const otherAnswers = othersDatas.map((data) => {
     const { nickname, qas } = data
     const datas = qas.map((qa) => {
@@ -55,6 +56,7 @@ export default function ManualBox({
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isErrorToastOpen, setIsErrorToastOpen] = useState<boolean>(false)
   const { handleSubmit, register, formState } = useForm<IFormData>()
   const [descriptionType, setDescriptionType] = useState<string>('MY')
 
@@ -75,20 +77,19 @@ export default function ManualBox({
   }
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
-    console.log('클릭')
-    console.log(inputData)
     const answers = transformData(inputData.answers)
 
     try {
-      setIsLoading(true)
       const response = await updateAnswers({
         answers,
-        userType: 'jff',
+        userType: userType as string,
         token: 'token',
       })
 
+      setIsLoading(true)
       return response
     } catch (error) {
+      setIsErrorToastOpen(true)
       return error as Error
     } finally {
       setTimeout(() => {
@@ -153,6 +154,9 @@ export default function ManualBox({
           </div>
         </div>
         {isLoading && <CopyToast />}
+        {isErrorToastOpen && (
+          <CopyToast type="error" onClose={() => setIsErrorToastOpen(false)} />
+        )}
       </div>
       {isModalOpen && (
         <ModalPortal>

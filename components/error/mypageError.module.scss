@@ -1,0 +1,59 @@
+.wrap {
+  height: 80vh;
+  margin: 0 auto;
+  text-align: center;
+
+  @include mobile {
+    height: 75vh;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 50px auto;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgb(0 0 0 / 10%));
+  @include float-animation;
+
+  @include tablet {
+    width: 200px;
+    height: 200px;
+  }
+  @include mobile {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.contentWrap {
+  @include flexbox(column, center, center);
+
+  gap: 30px;
+}
+
+.errorMessage {
+  font-size: 35px;
+  font-weight: bold;
+
+  @include tablet {
+    font-size: 30px;
+  }
+
+  @include mobile {
+    font-size: 25px;
+  }
+}
+
+.message {
+  font-size: 25px;
+
+  @include tablet {
+    font-size: 20px;
+  }
+
+  @include mobile {
+    font-size: 15px;
+  }
+}
