@@ -1,9 +1,7 @@
 .button {
   width: 70px;
   height: 70px;
-  @include float-animation;
-
-  animation: float 4s ease-in-out infinite;
+  animation: floating 2s infinite ease-in-out;
   border-radius: 50px;
   background-color: $blue-point;
   box-shadow: 5px 5px 15px 0 rgb(151 151 151 / 20%);
@@ -12,10 +10,20 @@
   word-break: keep-all;
   @include font-style('text4');
   @include mobile {
-    width: 48px;
-    height: 48px;
-    font-size: 11px;
-    font-weight: 300;
-    line-height: 14px;
+    width: 56px;
+    height: 56px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0); // Start and end position
+  }
+
+  50% {
+    transform: translateY(-10px); // Peak position
   }
 }

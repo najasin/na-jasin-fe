@@ -81,16 +81,16 @@
 }
 
 .tryBtn {
-  position: absolute;
-  right: -10px;
-  bottom: 0;
+  position: fixed;
+  z-index: 10;
+  right: 130px;
+  bottom: 80px;
   @include tablet {
-    right: 0;
-    bottom: 25px;
+    right: 30px;
   }
   @include mobile {
-    right: 0;
-    bottom: 25px;
+    right: 26px;
+    bottom: 44px;
   }
 }
 
