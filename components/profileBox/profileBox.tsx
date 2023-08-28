@@ -44,6 +44,7 @@ export default function ProfileBox({
   isOwner,
 }: IProfileBoxProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isErrorToastOpen, setIsErrorToastOpen] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [selectedFaceItem, setSelectedFaceItem] = useRecoilState(
@@ -92,7 +93,6 @@ export default function ProfileBox({
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true)
       const response = await updateCharacter({
         face: selectedFaceItem.id,
         body: selectedBodyItem.id,
@@ -100,9 +100,12 @@ export default function ProfileBox({
         set: selectedSet.id,
         userType: userType as string,
       })
+      setIsLoading(true)
       return response
     } catch (error) {
-      console.log(error)
+      setIsErrorToastOpen(true)
+      setIsModalOpen(false)
+      throw new Error('요청이 실패하였습니다.')
     } finally {
       setTimeout(() => {
         setIsLoading(false)
@@ -191,6 +194,9 @@ export default function ProfileBox({
           />
         </div>
         {isLoading && <CopyToast />}
+        {isErrorToastOpen && (
+          <CopyToast type="error" onClose={() => setIsErrorToastOpen(false)} />
+        )}
       </div>
       {isModalOpen && (
         <ModalPortal>
