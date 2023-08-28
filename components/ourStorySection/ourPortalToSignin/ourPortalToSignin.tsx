@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
 import { motion, useAnimation, useInView } from 'framer-motion'
 
 import Link from 'next/link'
@@ -59,7 +60,9 @@ export default function OurPortalToSignin() {
         <h1 className={cx('ourPortalText')}>나-자신으로 나를 설명해보세요</h1>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <Link href="/" className={cx('ourPortalBtn')}>
-            로그인하러 가기
+            {getCookie('act') || getCookie('rft')
+              ? '되돌아가기'
+              : '로그인하러 가기'}
           </Link>
         </motion.div>
       </motion.div>
