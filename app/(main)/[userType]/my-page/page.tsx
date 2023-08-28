@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import { cookies } from 'next/headers'
 
 import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
@@ -18,7 +20,9 @@ const getMyPageData = async (
     const data = await getMypage({ userType, userId, token })
     return data
   } catch (error) {
-    return error as Error
+    if (axios.isAxiosError(error)) {
+      return error
+    }
   }
 }
 
@@ -36,10 +40,11 @@ export default async function MyPage({
     token?.value,
   )
 
-  if (data instanceof Error) {
+  // if (data instanceof Error) {
+  if (axios.isAxiosError(data)) {
     if (
-      data.response.data.message === '존재하지 않는 유저입니다.' ||
-      data.response.data.message === '존재하지 않는 유저타입입니다.'
+      data.response?.data.message === '존재하지 않는 유저입니다.' ||
+      data.response?.data.message === '존재하지 않는 유저타입입니다.'
     ) {
       throw new Error(data.response.data.message)
     }
