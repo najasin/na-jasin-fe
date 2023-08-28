@@ -190,17 +190,18 @@ export default function MakeOthersManual() {
                   >
                     {getButtonText()}
                   </CommonBtn>
-                  <span className={cx('tryBtn')}>
-                    <CircleBtn onClick={handleClickTrybtn}>
-                      나도 해보기
-                    </CircleBtn>
-                  </span>
                 </div>
               </form>
             </FormBox>
           </div>
         </div>
       </SimpleLayout>
+      <span className={cx('tryBtn')}>
+        <CircleBtn onClick={handleClickTrybtn}>
+          <p>나도</p>
+          <p>해보기</p>
+        </CircleBtn>
+      </span>
       {isModalOpen && (
         <>
           <ContentModalLayout2

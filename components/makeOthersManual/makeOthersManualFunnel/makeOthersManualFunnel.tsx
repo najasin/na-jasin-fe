@@ -93,20 +93,22 @@ export default function MakeOthersManualFunnel({
         </div>
       </Funnel.Step>
       <Funnel.Step name="statGraph">
-        <RadarChartContainer
-          radarType="TJNS"
-          originKeywordPercents={formmattedOriginKeywordPercents}
-          otherKeywordPercents={
-            otherKeywordPercents
-              ? formmattedOtherKeywordPercents
-              : formmattedOriginKeywordPercents
-          }
-          frameSize={rectangleLayout.frameSize}
-          radarSize={rectangleLayout.radarSize}
-          framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
-          hasOthers={!!otherKeywordPercents}
-          handleUpdateRadarData={handleStatsGraphValue}
-        />
+        {data && originKeywordPercents.length && (
+          <RadarChartContainer
+            radarType="TJNS"
+            originKeywordPercents={formmattedOriginKeywordPercents}
+            otherKeywordPercents={
+              otherKeywordPercents
+                ? formmattedOtherKeywordPercents
+                : formmattedOriginKeywordPercents
+            }
+            frameSize={rectangleLayout.frameSize}
+            radarSize={rectangleLayout.radarSize}
+            framePadding={rectangleLayout.frameSize - rectangleLayout.radarSize}
+            hasOthers={!!otherKeywordPercents}
+            handleUpdateRadarData={handleStatsGraphValue}
+          />
+        )}
       </Funnel.Step>
     </Funnel>
   )
