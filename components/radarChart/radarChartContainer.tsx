@@ -170,21 +170,21 @@ export default function RadarChartContainer({
   }
 
   // 스크롤 이벤트 막는 함수 추가
-  function preventDefault(e: TouchEvent) {
-    e.preventDefault()
-  }
+  // function preventDefault(e: TouchEvent) {
+  //   e.preventDefault()
+  // }
 
   // 스크롤 막는 함수 추가
-  function disableScroll() {
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('touchmove', preventDefault, { passive: false })
-  }
+  // function disableScroll() {
+  //   document.body.style.overflow = 'hidden'
+  //   document.addEventListener('touchmove', preventDefault, { passive: false })
+  // }
 
   // 스크롤 활성화하는 함수 추가
-  function enableScroll() {
-    document.body.style.overflow = 'auto'
-    document.removeEventListener('touchmove', preventDefault)
-  }
+  // function enableScroll() {
+  //   document.body.style.overflow = 'auto'
+  //   document.removeEventListener('touchmove', preventDefault)
+  // }
 
   const handleClickChangeZoom = () => {
     if (isZoomIn) {
@@ -211,9 +211,9 @@ export default function RadarChartContainer({
     handleUpdateRadarData(trimmedRadarData)
   }, [trimmedRadarData, handleUpdateRadarData])
 
-  useEffect(() => {
-    document.body.style.overflow = 'auto'
-  }, [])
+  // useEffect(() => {
+  //   document.body.style.overflow = 'auto'
+  // }, [])
 
   return (
     <div className={cx('radarChartContainerWrapper')}>
@@ -285,11 +285,11 @@ export default function RadarChartContainer({
             onClick={() => {
               handleClickChangeZoom()
 
-              if (isZoomIn) {
-                disableScroll()
-              } else {
-                enableScroll()
-              }
+              // if (isZoomIn) {
+              //   disableScroll()
+              // } else {
+              //   enableScroll()
+              // }
             }}
             style={{ touchAction: 'manipulation' }} // 추가
             transition={{ duration: 0.3 }}
