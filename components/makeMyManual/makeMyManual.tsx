@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import classNames from 'classnames/bind'
-import { deleteCookie, getCookie } from 'cookies-next'
+import { deleteCookie, getCookie, setCookie } from 'cookies-next'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
@@ -115,7 +115,6 @@ export default function MakeMyManual() {
         })
         setPostSuccess(true)
         setOpenToast('생성에 성공했습니다.')
-
         router.push(`/${response.userType}/my-page?userId=${response.userId}`)
 
         return response
@@ -128,6 +127,7 @@ export default function MakeMyManual() {
             setOpenToast('이미 설명서를 생성했습니다. 마이페이지로 이동합니다.')
 
             const uid = getCookie('uid')
+            setCookie('utp', 'JFF')
             router.push(`/jff/my-page?userId=${uid}`)
           } else {
             setOpenToast('다시 로그인하세요.')
