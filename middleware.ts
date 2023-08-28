@@ -87,7 +87,7 @@ export function middleware(req: NextRequest) {
   // 본인 userId로 others-manual 접근 금지
   if (
     pathname.startsWith('/jff/others-manual') &&
-    pathname.endsWith('/jff/othres-manual') &&
+    pathname.endsWith('/jff/others-manual') &&
     (actForCheck || rftForCheck)
   ) {
     const uid = searchParams.get('userId')
