@@ -115,6 +115,7 @@ export default function MakeMyManual() {
         })
         setPostSuccess(true)
         setOpenToast('생성에 성공했습니다.')
+        setCookie('utp', 'JFF')
         router.push(`/${response.userType}/my-page?userId=${response.userId}`)
 
         return response
