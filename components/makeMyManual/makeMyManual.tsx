@@ -121,19 +121,19 @@ export default function MakeMyManual() {
       } catch (error) {
         if (axios.isAxiosError(error)) {
           if (
-            error.response &&
-            error.response.data &&
-            error.response.data.message === 'my manual 생성에 실패하였습니다.'
+            error?.response?.data?.message ===
+            'my manual 생성에 실패하였습니다.'
           ) {
             setOpenToast('이미 설명서를 생성했습니다. 마이페이지로 이동합니다.')
 
             const uid = getCookie('uid')
             router.push(`/jff/my-page?userId=${uid}`)
+          } else {
+            setOpenToast('다시 로그인하세요.')
+            router.refresh()
+            return error as Error
           }
         }
-        setOpenToast('다시 로그인하세요.')
-        router.refresh()
-        return error as Error
       }
     }
     goNext()
