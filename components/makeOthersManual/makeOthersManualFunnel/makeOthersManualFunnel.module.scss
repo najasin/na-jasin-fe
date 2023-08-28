@@ -6,10 +6,12 @@
 
   @include tablet {
     height: 213px;
+    margin: 0 auto 35px;
   }
 
   @include mobile {
     height: 211px;
+    margin: 0 auto 26px;
   }
 }
 

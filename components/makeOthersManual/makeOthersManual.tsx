@@ -44,7 +44,6 @@ const cx = classNames.bind(styles)
 export default function MakeOthersManual() {
   const [postSuccess, setPostSuccess] = useState(false)
   const [openToast, setOpenToast] = useState(false)
-  // const [isSubmitting, setIsSubmitting] = useState(false)
 
   const searchParams = useSearchParams()
   const userId = searchParams.get('userId') as string
@@ -65,9 +64,7 @@ export default function MakeOthersManual() {
     'manual',
   )
 
-  // const userType = pathname.includes('jff') ? 'jff' : 'df'
   const isTablet = useBreakpoint({ query: '(max-width: 1199px)' })
-  const isMobile = useBreakpoint({ query: '(max-width: 768px)' })
   const nickname = data?.nickname as string
   const questions = data?.questions
   const originKeywordPercents = data?.originKeywordPercents as IKeyword[]
@@ -100,10 +97,6 @@ export default function MakeOthersManual() {
     }
 
     if (step === 'statGraph') {
-      // if (isSubmitting) {
-      //   return
-      // }
-      // setIsSubmitting(true)
       try {
         await postOthersManual(totalFormData)
         setPostSuccess(true)
@@ -112,9 +105,6 @@ export default function MakeOthersManual() {
         setOpenToast(true)
         router.refresh()
       }
-      // } finally {
-      //   setIsSubmitting(false)
-      // }
     }
     goNext()
   }
@@ -151,10 +141,7 @@ export default function MakeOthersManual() {
   return (
     <>
       {(isLoading || postSuccess) && <ImageLoader />}
-      <SimpleLayout
-        title={`${nickname}의 사용설명서 만들기`}
-        margin={!isMobile ? 32 : 10}
-      >
+      <SimpleLayout title={`${nickname}의 사용설명서 만들기`} margin={28}>
         <div className={cx('layout')}>
           {!isTablet && (
             <OthersCharacterBox onClickGhostBtn={handleModalState} />

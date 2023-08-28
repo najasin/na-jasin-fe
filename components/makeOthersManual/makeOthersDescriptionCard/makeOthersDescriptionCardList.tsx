@@ -78,7 +78,7 @@ export default function MakeOthersDescriptionCardList({
         </Input>
       </div>
       <h3 className={cx('manualTitle')}>사용법</h3>
-      <ul>
+      <ul className={cx('list')}>
         {qusetions?.map(
           (question: IQuestions, index) =>
             question && (

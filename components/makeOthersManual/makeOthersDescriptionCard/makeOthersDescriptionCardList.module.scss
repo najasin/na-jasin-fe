@@ -29,3 +29,9 @@
   width: 201px;
   margin-bottom: 27px;
 }
+
+.list {
+  @include mobile {
+    width: 272px;
+  }
+}

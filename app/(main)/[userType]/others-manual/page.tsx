@@ -13,7 +13,6 @@ export default async function OthersManual({
   params: { userType: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  console.log(params.userType, searchParams.userId)
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery(['othersData'], () =>
     fetchOthersManualById(params.userType, searchParams.userId as string),
