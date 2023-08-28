@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import classNames from 'classnames/bind'
-import { getCookie } from 'cookies-next'
+import { deleteCookie, getCookie } from 'cookies-next'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
@@ -18,6 +18,7 @@ import FormBox from '@/components/formBox/formBox'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
 
+import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
@@ -130,7 +131,17 @@ export default function MakeMyManual() {
             router.push(`/jff/my-page?userId=${uid}`)
           } else {
             setOpenToast('다시 로그인하세요.')
-            router.refresh()
+
+            const res = await logout()
+
+            if (res === null) {
+              if (getCookie('act')) deleteCookie('act')
+              if (getCookie('rft')) deleteCookie('rft')
+              if (getCookie('uid')) deleteCookie('uid')
+              if (getCookie('utp')) deleteCookie('utp')
+            }
+            router.push('/')
+
             return error as Error
           }
         }
