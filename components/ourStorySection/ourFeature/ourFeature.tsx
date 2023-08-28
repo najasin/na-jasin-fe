@@ -7,18 +7,19 @@ import { useInView } from 'framer-motion'
 import { useRecoilState } from 'recoil'
 
 import { featureIdAtom } from '../shared/store/featureStore.store'
-import FeatureCard from './featureCard'
-import FeatureTitle from './featureTitle'
+import CurrentHeightChecker from './currentHeightChecker'
+import DeleteElement from './deleteElement'
+import LeftTitle from './leftTitle'
 import { FEATURES } from './ourFeature.models'
 import styles from './ourFeature.module.scss'
+import RightCard from './rightCard'
 
 const cx = classNames.bind(styles)
 
 export default function OurFeature() {
+  const ourFeatureTargetRef = useRef<HTMLUListElement>(null)
   const [, setFeatureId] = useRecoilState(featureIdAtom)
-  const targetRef = useRef<HTMLUListElement>(null)
-
-  const isInView = useInView(targetRef, {
+  const isInView = useInView(ourFeatureTargetRef, {
     margin: '0px 0px 0px 0px',
   })
 
@@ -29,22 +30,28 @@ export default function OurFeature() {
   }, [isInView, setFeatureId])
 
   return (
-    <>
-      <ul ref={targetRef} className={cx('leftTextListWrapper')}>
+    <section ref={ourFeatureTargetRef} className={cx('ourFeatureContainer')}>
+      <ul className={cx('ourFeatureLeftTextWrapper')}>
         {FEATURES.map(({ id, title, text }) => (
-          <FeatureTitle key={id} id={id} title={title} text={text} />
+          <div key={id}>
+            <LeftTitle id={id} text={text}>
+              {title}
+            </LeftTitle>
+            <CurrentHeightChecker height="120vh" id={id} />
+            <DeleteElement height="100vh" id={id} />
+          </div>
         ))}
       </ul>
-      <div className={cx('rightCardWrapper')}>
-        {FEATURES.map(({ id, colorText }) => (
-          <FeatureCard
-            parentView={isInView}
+      <ul className={cx('ourFeatureRightCardWrapper')}>
+        {FEATURES.map(({ id, imageSrc, imageMobileSrc }) => (
+          <RightCard
             key={id}
             id={id}
-            colorText={colorText}
+            imageSrc={imageSrc}
+            imageMobileSrc={imageMobileSrc}
           />
         ))}
-      </div>
-    </>
+      </ul>
+    </section>
   )
 }

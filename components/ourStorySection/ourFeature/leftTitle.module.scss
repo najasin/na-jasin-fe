@@ -1,0 +1,61 @@
+.leftTitleWrapper {
+  @include flexbox(column, flex-start, center);
+
+  position: fixed;
+  top: calc(var(--top-height) + var(--gnb-height));
+  left: 0;
+  width: 30%;
+  height: 100%;
+  padding-left: calc(var(--gnb-height) * 2);
+
+  @media (width >= 1600px) {
+    left: 10%;
+  }
+
+  @media (width <= 1300px) {
+    padding-left: calc(var(--gnb-height));
+  }
+
+  @include tablet {
+    top: calc(var(--gnb-height) * 2);
+    left: 50%;
+    padding-left: 0;
+  }
+
+  .leftTitle {
+    width: 100%;
+    height: auto;
+    color: $white;
+    font-size: calc(var(--gnb-height) / 2);
+    font-weight: 500;
+
+    @include tablet {
+      width: auto;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    @include mobile {
+      min-width: 200px;
+      font-size: calc(var(--gnb-height) / 3);
+      font-weight: 400;
+    }
+  }
+
+  .leftText {
+    width: 100%;
+    padding-top: 5px;
+    color: grey;
+
+    @include tablet {
+      width: auto;
+      min-width: 400px;
+      text-align: center;
+    }
+
+    @include mobile {
+      min-width: 300px;
+      padding-top: 10px;
+    }
+  }
+}

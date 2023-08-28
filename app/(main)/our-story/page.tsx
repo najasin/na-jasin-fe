@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind'
 
-import ImageSection from '@/components/ourStorySection/imageSection/imageSection'
 import OurFeature from '@/components/ourStorySection/ourFeature/ourFeature'
 import OurIntro from '@/components/ourStorySection/ourIntro/ourIntro'
-import MockHeight from '@/components/scrollMotion/shared/mockHeight'
+import OurPortalToSignin from '@/components/ourStorySection/ourPortalToSignin/ourPortalToSignin'
+import OurPreloader from '@/components/ourStorySection/ourPreloader/ourPreloader'
+import EmptyHeight from '@/components/ourStorySection/shared/components/emptyHeight/emptyHeight'
 
 import styles from './page.module.scss'
 
@@ -12,12 +13,13 @@ const cx = classNames.bind(styles)
 export default function OurStoryPage() {
   return (
     <div className={cx('pageWrapper')}>
-      <OurIntro />
-      <MockHeight />
+      <OurPreloader>
+        <OurIntro />
+      </OurPreloader>
+      <EmptyHeight />
       <OurFeature />
-      <MockHeight />
-      <ImageSection />
-      <MockHeight />
+      <EmptyHeight />
+      <OurPortalToSignin />
     </div>
   )
 }

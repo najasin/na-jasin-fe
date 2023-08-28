@@ -4,7 +4,6 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-// import Link from 'next/link'
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import useScrolledState from '@/hooks/useScrolledState'
 
@@ -20,18 +19,18 @@ export default function Gnb({ children }: { children: React.ReactNode }) {
     <nav className={cx('gnbWrapper', { hasBorder: !isTablet }, { scrolled })}>
       <div className={styles.gnbContainer}>
         <div className={styles.left}>
-          {/* <Link href="/"> */}
-          <button type="button">
-            <h1 className={styles.logo}>
-              <Image
-                fill={true}
-                src="/images/logo.png"
-                alt="La Jasin Logo"
-                priority={true}
-              />
-            </h1>
-          </button>
-          {/* </Link> */}
+          <div>
+            <button type="button">
+              <h1 className={styles.logo}>
+                <Image
+                  fill={true}
+                  src="/images/logo.png"
+                  alt="La Jasin Logo"
+                  priority={true}
+                />
+              </h1>
+            </button>
+          </div>
         </div>
         {children}
       </div>

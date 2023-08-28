@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 import classNames from 'classnames/bind'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -18,21 +18,58 @@ export default function OurIntro() {
     target: targetRef,
     offset: ['end end', 'end start'],
   })
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -200])
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -75])
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1])
   const position = useTransform(scrollYProgress, (pos) =>
     pos >= 0.7 ? 'relative' : 'fixed',
   )
 
-  useEffect(() => {
-    window.onbeforeunload = function pushRefresh() {
-      window.scrollTo(0, 0)
-    }
-  }, [])
+  const text = '너가 모르는 너 사용법을 알려줄게'
+  // const words = text.split(' ') // 단어 단위 애니메이션
+  const letters = Array.from(text) // 글자 단위 애니메이션
+
+  const textContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: 0.04 * i,
+      },
+    }),
+  }
+
+  const textChildVariants = {
+    visible: {
+      opacity: 1,
+      // y: 0,
+      x: 0,
+      transition: {
+        type: 'spring',
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      // y: -20,
+      x: -10,
+      transition: {
+        type: 'spring',
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  }
 
   return (
-    <div className={cx('wrapper')}>
+    <motion.div
+      className={cx('wrapper')}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <motion.div
         ref={targetRef}
         style={{
@@ -43,16 +80,46 @@ export default function OurIntro() {
         }}
         className={cx('heroWrapper')}
       >
-        <p className={cx('heroTitle')}>너가 모르는 너 사용법을 알려줄게</p>
-        <div className={cx('imgContainer')}>
-          <Image
-            width={220}
-            height={450}
-            src="/images/hero-mobile.png"
-            alt="hero mobile"
-          />
+        <motion.p
+          className={cx('heroTitle')}
+          variants={textContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* {words.map((word, index) => ( */}
+          {letters.map((letter, index) => (
+            <motion.span
+              key={index}
+              // style={{ marginRight: '10px' }}
+              variants={textChildVariants}
+            >
+              {letter === ' ' ? '\u00A0' : letter}
+            </motion.span>
+          ))}
+        </motion.p>
+
+        <div className={cx('scrollToIcon')}>
+          <span className={cx('scrollText')}>scroll down</span>
+          <motion.div
+            className={cx('imageContainer')}
+            initial={{ y: -3 }}
+            animate={{
+              opacity: 1,
+              y: [0, -3, 0],
+              transition: { repeat: Infinity, duration: 1.5 },
+            }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Image
+              className={cx('image')}
+              src="/images/white-bottom-arrow.png"
+              fill={true}
+              alt="white bottom arrow"
+              sizes="(max-width: 1200px) 24px"
+            />
+          </motion.div>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }

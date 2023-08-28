@@ -2,23 +2,52 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  color: $white;
   pointer-events: none;
 
   .heroWrapper {
     @include flexbox(column, center, center);
 
+    gap: 100px;
     width: 100%;
     height: 100%;
 
     .heroTitle {
+      /* display: flex, overflow: hidden이 있어야 애니메이션이 자연스럽습니다. */
+      display: flex;
+      overflow: hidden;
       font-size: 32px;
       font-weight: 500;
+
+      @include tablet {
+        font-size: 20px;
+      }
     }
 
-    .imgContainer {
-      width: 100%;
-      padding-top: 32px;
-      @include flexbox(row, center, center);
+    .scrollToIcon {
+      @include flexbox(column, center, center);
+
+      gap: 8px;
+
+      .scrollText {
+        display: block;
+        text-align: center;
+      }
+
+      .imageContainer {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+        @include flexbox(row, center, center);
+
+        .image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
   }
 }
