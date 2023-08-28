@@ -20,11 +20,11 @@ export default function Gnb({ children }: { children: React.ReactNode }) {
       <div className={styles.gnbContainer}>
         <div className={styles.left}>
           {/* <Link href="/"> */}
-          <button type="button">
+          <button type="button" className={styles.button}>
             <h1 className={styles.logo}>
               <Image
                 fill={true}
-                src="/images/logo.svg"
+                src="/images/logo2.png"
                 alt="La Jasin Logo"
                 priority={true}
               />
