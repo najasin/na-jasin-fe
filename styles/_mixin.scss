@@ -116,14 +116,13 @@
     0% {
       background-color: #fff;
     }
-  
+
     50%,
     100% {
       background-color: rgb(152 128 255 / 20%);
     }
   }
 }
-
 
 @mixin ellipsis($line: 1) {
   @if $line == 1 {
@@ -157,10 +156,10 @@
     font-size: 18px;
     font-weight: 400;
   } @else if $styleName == 'text4' {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
   } @else if $styleName == 'text5' {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
   } @else if $styleName == 'button1' {
     font-size: 17px;
