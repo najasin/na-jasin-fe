@@ -30,13 +30,13 @@
 
 .logo {
   position: relative;
-  width: 83px;
+  width: 80px;
   height: 29px;
   margin: 0;
   padding: 0;
   @include mobile {
-    width: 69px;
-    height: 23px;
+    width: 67px;
+    height: 25px;
   }
 }
 
@@ -67,9 +67,10 @@
       font-size: 12px;
     }
   }
+}
 
-  button {
-    border: none;
-    background-color: transparent;
-  }
+.button {
+  border: none;
+  background-color: transparent;
+  vertical-align: bottom;
 }

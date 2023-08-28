@@ -19,18 +19,18 @@ export default function Gnb({ children }: { children: React.ReactNode }) {
     <nav className={cx('gnbWrapper', { hasBorder: !isTablet }, { scrolled })}>
       <div className={styles.gnbContainer}>
         <div className={styles.left}>
-          <div>
-            <button type="button">
-              <h1 className={styles.logo}>
-                <Image
-                  fill={true}
-                  src="/images/logo.png"
-                  alt="La Jasin Logo"
-                  priority={true}
-                />
-              </h1>
-            </button>
-          </div>
+          {/* <Link href="/"> */}
+          <button type="button" className={styles.button}>
+            <h1 className={styles.logo}>
+              <Image
+                fill={true}
+                src="/images/logo2.png"
+                alt="La Jasin Logo"
+                priority={true}
+              />
+            </h1>
+          </button>
+          {/* </Link> */}
         </div>
         {children}
       </div>
