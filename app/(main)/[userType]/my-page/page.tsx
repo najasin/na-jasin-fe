@@ -40,7 +40,6 @@ export default async function MyPage({
     token?.value,
   )
 
-  // if (data instanceof Error) {
   if (axios.isAxiosError(data)) {
     if (
       data.response?.data.message === '존재하지 않는 유저입니다.' ||
