@@ -68,7 +68,7 @@ export default function MakeMyManualFunnel({
   const originKeywordPercents = selectedKeywords.reduce(
     (acc, keyword) => ({
       ...acc,
-      [keyword.keyword]: 2.6,
+      [keyword.keyword]: 26,
     }),
     {},
   )
