@@ -57,9 +57,11 @@ export default function OurPortalToSignin() {
         }}
       >
         <h1 className={cx('ourPortalText')}>나-자신으로 나를 설명해보세요</h1>
-        <Link href="/" className={cx('ourPortalBtn')}>
-          로그인하러 가기
-        </Link>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+          <Link href="/" className={cx('ourPortalBtn')}>
+            로그인하러 가기
+          </Link>
+        </motion.div>
       </motion.div>
       {/* )} */}
     </motion.div>
