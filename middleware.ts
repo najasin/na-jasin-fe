@@ -84,5 +84,20 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.url))
   }
 
+  // 본인 userId로 others-manual 접근 금지
+  if (
+    pathname.startsWith('/jff/others-manual') &&
+    pathname.endsWith('/jff/othres-manual') &&
+    (actForCheck || rftForCheck)
+  ) {
+    const uid = searchParams.get('userId')
+
+    if (uidForCheck === uid) {
+      return NextResponse.redirect(
+        new URL(`/jff/my-page?userId=${uid}`, req.url),
+      )
+    }
+  }
+
   return NextResponse.next()
 }
