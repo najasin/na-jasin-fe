@@ -182,7 +182,7 @@ export default function RadarChartContainer({
 
   // 스크롤 활성화하는 함수 추가
   function enableScroll() {
-    document.body.style.overflow = 'scroll'
+    document.body.style.overflow = 'auto'
     document.removeEventListener('touchmove', preventDefault)
   }
 
