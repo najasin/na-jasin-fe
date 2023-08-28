@@ -12,6 +12,7 @@ import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 
 import { UserType } from '@/types/user.enum'
 
+import CopyToast from '../copyToast/copyToast'
 import ImageLoader from '../loadingImg/imageLoader'
 import { btnTextHelpers, userTypeHelpers } from './gnb.helpers'
 import styles from './gnb.module.scss'
@@ -25,9 +26,15 @@ export default function GnbRight({ isLog }: { isLog: boolean }) {
   const pathname = usePathname()
   const currentBtnText = btnTextHelpers(pathname, isLog)
   const [isLoading, setIsLoading] = useState(false)
+  const [openToast, setOpenToast] = useState(false)
 
   const user = {
     userType: userTypeHelpers(pathname),
+  }
+
+  const handleToastClose = () => {
+    setOpenToast(false)
+    router.push('/')
   }
 
   const handleSignOut = async () => {
@@ -45,7 +52,7 @@ export default function GnbRight({ isLog }: { isLog: boolean }) {
         router.push('/')
       }
     } catch (err) {
-      throw new Error()
+      setOpenToast(true)
     } finally {
       setIsLoading(false)
     }
@@ -79,6 +86,7 @@ export default function GnbRight({ isLog }: { isLog: boolean }) {
           </>
         )}
       </div>
+      {openToast && <CopyToast type="error" onClose={handleToastClose} />}
     </>
   )
 }
