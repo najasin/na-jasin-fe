@@ -3,7 +3,9 @@
 import { useState } from 'react'
 
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
@@ -20,6 +22,8 @@ import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyMa
 import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
 import { ButtonStyle } from '../commonBtn/commonBtn.types'
+import CopyToast from '../copyToast/copyToast'
+import ImageLoader from '../loadingImg/imageLoader'
 import ProgressBar from '../progressBar/progressBar'
 import {
   getSelectedItemsFromOtherItems,
@@ -41,7 +45,7 @@ import {
 const cx = classNames.bind(styles)
 
 export default function MakeMyManual() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['myprofileRegister'],
     queryFn: () => getMyManualRegister(),
     refetchOnWindowFocus: true,
@@ -55,6 +59,8 @@ export default function MakeMyManual() {
     'nickname',
   )
   const [postSuccess, setPostSuccess] = useState(false)
+  const [openToast, setOpenToast] = useState('')
+
   const router = useRouter()
 
   const selectedFaceItem = useRecoilValue(selectedFaceItemState)
@@ -72,6 +78,9 @@ export default function MakeMyManual() {
       selectedBodyItem: selectedBodyItem.layoutCase,
       selectedExpressionItem: selectedExpressionItem.layoutCase,
     })
+  const handleToastClose = () => {
+    setOpenToast('')
+  }
 
   const onClickSubmit: SubmitHandler<FieldValues> = async (inputData) => {
     if (step === 'keyword') {
@@ -104,12 +113,26 @@ export default function MakeMyManual() {
           keywordPercents,
         })
         setPostSuccess(true)
+        setOpenToast('생성에 성공했습니다.')
+
         router.push(`/${response.userType}/my-page?userId=${response.userId}`)
 
         return response
       } catch (error) {
-        console.error('An error occurred:', error)
+        if (axios.isAxiosError(error)) {
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.message === 'my manual 생성에 실패하였습니다.'
+          ) {
+            setOpenToast('이미 설명서를 생성했습니다. 마이페이지로 이동합니다.')
 
+            const uid = getCookie('uid')
+            router.push(`/jff/my-page?userId=${uid}`)
+          }
+        }
+        setOpenToast('다시 로그인하세요.')
+        router.refresh()
         return error as Error
       }
     }
@@ -125,65 +148,79 @@ export default function MakeMyManual() {
   }
 
   return (
-    <div className={cx('layout')}>
-      {!isTablet && step !== 'nickname' && (
-        <CharacterBox
-          baseImage={data?.baseImage}
-          selectedItems={selectedItems}
-          nickname={watch('nickname')}
+    <>
+      {(isLoading || postSuccess) && <ImageLoader />}
+
+      <div className={cx('layout')}>
+        {!isTablet && step !== 'nickname' && (
+          <CharacterBox
+            baseImage={data?.baseImage}
+            selectedItems={selectedItems}
+            nickname={watch('nickname')}
+          />
+        )}
+        <div className={cx('content')}>
+          <ProgressBar
+            currentStep={step}
+            totalSteps={[
+              'nickname',
+              'character',
+              'manual',
+              'keyword',
+              'statGraph',
+            ]}
+          />
+          <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
+            <form onSubmit={handleSubmit(onClickSubmit)} className={cx('wrap')}>
+              <div className={cx('formContent')}>
+                {((isTablet && step !== 'statGraph') ||
+                  step === 'nickname') && (
+                  <CharacterBox
+                    baseImage={data?.baseImage}
+                    selectedItems={
+                      step === 'nickname' ? undefined : selectedItems
+                    }
+                    nickname={
+                      step !== 'nickname' ? watch('nickname') : undefined
+                    }
+                  />
+                )}
+
+                <MakeMyManualFunnel
+                  Funnel={Funnel}
+                  step={step}
+                  register={register}
+                  formState={formState}
+                />
+              </div>
+              <div className={cx('btn')}>
+                <CommonBtn
+                  type="submit"
+                  style={
+                    formState.errors.nickname ||
+                    formState.errors.character ||
+                    formState.errors.answers ||
+                    formState.errors.keyword ||
+                    formState.errors.statGraph
+                      ? ButtonStyle.DEACTIVE
+                      : ButtonStyle.ACTIVE
+                  }
+                  confetti={step === 'statGraph' && postSuccess}
+                >
+                  {step === 'statGraph' ? '완료' : '다음'}
+                </CommonBtn>
+              </div>
+            </form>
+          </FormBox>
+        </div>
+      </div>
+      {openToast && (
+        <CopyToast
+          type={postSuccess ? 'success' : 'error'}
+          subtitle={openToast}
+          onClose={handleToastClose}
         />
       )}
-      <div className={cx('content')}>
-        <ProgressBar
-          currentStep={step}
-          totalSteps={[
-            'nickname',
-            'character',
-            'manual',
-            'keyword',
-            'statGraph',
-          ]}
-        />
-        <FormBox title={setTitle()} paddingTop={32} onBackClick={goPrev}>
-          <form onSubmit={handleSubmit(onClickSubmit)} className={cx('wrap')}>
-            <div className={cx('formContent')}>
-              {((isTablet && step !== 'statGraph') || step === 'nickname') && (
-                <CharacterBox
-                  baseImage={data?.baseImage}
-                  selectedItems={
-                    step === 'nickname' ? undefined : selectedItems
-                  }
-                  nickname={step !== 'nickname' ? watch('nickname') : undefined}
-                />
-              )}
-
-              <MakeMyManualFunnel
-                Funnel={Funnel}
-                step={step}
-                register={register}
-                formState={formState}
-              />
-            </div>
-            <div className={cx('btn')}>
-              <CommonBtn
-                type="submit"
-                style={
-                  formState.errors.nickname ||
-                  formState.errors.character ||
-                  formState.errors.answers ||
-                  formState.errors.keyword ||
-                  formState.errors.statGraph
-                    ? ButtonStyle.DEACTIVE
-                    : ButtonStyle.ACTIVE
-                }
-                confetti={step === 'statGraph' && postSuccess}
-              >
-                {step === 'statGraph' ? '완료' : '다음'}
-              </CommonBtn>
-            </div>
-          </form>
-        </FormBox>
-      </div>
-    </div>
+    </>
   )
 }
