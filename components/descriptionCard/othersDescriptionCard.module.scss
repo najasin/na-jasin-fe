@@ -24,9 +24,10 @@
   background-color: $white;
   @include font-style('text5');
   @include mobile {
-    top: 12px;
-    right: 14px;
-    padding: 7.5px 8.5px;
+    position: static;
+    width: 100px;
+    margin-bottom: 5px;
+    padding: 2.5px;
     border-radius: 25.18px;
     font-size: 8px;
     font-weight: 300;
