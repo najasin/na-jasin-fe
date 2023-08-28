@@ -45,7 +45,6 @@ export default function ManualBox({
       const { question, answer } = qa
       const dividedQ = question.split('---')
       const tempSentence = dividedQ[0] + answer + dividedQ[1]
-      console.log(tempSentence)
       const dividedS = tempSentence.split('000')
       const sentence = ownerNickname + dividedS[1]
       const res = { id, sentence }

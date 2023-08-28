@@ -84,7 +84,6 @@ export default function ProfileBox({
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
-    console.log('click')
   }
 
   const handleClickModalClose = () => {
