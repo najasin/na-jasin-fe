@@ -5,7 +5,7 @@ import { useState } from 'react'
 import classNames from 'classnames/bind'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import CommonBtn from '@/components/commonBtn/commonBtn'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
@@ -37,6 +37,7 @@ export default function ManualBox({
   isOwner,
 }: IManualBoxProps) {
   const router = useRouter()
+  const { userType } = useParams()
   const otherAnswers = othersDatas.map((data) => {
     const { nickname, qas } = data
     const datas = qas.map((qa) => {
@@ -81,7 +82,7 @@ export default function ManualBox({
     try {
       const response = await updateAnswers({
         answers,
-        userType: 'jff',
+        userType: userType as string,
         token: 'token',
       })
 
