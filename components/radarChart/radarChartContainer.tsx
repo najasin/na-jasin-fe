@@ -211,6 +211,10 @@ export default function RadarChartContainer({
     handleUpdateRadarData(trimmedRadarData)
   }, [trimmedRadarData, handleUpdateRadarData])
 
+  useEffect(() => {
+    document.body.style.overflow = 'auto'
+  }, [])
+
   return (
     <div className={cx('radarChartContainerWrapper')}>
       <RadarChart width={frameSize} height={frameSize}>
