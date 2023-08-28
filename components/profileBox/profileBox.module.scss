@@ -9,11 +9,14 @@
     justify-content: space-between;
   }
 
-  @include mobile {
+  @media (width <= 848px) {
     flex-direction: column;
-    width: 280px;
     margin: 0 auto;
     gap: 37px;
+  }
+
+  @include mobile {
+    width: 280px;
   }
 }
 
