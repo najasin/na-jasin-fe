@@ -343,7 +343,11 @@ const drawRadarChart = (
           .style('fill-opacity', cfg.opacityArea)
       })
       .call(
-        d3.behavior.drag<DataPoint>().on('drag', move).on('dragend', moveEnd),
+        d3.behavior
+          .drag<DataPoint>()
+          .on('dragstart', disableScroll)
+          .on('drag', move)
+          .on('dragend', moveEnd),
       ) // 드래그 시 move 함수 실행, 드래그 끝났을 때 moveEnd 함수 실행
       .append('title')
       .text((j) => Math.max(j.value, 0))
