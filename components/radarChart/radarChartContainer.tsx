@@ -278,7 +278,7 @@ export default function RadarChartContainer({
           <motion.button
             type="button"
             className={cx('playButton')}
-            onClick={() => handleClickChangeZoom}
+            onClick={handleClickChangeZoom}
             style={{ touchAction: 'manipulation' }} // 추가
             transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.1 }}
