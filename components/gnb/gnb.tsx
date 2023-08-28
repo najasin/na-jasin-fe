@@ -42,7 +42,7 @@ export default function Gnb({ children }: { children: React.ReactNode }) {
               <h1 className={styles.logo}>
                 <Image
                   fill={true}
-                  src="/images/logo.png"
+                  src="/images/logo2.png"
                   alt="La Jasin Logo"
                   priority={true}
                 />
