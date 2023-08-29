@@ -50,9 +50,10 @@ export default function GnbRight() {
 
         setIsLoading(false)
 
+        console.log(getCookie('act'), getCookie('rft'))
         setTimeout(() => {
           router.push('/')
-        }, 200)
+        }, 500)
       }
     } catch (err) {
       setOpenToast(true)
@@ -74,10 +75,6 @@ export default function GnbRight() {
 
     setCurrentBtnText('로그인')
   }, [pathname])
-
-  useEffect(() => {
-    console.log(pathname, currentBtnText)
-  }, [pathname, currentBtnText])
 
   return (
     <>
