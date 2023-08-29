@@ -51,18 +51,6 @@ const postMyManual = async ({
   answers: IAnswerItem[]
   keywordPercents: IPercentWithId[]
 }): Promise<IMyManualPostResponse> => {
-  console.log({
-    nickname,
-    baseImage,
-    characterItems: {
-      ...(selectedFaceItem ? { face: selectedFaceItem } : {}),
-      ...(selectedBodyItem ? { body: selectedBodyItem } : {}),
-      ...(selectedExpressionItem ? { expression: selectedExpressionItem } : {}),
-      ...(selectedSet ? { set: selectedSet } : {}),
-    },
-    answers,
-    keywordPercents,
-  })
   const response = await postRequest<IMyManualPostResponse>(
     `/api/${userType}/my-manual`,
     {

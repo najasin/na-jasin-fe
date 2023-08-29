@@ -16,15 +16,12 @@ export async function getMyManualRegister(token?: string) {
       IrequestOptions,
     )
 
-    console.log(response)
-
     if (!response) {
       throw new Error('Failed to fetch data')
     }
 
     return response
   } catch (error) {
-    console.error('Error fetching data:', error)
     throw error
   }
 }
