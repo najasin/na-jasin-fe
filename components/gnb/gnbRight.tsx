@@ -50,7 +50,6 @@ export default function GnbRight() {
 
         setIsLoading(false)
 
-        console.log(getCookie('act'), getCookie('rft'))
         setTimeout(() => {
           router.push('/')
         }, 500)
