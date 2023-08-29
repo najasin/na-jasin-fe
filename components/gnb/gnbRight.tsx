@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
-import { deleteCookie } from 'cookies-next'
+import { deleteCookie, getCookie } from 'cookies-next'
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -14,19 +14,19 @@ import { UserType } from '@/types/user.enum'
 
 import CopyToast from '../shared/copyToast/copyToast'
 import ImageLoader from '../shared/loadingImg/imageLoader'
-import { btnTextHelpers, userTypeHelpers } from './gnb.helpers'
+import { userTypeHelpers } from './gnb.helpers'
 import styles from './gnb.module.scss'
 import GnbChip from './gnbChip'
 import { GnbChipStyle } from './gnbChip.types'
 
 const cx = classNames.bind(styles)
 
-export default function GnbRight({ isLog }: { isLog: boolean }) {
+export default function GnbRight() {
   const router = useRouter()
   const pathname = usePathname()
-  const currentBtnText = btnTextHelpers(pathname, isLog)
   const [isLoading, setIsLoading] = useState(false)
   const [openToast, setOpenToast] = useState(false)
+  const [currentBtnText, setCurrentBtnText] = useState('')
 
   const user = {
     userType: userTypeHelpers(pathname),
@@ -49,7 +49,10 @@ export default function GnbRight({ isLog }: { isLog: boolean }) {
         deleteCookie('utp')
 
         setIsLoading(false)
-        router.push('/')
+
+        setTimeout(() => {
+          router.push('/')
+        }, 200)
       }
     } catch (err) {
       setOpenToast(true)
@@ -57,6 +60,20 @@ export default function GnbRight({ isLog }: { isLog: boolean }) {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (pathname === '/') {
+      setCurrentBtnText('')
+      return
+    }
+
+    if (getCookie('act') || getCookie('rft')) {
+      setCurrentBtnText('로그아웃')
+      return
+    }
+
+    setCurrentBtnText('로그인')
+  }, [pathname])
 
   return (
     <>
