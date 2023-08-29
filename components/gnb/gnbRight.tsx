@@ -75,6 +75,10 @@ export default function GnbRight() {
     setCurrentBtnText('로그인')
   }, [pathname])
 
+  useEffect(() => {
+    console.log(pathname, currentBtnText)
+  }, [pathname, currentBtnText])
+
   return (
     <>
       {isLoading && <ImageLoader />}
