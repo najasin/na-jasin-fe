@@ -51,6 +51,7 @@ export default function GnbRight() {
         setIsLoading(false)
 
         if (pathname.includes('our-story')) {
+          setCurrentBtnText('로그인')
           return
         }
         router.push('/')
