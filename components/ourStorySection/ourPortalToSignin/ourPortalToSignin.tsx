@@ -6,13 +6,14 @@ import classNames from 'classnames/bind'
 import { getCookie } from 'cookies-next'
 import { motion, useAnimation, useInView } from 'framer-motion'
 
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import styles from './ourPortalToSignin.module.scss'
 
 const cx = classNames.bind(styles)
 
 export default function OurPortalToSignin() {
+  const router = useRouter()
   const targetRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(targetRef, {
     margin: '0px 0px 0px 0px',
@@ -59,11 +60,17 @@ export default function OurPortalToSignin() {
       >
         <h1 className={cx('ourPortalText')}>나-자신으로 나를 설명해보세요</h1>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-          <Link href="/" className={cx('ourPortalBtn')}>
+          <button
+            type="button"
+            onClick={() => {
+              router.push('/')
+            }}
+            className={cx('ourPortalBtn')}
+          >
             {getCookie('act') || getCookie('rft')
               ? '되돌아가기'
               : '로그인하러 가기'}
-          </Link>
+          </button>
         </motion.div>
       </motion.div>
       {/* )} */}

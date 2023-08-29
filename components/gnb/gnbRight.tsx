@@ -55,6 +55,7 @@ export default function GnbRight() {
           return
         }
         router.push('/')
+        setCurrentBtnText('로그인')
       }
     } catch (err) {
       setOpenToast(true)
