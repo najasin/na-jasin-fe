@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import { UseFormRegisterReturn } from 'react-hook-form'
 
-import { Input } from '../commonInput/input'
+import { Input } from '../shared/commonInput/input'
 import { splitQuestion } from './myDescriptionCard.helpers'
 import styles from './myDescriptionCard.module.scss'
 

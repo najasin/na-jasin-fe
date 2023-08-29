@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
-import ItemBox from '@/components/itemBox/itemBox'
 import { ICharacterItemIdSet } from '@/components/makeMyManual/makeMyManual.types'
 import {
   selectedBodyItemState,
@@ -10,6 +9,7 @@ import {
   selectedFaceItemState,
   selectedSetState,
 } from '@/components/makeMyManual/store/makeMyManual.atom'
+import ItemBox from '@/components/shared/itemBox/itemBox'
 
 import { Item } from '../inventory.types'
 import styles from './inventoryItemBoxList.module.scss'

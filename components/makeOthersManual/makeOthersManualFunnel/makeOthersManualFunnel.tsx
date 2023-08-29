@@ -8,8 +8,8 @@ import { useSetRecoilState } from 'recoil'
 import { useParams, useSearchParams } from 'next/navigation'
 
 import MakeOthersDescriptionCardList from '@/components/makeOthersManual/makeOthersDescriptionCard/makeOthersDescriptionCardList'
-import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
-import RadarChartContainer from '@/components/radarChart/radarChartContainer'
+import { TrimmedDataProps } from '@/components/shared/radarChart/radarChart.types'
+import RadarChartContainer from '@/components/shared/radarChart/radarChartContainer'
 
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'
 

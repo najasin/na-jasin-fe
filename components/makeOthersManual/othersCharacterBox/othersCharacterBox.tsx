@@ -5,8 +5,8 @@ import classNames from 'classnames/bind'
 
 import { useParams, useSearchParams } from 'next/navigation'
 
-import CharacterBox from '@/components/characterBox/characterBox'
-import GhostBtn from '@/components/ghostBtn/ghostBtn'
+import CharacterBox from '@/components/shared/characterBox/characterBox'
+import GhostBtn from '@/components/shared/ghostBtn/ghostBtn'
 
 import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 

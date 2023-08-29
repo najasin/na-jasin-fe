@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
 const GhostCursorController = dynamic(
-  () => import('@/components/ghostCursor/ghostCursorController'),
+  () => import('@/components/shared/ghostCursor/ghostCursorController'),
   {
     ssr: false,
   },

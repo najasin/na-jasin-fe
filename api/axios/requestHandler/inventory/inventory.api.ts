@@ -1,4 +1,4 @@
-import { ICharacterItems } from '@/components/inventory/inventory.types'
+import { ICharacterItems } from '@/components/shared/inventory/inventory.types'
 
 import { getRequest } from '../../common.apis'
 

@@ -7,23 +7,23 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import { useParams, useRouter } from 'next/navigation'
 
-import CommonBtn from '@/components/commonBtn/commonBtn'
 import MyDescriptionCard from '@/components/descriptionCard/myDescriptionCard'
 import OthersDescriptionCard from '@/components/descriptionCard/othersDescriptionCard'
-import EditBtn from '@/components/editBtn/editBtn'
 import { transformData } from '@/components/makeMyManual/makeMyManual.helpers'
 import {
   IFormData,
   IManualBoxProps,
 } from '@/components/manualBox/manualBox.types'
 import ContentModalLayout from '@/components/modalLayout/contentModalLayout'
-import ModalPortal from '@/components/modalPortal/modalPortal'
+import CommonBtn from '@/components/shared/commonBtn/commonBtn'
+import EditBtn from '@/components/shared/editBtn/editBtn'
+import ModalPortal from '@/components/shared/modalPortal/modalPortal'
 
 import { updateAnswers } from '@/api/axios/requestHandler/mypage/put.apis'
 
 import { validationRules } from '@/helpers/validationRule.helpers'
 
-import CopyToast from '../copyToast/copyToast'
+import CopyToast from '../shared/copyToast/copyToast'
 import CloseButton from './closeButton'
 import styles from './manualBox.module.scss'
 import PlaceholderBox from './placeholderBox'

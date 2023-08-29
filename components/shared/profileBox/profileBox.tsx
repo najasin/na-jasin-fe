@@ -7,30 +7,30 @@ import { useRecoilState, useResetRecoilState } from 'recoil'
 
 import { useParams, useRouter } from 'next/navigation'
 
-import CharacterBox from '@/components/characterBox/characterBox'
-import CommonBtn from '@/components/commonBtn/commonBtn'
-import EditBtn from '@/components/editBtn/editBtn'
-import FormBox from '@/components/formBox/formBox'
-import Inventory from '@/components/inventory/inventory'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,
 } from '@/components/makeMyManual/makeMyManual.helpers'
 import CloseButton from '@/components/manualBox/closeButton'
 import CharacterModalLayout from '@/components/modalLayout/characterModalLayout'
-import ModalPortal from '@/components/modalPortal/modalPortal'
-import RadarChartContainer from '@/components/radarChart/radarChartContainer'
-import ResetBtn from '@/components/resetBtn/resetBtn'
+import CharacterBox from '@/components/shared/characterBox/characterBox'
+import CommonBtn from '@/components/shared/commonBtn/commonBtn'
+import EditBtn from '@/components/shared/editBtn/editBtn'
+import FormBox from '@/components/shared/formBox/formBox'
+import Inventory from '@/components/shared/inventory/inventory'
+import ModalPortal from '@/components/shared/modalPortal/modalPortal'
+import RadarChartContainer from '@/components/shared/radarChart/radarChartContainer'
+import ResetBtn from '@/components/shared/resetBtn/resetBtn'
 
 import { updateCharacter } from '@/api/axios/requestHandler/mypage/put.apis'
 
-import CopyToast from '../copyToast/copyToast'
 import {
   selectedBodyItemState,
   selectedExpressionItemState,
   selectedFaceItemState,
   selectedSetState,
-} from '../makeMyManual/store/makeMyManual.atom'
+} from '../../makeMyManual/store/makeMyManual.atom'
+import CopyToast from '../copyToast/copyToast'
 import styles from './profileBox.module.scss'
 import { IProfileBoxProps } from './profileBox.types'
 

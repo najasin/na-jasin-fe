@@ -4,8 +4,6 @@ import classNames from 'classnames/bind'
 import { FormState, UseFormRegister } from 'react-hook-form'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
 
-import { Input } from '@/components/commonInput/input'
-import Inventory from '@/components/inventory/inventory'
 import KeywordBtnList from '@/components/keywordBtnList/keywordBtnList'
 import {
   selectedBodyItemState,
@@ -16,9 +14,11 @@ import {
   statsGraphValueState,
 } from '@/components/makeMyManual/store/makeMyManual.atom'
 import MyDescriptionCardList from '@/components/myDescriptionCardList/myDescriptionCardList'
-import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
-import RadarChartContainer from '@/components/radarChart/radarChartContainer'
-import ResetBtn from '@/components/resetBtn/resetBtn'
+import { Input } from '@/components/shared/commonInput/input'
+import Inventory from '@/components/shared/inventory/inventory'
+import { TrimmedDataProps } from '@/components/shared/radarChart/radarChart.types'
+import RadarChartContainer from '@/components/shared/radarChart/radarChartContainer'
+import ResetBtn from '@/components/shared/resetBtn/resetBtn'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { IFunnelProps, IStepProps } from '@/hooks/useFunnel'

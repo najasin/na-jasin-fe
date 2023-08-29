@@ -3,7 +3,7 @@ import { dehydrate } from '@tanstack/query-core'
 import { cookies } from 'next/headers'
 
 import MakeMyManual from '@/components/makeMyManual/makeMyManual'
-import SimpleLayout from '@/components/simpleLayout/simpleLayout'
+import SimpleLayout from '@/components/shared/simpleLayout/simpleLayout'
 
 import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import QueryHydrate from '@/api/tanstack/queryHydrate.context'

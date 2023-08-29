@@ -46,7 +46,6 @@ export const fetchOthersManualById = async (
     )
     return response
   } catch (error) {
-    console.error(error)
     throw error
   }
 }

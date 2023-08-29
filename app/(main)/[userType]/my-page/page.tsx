@@ -6,8 +6,8 @@ import ContentWrapper from '@/components/contentsWrapper/contentWrapper'
 import Fab from '@/components/fab/fab'
 // import LinkBtn from '@/components/linkBtn/linkBtn'
 import ManualBox from '@/components/manualBox/manualBox'
-import ProfileBox from '@/components/profileBox/profileBox'
-import SimpleLayout from '@/components/simpleLayout/simpleLayout'
+import ProfileBox from '@/components/shared/profileBox/profileBox'
+import SimpleLayout from '@/components/shared/simpleLayout/simpleLayout'
 
 import { getMypage } from '@/api/axios/requestHandler/mypage/get.apis'
 

@@ -1,8 +1,8 @@
-import { CharacterItems } from '@/components/characterBox/characterBox.types'
 import {
   IKeywordWithId,
   IQuestions,
 } from '@/components/makeMyManual/makeMyManual.types'
+import { CharacterItems } from '@/components/shared/characterBox/characterBox.types'
 
 interface IMyManualDatas {
   nickname: string

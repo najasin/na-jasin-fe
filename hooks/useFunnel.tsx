@@ -93,7 +93,6 @@ export const useFunnel = <T extends readonly string[]>(
   useEffect(
     () => () => {
       setStep(defaultStep)
-      console.log('cleanup')
     },
     [defaultStep],
   )

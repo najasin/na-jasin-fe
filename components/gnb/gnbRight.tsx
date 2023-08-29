@@ -12,8 +12,8 @@ import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 
 import { UserType } from '@/types/user.enum'
 
-import CopyToast from '../copyToast/copyToast'
-import ImageLoader from '../loadingImg/imageLoader'
+import CopyToast from '../shared/copyToast/copyToast'
+import ImageLoader from '../shared/loadingImg/imageLoader'
 import { btnTextHelpers, userTypeHelpers } from './gnb.helpers'
 import styles from './gnb.module.scss'
 import GnbChip from './gnbChip'
