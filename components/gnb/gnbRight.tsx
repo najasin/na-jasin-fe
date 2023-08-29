@@ -50,9 +50,10 @@ export default function GnbRight() {
 
         setIsLoading(false)
 
-        setTimeout(() => {
-          router.push('/')
-        }, 500)
+        if (pathname.includes('our-story')) {
+          return
+        }
+        router.push('/')
       }
     } catch (err) {
       setOpenToast(true)

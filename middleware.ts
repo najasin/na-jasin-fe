@@ -21,10 +21,6 @@ export function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL('/jff/my-manual', req.url))
     }
 
-    if (!req.cookies.get('act')?.value && !req.cookies.get('rft')?.value) {
-      return NextResponse.redirect(new URL('/', req.url))
-    }
-
     // TODO: df 타입 추가 예정
     // 등록을 이미 한 경우 (userType이 있는 경우) 마이 페이지로 redirect
     return NextResponse.redirect(
