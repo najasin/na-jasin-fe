@@ -28,10 +28,13 @@ export default function Gnb({ children }: { children: React.ReactNode }) {
             type="button"
             onClick={() => {
               if (pathname.includes('our-story')) {
+                router.refresh()
                 router.push('/')
               } else if (getCookie('act') || getCookie('rft')) {
+                router.refresh()
                 router.push('/our-story')
               } else {
+                router.refresh()
                 router.push('/')
               }
             }}

@@ -63,6 +63,7 @@ export default function OurPortalToSignin() {
           <button
             type="button"
             onClick={() => {
+              router.refresh()
               router.push('/')
             }}
             className={cx('ourPortalBtn')}
