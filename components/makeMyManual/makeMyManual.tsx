@@ -11,9 +11,9 @@ import { useRecoilValue } from 'recoil'
 
 import { useRouter } from 'next/navigation'
 
-import CharacterBox from '@/components/characterBox/characterBox'
-import CommonBtn from '@/components/commonBtn/commonBtn'
-import FormBox from '@/components/formBox/formBox'
+import CharacterBox from '@/components/shared/characterBox/characterBox'
+import CommonBtn from '@/components/shared/commonBtn/commonBtn'
+import FormBox from '@/components/shared/formBox/formBox'
 
 import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 import { useFunnel } from '@/hooks/useFunnel'
@@ -22,10 +22,10 @@ import { logout } from '@/api/axios/requestHandler/auth/post.apis'
 import { getMyManualRegister } from '@/api/axios/requestHandler/myManual/getMyManualRegister.api'
 import { postMyManual } from '@/api/axios/requestHandler/myManual/postMyManual.api'
 
-import { ButtonStyle } from '../commonBtn/commonBtn.types'
-import CopyToast from '../copyToast/copyToast'
-import ImageLoader from '../loadingImg/imageLoader'
-import ProgressBar from '../progressBar/progressBar'
+import { ButtonStyle } from '../shared/commonBtn/commonBtn.types'
+import CopyToast from '../shared/copyToast/copyToast'
+import ImageLoader from '../shared/loadingImg/imageLoader'
+import ProgressBar from '../shared/progressBar/progressBar'
 import {
   getSelectedItemsFromOtherItems,
   getSelectedItemsFromSet,

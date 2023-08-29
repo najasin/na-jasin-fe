@@ -3,7 +3,7 @@
 import classNames from 'classnames/bind'
 import { motion } from 'framer-motion'
 
-import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
+import { ButtonStyle } from '@/components/shared/commonBtn/commonBtn.types'
 
 import styles from './itemBtn.module.scss'
 import { IItemBtnProps } from './itemBtn.types'

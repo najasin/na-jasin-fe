@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
+import { ButtonStyle } from '@/components/shared/commonBtn/commonBtn.types'
 
 import ItemBtn from './itemBtn'
 

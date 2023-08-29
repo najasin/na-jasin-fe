@@ -5,7 +5,7 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import CommonBtn from '../commonBtn/commonBtn'
+import CommonBtn from '../shared/commonBtn/commonBtn'
 import styles from './error.module.scss'
 
 const cx = classNames.bind(styles)

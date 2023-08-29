@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import CommonBtn from '../commonBtn/commonBtn'
+import CommonBtn from '../shared/commonBtn/commonBtn'
 import ModalLayout from './modalLayout'
 
 const contentModal: Meta<typeof ModalLayout> = {

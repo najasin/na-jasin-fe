@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
 
-import { Category } from '@/components/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
-import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
+import { Category } from '@/components/shared/inventory/inventoryCategoryBtnList/inventoryCategoryBtnList.types'
+import { TrimmedDataProps } from '@/components/shared/radarChart/radarChart.types'
 
 import { ICharacterItemIdSet, IKeywordWithId } from '../makeMyManual.types'
 

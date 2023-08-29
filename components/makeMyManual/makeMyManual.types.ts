@@ -1,5 +1,5 @@
-import { CharacterItems } from '../characterBox/characterBox.types'
-import { TrimmedDataProps } from '../radarChart/radarChart.types'
+import { CharacterItems } from '../shared/characterBox/characterBox.types'
+import { TrimmedDataProps } from '../shared/radarChart/radarChart.types'
 
 export interface IQuestions {
   id: number

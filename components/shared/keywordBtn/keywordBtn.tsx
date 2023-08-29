@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind'
 
-import { ButtonStyle } from '@/components/commonBtn/commonBtn.types'
+import { ButtonStyle } from '@/components/shared/commonBtn/commonBtn.types'
 
 import styles from './keywordBtn.module.scss'
 import { IKeywordBtnProps } from './keywordBtn.types'

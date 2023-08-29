@@ -2,7 +2,7 @@
 
 import { atom } from 'recoil'
 
-import { TrimmedDataProps } from '@/components/radarChart/radarChart.types'
+import { TrimmedDataProps } from '@/components/shared/radarChart/radarChart.types'
 
 export const nicknameState = atom({
   key: 'nicknameState',

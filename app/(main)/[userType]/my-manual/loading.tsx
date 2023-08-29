@@ -1,4 +1,4 @@
-import ImageLoader from '@/components/loadingImg/imageLoader'
+import ImageLoader from '@/components/shared/loadingImg/imageLoader'
 
 export default function Loading() {
   return <ImageLoader />

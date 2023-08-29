@@ -7,8 +7,8 @@ import { motion } from 'framer-motion'
 
 import { useParams, useSearchParams } from 'next/navigation'
 
-import CopyToast from '@/components/copyToast/copyToast'
 import CircleButton from '@/components/fab/circleButton'
+import CopyToast from '@/components/shared/copyToast/copyToast'
 
 import handleClickCopyClipboard from '@/services/clipboard.helpers'
 import handleClickShareFacebook from '@/services/facebook.helpers'

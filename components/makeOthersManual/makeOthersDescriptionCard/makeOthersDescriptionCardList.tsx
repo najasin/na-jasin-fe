@@ -10,8 +10,8 @@ import useBreakpoint from '@/hooks/useBreakpoint.hooks'
 
 import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
-import { Input } from '../../commonInput/input'
 import { IQuestions } from '../../makeMyManual/makeMyManual.types'
+import { Input } from '../../shared/commonInput/input'
 import { IFormInputs } from '../makeOthersManual.type'
 import MakeOthersDescriptionCard from './makeOthersDescriptionCard'
 import styles from './makeOthersDescriptionCardList.module.scss'

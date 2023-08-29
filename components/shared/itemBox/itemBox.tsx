@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 
 import Image from 'next/image'
 
+import { ICharacterItemIdSet } from '../../makeMyManual/makeMyManual.types'
 import { Item } from '../inventory/inventory.types'
-import { ICharacterItemIdSet } from '../makeMyManual/makeMyManual.types'
 import styles from './itemBox.module.scss'
 
 const cx = classNames.bind(styles)

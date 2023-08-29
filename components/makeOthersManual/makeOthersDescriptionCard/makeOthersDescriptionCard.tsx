@@ -4,9 +4,9 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 import { useParams, useSearchParams } from 'next/navigation'
 
-import { Input } from '@/components/commonInput/input'
 import { splitQuestion } from '@/components/descriptionCard/myDescriptionCard.helpers'
 import styles from '@/components/descriptionCard/myDescriptionCard.module.scss'
+import { Input } from '@/components/shared/commonInput/input'
 
 import { fetchOthersManualById } from '@/api/axios/requestHandler/othersManual/getOthersManual.api'
 
