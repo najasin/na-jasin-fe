@@ -54,6 +54,7 @@ export default function GnbRight() {
           setCurrentBtnText('로그인')
           return
         }
+        router.refresh()
         router.push('/')
         setCurrentBtnText('로그인')
       }
