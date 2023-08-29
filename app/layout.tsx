@@ -29,7 +29,7 @@ export default function RootLayout({
   const act = cookieStore.get('act')
 
   return (
-    <>
+    <html lang="ko" className={gmarketSans.className}>
       <Script
         async={true}
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
@@ -48,24 +48,21 @@ export default function RootLayout({
     `,
         }}
       />
-
-      <html lang="ko" className={gmarketSans.className}>
-        <body>
-          <TanstackProvider>
-            <RecoilRootWrapper>
-              <Gnb>
-                <GnbRight isLog={!!(rft || act)} />
-              </Gnb>
-              <main>{children}</main>
-              <Footer />
-            </RecoilRootWrapper>
-          </TanstackProvider>
-          <Script
-            src="https://developers.kakao.com/sdk/js/kakao.js"
-            strategy="beforeInteractive"
-          />
-        </body>
-      </html>
-    </>
+      <body>
+        <TanstackProvider>
+          <RecoilRootWrapper>
+            <Gnb>
+              <GnbRight isLog={!!(rft || act)} />
+            </Gnb>
+            <main>{children}</main>
+            <Footer />
+          </RecoilRootWrapper>
+        </TanstackProvider>
+        <Script
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+          strategy="beforeInteractive"
+        />
+      </body>
+    </html>
   )
 }
