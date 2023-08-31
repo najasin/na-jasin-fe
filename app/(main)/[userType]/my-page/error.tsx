@@ -2,7 +2,12 @@
 
 import MypageError from '@/components/error/mypageError'
 
-export default function Error({ error }: { error: Error }) {
+export default function Error({
+  error,
+}: {
+  error: Error & { digest?: string }
+}) {
+  console.log(error.digest)
   if (
     error.message === '존재하지 않는 유저입니다.' ||
     error.message === '존재하지 않는 유저타입입니다.'
