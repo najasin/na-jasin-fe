@@ -16,11 +16,11 @@
 - 더 자세한 설명을 보고 싶다면? [PDF 자료](https://github.com/najasin/na-jasin-fe/blob/main/na-jasin-final.pdf)
 
 ## 서비스 주요 기능
+| 로그인 | 나 사용 설명서 등록하기 | 타인이 적어주는 나 사용 설명서 | 마이페이지 | 우리들의 이야기 |
+|:---:|:---:|:---:|:---:|:---:|
+|<img src="https://github.com/najasin/na-jasin-fe/assets/81355590/ac809d12-2ad6-4e9c-b768-4f1951f0794a" width=200px>|<img src="https://github.com/najasin/na-jasin-fe/assets/81355590/4330f3bf-4e6a-41d0-b44f-6b69f379c797" width=400px>|<img src="https://github.com/najasin/na-jasin-fe/assets/81355590/08c939d5-addd-4095-9b57-d0bd1efc6413" width=200px>|<img src="https://github.com/najasin/na-jasin-fe/assets/81355590/3ea7d9fe-cf2b-4ff3-ad3e-772dce5c16cf" width=200px>|<img src="https://github.com/najasin/na-jasin-fe/assets/81355590/c7522cd6-0bae-4530-ad90-fa1300ae5d92" width=300px>|
 
-- 나를 대표하는 캐릭터, 문장, 능력치 등을 설정해 나 사용 설명서를 만들 수 있습니다.
-- 링크 공유를 통해 타인이 바라보는 나에 대해 의견을 받을 수 있습니다.
-- 마이페이지에서 내가 적은 것과 타인이 적어준 의견을 한눈에 볼 수 있습니다.
-- 우리들의 이야기에서 서비스에 대한 사용 설명을 볼 수 있습니다.
+|구글, 카카오톡 소셜 로그인을 통해 간편 로그인할 수 있습니다.|나를 대표하는 캐릭터, 문장, 능력치 등을 설정해 나 사용 설명서를 만들 수 있습니다.|링크 공유를 통해 타인이 바라보는 나에 대해 의견을 받을 수 있습니다.|마이페이지에서 내가 적은 것과 타인이 적어준 의견을 한눈에 볼 수 있습니다.|우리들의 이야기에서 서비스에 대한 사용 설명을 볼 수 있습니다.
 
 ## Tech Stacks
 <div>
@@ -55,7 +55,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>🐣 에바</td>
+      <td><a href = "https://github.com/shyjnnn">🐣 신예진(에바)</a></td>
       <td>
         <ul>
           <li>백엔드 소통 & 일정 관리</li>
@@ -64,7 +64,7 @@
       </td>
     </tr>
     <tr>
-      <td>🕺🏼 헨리</td>
+      <td>🕺🏼 이용우(헨리)</td>
       <td>
         <ul>
           <li>로그인, 우리들의 이야기 페이지, 레이더 차트 개발</li>
@@ -73,7 +73,7 @@
       </td>
     </tr>
     <tr>
-      <td>🐯 앤디</td>
+      <td>🐯 신민규(앤디)</td>
       <td>
         <ul>
           <li>마이페이지, 모달 컴포넌트 개발</li>
@@ -81,7 +81,7 @@
       </td>
     </tr>
     <tr>
-      <td>🦾 티나</td>
+      <td>🦾 박유현(티나)</td>
       <td>
         <ul>
           <li>디자이너 소통</li>
